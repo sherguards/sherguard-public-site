@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Register - AI Trust OS</title>
+  <meta
+    name="description"
+    content="Create your AI Trust OS account and start monitoring fraud, abuse, bots, APIs, payments, and session security."
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="auth-page">
+  <main class="auth-shell">
+    <section class="auth-brand-panel">
+      <a href="landing.html" class="auth-logo">
+        <span>▣</span>
+        <strong>AI Trust OS</strong>
+      </a>
+
+      <h1>Start building your trust intelligence layer.</h1>
+
+      <p>
+        Create an organization, generate scoped API keys, and begin monitoring
+        security risk across your business.
+      </p>
+
+      <div class="auth-feature-list">
+        <div>✓ Free plan available</div>
+        <div>✓ API key management</div>
+        <div>✓ Fraud and abuse intelligence</div>
+        <div>✓ Enterprise-ready dashboard</div>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <span class="auth-eyebrow">Create Account</span>
+
+      <h2>Start Free</h2>
+
+      <p>
+        Create your organization workspace and open your Trust Intelligence Dashboard.
+      </p>
+
+      <form id="registerForm">
+        <div class="auth-form-group">
+          <label>Organization Name</label>
+          <input
+            type="text"
+            id="organizationName"
+            placeholder="Your company name"
+            required
+          />
+        </div>
+
+        <div class="auth-form-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Your full name"
+            required
+          />
+        </div>
+
+        <div class="auth-form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="you@company.com"
+            required
+          />
+        </div>
+
+        <div class="auth-form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Minimum 8 characters"
+            required
+          />
+        </div>
+
+        <button type="submit" class="auth-btn">
+          Create Account
+        </button>
+      </form>
+
+      <div id="statusBox" class="auth-status-box"></div>
+
+      <div class="auth-switch">
+        Already have an account?
+        <a href="login.html">Sign in</a>
+      </div>
+
+      <div class="auth-footer-links">
+        <a href="landing.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="developers.html">Developers</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const registerForm = document.getElementById('registerForm');
+    const statusBox = document.getElementById('statusBox');
+
+    function showStatus(message, type) {
+      statusBox.className = 'auth-status-box auth-status-' + type;
+      statusBox.style.display = 'block';
+      statusBox.textContent = message;
+    }
+
+    registerForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      statusBox.style.display = 'none';
+
+      const organizationName = document.getElementById('organizationName').value.trim();
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (password.length < 8) {
+        showStatus('Password must be at least 8 characters.', 'error');
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          'http://127.0.0.1:8000/auth/register',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              organization_name: organizationName,
+              full_name: fullName,
+              email: email,
+              password: password
+            })
+          }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(
+            result.detail ||
+            result.message ||
+            'Registration failed.'
+          );
+        }
+
+        localStorage.setItem('aiTrustToken', result.access_token);
+        localStorage.setItem('aiTrustUser', JSON.stringify(result.user));
+
+        showStatus('Account created. Opening dashboard...', 'success');
+
+        setTimeout(function() {
+          window.location.href = 'index.html';
+        }, 900);
+
+      } catch (error) {
+        showStatus(error.message, 'error');
+      }
+    });
+  </script>
+</body>
+</html>
