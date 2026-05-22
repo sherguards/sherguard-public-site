@@ -1,0 +1,2058 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <title>AI Trust OS - Trust Intelligence Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell" id="dashboard">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L19 5.5V10.8C19 15.14 16.01 19.14 12 20.3C7.99 19.14 5 15.14 5 10.8V5.5L12 2Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9.5 11.8L11.1 13.4L14.8 9.7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <h1>AI Trust OS</h1>
+          <p>AI Trust Layer</p>
+        </div>
+        <div class="org-mini-card">
+          <span id="orgNameText">Loading organization...</span>
+          <small id="orgPlanText">Plan loading...</small>
+        </div>
+        <div class="usage-mini-card">
+          <strong>Today’s Usage</strong>
+          <div id="usageSummaryText">Loading usage...</div>
+        </div>
+      </div>
+
+      <div>
+        <span class="sidebar-label">Core Modules</span>
+        <nav class="nav" aria-label="Primary navigation">
+          <button class="nav-item active" type="button" data-scroll-target="dashboard">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 5H10V10H4V5Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M14 5H20V10H14V5Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M4 14H10V19H4V14Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M14 14H20V19H14V14Z" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span>Dashboard</span>
+          </button>
+          <button class="nav-item" type="button" data-scroll-target="email-risk">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 7L12 12.5L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="4" y="5" width="16" height="14" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span>Email Risk</span>
+          </button>
+          <button class="nav-item" type="button" data-scroll-target="device-risk-module">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="7" y="2.8" width="10" height="18.4" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M10 5.5H14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="17.3" r="1" fill="currentColor"/>
+              </svg>
+            </span>
+            <span>Device Risk</span>
+          </button>
+          <button class="nav-item" type="button" data-scroll-target="bot-detection">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="7" y="7" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M9 3V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M15 3V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M9 18V21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M15 18V21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M3 9H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M18 9H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M3 15H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M18 15H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>Bot Detection</span>
+          </button>
+          <button class="nav-item" type="button" data-scroll-target="api-abuse">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 12H8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M8 12L10.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M8 12L10.5 14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M20 12H16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M16 12L13.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M16 12L13.5 14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span>API Abuse</span>
+          </button>
+          <button class="nav-item" type="button" data-scroll-target="payment-fraud">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="3.5" y="6" width="17" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M3.5 10H20.5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M7.5 14.5H11.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>Payment Fraud</span>
+          </button>
+          
+          <button class="nav-item" type="button" data-scroll-target="ai-agent-permissions">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 4.5L13.6 6.6L16.3 6.2L16.9 8.9L19.4 10.2L18.1 12.5L19.4 14.8L16.9 16.1L16.3 18.8L13.6 18.4L12 20.5L10.4 18.4L7.7 18.8L7.1 16.1L4.6 14.8L5.9 12.5L4.6 10.2L7.1 8.9L7.7 6.2L10.4 6.6L12 4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <circle cx="12" cy="12.5" r="2.2" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span>AI Agent Permissions</span>
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h2>Trust Intelligence Dashboard</h2>
+          <p>Monitor fraud risk, abuse signals, risky devices, bot activity, API threats, and payment fraud in real time.</p>
+        </div>
+        <div class="dashboard-engine-card">
+          <div class="engine-status-pill">
+            <span>●</span>
+            Beta Engine Active
+          </div>
+        
+          <h4>Engine Mode</h4>
+        
+          <p>
+            Real-time AI fraud monitoring across trust, abuse,
+            payment, bot, device, and API intelligence layers.
+          </p>
+        </div>
+        <div class="topbar-actions">
+          <button id="logoutBtn" class="secondary-btn">
+            Logout
+          </button>
+          
+          <div class="status-badge">
+            <span id="liveDot" style="
+              display:inline-block;
+              width:8px;
+              height:8px;
+              background:#16a34a;
+              border-radius:50%;
+              margin-right:6px;
+            "></span>
+            LIVE
+          </div>
+        
+          <div id="dashboardSyncTime" class="dashboard-sync-time">
+            Last sync: --:--:--
+          </div>
+        </div>
+      </header>
+
+      <section class="security-center-card">
+        <div>
+          <p class="security-center-label">SECURITY CENTER</p>
+          <h3 id="securityCenterStatus">Monitoring</h3>
+          <p id="securityCenterPriority">Priority: Monitor</p>
+        </div>
+      
+        <div>
+          <p id="securityCenterTrend">Trend: Waiting for data</p>
+          <p id="securityCenterAction">Recommended action: Continue monitoring</p>
+        </div>
+      </section>
+
+      <section class="dashboard-section api-key-management-card">
+        <div class="section-header">
+          <div>
+            <h3>API Key Management</h3>
+            <p>Create, monitor, and revoke scoped developer API keys for public integrations.</p>
+            <p id="apiKeyUsageText" class="api-key-usage-text">
+              Loading API key usage...
+            </p>
+          </div>
+          <button id="createApiKeyBtn" class="primary-btn">
+            Create API Key
+          </button>
+        </div>
+      
+        <div class="api-key-create-row">
+          <input
+            id="apiKeyNameInput"
+            type="text"
+            placeholder="API key name"
+            value="Default API Key"
+          />
+        </div>
+      
+        <div class="api-key-scopes-panel">
+          <h4>Allowed API Modules</h4>
+          <p>Select which modules this API key can access.</p>
+      
+          <div class="api-key-scope-grid">
+            <label>
+              <input type="checkbox" name="apiKeyScopes" value="email_risk" checked />
+              Email Risk
+            </label>
+      
+            <label>
+              <input type="checkbox" name="apiKeyScopes" value="device_risk" checked />
+              Device Risk
+            </label>
+      
+            <label>
+              <input type="checkbox" name="apiKeyScopes" value="bot_detection" checked />
+              Bot Detection
+            </label>
+      
+            <label>
+              <input type="checkbox" name="apiKeyScopes" value="api_abuse" checked />
+              API Abuse
+            </label>
+      
+            <label>
+              <input type="checkbox" name="apiKeyScopes" value="payment_fraud" checked />
+              Payment Fraud
+            </label>
+          </div>
+        </div>
+      
+        <div id="newApiKeyBox" class="new-api-key-box hidden">
+          <strong>New API Key</strong>
+      
+          <p>
+            Copy this key now. It will not be shown again.
+          </p>
+      
+          <div class="new-api-key-copy-row">
+            <code id="newApiKeyValue"></code>
+      
+            <button id="copyNewApiKeyBtn" type="button">
+              Copy
+            </button>
+          </div>
+        </div>
+      
+        <div class="api-key-table-wrap">
+          <table class="api-key-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Prefix</th>
+                <th>Scopes</th>
+                <th>Status</th>
+                <th>Requests</th>
+                <th>Last Used</th>
+                <th>Created By</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="apiKeysTableBody">
+              <tr>
+                <td colspan="8">Loading API keys...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dashboard-section team-management-card">
+        <div class="section-header">
+          <div>
+            <h3>Team Management</h3>
+            <p>View organization users, roles, and account status.</p>
+          </div>
+        </div>
+      
+        <div class="team-table-wrap">
+          <table class="team-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+      
+            <tbody id="teamMembersTableBody">
+              <tr>
+                <td colspan="4">Loading team members...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="team-invitations-block">
+          <h4>Pending Invitations</h4>
+        
+          <div class="team-table-wrap">
+            <table class="team-table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Invited By</th>
+                </tr>
+              </thead>
+        
+              <tbody id="teamInvitationsTableBody">
+                <tr>
+                  <td colspan="4">Loading invitations...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="team-invitations-block">
+          <h4>Active Login Sessions</h4>
+
+          <div class="team-session-summary-grid">
+            <div class="team-session-summary-card">
+              <span>Total Sessions</span>
+              <strong id="teamTotalSessions">0</strong>
+            </div>
+          
+            <div class="team-session-summary-card">
+              <span>Active Sessions</span>
+              <strong id="teamActiveSessions">0</strong>
+            </div>
+          
+            <div class="team-session-summary-card">
+              <span>Trusted Sessions</span>
+              <strong id="teamTrustedSessions">0</strong>
+            </div>
+          
+            <div class="team-session-summary-card">
+              <span>High Risk Sessions</span>
+              <strong id="teamHighRiskSessions">0</strong>
+            </div>
+          </div>
+        
+          <div class="team-table-wrap">
+            <table class="team-table">
+
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>IP Address</th>
+                  <th>Browser / Device</th>
+                  <th>Login Method</th>
+                  <th>Status</th>
+                  <th>Lifecycle</th>
+                  <th>Risk Level</th>
+                  <th>Risk Score</th>
+                  <th>Detected Threat</th>
+                  <th>Security Recommendation</th>
+                  <th>Activity Age</th>
+                  <th>Last Seen</th>
+                </tr>
+              </thead>
+        
+              <tbody id="teamSessionsTableBody">
+                <tr>
+                  <td colspan="12">Loading sessions...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="global-risk-meter">
+        <div class="global-risk-header">
+          <div>
+            <p class="global-risk-label">GLOBAL AI RISK LEVEL</p>
+            <h2 id="globalRiskPercent">0%</h2>
+            <p id="globalRiskStatus">Monitoring</p>
+            <span id="dashboardModeBadge" class="dashboard-mode-badge">Live Simulation Mode</span>
+            <div id="connectedModulesText" class="connected-modules-text">
+              6 risk modules connected
+            </div>
+            <div id="globalEventsText" class="connected-modules-text">
+              0 total risk events reviewed
+            </div>
+            <div id="highRiskRateText" class="connected-modules-text">
+              High-risk rate: 0%
+            </div>
+            <div id="globalActionText" class="connected-modules-text">
+              Recommended action: Continue monitoring
+            </div>
+          </div>
+      
+          <div class="global-risk-bar">
+            <div id="globalRiskBarFill"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kpi-grid" aria-label="Key performance indicators">
+        <section class="card" id="insightCard">
+          <div class="card-head">
+            <div>
+              <h3>System Insights</h3>
+              <p>AI-generated summary of current trust activity and risk trends.</p>
+            </div>
+            <span class="mini-badge">AI Powered</span>
+          </div>
+          <div id="threatTicker" class="threat-ticker">
+            Live Threat Feed: Waiting for activity...
+          </div>
+          <div id="riskBanner" class="risk-banner hidden">
+            ⚠️ Elevated or Critical risk detected. Review system activity immediately.
+          </div>
+
+          <div id="insightText" class="muted-small">
+            No activity yet. Run checks to generate insights.
+          </div>
+          <div id="insightMeta" class="muted-small">
+            Insight updates automatically from saved risk history.
+          </div>
+          <div id="insightUpdated" class="muted-small">
+            Last live sync: Waiting...
+          </div>
+          <div id="insightConfidence" class="muted-small">
+            AI Confidence: Waiting for data
+          </div>
+          <div id="topPattern" class="muted-small">
+            Top pattern: Waiting for data
+          </div>
+          
+          <div id="engineStatus" class="muted-small">
+            Monitoring
+          </div>
+
+          <div id="systemHealth" class="muted-small">System Health: Stable</div>
+          <div id="trendIndicator" class="muted-small">Trend: Waiting for more data</div>
+          
+          <div class="muted-small">
+            <div id="riskSummary">
+              High: 0 · Medium: 0 · Low: 0
+            </div>
+          </div>
+          
+          <div id="actionAdvice" class="muted-small">
+            Action: Waiting for data
+          </div>
+          <div class="auto-action">
+            <label>
+              <input type="checkbox" id="autoActionToggle">
+              Enable Auto Action (AI Control)
+            </label>
+          </div>
+          <div class="dashboard-mini-feed">
+            <h4>Recent Trust Activity</h4>
+            <div id="recentActivityFeed">
+              No recent activity yet.
+            </div>
+          </div>
+          <div class="dashboard-timeline">
+            <h4>Live Activity Timeline</h4>
+            <div id="dashboardTimelineFeed">
+              Waiting for timeline events...
+            </div>
+          </div>
+          <div class="clear-activity-wrap">
+            <button class="clear-btn" id="clearActivityBtn" type="button">Clear Activity</button>
+            <p>Deletes saved dashboard activity only.</p>
+          </div>
+        </section>
+
+        <article class="kpi-card total">
+          <div class="kpi-head">
+            <div>
+              <p class="kpi-label">Total Checks</p>
+              <div class="kpi-value" id="totalChecksValue">0</div>
+              <div class="kpi-updated">
+                <span class="kpi-live-dot"></span>
+                <span id="totalChecksUpdated">Updated just now</span>
+              </div>
+            </div>
+            <div class="kpi-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M5 6H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M5 18H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-meta">All trust events reviewed across connected risk modules.</div>
+        </article>
+
+        <article class="kpi-card high">
+          <div class="kpi-head">
+            <div>
+              <p class="kpi-label">High Risk</p>
+              <div class="kpi-value" id="highRiskValue">0</div>
+            </div>
+            <div class="kpi-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M12 4L20 19H4L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M12 9V13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M12 16.5H12.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-meta">Score 80 or higher across current trust rules.</div>
+        </article>
+
+        <article class="kpi-card medium">
+          <div class="kpi-head">
+            <div>
+              <p class="kpi-label">Medium Risk</p>
+              <div class="kpi-value" id="mediumRiskValue">0</div>
+            </div>
+            <div class="kpi-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3.8L20 8.2V15.8L12 20.2L4 15.8V8.2L12 3.8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M12 8.3V12.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M12 15.8H12.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-meta">Score between 50 and 79 based on active heuristics.</div>
+        </article>
+
+        <article class="kpi-card low">
+          <div class="kpi-head">
+            <div>
+              <p class="kpi-label">Low Risk</p>
+              <div class="kpi-value" id="lowRiskValue">0</div>
+            </div>
+            <div class="kpi-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L19 5.5V10.8C19 15.14 16.01 19.14 12 20.3C7.99 19.14 5 15.14 5 10.8V5.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9.5 11.8L11.1 13.4L14.8 9.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-meta">Score below 50 with lighter trust-risk indicators.</div>
+        </article>
+      </section>
+
+      <section id="email-risk">
+        <div class="email-section-shell">
+          <div class="email-section-header">
+            <div>
+              <h2>Email Risk Intelligence</h2>
+              <p>Master-level, explainable email intelligence for signup trust decisions.</p>
+            </div>
+            <div class="email-badge-row">
+              <span class="email-badge">Master Template</span>
+              <span class="email-badge">Rule-Based Engine</span>
+              <span class="email-badge email-badge--complete">MVP Security Engine</span>
+            </div>
+          </div>
+      
+          <div class="email-layout-grid">
+            <article class="card email-card email-card--hero">
+              <div class="email-card-head">
+                <div>
+                  <h3>Email Risk Checker</h3>
+                  <p>Run conservative syntax validation, normalization, and explainable fraud heuristics directly in the browser.</p>
+                </div>
+              </div>
+      
+              <form id="emailRiskForm" class="email-form" novalidate>
+                <label for="emailInput">Email address</label>
+                <div class="email-input-row">
+                  <input
+                    id="emailInput"
+                    class="email-input"
+                    type="email"
+                    inputmode="email"
+                    autocomplete="email"
+                    placeholder="name@example.com"
+                    aria-describedby="emailFormMessage"
+                  />
+                  <button id="emailCheckButton" class="email-primary-button" type="submit">Check Risk</button>
+                </div>
+              </form>
+      
+              <div class="email-toolbar-row">
+                <label class="email-toggle-pill" for="emailAutoAction">
+                  <input id="emailAutoAction" type="checkbox" />
+                  <span>Auto Action</span>
+                  <span id="emailAutoActionState" class="email-toggle-pill__state is-off">OFF</span>
+                </label>
+      
+                <div class="email-inline-actions">
+                  <button id="emailCopyResultButton" class="email-secondary-button" type="button">Copy Result</button>
+                  <button id="emailExportCsvButton" class="email-secondary-button" type="button">Export CSV</button>
+                  <button id="emailClearHistoryButton" class="email-danger-button" type="button">Clear History</button>
+                </div>
+              </div>
+      
+              <p id="emailFormMessage" class="email-helper-text email-helper-text--info" role="status" aria-live="polite">
+                Waiting for the first check.
+              </p>
+      
+              <div class="email-kpi-grid">
+                <div class="email-kpi-card">
+                  <span>Total Checks</span>
+                  <strong id="emailKpiTotal">0</strong>
+                </div>
+                <div class="email-kpi-card">
+                  <span>High Risk</span>
+                  <strong id="emailKpiHigh">0</strong>
+                </div>
+                <div class="email-kpi-card">
+                  <span>Medium Risk</span>
+                  <strong id="emailKpiMedium">0</strong>
+                </div>
+                <div class="email-kpi-card">
+                  <span>Low Risk</span>
+                  <strong id="emailKpiLow">0</strong>
+                </div>
+                <div class="email-stat-card">
+                  <span class="email-stat-card__label">Avg Risk Score</span>
+                  <strong id="emailAverageRisk">0</strong>
+                  <small>Across all checks</small>
+                </div>
+                <div class="email-stat-card">
+                  <span class="email-stat-card__label">AI Trust Status</span>
+                  <strong id="emailTrustStatus">Stable</strong>
+                  <small>Live threat posture</small>
+                </div>
+              </div>
+            </article>
+      
+            <article class="card email-card email-card--profile">
+              <div class="email-card-head">
+                <div>
+                  <h3>Email Risk Profile</h3>
+                  <p>Single-view summary of the latest analyzed address, normalized output, score, label, decision, and confidence.</p>
+                </div>
+              </div>
+
+      <div id="emailDecisionBanner" class="email-decision-banner">
+  Waiting for analysis...
+</div>
+              <div class="email-profile-shell">
+                <div id="emailScoreRing" class="email-score-ring" data-risk="low" style="--email-score: 0;">
+                  <div class="email-score-ring__inner">
+                    <span id="emailScoreRingValue" class="email-score-ring__value">0</span>
+                    <span class="email-score-ring__label">Risk Score</span>
+                  </div>
+                </div>
+      
+                <div class="email-profile-grid">
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Email</span>
+                    <strong id="emailProfileRaw" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Normalized Email</span>
+                    <strong id="emailProfileNormalized" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Username</span>
+                    <strong id="emailProfileUsername" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Domain</span>
+                    <strong id="emailProfileDomain" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Provider Type</span>
+                    <strong id="emailProfileProviderType" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Domain Type</span>
+                    <strong id="emailProfileDomainType" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Risk Score</span>
+                    <strong id="emailScore" class="email-profile-value">—</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Risk Level</span>
+                    <strong id="emailRiskLevel" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Final Decision</span>
+                    <strong id="emailDecision" class="email-profile-value">Waiting</strong>
+                  </div>
+                  <div class="email-profile-row">
+                    <span class="email-profile-key">Confidence</span>
+                    <strong id="emailConfidence" class="email-profile-value">—</strong>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+      
+          <div class="email-layout-grid">
+            <article class="card email-card email-card--signals">
+              <div class="email-card-head">
+                <div>
+                  <h3>Advanced Trust Signals</h3>
+                  <p>Grouped signals make the module explainable for operations, trust, and fraud teams.</p>
+                </div>
+              </div>
+
+              <div id="emailSignalCounters" class="email-signal-counters"></div>
+              <div id="emailRiskReasons" class="email-risk-reasons"></div>
+              <div id="emailVerificationStatus" class="email-verification-status"></div>
+              <div id="emailDomainReputation" class="email-domain-reputation"></div>
+              <div id="emailBehavioralRisk" class="email-behavioral-risk"></div>
+              <div id="emailThreatFeed" class="email-threat-feed"></div>
+              <div id="emailExplainabilityPanel" class="email-explainability-panel"></div>
+      
+              <div class="email-group-grid">
+                <section class="email-signal-group">
+                  <h4>Identity Signals</h4>
+                  <ul id="emailIdentitySignals" class="email-signal-list">
+                    <li class="email-empty-state">Waiting for signals.</li>
+                  </ul>
+                </section>
+      
+                <section class="email-signal-group">
+                  <h4>Provider Signals</h4>
+                  <ul id="emailProviderSignals" class="email-signal-list">
+                    <li class="email-empty-state">Waiting for signals.</li>
+                  </ul>
+                </section>
+      
+                <section class="email-signal-group">
+                  <h4>Pattern Signals</h4>
+                  <ul id="emailPatternSignals" class="email-signal-list">
+                    <li class="email-empty-state">Waiting for signals.</li>
+                  </ul>
+                </section>
+      
+                <section class="email-signal-group">
+                  <h4>Risk Engine Signals</h4>
+                  <ul id="emailEngineSignals" class="email-signal-list">
+                    <li class="email-empty-state">Waiting for signals.</li>
+                  </ul>
+                </section>
+              </div>
+            </article>
+      
+            <article class="card email-card email-card--breakdown">
+              <div class="email-card-head">
+                <div>
+                  <h3>Professional Risk Breakdown</h3>
+                  <p>Each triggered rule shows its exact score contribution, severity, category, and reason.</p>
+                </div>
+              </div>
+
+      <div id="emailSeverityTimeline" class="email-severity-timeline"></div>
+              <div class="email-table-wrap">
+                <table class="email-breakdown-table">
+                  <thead>
+                    <tr>
+                      <th>Rule</th>
+                      <th>Group</th>
+                      <th>Severity</th>
+                      <th>Impact</th>
+                      <th>Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody id="emailBreakdownBody">
+                    <tr>
+                      <td colspan="5" class="email-empty-state">Waiting for rule output.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+      
+            <article class="card email-card email-card--insights">
+              <div class="email-card-head">
+                <div>
+                  <h3>Email Insights</h3>
+                  <p>Live browser-side aggregates from saved Email Risk history.</p>
+                </div>
+              </div>
+      
+              <div class="email-insight-list">
+                <div class="email-insight-row">
+                  <span>Most Common Domain</span>
+                  <strong id="emailInsightMostDomain">None yet</strong>
+                </div>
+                <div class="email-insight-row">
+                  <span>Most Common Risk Level</span>
+                  <strong id="emailInsightMostRisk">None yet</strong>
+                </div>
+                <div class="email-insight-row">
+                  <span>High-Risk Percentage</span>
+                  <strong id="emailInsightHighPct">0%</strong>
+                </div>
+                <div class="email-insight-row">
+                  <span>Free-Provider Percentage</span>
+                  <strong id="emailInsightFreePct">0%</strong>
+                </div>
+                <div class="email-insight-row">
+                  <span>Last Checked Email</span>
+                  <strong id="emailInsightLastEmail">None yet</strong>
+                </div>
+              </div>
+      
+              <p id="emailInsightText" class="email-insight-note">Run the first check to build email intelligence insights.</p>
+            </article>
+          </div>
+      
+          <article class="card email-card email-card--activity">
+            <div class="email-card-head">
+              <div>
+                <h3>Email Activity Log</h3>
+                <p>Operational history with search, filters, sorting, AI/manual action tracking, and CSV export support.</p>
+              </div>
+            </div>
+      
+            <div class="email-table-toolbar">
+              <label>
+                <span class="email-controls-label">Search</span>
+                <input id="emailSearchInput" class="email-search" type="search" placeholder="Search email, provider, risk, decision, action" />
+              </label>
+      
+              <label>
+                <span class="email-controls-label">Risk Filter</span>
+                <select id="emailRiskFilter" class="email-select">
+                  <option value="all">All Levels</option>
+                  <option value="low risk">Low Risk</option>
+                  <option value="medium risk">Medium Risk</option>
+                  <option value="high risk">High Risk</option>
+                </select>
+              </label>
+      
+              <label>
+                <span class="email-controls-label">Sort</span>
+                <select id="emailSortOrder" class="email-select">
+                  <option value="newest">Newest First</option>
+                  <option value="oldest">Oldest First</option>
+                  <option value="score-desc">Highest Score</option>
+                  <option value="score-asc">Lowest Score</option>
+                  <option value="email-asc">Email A–Z</option>
+                </select>
+              </label>
+      
+              <span id="emailFilterCount" class="email-filter-count">0 shown of 0</span>
+            </div>
+      
+            <div class="email-table-wrap">
+              <table class="email-activity-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Email</th>
+                    <th>Provider Type</th>
+                    <th>Risk Level</th>
+                    <th>Score</th>
+                    <th>Decision</th>
+                    <th>Action</th>
+                    <th>Action Source</th>
+                  </tr>
+                </thead>
+                <tbody id="emailActivityBody">
+                  <tr>
+                    <td colspan="8" class="email-empty-state">No email risk checks saved yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Device Risk Intelligence Module (add this section to your dashboard layout) -->
+      <section id="device-risk-module" class="device-risk-module">
+        <div class="device-risk-shell">
+          <article class="device-risk-card device-risk-header-card">
+            <div class="device-risk-header">
+              <div>
+                <span class="device-risk-eyebrow">Fraud Prevention</span>
+                <h2 class="device-risk-title">Device Risk Intelligence</h2>
+                <p class="device-risk-subtitle">
+                  Analyze live browser, OS, device fingerprint, and automation signals. This module mirrors the Email Risk layout and workflow in the SaaS dashboard.
+                </p>
+              </div>
+              <div class="device-risk-toolbar">
+                <label class="device-risk-toggle" for="deviceRiskAutoActionToggle">
+                  <input type="checkbox" id="deviceRiskAutoActionToggle" />
+                  <span class="device-risk-toggle-track"></span>
+                  <span class="device-risk-toggle-label">Auto Action</span>
+                </label>
+                <button
+  id="deviceRiskAnalyzeBtn"
+  class="device-risk-btn device-risk-btn-primary"
+>
+  Analyze Current Device
+</button>
+                <button class="device-risk-btn" id="deviceRiskCopyBtn">Copy Result</button>
+                <button class="device-risk-btn" id="deviceRiskExportBtn">Export CSV</button>
+                <button class="device-risk-btn device-risk-btn-danger" id="deviceRiskClearBtn">
+                  Clear History
+                </button>
+              </div>
+            </div>
+            <div class="device-risk-simulation-row">
+              <label for="deviceRiskScenarioSelect">
+                Simulation Scenario
+              </label>
+            
+              <select id="deviceRiskScenarioSelect" class="device-risk-select">
+                <option value="normal">Normal Device</option>
+                <option value="suspicious">Suspicious Device</option>
+                <option value="proxy">VPN / Proxy Device</option>
+                <option value="vm">Virtual Machine / Emulator</option>
+                <option value="automated">Automated Device</option>
+              </select>
+            </div>
+            <div class="device-risk-statusbar">
+              <div id="deviceRiskRunState" class="device-risk-inline-status" aria-live="polite">
+                Ready to analyze the current device.
+              </div>
+              <div id="deviceRiskAutoActionState" class="device-risk-inline-note">
+                Auto action is OFF. The module will suggest an outcome only.
+              </div>
+            </div>
+          </article>
+
+          <div class="device-risk-main-grid">
+            <article class="device-risk-card device-risk-profile-card">
+              <div class="device-risk-card-head">
+                <div>
+                  <h3>Device Risk Profile</h3>
+                  <p>Identified device info and final risk decision for the current browser session.</p>
+                </div>
+                <div class="device-risk-badge-row">
+                  <span id="deviceRiskProfileBadge" class="device-risk-badge neutral">No Result</span>
+                  <span id="deviceRiskDecisionBadge" class="device-risk-badge neutral">Pending</span>
+                </div>
+              </div>
+              <div class="device-risk-profile-layout">
+                <div class="device-risk-score-wrap">
+                  <div id="deviceRiskScoreRing" class="device-risk-score-ring" aria-hidden="true">
+                    <div class="device-risk-score-core">
+                      <div>
+                        <div id="deviceRiskScoreValue" class="device-risk-score-value">--</div>
+                        <div class="device-risk-score-caption">Risk Score</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="deviceRiskScoreLabel" class="device-risk-score-label">No analysis yet</div>
+                </div>
+                <div class="device-risk-meta-grid">
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Device Type</span>
+                    <div id="deviceRiskProfileDeviceType" class="device-risk-meta-value">—</div>
+                  </div>
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Operating System</span>
+                    <div id="deviceRiskProfileOS" class="device-risk-meta-value">—</div>
+                  </div>
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Browser</span>
+                    <div
+                      id="deviceRiskProfileBrowser"
+                      class="device-risk-meta-value"
+                    >
+                      —
+                    </div>
+                  </div>
+                  
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Fingerprint ID</span>
+                    <strong
+                      class="device-risk-meta-value"
+                      id="deviceRiskProfileFingerprint"
+                    >
+                      —
+                    </strong>
+                  </div>
+                  
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Seen Count</span>
+                    <strong
+                      class="device-risk-meta-value"
+                      id="deviceRiskProfileSeenCount"
+                    >
+                      —
+                    </strong>
+                  </div>
+                  
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Trust Level</span>
+                    <strong
+                      class="device-risk-meta-value"
+                      id="deviceRiskProfileTrustLevel"
+                    >
+                      —
+                    </strong>
+                  </div>
+                  
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Device Reputation</span>
+                    <strong
+                      class="device-risk-meta-value"
+                      id="deviceRiskProfileReputation"
+                    >
+                      —
+                    </strong>
+                  </div>
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Reputation Score</span>
+                    <strong
+                      class="device-risk-meta-value"
+                      id="deviceRiskProfileReputationScore"
+                    >
+                      —
+                    </strong>
+                  </div>
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Threat Severity</span>
+                    <strong
+                      class="device-risk-meta-value"
+                      id="deviceRiskProfileThreatSeverity"
+                    >
+                      Normal
+                    </strong>
+                  </div>
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Confidence</span>
+                    <div id="deviceRiskProfileConfidence" class="device-risk-meta-value">—</div>
+                  </div>
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Screen Size</span>
+                    <div id="deviceRiskProfileScreen" class="device-risk-meta-value">—</div>
+                  </div>
+                  <div class="device-risk-meta-item">
+                    <span class="device-risk-meta-label">Timezone</span>
+                    <div id="deviceRiskProfileTimezone" class="device-risk-meta-value">—</div>
+                  </div>
+                  <div class="device-risk-meta-item device-risk-meta-item--wide">
+                    <span class="device-risk-meta-label">User Agent</span>
+                    <div id="deviceRiskProfileUserAgent" class="device-risk-meta-value">—</div>
+                  </div>
+                  <div class="device-risk-meta-item device-risk-meta-item--wide">
+                    <span class="device-risk-meta-label">Last Analysis</span>
+                    <div id="deviceRiskProfileTimestamp" class="device-risk-meta-value">No analysis captured yet.</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="device-risk-card device-risk-insights-card">
+              <div class="device-risk-card-head">
+                <div>
+                  <h3>Device Insights</h3>
+                  <p>Aggregate stats from past device risk history (stored in localStorage).</p>
+                </div>
+              </div>
+              <div class="device-risk-insight-grid">
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Most Common Device Type</span>
+                  <div id="deviceRiskInsightDeviceType" class="device-risk-insight-value">No history</div>
+                </div>
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Most Common OS</span>
+                  <div id="deviceRiskInsightOS" class="device-risk-insight-value">No history</div>
+                </div>
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">High-Risk %</span>
+                  <div id="deviceRiskInsightHighRisk" class="device-risk-insight-value">0%</div>
+                </div>
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Automation Detected %</span>
+                  <div id="deviceRiskInsightAutomation" class="device-risk-insight-value">0%</div>
+                </div>
+                <div class="device-risk-insight-item device-risk-insight-item--wide">
+                  <span class="device-risk-insight-label">Last Checked Device</span>
+                  <div id="deviceRiskInsightLastDevice" class="device-risk-insight-value">No history</div>
+                </div>
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Trusted Fingerprints</span>
+                  <strong
+                    class="device-risk-insight-value"
+                    id="deviceRiskInsightTrustedFingerprints"
+                  >
+                    0
+                  </strong>
+                </div>
+                
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Risky Fingerprints</span>
+                  <strong
+                    class="device-risk-insight-value"
+                    id="deviceRiskInsightRiskyFingerprints"
+                  >
+                    0
+                  </strong>
+                </div>
+                
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Blocked Fingerprints</span>
+                  <strong
+                    class="device-risk-insight-value"
+                    id="deviceRiskInsightBlockedFingerprints"
+                  >
+                    0
+                  </strong>
+                </div>
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Threat Timeline Events</span>
+                  <strong
+                    class="device-risk-insight-value"
+                    id="deviceRiskInsightThreatTimeline"
+                  >
+                    0
+                  </strong>
+                </div>
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Top Risky Fingerprint</span>
+                  <strong class="device-risk-insight-value" id="deviceRiskInsightTopRiskyFingerprint">
+                    —
+                  </strong>
+                </div>
+                
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Top Blocked Fingerprint</span>
+                  <strong class="device-risk-insight-value" id="deviceRiskInsightTopBlockedFingerprint">
+                    —
+                  </strong>
+                </div>
+                
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Escalation Rate</span>
+                  <strong class="device-risk-insight-value" id="deviceRiskInsightEscalationRate">
+                    0%
+                  </strong>
+                </div>
+                
+                <div class="device-risk-insight-item">
+                  <span class="device-risk-insight-label">Threat Frequency</span>
+                  <strong class="device-risk-insight-value" id="deviceRiskInsightThreatFrequency">
+                    0 events
+                  </strong>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <article class="device-risk-card device-risk-signals-card">
+            <div class="device-risk-card-head">
+              <div>
+                <h3>Advanced Trust Signals</h3>
+                <p>Grouped signal breakdown by Identity, Environment, Pattern, and Risk Engine inputs.</p>
+              </div>
+            </div>
+            <div class="device-risk-signals-grid">
+              <section class="device-risk-signal-group">
+                <h4>Identity Signals</h4>
+                <div id="deviceRiskIdentitySignals" class="device-risk-signal-list"></div>
+              </section>
+              <section class="device-risk-signal-group">
+                <h4>Environment Signals</h4>
+                <div id="deviceRiskEnvironmentSignals" class="device-risk-signal-list"></div>
+              </section>
+              <section class="device-risk-signal-group">
+                <h4>Pattern Signals</h4>
+                <div id="deviceRiskPatternSignals" class="device-risk-signal-list"></div>
+              </section>
+              <section class="device-risk-signal-group">
+                <h4>Risk Engine Signals</h4>
+                <div id="deviceRiskEngineSignals" class="device-risk-signal-list"></div>
+              </section>
+            </div>
+          </article>
+
+          <article class="device-risk-card device-risk-breakdown-card">
+            <div class="device-risk-card-head">
+              <div>
+                <h3>Professional Breakdown Table</h3>
+                <p>Rule-by-rule scoring details (for audit and analysis).</p>
+              </div>
+            </div>
+            <div class="device-risk-table-wrap">
+              <table class="device-risk-table">
+                <thead>
+                  <tr>
+                    <th>Rule</th>
+                    <th>Group</th>
+                    <th>Severity</th>
+                    <th>Impact</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody id="deviceRiskBreakdownBody"></tbody>
+              </table>
+            </div>
+            <p class="device-risk-footnote">
+              Each rule lists its status, numeric impact, and rationale, making the decision fully explainable to analysts.
+            </p>
+          </article>
+          <article class="device-risk-card device-risk-timeline-card">
+            <div class="device-risk-card-head">
+              <div>
+                <h3>Threat Timeline</h3>
+                <p>
+                  Chronological device reputation and risk escalation events.
+                </p>
+              </div>
+            </div>
+          
+            <div
+              class="device-risk-timeline-list"
+              id="deviceRiskThreatTimelineList"
+            >
+              <div class="device-risk-empty">
+                No threat timeline events yet.
+              </div>
+            </div>
+          </article>
+
+          <article class="device-risk-card device-risk-activity-card">
+            <div class="device-risk-card-head">
+              <div>
+                <h3>Activity Log</h3>
+                <p>Timestamped history of all analyses (from localStorage key <code>aiTrustOsDeviceRiskActivity</code>).</p>
+              </div>
+            </div>
+            <div class="device-risk-table-wrap">
+              <table class="device-risk-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Device Type</th>
+                    <th>OS</th>
+                    <th>Browser</th>
+                    <th>Fingerprint ID</th>
+                    <th>Trust Level</th>
+                    <th>Device Reputation</th>
+                    <th>Scenario</th>
+                    <th>Threat Severity</th>
+                    <th>Risk Level</th>
+                    <th>Score</th>
+                    <th>Decision</th>
+                    <th>Action</th>
+                    <th>Action Source</th>
+                  </tr>
+                </thead>
+                <tbody id="deviceRiskActivityBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="bot-detection" class="bot-risk-module">
+        <div id="botRiskModule" class="bot-risk-shell">
+          <article class="bot-risk-card bot-risk-header-card">
+            <div class="bot-risk-card-title-row">
+              <div>
+                <p class="bot-risk-eyebrow">Fraud Prevention</p>
+                <h2>Bot Detection Intelligence</h2>
+                <p>Analyze session behavior, interaction signals, timing patterns, and automation risk.</p>
+              </div>
+              <div class="bot-risk-simulation-row">
+                <label for="botRiskScenarioSelect">Simulation Scenario</label>
+              
+                <select id="botRiskScenarioSelect" class="bot-risk-select">
+                  <option value="human">Normal Human</option>
+                  <option value="fast-click-bot">Fast Click Bot</option>
+                  <option value="scripted-signup">Scripted Signup Bot</option>
+                  <option value="scraper">Scraper Bot</option>
+                  <option value="credential-stuffing">Credential Stuffing Bot</option>
+                  <option value="ai-agent">AI Agent Bot</option>
+                </select>
+              </div>
+              <div class="bot-risk-header-actions">
+                <label class="bot-risk-toggle" for="botAutoActionToggle">
+                  <input id="botAutoActionToggle" type="checkbox" />
+                  <span>Auto Action</span>
+                </label>
+                <button class="bot-risk-btn bot-risk-btn-primary" id="botAnalyzeBtn" type="button">Analyze Bot Risk</button>
+                <button class="bot-risk-btn bot-risk-btn-secondary" id="botResetSessionBtn" type="button">Reset Session</button>
+                <button class="bot-risk-btn bot-risk-btn-danger" id="botClearHistoryTopBtn" type="button">Clear History</button>
+              </div>
+            </div>
+          </article>
+
+          <div class="bot-risk-main-grid">
+            <article class="bot-risk-card bot-risk-profile-card">
+              <div class="bot-risk-card-title-row">
+                <div>
+                  <p class="bot-risk-eyebrow">Risk Profile</p>
+                  <h3>Bot Risk Profile</h3>
+                </div>
+                <span id="botConfidencePill" class="bot-risk-pill bot-risk-neutral">Confidence 0%</span>
+              </div>
+
+              <div class="bot-risk-profile-layout">
+                <div id="botScoreRing" class="bot-risk-score-ring" style="--bot-score: 0;">
+                  <div class="bot-risk-score-core">
+                    <div id="botScoreValue" class="bot-risk-score-value">0</div>
+                    <div class="bot-risk-score-caption">Risk Score</div>
+                  </div>
+                </div>
+
+                <div class="bot-risk-profile-grid">
+                  <div class="bot-risk-profile-row">
+                    <span>Risk Level</span>
+                    <strong id="botRiskLevelText">Low Risk</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Final Decision</span>
+                    <strong id="botDecisionText">Allow</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Session Time</span>
+                    <strong id="botSessionTime">0s</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Behavior Pattern</span>
+                    <strong id="botBehaviorPattern">Waiting</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Profile Score</span>
+                    <strong id="botProfileScore">0</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Decision</span>
+                    <strong id="botFinalDecision">Allow</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Pattern</span>
+                    <strong id="botPatternPill" class="bot-risk-pill bot-risk-neutral">Waiting</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Bot Reputation</span>
+                    <strong id="botReputationText">Unknown</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>Repeat Attempts</span>
+                    <strong id="botRepeatAttempts">0</strong>
+                  </div>
+                  <div class="bot-risk-profile-row">
+                    <span>AI Enforcement</span>
+                    <strong id="botAiEnforcementText">Suggested</strong>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="bot-risk-card bot-risk-metrics-card">
+              <div class="bot-risk-card-title-row">
+                <div>
+                  <p class="bot-risk-eyebrow">Session Signals</p>
+                  <h3>Interaction Metrics</h3>
+                </div>
+              </div>
+
+              <div class="bot-risk-metric-grid">
+                <div class="bot-risk-metric-item">
+                  <span>Mouse Activity</span>
+                  <strong id="botMouseActivity">No</strong>
+                </div>
+                <div class="bot-risk-metric-item">
+                  <span>Click Count</span>
+                  <strong id="botClickCount">0</strong>
+                </div>
+                <div class="bot-risk-metric-item">
+                  <span>Scroll Activity</span>
+                  <strong id="botScrollActivity">No</strong>
+                </div>
+                <div class="bot-risk-metric-item">
+                  <span>Keypress Activity</span>
+                  <strong id="botKeypressActivity">No</strong>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <article class="bot-risk-card bot-risk-insights-card">
+            <div class="bot-risk-card-title-row">
+              <div>
+                <p class="bot-risk-eyebrow">Insights</p>
+                <h3>Bot Detection Insights</h3>
+              </div>
+            </div>
+
+            <div class="bot-risk-insight-grid">
+              <div class="bot-risk-insight-item">
+                <span>Average Session Time</span>
+                <strong id="botAvgSessionTime">0s</strong>
+              </div>
+              <div class="bot-risk-insight-item">
+                <span>Bot Detection %</span>
+                <strong id="botDetectionPercent">0%</strong>
+              </div>
+              <div class="bot-risk-insight-item">
+                <span>Human vs Bot</span>
+                <strong id="botHumanVsBotPercent">0% / 0%</strong>
+              </div>
+              <div class="bot-risk-insight-item">
+                <span>Common Pattern</span>
+                <strong id="botCommonPattern">None</strong>
+              </div>
+              <div class="bot-risk-insight-item bot-risk-insight-item--wide">
+                <span>Last Session Result</span>
+                <strong id="botLastSessionResult">No sessions yet</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="bot-risk-card bot-risk-signals-card">
+            <div class="bot-risk-card-title-row">
+              <div>
+                <p class="bot-risk-eyebrow">Signals</p>
+                <h3>Advanced Bot Trust Signals</h3>
+              </div>
+            </div>
+            <div id="botSignalsPanel" class="bot-risk-signals-panel"></div>
+          </article>
+
+          <article class="bot-risk-card bot-risk-breakdown-card">
+            <div class="bot-risk-card-title-row">
+              <div>
+                <p class="bot-risk-eyebrow">Breakdown</p>
+                <h3>Professional Risk Breakdown</h3>
+              </div>
+            </div>
+
+            <div class="bot-risk-table-wrap">
+              <table class="bot-risk-table">
+                <thead>
+                  <tr>
+                    <th>Rule</th>
+                    <th>Group</th>
+                    <th>Severity</th>
+                    <th>Impact</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody id="botBreakdownBody">
+                  <tr>
+                    <td colspan="5">No analysis yet. Click “Analyze Bot Risk”.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+<article class="bot-risk-card bot-risk-timeline-card">
+  <div class="bot-risk-card-title-row">
+    <div>
+      <p class="bot-risk-eyebrow">Timeline</p>
+      <h3>Bot Threat Timeline</h3>
+      <p>Chronological bot reputation, repeat attempt, and escalation events.</p>
+    </div>
+  </div>
+
+  <div id="botThreatTimelineList" class="bot-risk-timeline-list">
+    <div class="bot-risk-empty">No bot threat timeline events yet.</div>
+  </div>
+</article>
+          <article class="bot-risk-card">
+            <div class="bot-risk-card-title-row">
+              <div>
+                <p class="bot-risk-eyebrow">Activity</p>
+                <h3>Bot Risk Activity Log</h3>
+              </div>
+              <div class="bot-risk-header-actions">
+                <button class="bot-risk-btn bot-risk-btn-secondary" id="botCopyResultBtn" type="button">Copy Result</button>
+                <button class="bot-risk-btn bot-risk-btn-secondary" id="botExportCsvBtn" type="button">Export CSV</button>
+              </div>
+            </div>
+
+            <div class="bot-risk-table-wrap">
+              <table class="bot-risk-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Session Time</th>
+                    <th>Scenario</th>
+                    <th>Bot Type</th>
+                    <th>Interaction Level</th>
+                    <th>Risk Level</th>
+                    <th>Score</th>
+                    <th>Decision</th>
+                    <th>Action</th>
+                    <th>Action Source</th>
+                  </tr>
+                </thead>
+                <tbody id="botActivityBody">
+                  <tr>
+                    <td colspan="8">No bot risk activity yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="api-abuse" class="api-abuse-module">
+        <div id="apiAbuseModule" class="api-abuse-shell">
+          <div class="api-abuse-header-card">
+            <div>
+              <p class="api-abuse-eyebrow">AI Trust OS Module</p>
+              <h2>API Abuse Intelligence</h2>
+              <p>Detect burst traffic, suspicious endpoints, repeated requests, missing headers, and abnormal API usage patterns.</p>
+            </div>
+            
+            <div class="api-abuse-simulation-row">
+              <label for="apiScenarioSelect">API Scenario</label>
+              <select id="apiScenarioSelect" class="api-abuse-select">
+                <option value="random">Random Simulation</option>
+                <option value="normal">Normal API Traffic</option>
+                <option value="burst">Burst Traffic Attack</option>
+                <option value="scraper">Scraper API Bot</option>
+                <option value="credential">Credential Stuffing API</option>
+                <option value="token">Token Abuse</option>
+                <option value="payment">Payment API Abuse</option>
+                <option value="ai-agent">AI Agent API Abuse</option>
+              </select>
+            </div>
+            <div class="api-abuse-actions">
+              <label class="api-abuse-toggle">
+                <input type="checkbox" id="apiAutoActionToggle">
+                <span>Auto Action</span>
+              </label>
+      
+              <button id="apiAnalyzeBtn" class="api-abuse-btn api-abuse-btn-primary">Analyze API Request</button>
+              <button id="apiResetBtn" class="api-abuse-btn">Reset Simulation</button>
+              <button id="apiCopyResultBtn" class="api-abuse-btn">Copy Result</button>
+              <button id="apiExportCsvBtn" class="api-abuse-btn">Export CSV</button>
+              <button id="apiClearLogBtn" class="secondary-btn">Clear History</button>
+            </div>
+          </div>
+      
+          <div class="api-abuse-grid">
+            <div class="api-abuse-card api-abuse-profile-card">
+              <h3>API Risk Profile</h3>
+      
+              <div id="apiScoreRing" class="api-abuse-score-ring">
+                <span id="apiScoreValue">0</span>
+              </div>
+      
+              <div class="api-abuse-profile-list">
+                <p><strong>Risk Level:</strong> <span id="apiRiskLevelText">Not analyzed</span></p>
+                <p><strong>Final Decision:</strong> <span id="apiDecisionText">Waiting</span></p>
+                <p><strong>Confidence:</strong> <span id="apiConfidencePill" class="api-abuse-pill">0%</span></p>
+                <p><strong>Endpoint:</strong> <span id="apiEndpointText">—</span></p>
+                <p><strong>Method:</strong> <span id="apiMethodText">—</span></p>
+                <p><strong>Status Code:</strong> <span id="apiStatusText">—</span></p>
+                <p><strong>Request Rate:</strong> <span id="apiRateText">—</span></p>
+                <p><strong>IP Reputation:</strong> <span id="apiIpReputationText">—</span></p>
+                <p><strong>API Consumer:</strong> <span id="apiConsumerIdText">—</span></p>
+<p><strong>API Reputation:</strong> <span id="apiReputationText">—</span></p>
+                <p><strong>Auth Header:</strong> <span id="apiAuthHeaderText">—</span></p>
+                <p><strong>Behavior Pattern:</strong> <span id="apiBehaviorPattern">—</span></p>
+              </div>
+            </div>
+      
+            <div class="api-abuse-card">
+              <h3>API Abuse Insights</h3>
+              <div class="api-abuse-insights">
+                <p><strong>Average Risk Score:</strong> <span id="apiAvgRiskScore">0</span></p>
+                <p><strong>High-Risk %:</strong> <span id="apiHighRiskPercent">0%</span></p>
+                <p><strong>Most Common Endpoint:</strong> <span id="apiMostCommonEndpoint">—</span></p>
+                <p><strong>Most Common Method:</strong> <span id="apiMostCommonMethod">—</span></p>
+                <p><strong>Last API Decision:</strong> <span id="apiLastDecision">—</span></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="api-abuse-kpi-grid">
+            <div class="api-abuse-kpi-card">
+              <span>Total API Checks</span>
+              <strong id="apiTotalChecks">0</strong>
+            </div>
+            <div class="api-abuse-kpi-card">
+              <span>High Risk</span>
+              <strong id="apiHighRiskCount">0</strong>
+            </div>
+            <div class="api-abuse-kpi-card">
+              <span>Medium Risk</span>
+              <strong id="apiMediumRiskCount">0</strong>
+            </div>
+            <div class="api-abuse-kpi-card">
+              <span>Low Risk</span>
+              <strong id="apiLowRiskCount">0</strong>
+            </div>
+          </div>
+          
+      <div class="api-abuse-card">
+  <h3>Explainable API AI</h3>
+  <p id="apiExplainSummary">Run an API analysis to see why the engine made its decision.</p>
+  <div id="apiExplainList" class="api-abuse-explain-list"></div>
+</div>
+          <div class="api-abuse-card">
+            <h3>Advanced API Trust Signals</h3>
+            <div id="apiSignalsPanel" class="api-abuse-signals-panel"></div>
+          </div>
+      
+          <div class="api-abuse-card">
+            <h3>Professional Risk Breakdown</h3>
+            <div class="api-abuse-table-wrap">
+              <table class="api-abuse-table">
+                <thead>
+                  <tr>
+                    <th>Rule</th>
+                    <th>Group</th>
+                    <th>Severity</th>
+                    <th>Impact</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody id="apiBreakdownBody"></tbody>
+              </table>
+            </div>
+          </div>
+      
+          <div class="api-abuse-card">
+            <h3>API Activity Log</h3>
+            <div class="api-abuse-table-wrap">
+              <table class="api-abuse-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Endpoint</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                    <th>Rate</th>
+                    <th>Classification</th>
+                    <th>Risk Level</th>
+                    <th>Score</th>
+                    <th>Decision</th>
+                    <th>Action</th>
+                    <th>Action Source</th>
+                  </tr>
+                </thead>
+                <tbody id="apiActivityBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="payment-fraud" class="payment-fraud-module" aria-labelledby="paymentFraudTitle">
+        <div id="paymentFraudModule" class="payment-fraud-shell">
+          <div class="payment-fraud-header-card">
+            <div>
+              <p class="payment-fraud-eyebrow">Trust & Fraud Layer</p>
+              <h2 id="paymentFraudTitle">Payment Fraud Intelligence</h2>
+              <p>
+                Detect suspicious checkout behavior, risky transactions, card abuse patterns,
+                chargeback indicators, and mismatched trust signals.
+              </p>
+            </div>
+      
+            <div class="payment-fraud-actions">
+              <label class="payment-fraud-field">
+                <span>Payment Scenario</span>
+                <select id="paymentScenarioSelect" class="payment-fraud-select">
+                  <option value="random">Random Simulation</option>
+                  <option value="normal">Normal Payment</option>
+                  <option value="stolen-card">Stolen Card Attempt</option>
+                  <option value="card-testing">Card Testing Attack</option>
+                  <option value="chargeback">Chargeback Fraud</option>
+                  <option value="high-velocity">High Velocity Checkout</option>
+                  <option value="proxy-vpn">Proxy/VPN Payment Abuse</option>
+                  <option value="account-takeover">Account Takeover Purchase</option>
+                  <option value="ai-fraud">AI Fraud Pattern</option>
+                </select>
+              </label>
+              <label class="payment-fraud-toggle">
+                <input type="checkbox" id="paymentAutoActionToggle" checked>
+                <span>Auto Action</span>
+              </label>
+      
+              <button id="paymentAnalyzeBtn" class="payment-fraud-btn payment-fraud-btn-primary" type="button">
+                Analyze Payment
+              </button>
+      
+              <button id="paymentResetBtn" class="payment-fraud-btn" type="button">
+                Reset Simulation
+              </button>
+      
+              <button id="paymentCopyResultBtn" class="payment-fraud-btn" type="button">
+                Copy Result
+              </button>
+      
+              <button id="paymentExportCsvBtn" class="payment-fraud-btn" type="button">
+                Export CSV
+              </button>
+      
+              <button id="paymentClearLogBtn" class="secondary-btn">Clear History</button>
+            </button>
+            </div>
+          </div>
+      
+          <div class="payment-fraud-grid">
+            <article class="payment-fraud-card payment-fraud-profile-card">
+              <div class="payment-fraud-card-header">
+                <h3>Payment Risk Profile</h3>
+                <span id="paymentConfidencePill" class="payment-fraud-pill">Confidence: --</span>
+              </div>
+      
+              <div class="payment-fraud-profile-layout">
+                <div id="paymentScoreRing" class="payment-fraud-score-ring">
+                  <span id="paymentScoreValue">0</span>
+                  <small>Risk Score</small>
+                </div>
+      
+                <div class="payment-fraud-profile-details">
+                  <div><span>Risk Level</span><strong id="paymentRiskLevelText">Not analyzed</strong></div>
+                  <div><span>Final Decision</span><strong id="paymentDecisionText">--</strong></div>
+                  <div><span>Transaction Amount</span><strong id="paymentAmountText">--</strong></div>
+                  <div><span>Currency</span><strong id="paymentCurrencyText">--</strong></div>
+                  <div><span>Payment Method</span><strong id="paymentMethodText">--</strong></div>
+                  <div><span>Card Country</span><strong id="paymentCardCountryText">--</strong></div>
+                  <div><span>Billing Country</span><strong id="paymentBillingCountryText">--</strong></div>
+                  <div><span>Shipping Country</span><strong id="paymentShippingCountryText">--</strong></div>
+                  <div><span>IP Country</span><strong id="paymentIpCountryText">--</strong></div>
+                  <div><span>Velocity</span><strong id="paymentVelocityText">--</strong></div>
+                  <div><span>Chargeback Pattern</span><strong id="paymentChargebackPatternText">--</strong></div>
+                  <div><span>Behavior Pattern</span><strong id="paymentBehaviorPattern">--</strong></div>
+                </div>
+              </div>
+            </article>
+      
+            <article class="payment-fraud-card">
+              <div class="payment-fraud-card-header">
+                <h3>Payment Fraud Insights</h3>
+              </div>
+      
+              <div class="payment-fraud-insights-grid">
+                <div><span>Average Risk Score</span><strong id="paymentAvgRiskScore">0</strong></div>
+                <div><span>High-Risk %</span><strong id="paymentHighRiskPercent">0%</strong></div>
+                <div><span>Most Common Payment Method</span><strong id="paymentMostCommonMethod">--</strong></div>
+                <div><span>Most Common Risk Pattern</span><strong id="paymentMostCommonPattern">--</strong></div>
+                <div><span>Last Payment Decision</span><strong id="paymentLastDecision">--</strong></div>
+              </div>
+            </article>
+          </div>
+      
+          <div class="payment-fraud-kpi-grid">
+            <div class="payment-fraud-kpi-card">
+              <span>Total Payment Checks</span>
+              <strong id="paymentTotalChecks">0</strong>
+            </div>
+            <div class="payment-fraud-kpi-card">
+              <span>High Risk</span>
+              <strong id="paymentHighRiskCount">0</strong>
+            </div>
+            <div class="payment-fraud-kpi-card">
+              <span>Medium Risk</span>
+              <strong id="paymentMediumRiskCount">0</strong>
+            </div>
+            <div class="payment-fraud-kpi-card">
+              <span>Low Risk</span>
+              <strong id="paymentLowRiskCount">0</strong>
+            </div>
+            <div class="payment-fraud-kpi-card">
+              <span>Blocked / Challenged</span>
+              <strong id="paymentBlockedCount">0</strong>
+            </div>
+          </div>
+      
+          <article class="payment-fraud-card">
+            <div class="payment-fraud-card-header">
+              <h3>Advanced Payment Trust Signals</h3>
+            </div>
+            <div id="paymentSignalsPanel" class="payment-fraud-signals-panel"></div>
+          </article>
+      
+          <article class="payment-fraud-card">
+            <div class="payment-fraud-card-header">
+              <h3>Professional Risk Breakdown</h3>
+            </div>
+      
+            <div class="payment-fraud-table-wrap">
+              <table class="payment-fraud-table">
+                <thead>
+                  <tr>
+                    <th>Rule</th>
+                    <th>Group</th>
+                    <th>Severity</th>
+                    <th>Impact</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody id="paymentBreakdownBody">
+                  <tr>
+                    <td colspan="5">No payment analysis yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+      
+          <article class="payment-fraud-card">
+            <div class="payment-fraud-card-header">
+              <h3>Payment Activity Log</h3>
+            </div>
+      
+            <div class="payment-fraud-table-wrap">
+              <table class="payment-fraud-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Card Country</th>
+                    <th>Billing Country</th>
+                    <th>Shipping Country</th>
+                    <th>IP Country</th>
+                    <th>Risk Level</th>
+                    <th>Score</th>
+                    <th>Decision</th>
+                    <th>Action</th>
+                    <th>Action Source</th>
+                    <th>Behavior Pattern</th>
+                  </tr>
+                </thead>
+                <tbody id="paymentActivityBody">
+                  <tr>
+                    <td colspan="12">No payment activity yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+<section id="ai-agent-permissions" class="ai-agent-module">
+  <div id="aiAgentModule" class="ai-agent-shell">
+    <div class="ai-agent-header">
+      <div>
+        <p class="ai-agent-kicker">AI Control Layer</p>
+        <h2>AI Agent Permissions</h2>
+        <p>Control AI decision-making boundaries, automation actions, and approval workflows across all trust modules.</p>
+      </div>
+      <span class="ai-agent-status-badge">Policy Active</span>
+    </div>
+
+    <div class="ai-agent-card">
+      <h3>Global Controls</h3>
+
+      <div class="ai-agent-control-grid">
+        <label class="ai-agent-toggle-row">
+          <span>Master AI Enable</span>
+          <input type="checkbox" id="aiMasterToggle" checked>
+        </label>
+
+        <label class="ai-agent-toggle-row">
+          <span>Strict Mode</span>
+          <input type="checkbox" id="aiStrictToggle">
+        </label>
+
+        <label class="ai-agent-toggle-row">
+          <span>Auto Action</span>
+          <input type="checkbox" id="aiAutoActionToggle">
+        </label>
+
+        <label class="ai-agent-toggle-row">
+          <span>Approval Required</span>
+          <input type="checkbox" id="aiApprovalToggle" checked>
+        </label>
+      </div>
+
+      <div class="ai-agent-button-row">
+        <button id="aiApplyBtn" class="ai-agent-btn ai-agent-btn-primary">Apply Permissions</button>
+        <button id="aiResetBtn" class="ai-agent-btn">Reset Policies</button>
+        <button id="aiCopyBtn" class="ai-agent-btn">Copy Policy</button>
+        <button id="aiExportBtn" class="ai-agent-btn">Export Policy JSON</button>
+      </div>
+    </div>
+
+    <div class="ai-agent-overview-grid">
+      <div class="ai-agent-metric-card">
+        <span>AI Mode</span>
+        <strong id="aiModeText">Enabled</strong>
+      </div>
+      <div class="ai-agent-metric-card">
+        <span>Strict Mode</span>
+        <strong id="aiStrictText">Off</strong>
+      </div>
+      <div class="ai-agent-metric-card">
+        <span>Auto Action</span>
+        <strong id="aiAutoActionText">Off</strong>
+      </div>
+      <div class="ai-agent-metric-card">
+        <span>Approval Flow</span>
+        <strong id="aiApprovalText">Enabled</strong>
+      </div>
+      <div class="ai-agent-metric-card">
+        <span>Risk Tolerance Level</span>
+        <strong id="aiRiskToleranceText">Medium</strong>
+      </div>
+      <div class="ai-agent-metric-card">
+        <span>Enforcement Level</span>
+        <strong id="aiEnforcementText">Soft Block</strong>
+      </div>
+      <div class="ai-agent-metric-card">
+        <span>Active Modules Count</span>
+        <strong id="aiModulesCountText">8</strong>
+      </div>
+      <div class="ai-agent-metric-card">
+        <span>Last Updated</span>
+        <strong id="aiLastUpdatedText">Not updated</strong>
+      </div>
+    </div>
+
+    <div class="ai-agent-card">
+      <h3>Permission Matrix</h3>
+
+      <div class="ai-agent-table-wrap">
+        <table class="ai-agent-table">
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th>Read Access</th>
+              <th>Write Access</th>
+              <th>Execute Action</th>
+              <th>Auto Action</th>
+              <th>Requires Approval</th>
+            </tr>
+          </thead>
+          <tbody id="aiPermissionTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ai-agent-settings-grid">
+      <div class="ai-agent-card">
+        <h3>Policy Rules Panel</h3>
+
+        <div class="ai-agent-rules-grid">
+          <div class="ai-agent-rule-box">
+            <h4>Allowed Actions</h4>
+            <ul id="aiAllowedActions"></ul>
+          </div>
+
+          <div class="ai-agent-rule-box">
+            <h4>Restricted Actions</h4>
+            <ul id="aiRestrictedActions"></ul>
+          </div>
+
+          <div class="ai-agent-rule-box">
+            <h4>Blocked Actions</h4>
+            <ul id="aiBlockedActions"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-agent-card">
+        <h3>Simulation Settings</h3>
+
+        <label class="ai-agent-field">
+          <span>Risk Tolerance</span>
+          <select id="aiRiskToleranceSelect">
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+          </select>
+        </label>
+
+        <label class="ai-agent-field">
+          <span>Enforcement Mode</span>
+          <select id="aiEnforcementSelect">
+            <option value="Monitor">Monitor</option>
+            <option value="Soft Block" selected>Soft Block</option>
+            <option value="Hard Block">Hard Block</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="ai-agent-card">
+      <h3>Activity Log</h3>
+
+      <div class="ai-agent-table-wrap">
+        <table class="ai-agent-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Action</th>
+              <th>Module</th>
+              <th>Permission Change</th>
+              <th>Source</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody id="aiActivityBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="auth-guard.js"></script>
+<script src="backend-api.js"></script>
+  <script src="main.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="email-risk.js"></script>
+  <script src="device-risk.js"></script>
+  <script src="bot-risk.js"></script>
+  <script src="api-abuse.js"></script>
+  <script src="payment-fraud.js"></script>
+  <script src="ai-agent-permissions.js"></script>
+  <script src="api-keys.js"></script>
+  <script src="team-management.js"></script>
+
+  <!-- Clear Activity Modal -->
+<div id="clearModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.4);
+z-index:999999999;
+align-items:center;
+justify-content:center;
+">
+<div style="
+  background:#ffffff;
+  padding:24px;
+  border-radius:12px;
+  width:320px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+">
+  <h3 style="margin-bottom:10px;">Clear Activity?</h3>
+  <p style="font-size:13px; color:#6b7280; margin-bottom:16px;">
+    This will delete all dashboard data. This cannot be undone.
+  </p>
+
+  <div style="display:flex; gap:10px; justify-content:center;">
+    <button id="cancelClearBtn" style="
+      padding:8px 14px;
+      border-radius:8px;
+      border:1px solid #e5e7eb;
+      background:#f9fafb;
+      cursor:pointer;
+    ">Cancel</button>
+
+<button id="confirmClearBtn" style="
+padding:8px 14px;
+border-radius:8px;
+border:none;
+background:#dc2626;
+color:white;
+font-weight:700;
+cursor:pointer;
+">Yes, Clear</button>
+</div>
+</div>
+
+</body>
+</html>
