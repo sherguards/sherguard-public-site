@@ -1,0 +1,375 @@
+/* AI Agent Permissions module styles extracted from original styles.css. */
+
+.ai-agent-module {
+    padding: 40px 20px;
+  }
+  
+  .ai-agent-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .ai-agent-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 22px;
+  }
+  
+  .ai-agent-kicker {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  
+  .ai-agent-header h2 {
+    font-size: 32px;
+    margin: 0 0 8px;
+    color: #f8fafc;
+  }
+  
+  .ai-agent-header p {
+    margin: 0;
+    color: #94a3b8;
+    max-width: 760px;
+  }
+  
+  .ai-agent-status-badge {
+    background: rgba(34, 197, 94, 0.14);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  .ai-agent-card {
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  }
+  
+  .ai-agent-card h3 {
+    margin: 0 0 16px;
+    color: #f8fafc;
+    font-size: 18px;
+  }
+  
+  .ai-agent-control-grid,
+  .ai-agent-overview-grid,
+  .ai-agent-settings-grid,
+  .ai-agent-rules-grid {
+    display: grid;
+    gap: 14px;
+  }
+  
+  .ai-agent-control-grid {
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 18px;
+  }
+  
+  .ai-agent-overview-grid {
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 18px;
+  }
+  
+  .ai-agent-settings-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  .ai-agent-rules-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .ai-agent-toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: rgba(30, 41, 59, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 14px;
+    padding: 14px;
+    color: #e2e8f0;
+    font-weight: 700;
+  }
+  
+  .ai-agent-toggle-row input,
+  .ai-agent-permission-toggle {
+    width: 42px;
+    height: 22px;
+    accent-color: #38bdf8;
+    cursor: pointer;
+  }
+  
+  .ai-agent-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .ai-agent-btn {
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(30, 41, 59, 0.9);
+    color: #e2e8f0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  
+  .ai-agent-btn-primary {
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    color: #ffffff;
+    border: none;
+  }
+  
+  .ai-agent-metric-card {
+    background: rgba(30, 41, 59, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  
+  .ai-agent-metric-card span {
+    display: block;
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  
+  .ai-agent-metric-card strong {
+    color: #f8fafc;
+    font-size: 18px;
+  }
+  
+  .ai-agent-table-wrap {
+    overflow-x: auto;
+  }
+  
+  .ai-agent-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 780px;
+  }
+  
+  .ai-agent-table th,
+  .ai-agent-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+    color: #cbd5e1;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .ai-agent-table th {
+    color: #f8fafc;
+    background: rgba(30, 41, 59, 0.65);
+    font-size: 13px;
+  }
+  
+  .ai-agent-module-name {
+    color: #f8fafc;
+    font-weight: 800;
+  }
+  
+  .ai-agent-rule-box {
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 14px;
+    padding: 14px;
+  }
+  
+  .ai-agent-rule-box h4 {
+    color: #f8fafc;
+    margin: 0 0 10px;
+  }
+  
+  .ai-agent-rule-box ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #cbd5e1;
+  }
+  
+  .ai-agent-rule-box li {
+    margin-bottom: 8px;
+  }
+  
+  .ai-agent-field {
+    display: block;
+    margin-bottom: 14px;
+  }
+  
+  .ai-agent-field span {
+    display: block;
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  
+  .ai-agent-field select {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 12px;
+    padding: 11px;
+  }
+  
+  .ai-agent-empty-row {
+    color: #94a3b8;
+    text-align: center;
+  }
+  
+  @media (max-width: 900px) {
+    .ai-agent-header,
+    .ai-agent-settings-grid {
+      grid-template-columns: 1fr;
+      display: grid;
+    }
+  
+    .ai-agent-control-grid,
+    .ai-agent-overview-grid,
+    .ai-agent-rules-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* AI Agent Permissions light theme fix */
+  .ai-agent-module {
+    background: linear-gradient(135deg, #f8fbff 0%, #eef5ff 45%, #ffffff 100%);
+    color: #0f172a;
+  }
+  
+  .ai-agent-shell {
+    color: #0f172a;
+  }
+  
+  .ai-agent-header h2,
+  .ai-agent-card h3,
+  .ai-agent-metric-card strong,
+  .ai-agent-table th,
+  .ai-agent-table td {
+    color: #0f172a;
+  }
+  
+  .ai-agent-kicker,
+  .ai-agent-header p,
+  .ai-agent-metric-card span,
+  .ai-agent-field span {
+    color: #64748b;
+  }
+  
+  .ai-agent-card,
+  .ai-agent-metric-card {
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  }
+  
+  .ai-agent-control-grid label,
+  .ai-agent-rule-box,
+  .ai-agent-table-wrap,
+  .ai-agent-field select {
+    background: #f8fafc;
+    color: #0f172a;
+    border: 1px solid #dbeafe;
+  }
+  
+  .ai-agent-table thead {
+    background: #eef5ff;
+  }
+  
+  .ai-agent-table tbody tr {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .ai-agent-status-badge {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+  }
+  
+  .ai-agent-rule-box h4,
+  .ai-agent-rule-box li {
+    color: #334155 !important;
+  }
+  
+  .ai-agent-rule-box li::marker {
+    color: #2563eb;
+  }
+  
+  .ai-agent-table td {
+    color: #334155 !important;
+  }
+  
+  .ai-agent-table thead th {
+    background: #64748b;
+    color: #0f172a !important;
+  }
+  
+  .ai-agent-table tbody {
+    background: #ffffff;
+  }
+  
+  /* ===== AI Agent module layout safety extracted from final professional app layout fixes ===== */
+  
+  .ai-agent-card {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .ai-agent-settings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  .ai-agent-control-grid,
+  .ai-agent-overview-grid,
+  .ai-agent-rules-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  }
+  
+  .ai-agent-table-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+  
+  .ai-agent-table {
+    max-width: none !important;
+  }
+  
+  .ai-agent-table td {
+    overflow-wrap: anywhere !important;
+  }
+  
+  @media (max-width: 1270px) {
+    .ai-agent-settings-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .ai-agent-settings-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  
+  @media (min-width: 901px) {
+    .ai-agent-card {
+      max-width: calc(100% - 4px) !important;
+    }
+  }
+  
