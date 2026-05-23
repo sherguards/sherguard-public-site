@@ -203,7 +203,7 @@
 
     try {
       await fetch(
-        'http://127.0.0.1:8000/api-keys/' + apiKeyId,
+        'https://sherguard-api.onrender.com/api-keys/' + apiKeyId,
         {
           method: 'DELETE',
           headers: {

@@ -236,11 +236,22 @@
         const result = await response.json();
 
         if (!response.ok || !result.success) {
-          throw new Error(
-            result.detail ||
-            result.message ||
-            'Registration failed.'
-          );
+          if (
+  result.detail &&
+  String(result.detail)
+    .toLowerCase()
+    .includes('already')
+) {
+  throw new Error(
+    'An account with this email already exists.'
+  );
+}
+
+throw new Error(
+  result.detail ||
+  result.message ||
+  'Registration failed.'
+);
         }
 
         localStorage.setItem(
