@@ -100,14 +100,14 @@
   }
   
   .public-hero h1,
-  .public-pricing-hero h1 {
-    max-width: 850px;
-    margin: 0;
-    font-size: clamp(42px, 6vw, 76px);
-    line-height: 0.96;
-    letter-spacing: -0.06em;
-    color: #07111f;
-  }
+.public-pricing-hero h1 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  color: #07111f;
+}
   
   .public-hero p,
   .public-pricing-hero p {
