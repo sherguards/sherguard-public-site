@@ -57,7 +57,8 @@
 
   function applyModuleVisibility(user) {
     const enabledModules = (
-      user.enabled_modules || ''
+      user.enabled_modules ||
+      'email_risk,device_risk,bot_detection,api_abuse,payment_fraud'
     ).split(',');
 
     const moduleVisibilityMap = {
