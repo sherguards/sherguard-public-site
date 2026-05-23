@@ -254,24 +254,13 @@ throw new Error(
 );
         }
 
-        localStorage.setItem(
-          'aiTrustToken',
-          result.access_token
-        );
-
-        localStorage.setItem(
-          'aiTrustUser',
-          JSON.stringify(result.user)
-        );
-
         showStatus(
-          'Account created successfully. Opening dashboard...',
-          'success'
-        );
+  result.message ||
+  'Account created. Please check your email to verify your account before logging in.',
+  'success'
+);
 
-        setTimeout(function() {
-          window.location.href = DASHBOARD_URL;
-        }, 700);
+registerForm.reset();
 
       } catch (error) {
         showStatus(
