@@ -2571,3 +2571,28 @@ body {
     text-align: left !important;
   }
 }
+
+/* ===== MOVE PLAN + USAGE CARDS OUTSIDE SIDEBAR ===== */
+
+.dashboard-top-info-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(180px, 1fr)) !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+.dashboard-top-info-card {
+  margin-top: 0 !important;
+  min-height: 76px !important;
+}
+
+.topbar {
+  grid-template-columns: minmax(0, 1fr) auto auto !important;
+}
+
+@media (max-width: 1100px) {
+  .dashboard-top-info-row {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+}
