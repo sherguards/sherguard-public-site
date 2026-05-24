@@ -2769,3 +2769,28 @@ body {
     max-width: 100% !important;
   }
 }
+
+/* ===== FINAL SUBTITLE + LIVE ROW ALIGNMENT ===== */
+
+.dashboard-subtitle {
+  max-width: 900px !important;
+  font-size: 17px !important;
+  line-height: 1.55 !important;
+}
+
+.dashboard-live-row {
+  margin-left: auto !important;
+  margin-top: -10px !important;
+  width: fit-content !important;
+  justify-content: flex-end !important;
+  transform: translateY(-6px) !important;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-live-row {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    transform: none !important;
+    justify-content: flex-start !important;
+  }
+}
