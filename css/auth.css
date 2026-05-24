@@ -200,6 +200,32 @@
     margin-top: 20px;
     font-size: 13px;
   }
+
+  .auth-password-wrapper {
+    position: relative;
+  }
+  
+  .auth-password-wrapper input {
+    padding-right: 82px;
+  }
+  
+  .auth-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .auth-password-toggle:hover {
+    color: #1d4ed8;
+  }
   
   
   
