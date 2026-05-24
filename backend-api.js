@@ -92,3 +92,26 @@ async function aiTrustApiPost(path, data) {
 
   return response.json();
 }
+
+function aiTrustGetCurrentUserScope() {
+  try {
+    const user = JSON.parse(localStorage.getItem('aiTrustUser') || '{}');
+
+    const organizationId =
+      user.organization_id ||
+      'unknown_org';
+
+    const userId =
+      user.id ||
+      'unknown_user';
+
+    return 'org_' + organizationId + '_user_' + userId;
+
+  } catch (error) {
+    return 'org_unknown_user_unknown';
+  }
+}
+
+function aiTrustScopedKey(baseKey) {
+  return baseKey + '_' + aiTrustGetCurrentUserScope();
+}

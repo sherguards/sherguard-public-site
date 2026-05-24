@@ -73,11 +73,11 @@
     }
   
     const localEvents = []
-      .concat(tagModule(getData('aiTrustOsEmailRiskActivity'), 'Email Risk'))
-      .concat(tagModule(getData('aiTrustOsDeviceRiskActivity'), 'Device Risk'))
-      .concat(tagModule(getData('aiTrustOsBotRiskActivity'), 'Bot Detection'))
-      .concat(tagModule(getData('aiTrustOsApiAbuseActivity'), 'API Abuse'))
-      .concat(tagModule(getData('aiTrustOsPaymentFraudActivity'), 'Payment Fraud Intelligence'));
+    .concat(tagModule(getData(aiTrustScopedKey('aiTrustOsEmailRiskActivity')), 'Email Risk'))
+    .concat(tagModule(getData(aiTrustScopedKey('aiTrustOsDeviceRiskActivity')), 'Device Risk'))
+    .concat(tagModule(getData(aiTrustScopedKey('aiTrustOsBotRiskActivity')), 'Bot Detection'))
+    .concat(tagModule(getData(aiTrustScopedKey('aiTrustOsApiAbuseActivity')), 'API Abuse'))
+    .concat(tagModule(getData(aiTrustScopedKey('aiTrustOsPaymentFraudActivity')), 'Payment Fraud Intelligence'));
   
       const combined = backendEvents.length > 0
       ? backendEvents
@@ -226,7 +226,7 @@ setText('insightText', insightMessage);
     let savedPolicy = {};
 
     try {
-      savedPolicy = JSON.parse(localStorage.getItem('aiTrustOsAgentPermissions') || '{}');
+      savedPolicy = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsAgentPermissions')) || '{}');
     } catch {
       savedPolicy = {};
     }
@@ -769,22 +769,22 @@ const incident =
   }
 
   async function confirmClearActivity() {
-    localStorage.removeItem('aiTrustOsEmailRiskActivity');
-  
-    localStorage.removeItem('aiTrustOsDeviceRiskActivity');
-    localStorage.removeItem('aiTrustOsDeviceRiskTimeline');
-    localStorage.removeItem('aiTrustOsDeviceRiskReputation');
-    localStorage.removeItem('aiTrustOsDeviceRiskFingerprints');
-    localStorage.removeItem('aiTrustOsDeviceRiskTrustStore');
-    localStorage.removeItem('aiTrustOsDeviceRiskBlockedFingerprints');
-  
-    localStorage.removeItem('aiTrustOsBotRiskActivity');
-    localStorage.removeItem('aiTrustOsApiAbuseActivity');
-    localStorage.removeItem('aiTrustOsPaymentFraudActivity');
-    localStorage.removeItem('aiTrustOsPrevStats');
+    localStorage.removeItem(aiTrustScopedKey('aiTrustOsEmailRiskActivity'));
+
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsDeviceRiskActivity'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsDeviceRiskTimeline'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsDeviceRiskReputation'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsDeviceRiskFingerprints'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsDeviceRiskTrustStore'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsDeviceRiskBlockedFingerprints'));
+
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsBotRiskActivity'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsApiAbuseActivity'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsPaymentFraudActivity'));
+localStorage.removeItem(aiTrustScopedKey('aiTrustOsPrevStats'));
   
     try {
-      await fetch('http://127.0.0.1:8000/events', {
+      await fetch('https://sherguard-api.onrender.com/events', {
         method: 'DELETE',
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('aiTrustToken')
@@ -990,7 +990,7 @@ if (riskPercent >= 50) {
   
     modules.forEach(key => {
       try {
-        const data = JSON.parse(localStorage.getItem(key) || '[]');
+        const data = JSON.parse(localStorage.getItem(aiTrustScopedKey(key)) || '[]');
   
         if (Array.isArray(data) && data.length > 0) {
           activeCount++;
@@ -1060,7 +1060,7 @@ return `
   }
 
   async function runDashboard() {
-    const previousStats = JSON.parse(localStorage.getItem('aiTrustOsPrevStats') || 'null');
+    const previousStats = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsPrevStats')) || 'null');
     const records = await collectAllData();
     window.latestDashboardRecords = records;
     const stats = calculateStats(records);
@@ -1083,7 +1083,7 @@ return `
     updateTotalChecksLastEventTime(records);
     triggerTotalChecksPulse(stats.total);
 
-    localStorage.setItem('aiTrustOsPrevStats', JSON.stringify(stats));
+    localStorage.setItem(aiTrustScopedKey('aiTrustOsPrevStats'), JSON.stringify(stats));
     setText(
       'dashboardSyncTime',
       `Last sync: ${new Date().toLocaleTimeString()}`
@@ -1093,7 +1093,7 @@ return `
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    const savedPolicy = JSON.parse(localStorage.getItem('aiTrustOsAgentPermissions') || '{}');
+    const savedPolicy = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsAgentPermissions')) || '{}');
 
     if (!window.aiAgentConfig) window.aiAgentConfig = {};
 
@@ -1112,9 +1112,9 @@ return `
 
         window.aiAgentConfig.autoAction = this.checked;
 
-        const currentPolicy = JSON.parse(localStorage.getItem('aiTrustOsAgentPermissions') || '{}');
+        const currentPolicy = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsAgentPermissions')) || '{}');
         currentPolicy.autoAction = this.checked;
-        localStorage.setItem('aiTrustOsAgentPermissions', JSON.stringify(currentPolicy));
+        localStorage.setItem(aiTrustScopedKey('aiTrustOsAgentPermissions'), JSON.stringify(currentPolicy));
 
         runDashboard();
       });

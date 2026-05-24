@@ -1,9 +1,9 @@
 (function () {
     'use strict';
   
-    const STORAGE_KEY = 'aiTrustOsApiAbuseActivity';
-const REPUTATION_KEY = 'aiTrustOsApiAbuseReputation';
-const MAX_RECORDS = 100;
+    const STORAGE_KEY = aiTrustScopedKey('aiTrustOsApiAbuseActivity');
+    const REPUTATION_KEY = aiTrustScopedKey('aiTrustOsApiAbuseReputation');
+    const MAX_RECORDS = 100;
   
     const state = {
   latestRequest: null,

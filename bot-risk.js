@@ -1,10 +1,10 @@
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'aiTrustOsBotRiskActivity';
-  var AUTO_KEY = 'aiTrustOsBotAutoAction';
-  var SCENARIO_KEY = 'aiTrustOsBotScenario';
-  var TIMELINE_KEY = 'aiTrustOsBotThreatTimeline';
+  var STORAGE_KEY = aiTrustScopedKey('aiTrustOsBotRiskActivity');
+var AUTO_KEY = aiTrustScopedKey('aiTrustOsBotAutoAction');
+var SCENARIO_KEY = aiTrustScopedKey('aiTrustOsBotScenario');
+var TIMELINE_KEY = aiTrustScopedKey('aiTrustOsBotThreatTimeline');
   var MAX_RECORDS = 150;
 
   var state = {

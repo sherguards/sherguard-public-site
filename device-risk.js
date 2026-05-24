@@ -2,11 +2,11 @@
     'use strict';
   
     // Storage keys
-var STORAGE_KEY = 'aiTrustOsDeviceRiskActivity';
-var AUTO_ACTION_KEY = 'aiTrustOsDeviceRiskAutoAction';
-var SCENARIO_KEY = 'aiTrustOsDeviceRiskScenario';
-var REPUTATION_DB_KEY = 'aiTrustOsDeviceReputationDB';
-var THREAT_TIMELINE_KEY = 'aiTrustOsDeviceThreatTimeline';
+    var STORAGE_KEY = aiTrustScopedKey('aiTrustOsDeviceRiskActivity');
+    var AUTO_ACTION_KEY = aiTrustScopedKey('aiTrustOsDeviceRiskAutoAction');
+    var SCENARIO_KEY = aiTrustScopedKey('aiTrustOsDeviceRiskScenario');
+    var REPUTATION_DB_KEY = aiTrustScopedKey('aiTrustOsDeviceReputationDB');
+    var THREAT_TIMELINE_KEY = aiTrustScopedKey('aiTrustOsDeviceThreatTimeline');
 var MAX_HISTORY = 250;
   
     // State

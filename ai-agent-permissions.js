@@ -1,7 +1,7 @@
 (function () {
     'use strict';
   
-    var storageKey = 'aiTrustOsAgentPermissions';
+    var storageKey = aiTrustScopedKey('aiTrustOsAgentPermissions');
   
     var defaultModules = [
       'Email Risk',

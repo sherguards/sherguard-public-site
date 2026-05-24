@@ -4,7 +4,7 @@
     // Email Risk Master Module
     // Plain browser-side email intelligence with explainable rules, history, and exports.
   
-    const STORAGE_KEY = 'aiTrustOsEmailRiskActivity';
+    const STORAGE_KEY = aiTrustScopedKey('aiTrustOsEmailRiskActivity');
     const ACTION_OPTIONS = [
       'Suggested',
       'Blocked',
