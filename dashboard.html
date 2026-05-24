@@ -122,39 +122,27 @@
 
     <main class="main-content">
       <header class="topbar">
-        <div>
-          <h2>SherGuard Trust Intelligence Dashboard</h2>
-          <p>Monitor fraud, bots, risky devices, API abuse, payment threats, and organization security activity from one secure dashboard.</p>
-        </div>
-        <div class="dashboard-engine-card">
-          <div class="engine-status-pill">
-            <span>●</span>
-            Beta Engine Active
+        <div class="dashboard-top-header">
+          <div>
+            <h2>SherGuard Trust Intelligence Dashboard</h2>
           </div>
-        
-          <h4>Engine Mode</h4>
-        
-          <p>
-            Real-time AI fraud monitoring across trust, abuse,
-            payment, bot, device, and API intelligence layers.
-          </p>
-        </div>
-        <div class="dashboard-top-info-row">
-          <div class="org-mini-card dashboard-top-info-card">
-            <span id="orgNameText">Loading organization...</span>
-            <small id="orgPlanText">Plan loading...</small>
-          </div>
-        
-          <div class="usage-mini-card dashboard-top-info-card">
-            <strong>Today’s Usage</strong>
-            <div id="usageSummaryText">Loading usage...</div>
+      
+          <div class="dashboard-title-actions">
+            <a href="pricing.html" class="upgrade-plan-btn">
+              ⚡ Upgrade Plan
+            </a>
+      
+            <button id="logoutBtn" class="secondary-btn">
+              Logout
+            </button>
           </div>
         </div>
-        <div class="topbar-actions">
-          <button id="logoutBtn" class="secondary-btn">
-            Logout
-          </button>
-          
+      
+        <p class="dashboard-subtitle">
+          Monitor fraud, bots, risky devices, API abuse, payment threats, and organization security activity from one secure dashboard.
+        </p>
+      
+        <div class="dashboard-live-row">
           <div class="status-badge">
             <span id="liveDot" style="
               display:inline-block;
@@ -166,9 +154,35 @@
             "></span>
             LIVE
           </div>
-        
+      
           <div id="dashboardSyncTime" class="dashboard-sync-time">
             Last sync: --:--:--
+          </div>
+        </div>
+      
+        <div class="dashboard-top-card-row">
+          <div class="dashboard-engine-card">
+            <div class="engine-status-pill">
+              <span>●</span>
+              Beta Engine Active
+            </div>
+      
+            <h4>Engine Mode</h4>
+      
+            <p>
+              Real-time AI fraud monitoring across trust, abuse,
+              payment, bot, device, and API intelligence layers.
+            </p>
+          </div>
+      
+          <div class="org-mini-card dashboard-top-info-card">
+            <span id="orgNameText">Loading organization...</span>
+            <small id="orgPlanText">Plan loading...</small>
+          </div>
+      
+          <div class="usage-mini-card dashboard-top-info-card">
+            <strong>Today’s Usage</strong>
+            <div id="usageSummaryText">Loading usage...</div>
           </div>
         </div>
       </header>

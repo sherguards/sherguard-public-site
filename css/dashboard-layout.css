@@ -2596,3 +2596,125 @@ body {
     width: 100% !important;
   }
 }
+
+/* ===== FINAL DASHBOARD TOP STRUCTURE ===== */
+
+.topbar {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  align-items: start !important;
+}
+
+.dashboard-top-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 20px !important;
+}
+
+.dashboard-top-header h2 {
+  margin: 0 !important;
+  font-size: clamp(28px, 3vw, 42px) !important;
+  line-height: 1.08 !important;
+  white-space: nowrap !important;
+}
+
+.dashboard-title-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex: none !important;
+}
+
+.upgrade-plan-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 11px 18px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.22) !important;
+}
+
+.dashboard-subtitle {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #64748b !important;
+  font-size: 17px !important;
+  line-height: 1.65 !important;
+}
+
+.dashboard-live-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+.dashboard-top-card-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-items: stretch !important;
+  margin-top: 8px !important;
+}
+
+.dashboard-engine-card,
+.dashboard-top-info-card {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 118px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.org-mini-card,
+.usage-mini-card {
+  background: #ffffff !important;
+  border: 1px solid #dbeafe !important;
+  color: #0f172a !important;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+.org-mini-card span,
+.usage-mini-card strong {
+  color: #0f172a !important;
+}
+
+.org-mini-card small,
+#usageSummaryText {
+  color: #2563eb !important;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-top-header {
+    align-items: flex-start !important;
+  }
+
+  .dashboard-top-header h2 {
+    white-space: normal !important;
+  }
+
+  .dashboard-top-card-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .dashboard-top-header {
+    flex-direction: column !important;
+  }
+
+  .dashboard-title-actions {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .dashboard-live-row {
+    flex-wrap: wrap !important;
+  }
+}
