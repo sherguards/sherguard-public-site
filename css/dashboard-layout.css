@@ -2798,10 +2798,13 @@ body {
 /* ===== FINAL PROFESSIONAL DASHBOARD SUBTITLE ===== */
 
 .dashboard-subtitle {
-  width: 720px !important;
-  max-width: 720px !important;
+  display: block !important;
+  width: 680px !important;
+  max-width: 680px !important;
+  margin: 0 !important;
   font-size: 18px !important;
-  line-height: 1.7 !important;
+  line-height: 1.75 !important;
   font-weight: 600 !important;
   color: #475569 !important;
+  letter-spacing: -0.01em !important;
 }
