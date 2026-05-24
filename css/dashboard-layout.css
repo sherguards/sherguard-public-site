@@ -2718,3 +2718,54 @@ body {
     flex-wrap: wrap !important;
   }
 }
+
+/* ===== FINAL TOP CARD ROW FIX ===== */
+
+.dashboard-live-row {
+  margin-top: -4px !important;
+  margin-bottom: 8px !important;
+}
+
+.dashboard-top-card-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+}
+
+.dashboard-engine-card,
+.dashboard-top-info-card {
+  flex: 1 1 260px !important;
+  max-width: 320px !important;
+  min-height: 118px !important;
+}
+
+.org-mini-card,
+.usage-mini-card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 18px 20px !important;
+}
+
+.org-mini-card span,
+.usage-mini-card strong {
+  font-size: 1.08rem !important;
+  margin-bottom: 8px !important;
+}
+
+.org-mini-card small,
+#usageSummaryText {
+  font-size: 0.95rem !important;
+}
+
+@media (max-width: 900px) {
+  .dashboard-top-card-row {
+    flex-direction: column !important;
+  }
+
+  .dashboard-engine-card,
+  .dashboard-top-info-card {
+    max-width: 100% !important;
+  }
+}
