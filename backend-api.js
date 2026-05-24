@@ -101,7 +101,8 @@ function aiTrustGetCurrentUserScope() {
       user.organization_id ||
       'unknown_org';
 
-    const userId =
+      const userId =
+      user.user_id ||
       user.id ||
       'unknown_user';
 
