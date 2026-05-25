@@ -1066,13 +1066,22 @@ return `
   
     const status = data.security_status || 'Stable';
     const priority = data.priority || 'Monitor';
-    const trend = data.trends && data.trends.trend
-      ? data.trends.trend
-      : 'Stable';
-  
-    const action = data.trends && data.trends.recommended_action
-      ? data.trends.recommended_action
-      : 'Continue monitoring';
+    let trend = 'Stable';
+let action = 'Continue monitoring';
+
+if (data.security_status === 'Critical') {
+  trend = 'Critical threat activity detected';
+  action = 'Immediate review required';
+} else if (data.security_status === 'Elevated') {
+  trend = 'Elevated suspicious activity detected';
+  action = 'Review recommended';
+} else if (
+  data.trends &&
+  data.trends.recent_event_count > 0
+) {
+  trend = 'Live monitoring active';
+  action = 'Continue monitoring';
+}
   
     setText('securityCenterStatus', status);
     setText('securityCenterPriority', 'Priority: ' + priority);
