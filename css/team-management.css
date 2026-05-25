@@ -345,4 +345,15 @@
 .team-session-table-scroll tbody tr {
   height: 96px;
 }
+
+.team-invitations-block .team-session-table-scroll {
+  height: 620px !important;
+  max-height: 620px !important;
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+}
+
+.team-invitations-block .team-session-table-scroll tbody tr {
+  height: 92px !important;
+}
   
