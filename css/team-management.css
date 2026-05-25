@@ -457,4 +457,16 @@
 .team-role-select {
   min-width: 115px;
 }
+
+.team-table td {
+  white-space: nowrap;
+}
+
+.team-table td:nth-child(n+2) {
+  font-weight: 700;
+}
+
+.team-table td:has(.team-role-badge) {
+  font-weight: 700;
+}
   
