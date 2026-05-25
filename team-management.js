@@ -261,12 +261,26 @@ document.addEventListener('click', async function (event) {
   }
 
   try {
-    const result = await aiTrustApiPost(
-      '/organization/sessions/' + sessionId + '/status',
+    const response = await fetch(
+      'https://sherguard-api.onrender.com/organization/sessions/' + sessionId + '/status',
       {
-        is_active: false
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('aiTrustToken')
+        },
+        body: JSON.stringify({
+          is_active: false
+        })
       }
     );
+    
+    const result = await response.json();
+    
+    if (!result.success) {
+      alert(result.message || 'Failed to revoke session.');
+      return;
+    }
 
     alert(result.message || 'Session revoked.');
 
