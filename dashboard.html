@@ -298,8 +298,37 @@
         <div class="section-header">
           <div>
             <h3>Team Management</h3>
-            <p>View organization users, roles, and account status.</p>
+            <p>Invite team members, manage roles, control access, and review active login sessions.</p>
           </div>
+        </div>
+        
+        <div class="team-invite-panel">
+          <div>
+            <h4>Invite Team Member</h4>
+            <p>Add admins, analysts, or viewers to this organization.</p>
+          </div>
+        
+          <div class="team-invite-form">
+            <input
+              id="teamInviteEmailInput"
+              type="email"
+              placeholder="team member email"
+            />
+        
+            <select id="teamInviteRoleSelect">
+              <option value="viewer">Viewer</option>
+              <option value="analyst">Analyst</option>
+              <option value="admin">Admin</option>
+            </select>
+        
+            <button id="teamInviteBtn" type="button">
+              Send Invite
+            </button>
+          </div>
+        
+          <p id="teamInviteMessage" class="team-action-message">
+            Invite system ready.
+          </p>
         </div>
       
         <div class="team-table-wrap">
