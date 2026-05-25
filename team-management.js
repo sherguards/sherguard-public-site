@@ -168,6 +168,18 @@ let riskScore = session.risk_score || 12;
                   : 'Unknown'
               }
             </td>
+            <td>
+  <div class="team-action-buttons">
+    <button
+      class="team-action-btn danger team-session-revoke-btn"
+      type="button"
+      data-session-id="${session.id}"
+      ${session.is_active ? '' : 'disabled'}
+    >
+      Revoke
+    </button>
+  </div>
+</td>
           </tr>
         `;
       }).join('');
@@ -234,6 +246,37 @@ if (clearInactiveSessionsBtn) {
     }
   });
 }
+
+document.addEventListener('click', async function (event) {
+  const revokeBtn = event.target.closest('.team-session-revoke-btn');
+
+  if (!revokeBtn) return;
+
+  const sessionId = revokeBtn.getAttribute('data-session-id');
+
+  if (!sessionId) return;
+
+  if (!confirm('Revoke this login session?')) {
+    return;
+  }
+
+  try {
+    const result = await aiTrustApiPost(
+      '/organization/sessions/' + sessionId + '/status',
+      {
+        is_active: false
+      }
+    );
+
+    alert(result.message || 'Session revoked.');
+
+    loadTeamSessions();
+
+  } catch (error) {
+    alert('Failed to revoke session.');
+    console.error('Revoke session failed:', error);
+  }
+});
     loadTeamMembers();
     loadTeamInvitations();
     loadTeamSessions();
