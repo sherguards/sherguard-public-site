@@ -221,4 +221,20 @@
     z-index: 2;
     background: #f8fafc;
   }
+
+  .api-key-clear-revoked-btn {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border: 1px solid #fecaca;
+    border-radius: 999px;
+    background: #fff1f2;
+    color: #be123c;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  
+  .api-key-clear-revoked-btn:hover {
+    background: #ffe4e6;
+  }
   
