@@ -203,6 +203,37 @@ let riskScore = session.risk_score || 12;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+  const clearInactiveSessionsBtn = document.getElementById('clearInactiveSessionsBtn');
+
+if (clearInactiveSessionsBtn) {
+  clearInactiveSessionsBtn.addEventListener('click', async function () {
+    if (!confirm('Clear all inactive sessions?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        'https://sherguard-api.onrender.com/organization/sessions/inactive',
+        {
+          method: 'DELETE',
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('aiTrustToken')
+          }
+        }
+      );
+
+      const result = await response.json();
+
+      alert(result.message || 'Inactive sessions cleared.');
+
+      loadTeamSessions();
+
+    } catch (error) {
+      alert('Failed to clear inactive sessions.');
+      console.error('Clear inactive sessions failed:', error);
+    }
+  });
+}
     loadTeamMembers();
     loadTeamInvitations();
     loadTeamSessions();
