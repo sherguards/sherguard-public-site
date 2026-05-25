@@ -82,4 +82,39 @@
     font-weight: 700;
     line-height: 1;
   }
+
+  .team-table-wrap,
+.team-invitations-block {
+  max-height: 360px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.team-table {
+  margin: 0;
+}
+
+.team-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f8fafc;
+}
+
+.team-invitations-block {
+  padding: 18px;
+}
+
+.team-invitations-block h4 {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  margin: -18px -18px 14px;
+  padding: 18px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
   
