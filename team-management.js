@@ -606,5 +606,6 @@
     loadTeamMembers();
     loadTeamInvitations();
     loadTeamSessions();
+    loadAuditLogs();
   });
 })();
