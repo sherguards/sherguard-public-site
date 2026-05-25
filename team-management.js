@@ -410,6 +410,51 @@
     }
   }
 
+  async function loadAuditLogs() {
+    const body = document.getElementById('teamAuditLogsTableBody');
+
+    if (!body) return;
+
+    try {
+      const data = await aiTrustApiGet('/organization/audit-logs');
+      const logs = data.logs || [];
+
+      if (!logs.length) {
+        body.innerHTML = `
+          <tr>
+            <td colspan="5">No audit logs yet.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      body.innerHTML = logs.slice(0, 25).map(function (log) {
+        const details = log.details
+          ? JSON.stringify(log.details)
+          : 'No details';
+
+        return `
+          <tr>
+            <td>${log.timestamp ? new Date(log.timestamp).toLocaleString() : 'Unknown'}</td>
+            <td>${log.email || 'Unknown'}</td>
+            <td><span class="team-role-badge">${log.role || 'admin'}</span></td>
+            <td><strong>${log.action || 'Unknown action'}</strong></td>
+            <td>${details}</td>
+          </tr>
+        `;
+      }).join('');
+
+    } catch (error) {
+      body.innerHTML = `
+        <tr>
+          <td colspan="5">Failed to load audit logs.</td>
+        </tr>
+      `;
+
+      console.error('Audit logs load failed:', error);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     ensureForceLogoutButton();
 
