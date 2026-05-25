@@ -406,4 +406,55 @@
     width: 100%;
   }
 }
+
+.team-management-toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+
+.team-management-toolbar input,
+.team-management-toolbar select {
+  height: 42px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.team-pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.team-risk-badge {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.team-risk-badge.high {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.team-risk-badge.review {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.team-risk-badge.trusted {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.team-role-select {
+  min-width: 115px;
+}
   
