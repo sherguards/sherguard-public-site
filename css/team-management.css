@@ -89,15 +89,21 @@
     line-height: 1;
   }
 
-  .team-table-wrap,
-.team-invitations-block {
-  max-height: 360px;
-  overflow-y: auto;
-  overflow-x: auto;
-  border: 1px solid #e2e8f0;
-  border-radius: 18px;
-  background: #ffffff;
-}
+  .team-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    background: #ffffff;
+  }
+  
+  .team-invitations-block {
+    margin-top: 28px;
+    padding: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    background: #ffffff;
+    overflow: visible;
+  }
 
 .team-table {
   margin: 0;
@@ -355,5 +361,26 @@
 
 .team-invitations-block .team-session-table-scroll tbody tr {
   height: 92px !important;
+}
+
+.team-session-table-scroll {
+  height: 620px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.team-session-table-scroll table {
+  min-width: 1700px;
+}
+
+.team-session-table-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #f8fafc;
+}
+
+.team-session-table-scroll tbody tr {
+  height: 92px;
 }
   
