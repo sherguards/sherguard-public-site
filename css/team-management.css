@@ -3,7 +3,13 @@
   }
   
   .team-table-wrap {
+    width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid #dbe3ee;
+    border-radius: 20px;
+    background: #ffffff;
+    scrollbar-gutter: stable;
   }
   
   .team-table {
@@ -280,5 +286,59 @@
   .team-action-btn {
     width: 100%;
   }
+}
+
+.team-session-table-scroll {
+  max-height: 620px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-top: 1px solid #e2e8f0;
+  scrollbar-gutter: stable both-edges;
+}
+
+.team-session-table-scroll table {
+  min-width: 1700px;
+}
+
+.team-session-table-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #f8fafc;
+}
+
+.team-session-summary-grid {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: #ffffff;
+  padding-bottom: 18px;
+}
+
+.team-invitations-block {
+  overflow: hidden;
+}
+
+.team-session-table-scroll::-webkit-scrollbar {
+  height: 14px;
+  width: 14px;
+}
+
+.team-session-table-scroll::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.55);
+  border-radius: 999px;
+}
+
+.team-session-table-scroll::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+.team-session-table-scroll tbody tr {
+  height: 108px;
+}
+
+.team-session-table-scroll tbody td {
+  min-width: 120px;
+  vertical-align: middle;
 }
   
