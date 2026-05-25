@@ -383,4 +383,27 @@
 .team-session-table-scroll tbody tr {
   height: 92px;
 }
+
+.team-session-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.team-session-header h4 {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .team-session-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .team-session-header button {
+    width: 100%;
+  }
+}
   
