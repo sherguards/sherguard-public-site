@@ -33,6 +33,23 @@
     });
   }
 
+  function getHiddenRevokedApiKeyIds() {
+    try {
+      return JSON.parse(
+        localStorage.getItem('sherguardHiddenRevokedApiKeys') || '[]'
+      );
+    } catch {
+      return [];
+    }
+  }
+  
+  function saveHiddenRevokedApiKeyIds(ids) {
+    localStorage.setItem(
+      'sherguardHiddenRevokedApiKeys',
+      JSON.stringify(ids)
+    );
+  }
+
   async function loadApiKeys() {
     const body = document.getElementById('apiKeysTableBody');
 
@@ -42,6 +59,15 @@
       const data = await aiTrustApiGet('/api-keys');
 
       const keys = data.keys || [];
+      const hiddenRevokedIds = getHiddenRevokedApiKeyIds();
+
+const visibleKeys = keys.filter(function (key) {
+  return key.is_active || !hiddenRevokedIds.includes(String(key.id));
+});
+
+const revokedKeys = keys.filter(function (key) {
+  return !key.is_active;
+});
       const usageText = document.getElementById('apiKeyUsageText');
 
       const activeKeys = keys.filter(function (key) {
@@ -82,7 +108,41 @@
         }
       }
 
-      if (!keys.length) {
+      let clearRevokedBtn = document.getElementById('clearRevokedApiKeysBtn');
+
+if (!clearRevokedBtn && createBtn) {
+  clearRevokedBtn = document.createElement('button');
+  clearRevokedBtn.id = 'clearRevokedApiKeysBtn';
+  clearRevokedBtn.type = 'button';
+  clearRevokedBtn.className = 'api-key-clear-revoked-btn';
+  clearRevokedBtn.textContent = 'Clear Revoked Keys';
+  createBtn.insertAdjacentElement('afterend', clearRevokedBtn);
+}
+
+if (clearRevokedBtn) {
+  if (revokedKeys.length) {
+    clearRevokedBtn.classList.remove('hidden');
+  } else {
+    clearRevokedBtn.classList.add('hidden');
+  }
+
+  clearRevokedBtn.onclick = function () {
+    const ids = getHiddenRevokedApiKeyIds();
+
+    revokedKeys.forEach(function (key) {
+      const id = String(key.id);
+
+      if (!ids.includes(id)) {
+        ids.push(id);
+      }
+    });
+
+    saveHiddenRevokedApiKeyIds(ids);
+    loadApiKeys();
+  };
+}
+
+if (!visibleKeys.length) {
         body.innerHTML = `
           <tr>
             <td colspan="8">No API keys created yet.</td>
@@ -91,7 +151,7 @@
         return;
       }
 
-      body.innerHTML = keys.map(function (key) {
+      body.innerHTML = visibleKeys.map(function (key) {
         const statusClass = key.is_active
           ? 'api-key-status-active'
           : 'api-key-status-revoked';
