@@ -289,7 +289,7 @@
 }
 
 .team-session-table-scroll {
-  max-height: 620px;
+  height: 620px;
   overflow-y: auto;
   overflow-x: auto;
   border-top: 1px solid #e2e8f0;
@@ -340,5 +340,9 @@
 .team-session-table-scroll tbody td {
   min-width: 120px;
   vertical-align: middle;
+}
+
+.team-session-table-scroll tbody tr {
+  height: 96px;
 }
   
