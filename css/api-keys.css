@@ -189,4 +189,16 @@
       box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
     }
   }
+
+  .api-key-limit-message {
+    margin: 12px 0 0;
+    padding: 11px 14px;
+    max-width: 520px;
+    border-radius: 12px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    color: #c2410c;
+    font-size: 14px;
+    font-weight: 800;
+  }
   
