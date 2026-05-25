@@ -56,12 +56,29 @@
       const createBtn = document.getElementById('createApiKeyBtn');
 
       if (createBtn) {
+        let limitMessage = document.getElementById('apiKeyLimitMessage');
+      
+        if (!limitMessage) {
+          limitMessage = document.createElement('p');
+          limitMessage.id = 'apiKeyLimitMessage';
+          limitMessage.className = 'api-key-limit-message';
+          createBtn.insertAdjacentElement('afterend', limitMessage);
+        }
+      
         if (activeKeys >= 5) {
           createBtn.disabled = true;
           createBtn.textContent = 'Limit Reached';
+      
+          limitMessage.textContent =
+            'API key limit reached. Upgrade your plan to create more API keys.';
+      
+          limitMessage.classList.remove('hidden');
         } else {
           createBtn.disabled = false;
           createBtn.textContent = 'Create API Key';
+      
+          limitMessage.textContent = '';
+          limitMessage.classList.add('hidden');
         }
       }
 
