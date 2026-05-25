@@ -109,21 +109,22 @@ const revokedKeys = keys.filter(function (key) {
       }
 
       let clearRevokedBtn = document.getElementById('clearRevokedApiKeysBtn');
+const tableWrap = document.querySelector('.api-key-table-wrap');
 
-if (!clearRevokedBtn && createBtn) {
+if (!clearRevokedBtn && tableWrap) {
   clearRevokedBtn = document.createElement('button');
   clearRevokedBtn.id = 'clearRevokedApiKeysBtn';
   clearRevokedBtn.type = 'button';
   clearRevokedBtn.className = 'api-key-clear-revoked-btn';
   clearRevokedBtn.textContent = 'Clear Revoked Keys';
-  createBtn.insertAdjacentElement('afterend', clearRevokedBtn);
+  tableWrap.insertAdjacentElement('beforebegin', clearRevokedBtn);
 }
 
 if (clearRevokedBtn) {
   if (revokedKeys.length) {
-    clearRevokedBtn.classList.remove('hidden');
+    clearRevokedBtn.style.display = 'inline-flex';
   } else {
-    clearRevokedBtn.classList.add('hidden');
+    clearRevokedBtn.style.display = 'none';
   }
 
   clearRevokedBtn.onclick = function () {
