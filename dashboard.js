@@ -1059,6 +1059,39 @@ return `
     }
   }
 
+  function updateSecurityCenterCard() {
+    const data = window.aiTrustSecurityCenter;
+  
+    if (!data) return;
+  
+    const status = data.security_status || 'Stable';
+    const priority = data.priority || 'Monitor';
+    const trend = data.trends && data.trends.trend
+      ? data.trends.trend
+      : 'Stable';
+  
+    const action = data.trends && data.trends.recommended_action
+      ? data.trends.recommended_action
+      : 'Continue monitoring';
+  
+    setText('securityCenterStatus', status);
+    setText('securityCenterPriority', 'Priority: ' + priority);
+    setText('securityCenterTrend', 'Trend: ' + trend);
+    setText('securityCenterAction', 'Recommended action: ' + action);
+  
+    const statusEl = document.getElementById('securityCenterStatus');
+  
+    if (statusEl) {
+      if (status === 'Critical') {
+        statusEl.style.color = '#fca5a5';
+      } else if (status === 'Elevated') {
+        statusEl.style.color = '#fde68a';
+      } else {
+        statusEl.style.color = '#86efac';
+      }
+    }
+  }
+
   async function runDashboard() {
     const previousStats = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsPrevStats')) || 'null');
     const records = await collectAllData();
@@ -1071,6 +1104,7 @@ return `
     updateTrend(stats, previousStats);
     updateRecentActivity(records);
     updateGlobalRiskMeter(stats);
+    updateSecurityCenterCard();
     if (window.aiTrustSecurityCenter) {
       setText('globalRiskPercent', (window.aiTrustSecurityCenter.high_risk_rate || 0) + '%');
       setText('globalRiskStatus', window.aiTrustSecurityCenter.security_status || 'Monitoring');
