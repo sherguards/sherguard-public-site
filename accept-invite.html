@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Accept Invitation • SherGuard</title>
+
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="responsive.css" />
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top right, #2563eb22, transparent 30%),
+        radial-gradient(circle at bottom left, #22c55e22, transparent 30%),
+        #0f172a;
+      padding: 24px;
+    }
+
+    .invite-card {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 38px;
+      border: 1px solid #dbe3ee;
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.28);
+    }
+
+    .invite-logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: #2563eb;
+      margin-bottom: 12px;
+    }
+
+    .invite-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .invite-subtitle {
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .invite-form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .invite-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .invite-field label {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .invite-field input {
+      height: 50px;
+      border-radius: 14px;
+      border: 1px solid #dbe3ee;
+      background: #f8fafc;
+      padding: 0 14px;
+      font-size: 14px;
+      color: #0f172a;
+      outline: none;
+    }
+
+    .invite-field input:focus {
+      border-color: #2563eb;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .invite-submit-btn {
+      height: 52px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .invite-submit-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .invite-message {
+      margin-top: 20px;
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .invite-message.success {
+      display: block;
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .invite-message.error {
+      display: block;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .invite-footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="invite-card">
+
+    <div class="invite-logo">
+      SherGuard
+    </div>
+
+    <h1 class="invite-title">
+      Accept Invitation
+    </h1>
+
+    <p class="invite-subtitle">
+      Create your SherGuard account and join your organization securely.
+    </p>
+
+    <form id="acceptInviteForm" class="invite-form">
+
+      <div class="invite-field">
+        <label for="fullName">
+          Full Name
+        </label>
+
+        <input
+          id="fullName"
+          type="text"
+          placeholder="Enter your full name"
+          required
+        />
+      </div>
+
+      <div class="invite-field">
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Create a secure password"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="invite-submit-btn"
+      >
+        Join Organization
+      </button>
+
+    </form>
+
+    <div id="inviteMessage" class="invite-message"></div>
+
+    <div class="invite-footer">
+      Secure onboarding powered by SherGuard.
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const API_BASE =
+        'https://sherguard-api.onrender.com';
+
+      const form =
+        document.getElementById('acceptInviteForm');
+
+      const message =
+        document.getElementById('inviteMessage');
+
+      function setMessage(text, type) {
+        message.textContent = text;
+        message.className =
+          'invite-message ' + type;
+      }
+
+      function getToken() {
+        const params =
+          new URLSearchParams(window.location.search);
+
+        return params.get('token');
+      }
+
+      form.addEventListener(
+        'submit',
+        async function (event) {
+
+          event.preventDefault();
+
+          const token = getToken();
+
+          if (!token) {
+            setMessage(
+              'Invalid invitation token.',
+              'error'
+            );
+            return;
+          }
+
+          const fullName =
+            document
+              .getElementById('fullName')
+              .value
+              .trim();
+
+          const password =
+            document
+              .getElementById('password')
+              .value;
+
+          try {
+
+            const response = await fetch(
+              API_BASE +
+              '/team-invitations/accept',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type':
+                    'application/json'
+                },
+                body: JSON.stringify({
+                  token: token,
+                  full_name: fullName,
+                  password: password
+                })
+              }
+            );
+
+            const result =
+              await response.json();
+
+            if (!result.success) {
+              setMessage(
+                result.message ||
+                'Invitation failed.',
+                'error'
+              );
+              return;
+            }
+
+            setMessage(
+              'Invitation accepted successfully. Redirecting to login...',
+              'success'
+            );
+
+            setTimeout(function () {
+              window.location.href =
+                'login.html';
+            }, 2200);
+
+          } catch (error) {
+
+            console.error(error);
+
+            setMessage(
+              'Failed to accept invitation.',
+              'error'
+            );
+          }
+        }
+      );
+    })();
+  </script>
+
+</body>
+</html>
