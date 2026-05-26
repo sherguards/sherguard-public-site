@@ -686,4 +686,105 @@
     height: 200px;
   }
 }
+
+/* ==========================================
+   ENTERPRISE ANALYTICS COLORS
+========================================== */
+
+.enterprise-analytics-card:nth-child(1) {
+  background:
+    linear-gradient(
+      135deg,
+      #eff6ff 0%,
+      #dbeafe 100%
+    );
+
+  border-color: #bfdbfe;
+}
+
+.enterprise-analytics-card:nth-child(1) strong {
+  color: #2563eb;
+}
+
+.enterprise-analytics-card:nth-child(2) {
+  background:
+    linear-gradient(
+      135deg,
+      #f0fdf4 0%,
+      #dcfce7 100%
+    );
+
+  border-color: #bbf7d0;
+}
+
+.enterprise-analytics-card:nth-child(2) strong {
+  color: #16a34a;
+}
+
+.enterprise-analytics-card:nth-child(3) {
+  background:
+    linear-gradient(
+      135deg,
+      #fef2f2 0%,
+      #fee2e2 100%
+    );
+
+  border-color: #fecaca;
+}
+
+.enterprise-analytics-card:nth-child(3) strong {
+  color: #dc2626;
+}
+
+.enterprise-analytics-card:nth-child(4) {
+  background:
+    linear-gradient(
+      135deg,
+      #faf5ff 0%,
+      #f3e8ff 100%
+    );
+
+  border-color: #e9d5ff;
+}
+
+.enterprise-analytics-card:nth-child(4) strong {
+  color: #9333ea;
+}
+
+.enterprise-chart-card {
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f8fbff 100%
+    );
+}
+
+.enterprise-volume-stats {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+}
+
+.enterprise-volume-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.enterprise-volume-item strong {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.enterprise-volume-item span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+}
   
