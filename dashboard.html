@@ -200,6 +200,72 @@
         </div>
       </section>
 
+      <section class="dashboard-section enterprise-analytics-section">
+        <div class="section-header">
+          <div>
+            <h3>Enterprise Analytics</h3>
+            <p>
+              Live organization-wide API usage, request analytics,
+              security traffic trends, and infrastructure monitoring.
+            </p>
+          </div>
+        </div>
+      
+        <div class="enterprise-analytics-grid">
+          
+          <div class="enterprise-analytics-card">
+            <span>Total API Requests</span>
+            <strong id="analyticsTotalRequests">0</strong>
+            <small>Organization-wide requests processed</small>
+          </div>
+      
+          <div class="enterprise-analytics-card">
+            <span>Average Response Time</span>
+            <strong id="analyticsAvgResponse">0ms</strong>
+            <small>Backend average processing speed</small>
+          </div>
+      
+          <div class="enterprise-analytics-card">
+            <span>Threat Events</span>
+            <strong id="analyticsThreatEvents">0</strong>
+            <small>Detected high-risk security events</small>
+          </div>
+      
+          <div class="enterprise-analytics-card">
+            <span>Active API Keys</span>
+            <strong id="analyticsApiKeys">0</strong>
+            <small>Currently active developer keys</small>
+          </div>
+      
+        </div>
+      
+        <div class="enterprise-chart-grid">
+      
+          <div class="enterprise-chart-card">
+            <div class="enterprise-chart-header">
+              <h4>Live Request Volume</h4>
+              <span>Realtime Traffic</span>
+            </div>
+      
+            <div id="requestVolumeChart" class="enterprise-chart-placeholder">
+              Waiting for analytics data...
+            </div>
+          </div>
+      
+          <div class="enterprise-chart-card">
+            <div class="enterprise-chart-header">
+              <h4>Top API Endpoints</h4>
+              <span>Most active infrastructure routes</span>
+            </div>
+      
+            <div id="topEndpointsList" class="enterprise-endpoint-list">
+              Waiting for endpoint analytics...
+            </div>
+          </div>
+      
+        </div>
+      </section>
+
       <section class="dashboard-section api-key-management-card">
         <div class="section-header">
           <div>
