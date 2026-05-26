@@ -62,6 +62,26 @@
     }
   }
 
+  async function fetchApiUsageAnalytics() {
+    try {
+      const data = await aiTrustApiGet(
+        '/analytics/api-usage'
+      );
+  
+      window.aiTrustApiUsage = data;
+  
+      return data;
+  
+    } catch (error) {
+      console.error(
+        'API usage analytics failed:',
+        error
+      );
+  
+      return null;
+    }
+  }
+
   async function collectAllData() {
     await fetchSecurityCenter();
   
@@ -1124,6 +1144,7 @@ if (data.security_status === 'Critical') {
   async function runDashboard() {
     const previousStats = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsPrevStats')) || 'null');
     const analyticsSummary = await fetchAnalyticsSummary();
+    const apiUsageAnalytics = await fetchApiUsageAnalytics();
     const records = await collectAllData();
     window.latestDashboardRecords = records;
     const stats = calculateStats(records);
@@ -1135,6 +1156,113 @@ if (data.security_status === 'Critical') {
       stats.low = analyticsSummary.low_risk || stats.low;
     }
 
+    if (apiUsageAnalytics) {
+
+      setText(
+        'analyticsTotalRequests',
+        apiUsageAnalytics.total_requests || 0
+      );
+    
+      setText(
+        'analyticsAvgResponse',
+        (
+          apiUsageAnalytics.average_response_time || 0
+        ) + 's'
+      );
+    
+      setText(
+        'analyticsThreatEvents',
+        analyticsSummary
+          ? analyticsSummary.high_risk || 0
+          : 0
+      );
+    
+      const apiKeys = getData('aiTrustApiKeys');
+    
+      setText(
+        'analyticsApiKeys',
+        Array.isArray(apiKeys)
+          ? apiKeys.length
+          : 0
+      );
+    
+      const endpointList =
+        document.getElementById(
+          'topEndpointsList'
+        );
+    
+      if (
+        endpointList &&
+        Array.isArray(
+          apiUsageAnalytics.top_endpoints
+        )
+      ) {
+    
+        endpointList.innerHTML = '';
+    
+        apiUsageAnalytics.top_endpoints
+          .slice(0, 6)
+          .forEach(function(endpoint) {
+    
+            const item =
+              document.createElement('div');
+    
+            item.className =
+              'enterprise-endpoint-item';
+    
+            item.innerHTML = `
+              <div class="enterprise-endpoint-path">
+                ${endpoint.path}
+              </div>
+    
+              <div class="enterprise-endpoint-count">
+                ${endpoint.requests} requests
+              </div>
+            `;
+    
+            endpointList.appendChild(item);
+          });
+      }
+    
+      const requestVolumeChart =
+        document.getElementById(
+          'requestVolumeChart'
+        );
+    
+      if (requestVolumeChart) {
+    
+        const totalRequests =
+          apiUsageAnalytics.total_requests || 0;
+    
+        const blockedRequests =
+          apiUsageAnalytics.blocked_requests || 0;
+    
+        const successfulRequests =
+          apiUsageAnalytics.successful_requests || 0;
+    
+        requestVolumeChart.innerHTML = `
+          <div class="enterprise-volume-stats">
+    
+            <div class="enterprise-volume-item">
+              <strong>${successfulRequests}</strong>
+              <span>Successful</span>
+            </div>
+    
+            <div class="enterprise-volume-item">
+              <strong>${blockedRequests}</strong>
+              <span>Blocked</span>
+            </div>
+    
+            <div class="enterprise-volume-item">
+              <strong>${totalRequests}</strong>
+              <span>Total Requests</span>
+            </div>
+    
+          </div>
+        `;
+      }
+    }
+
     toggleClearButton(stats.total);
     updateUI(stats, null);
     updateSystemInsights(records, stats);
@@ -1142,7 +1270,7 @@ if (data.security_status === 'Critical') {
     updateRecentActivity(records);
     updateGlobalRiskMeter(stats);
     updateSecurityCenterCard();
-    
+
     if (analyticsSummary) {
       setText(
         'globalRiskPercent',
