@@ -42,6 +42,26 @@
     }
   }
 
+  async function fetchAnalyticsSummary() {
+    try {
+      const data = await aiTrustApiGet(
+        '/analytics/summary'
+      );
+  
+      window.aiTrustAnalyticsSummary = data;
+  
+      return data;
+  
+    } catch (error) {
+      console.error(
+        'Analytics summary sync failed:',
+        error
+      );
+  
+      return null;
+    }
+  }
+
   async function collectAllData() {
     await fetchSecurityCenter();
   
@@ -1103,9 +1123,17 @@ if (data.security_status === 'Critical') {
 
   async function runDashboard() {
     const previousStats = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsPrevStats')) || 'null');
+    const analyticsSummary = await fetchAnalyticsSummary();
     const records = await collectAllData();
     window.latestDashboardRecords = records;
     const stats = calculateStats(records);
+
+    if (analyticsSummary) {
+      stats.total = analyticsSummary.total_events || stats.total;
+      stats.high = analyticsSummary.high_risk || stats.high;
+      stats.medium = analyticsSummary.medium_risk || stats.medium;
+      stats.low = analyticsSummary.low_risk || stats.low;
+    }
 
     toggleClearButton(stats.total);
     updateUI(stats, null);
@@ -1114,7 +1142,35 @@ if (data.security_status === 'Critical') {
     updateRecentActivity(records);
     updateGlobalRiskMeter(stats);
     updateSecurityCenterCard();
-    if (window.aiTrustSecurityCenter) {
+    
+    if (analyticsSummary) {
+      setText(
+        'globalRiskPercent',
+        (analyticsSummary.global_risk_score || 0) + '%'
+      );
+    
+      setText(
+        'globalRiskStatus',
+        analyticsSummary.global_risk_level || 'Monitoring'
+      );
+    
+      setText(
+        'highRiskRateText',
+        'High-risk rate: ' + (analyticsSummary.high_risk_rate || 0) + '%'
+      );
+    
+      setText(
+        'globalActionText',
+        'Recommended action: ' +
+          (
+            analyticsSummary.global_risk_level === 'Critical'
+              ? 'Immediate review required'
+              : analyticsSummary.global_risk_level === 'Elevated'
+              ? 'Increase review controls'
+              : 'Continue monitoring'
+          )
+      );
+    } else if (window.aiTrustSecurityCenter) {
       setText('globalRiskPercent', (window.aiTrustSecurityCenter.high_risk_rate || 0) + '%');
       setText('globalRiskStatus', window.aiTrustSecurityCenter.security_status || 'Monitoring');
       setText('highRiskRateText', 'High-risk rate: ' + (window.aiTrustSecurityCenter.high_risk_rate || 0) + '%');
