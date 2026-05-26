@@ -1,10 +1,9 @@
 (function () {
     'use strict';
   
-    var STORAGE_KEY = aiTrustScopedKey('aiTrustOsPaymentFraudActivity');
-    var SCENARIO_KEY = aiTrustScopedKey('aiTrustOsPaymentFraudScenario');
-    var AUTO_ACTION_KEY = aiTrustScopedKey('aiTrustOsPaymentFraudAutoAction');
-    var AUTO_ACTION_KEY = 'aiTrustOsPaymentFraudAutoAction';
+var STORAGE_KEY = aiTrustScopedKey('aiTrustOsPaymentFraudActivity');
+var SCENARIO_KEY = aiTrustScopedKey('aiTrustOsPaymentFraudScenario');
+var AUTO_ACTION_KEY = aiTrustScopedKey('aiTrustOsPaymentFraudAutoAction');
   
     var state = {
       latestTransaction: null,
