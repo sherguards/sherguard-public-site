@@ -469,4 +469,45 @@
 .team-table td:has(.team-role-badge) {
   font-weight: 700;
 }
+
+#teamAuditLogsTableBody {
+  display: table-row-group;
+}
+
+#teamAuditLogsTableBody tr {
+  height: 64px;
+}
+
+#teamAuditLogsTableBody td {
+  vertical-align: top;
+}
+
+#teamAuditLogsTableBody td:nth-child(5) {
+  max-width: 420px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#teamAuditLogsTableBody.closest-fix {
+  max-height: none;
+}
+
+.team-invitations-block:has(#teamAuditLogsTableBody) .team-table-wrap {
+  max-height: 360px;
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+}
+
+.team-invitations-block:has(#teamAuditLogsTableBody) .team-table {
+  min-width: 900px;
+}
+
+.team-invitations-block:has(#teamAuditLogsTableBody) thead th {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: #f8fafc;
+}
   
