@@ -1276,57 +1276,111 @@
   }
 }
 
-/* ===== Hero Live Demo Stats ===== */
+/* ===== Hero Public Security Metrics ===== */
+
+.sg-hero-centered h1 {
+  color: #07111f;
+}
 
 .sg-demo-live-stats {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 18px;
-  flex-wrap: wrap;
-  margin-top: 34px;
+  max-width: 980px;
+  margin: 34px auto 0;
 }
 
 .sg-demo-stat-card {
-  min-width: 200px;
-  padding: 24px 26px;
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
   border-radius: 26px;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(14px);
-  border: 1px solid #dbeafe;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #e2e8f0;
   box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+  text-align: left;
+}
+
+.sg-demo-stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: #2563eb;
+}
+
+.sg-demo-stat-label {
+  display: block;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .sg-demo-stat-card strong {
   display: block;
-  color: #2563eb;
-  font-size: clamp(34px, 5vw, 54px);
+  margin-top: 14px;
+  font-size: clamp(34px, 4vw, 52px);
   line-height: 1;
   font-weight: 900;
   letter-spacing: -0.05em;
 }
 
-.sg-demo-stat-card span {
+.sg-demo-stat-card small {
   display: block;
   margin-top: 10px;
   color: #64748b;
   font-size: 14px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
-.sg-demo-stat-card:nth-child(2) strong {
+.sg-demo-stat-blue {
+  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+  border-color: #bfdbfe;
+}
+
+.sg-demo-stat-blue strong {
+  color: #2563eb;
+}
+
+.sg-demo-stat-blue::before {
+  background: #2563eb;
+}
+
+.sg-demo-stat-green {
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+  border-color: #bbf7d0;
+}
+
+.sg-demo-stat-green strong {
+  color: #16a34a;
+}
+
+.sg-demo-stat-green::before {
+  background: #16a34a;
+}
+
+.sg-demo-stat-red {
+  background: linear-gradient(180deg, #fef2f2 0%, #ffffff 100%);
+  border-color: #fecaca;
+}
+
+.sg-demo-stat-red strong {
   color: #dc2626;
 }
 
-@media (max-width: 720px) {
+.sg-demo-stat-red::before {
+  background: #dc2626;
+}
+
+@media (max-width: 900px) {
   .sg-demo-live-stats {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
 
   .sg-demo-stat-card {
-    width: 100%;
-    max-width: 320px;
+    text-align: center;
   }
 }
