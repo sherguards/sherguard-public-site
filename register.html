@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Create your SherGuard account and start protecting your business from fraud, bots, risky devices, API abuse, payment fraud, and suspicious sessions."
+    content="Create your SherGuard account and start protecting your business from fraud, bots, risky devices, API abuse, and payment fraud."
   />
 
   <link rel="stylesheet" href="css/base.css" />
@@ -26,43 +26,35 @@
       </a>
 
       <h1>
-        Start building your trust intelligence layer.
+        Start protecting your business from fraud and abuse.
       </h1>
 
       <p>
-        Create your organization workspace, generate scoped API keys,
-        monitor trust activity, and protect your platform from fraud,
-        abuse, bots, API attacks, and payment threats.
+        Create your workspace, verify your email, and access your SherGuard
+        Trust Intelligence Dashboard.
       </p>
 
       <div class="auth-feature-list">
         <div>✓ Free plan available</div>
-        <div>✓ Scoped API key management</div>
-        <div>✓ Fraud & abuse intelligence</div>
-        <div>✓ Enterprise-ready dashboard</div>
+        <div>✓ Real-time risk checks</div>
+        <div>✓ API key access</div>
+        <div>✓ Business dashboard</div>
       </div>
     </section>
 
     <section class="auth-card">
-      <span class="auth-eyebrow">
-        Create Account
-      </span>
+      <span class="auth-eyebrow">Create Account</span>
 
-      <h2>
-        Start Free
-      </h2>
+      <h2>Start Free</h2>
 
       <p>
-        Create your organization and launch your Trust Intelligence Dashboard.
+        Create your organization account.
       </p>
 
       <form id="registerForm">
 
         <div class="auth-form-group">
-          <label for="organizationName">
-            Organization Name
-          </label>
-
+          <label for="organizationName">Organization Name</label>
           <input
             type="text"
             id="organizationName"
@@ -73,10 +65,7 @@
         </div>
 
         <div class="auth-form-group">
-          <label for="fullName">
-            Full Name
-          </label>
-
+          <label for="fullName">Full Name</label>
           <input
             type="text"
             id="fullName"
@@ -87,10 +76,7 @@
         </div>
 
         <div class="auth-form-group">
-          <label for="email">
-            Email
-          </label>
-
+          <label for="email">Email</label>
           <input
             type="email"
             id="email"
@@ -101,12 +87,9 @@
         </div>
 
         <div class="auth-form-group">
-          <label for="password">
-            Password
-          </label>
-        
+          <label for="password">Password</label>
+
           <div class="auth-password-wrapper">
-        
             <input
               type="password"
               id="password"
@@ -114,7 +97,7 @@
               autocomplete="new-password"
               required
             />
-        
+
             <button
               type="button"
               class="auth-password-toggle"
@@ -122,7 +105,6 @@
             >
               Show
             </button>
-        
           </div>
         </div>
 
@@ -156,31 +138,17 @@
     const registerForm = document.getElementById('registerForm');
     const statusBox = document.getElementById('statusBox');
     const registerButton = document.getElementById('registerButton');
-    const passwordInput =
-  document.getElementById('password');
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
 
-const togglePassword =
-  document.getElementById('togglePassword');
+    togglePassword.addEventListener('click', function () {
+      const isPassword = passwordInput.type === 'password';
 
-togglePassword.addEventListener('click', function () {
-
-  const isPassword =
-    passwordInput.type === 'password';
-
-  passwordInput.type =
-    isPassword ? 'text' : 'password';
-
-  togglePassword.textContent =
-    isPassword ? 'Hide' : 'Show';
-});
+      passwordInput.type = isPassword ? 'text' : 'password';
+      togglePassword.textContent = isPassword ? 'Hide' : 'Show';
+    });
 
     const API_BASE_URL = 'https://sherguard-api.onrender.com';
-
-    /*
-      IMPORTANT:
-      Change this later if your dashboard file path is different.
-    */
-    const DASHBOARD_URL = 'dashboard.html';
 
     function showStatus(message, type) {
       statusBox.className = 'auth-status-box auth-status-' + type;
@@ -220,26 +188,17 @@ togglePassword.addEventListener('click', function () {
         .value;
 
       if (!organizationName) {
-        showStatus(
-          'Please enter your organization name.',
-          'error'
-        );
+        showStatus('Please enter your organization name.', 'error');
         return;
       }
 
       if (!fullName) {
-        showStatus(
-          'Please enter your full name.',
-          'error'
-        );
+        showStatus('Please enter your full name.', 'error');
         return;
       }
 
       if (password.length < 8) {
-        showStatus(
-          'Password must be at least 8 characters.',
-          'error'
-        );
+        showStatus('Password must be at least 8 characters.', 'error');
         return;
       }
 
@@ -266,30 +225,26 @@ togglePassword.addEventListener('click', function () {
 
         if (!response.ok || !result.success) {
           if (
-  result.detail &&
-  String(result.detail)
-    .toLowerCase()
-    .includes('already')
-) {
-  throw new Error(
-    'An account with this email already exists.'
-  );
-}
+            result.detail &&
+            String(result.detail).toLowerCase().includes('already')
+          ) {
+            throw new Error('An account with this email already exists.');
+          }
 
-throw new Error(
-  result.detail ||
-  result.message ||
-  'Registration failed.'
-);
+          throw new Error(
+            result.detail ||
+            result.message ||
+            'Registration failed.'
+          );
         }
 
         showStatus(
-  result.message ||
-  'Account created. Please check your email to verify your account before logging in.',
-  'success'
-);
+          result.message ||
+          'Account created. Please check your email to verify your account before logging in.',
+          'success'
+        );
 
-registerForm.reset();
+        registerForm.reset();
 
       } catch (error) {
         showStatus(
