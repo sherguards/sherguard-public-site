@@ -50,19 +50,22 @@
     
         <div class="sg-demo-live-stats">
 
-          <div class="sg-demo-stat-card">
-            <strong id="sgPublicSuccessful">4449</strong>
-            <span>Successful</span>
-          </div>
-        
-          <div class="sg-demo-stat-card">
-            <strong id="sgPublicBlocked">11</strong>
-            <span>Blocked</span>
-          </div>
-        
-          <div class="sg-demo-stat-card">
+          <div class="sg-demo-stat-card sg-demo-stat-blue">
+            <span class="sg-demo-stat-label">Traffic Analyzed</span>
             <strong id="sgPublicTotal">4460</strong>
-            <span>Total Requests</span>
+            <small>Total security checks monitored</small>
+          </div>
+        
+          <div class="sg-demo-stat-card sg-demo-stat-green">
+            <span class="sg-demo-stat-label">Trusted Activity</span>
+            <strong id="sgPublicAllowed">4449</strong>
+            <small>Legitimate requests allowed</small>
+          </div>
+        
+          <div class="sg-demo-stat-card sg-demo-stat-red">
+            <span class="sg-demo-stat-label">Threats Blocked</span>
+            <strong id="sgPublicBlocked">11</strong>
+            <small>High-risk attempts stopped</small>
           </div>
         
         </div>
@@ -324,27 +327,27 @@ Content-Type: application/json
 
   <script>
     (function () {
-      var successfulEl = document.getElementById('sgPublicSuccessful');
-      var blockedEl = document.getElementById('sgPublicBlocked');
       var totalEl = document.getElementById('sgPublicTotal');
+      var allowedEl = document.getElementById('sgPublicAllowed');
+      var blockedEl = document.getElementById('sgPublicBlocked');
   
-      if (!successfulEl || !blockedEl || !totalEl) {
+      if (!totalEl || !allowedEl || !blockedEl) {
         return;
       }
   
-      var successful = 4449;
+      var allowed = 4449;
       var blocked = 11;
   
       function updatePublicStats() {
-        successful += Math.floor(Math.random() * 5) + 1;
+        allowed += Math.floor(Math.random() * 5) + 1;
   
-        if (Math.random() > 0.7) {
+        if (Math.random() > 0.72) {
           blocked += 1;
         }
   
-        successfulEl.textContent = successful;
+        allowedEl.textContent = allowed;
         blockedEl.textContent = blocked;
-        totalEl.textContent = successful + blocked;
+        totalEl.textContent = allowed + blocked;
       }
   
       setInterval(updatePublicStats, 3000);
