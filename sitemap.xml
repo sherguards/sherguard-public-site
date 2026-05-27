@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://sherguard.com/</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/pricing.html</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/developers.html</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/privacy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/terms.html</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/refund-policy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/login.html</loc>
+  </url>
+
+  <url>
+    <loc>https://sherguard.com/register.html</loc>
+  </url>
+
+</urlset>
