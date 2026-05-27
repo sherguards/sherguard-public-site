@@ -16,693 +16,342 @@
   <link rel="stylesheet" href="css/responsive.css" />
 
   <style>
-    .pricing-clean-hero {
-      padding: 86px 7% 36px;
-      text-align: center;
-    }
-
-    .pricing-clean-hero h1 {
-      max-width: 760px;
-      margin: 0 auto;
-      font-size: clamp(38px, 5vw, 64px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      color: #07111f;
-    }
-
-    .pricing-clean-hero p {
-      max-width: 680px;
-      margin: 20px auto 0;
-      color: #475569;
-      font-size: 18px;
-      line-height: 1.7;
-    }
-
-    .pricing-plan-section,
-    .pricing-module-section,
-    .pricing-governance-section,
-    .pricing-faq-section,
-    .pricing-final-cta {
-      padding: 44px 7%;
-    }
-
-    .pricing-section-heading {
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    .pricing-section-heading span {
-      color: #2563eb;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .pricing-section-heading h2 {
-      margin: 10px 0 0;
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      color: #0f172a;
-    }
-
-    .pricing-section-heading p {
-      margin: 14px 0 0;
-      color: #64748b;
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .pricing-plan-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .pricing-plan-card,
-    .pricing-module-card,
-    .pricing-governance-card,
-    .pricing-faq-grid article {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      border-radius: 24px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.06);
-    }
-
-    .pricing-plan-featured {
-      border-color: #2563eb;
-      box-shadow: 0 24px 64px rgba(37, 99, 235, 0.16);
-    }
-
-    .pricing-popular-badge {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #dbeafe;
-      color: #1d4ed8;
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .pricing-plan-label {
-      color: #2563eb;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .pricing-plan-card h3,
-    .pricing-module-card h3 {
-      margin: 16px 0 8px;
-      font-size: 34px;
-      letter-spacing: -0.04em;
-      color: #0f172a;
-    }
-
-    .pricing-plan-card h3 span {
-      font-size: 14px;
-      color: #64748b;
-      letter-spacing: 0;
-    }
-
-    .pricing-plan-card p,
-    .pricing-module-card p,
-    .pricing-governance-card p,
-    .pricing-faq-grid p {
-      color: #64748b;
-      line-height: 1.65;
-    }
-
-    .pricing-plan-card ul,
-    .pricing-tier-card ul,
-    .pricing-governance-card ul {
-      padding-left: 18px;
-      color: #334155;
-      line-height: 1.9;
-      margin-bottom: 22px;
-    }
-
-    .pricing-plan-card .public-btn {
-      margin-top: auto;
-    }
-
-    .pricing-module-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .pricing-module-card {
-      gap: 18px;
-    }
-
-    .pricing-module-card h3 {
-      font-size: 22px;
-      margin-bottom: 0;
-    }
-
-    .pricing-module-tier-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .pricing-tier-card {
-      display: flex;
-      flex-direction: column;
-      padding: 18px;
-      border-radius: 18px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-
-    .pricing-tier-card strong {
-      font-size: 28px;
-      color: #0f172a;
-      letter-spacing: -0.04em;
-    }
-
-    .pricing-tier-card span {
-      color: #2563eb;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .pricing-tier-card .public-btn {
-      margin-top: auto;
-      width: 100%;
-    }
-
-    .pricing-governance-grid,
-    .pricing-faq-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .pricing-final-cta {
-      margin: 40px 7% 70px;
-      padding: 58px;
-      border-radius: 30px;
-      text-align: center;
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      color: #ffffff;
-    }
-
-    .pricing-final-cta h2 {
-      max-width: 760px;
-      margin: 0 auto;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1.06;
-      letter-spacing: -0.04em;
-    }
-
-    .pricing-final-cta p {
-      max-width: 680px;
-      margin: 18px auto 26px;
-      color: #dbeafe;
-      line-height: 1.7;
-    }
-
-    .pricing-final-cta .public-btn-primary {
-      background: #ffffff;
-      color: #1d4ed8;
-    }
-
-    @media (max-width: 1200px) {
-      .pricing-plan-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .pricing-governance-grid,
-      .pricing-faq-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 760px) {
-      .pricing-plan-grid,
-      .pricing-module-grid,
-      .pricing-module-tier-grid,
-      .pricing-governance-grid,
-      .pricing-faq-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pricing-final-cta {
-        margin-left: 5%;
-        margin-right: 5%;
-        padding: 34px;
-      }
-    }
+    .pricing-clean-hero{padding:86px 7% 36px;text-align:center}
+    .pricing-clean-hero h1{max-width:760px;margin:0 auto;font-size:clamp(38px,5vw,64px);line-height:1.02;letter-spacing:-.05em;color:#07111f}
+    .pricing-clean-hero p{max-width:680px;margin:20px auto 0;color:#475569;font-size:18px;line-height:1.7}
+    .pricing-plan-section,.pricing-module-section,.pricing-governance-section,.pricing-faq-section,.pricing-final-cta{padding:44px 7%}
+    .pricing-section-heading{max-width:760px;margin-bottom:26px}
+    .pricing-section-heading span,.pricing-plan-label{color:#2563eb;font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+    .pricing-section-heading h2{margin:10px 0 0;font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.04em;color:#0f172a}
+    .pricing-section-heading p{margin:14px 0 0;color:#64748b;font-size:16px;line-height:1.7}
+    .pricing-plan-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+    .pricing-plan-card,.pricing-module-card,.pricing-governance-card,.pricing-faq-grid article{position:relative;display:flex;flex-direction:column;padding:24px;border-radius:24px;background:#fff;border:1px solid #e2e8f0;box-shadow:0 18px 48px rgba(15,23,42,.06)}
+    .pricing-plan-featured{border-color:#2563eb;box-shadow:0 24px 64px rgba(37,99,235,.16)}
+    .pricing-popular-badge{position:absolute;top:18px;right:18px;padding:6px 10px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-size:11px;font-weight:900;text-transform:uppercase}
+    .pricing-plan-card h3,.pricing-module-card h3{margin:16px 0 8px;font-size:34px;letter-spacing:-.04em;color:#0f172a}
+    .pricing-module-card h3{font-size:22px}
+    .pricing-plan-card h3 span{font-size:14px;color:#64748b;letter-spacing:0}
+    .pricing-plan-card p,.pricing-module-card p,.pricing-governance-card p,.pricing-faq-grid p{color:#64748b;line-height:1.65}
+    .pricing-plan-card ul,.pricing-tier-card ul{padding-left:18px;color:#334155;line-height:1.9;margin-bottom:22px}
+    .pricing-plan-card .public-btn,.pricing-tier-card .public-btn{margin-top:auto}
+    .pricing-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .pricing-module-card{gap:18px}
+    .pricing-module-tier-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .pricing-tier-card{display:flex;flex-direction:column;padding:18px;border-radius:18px;background:#f8fafc;border:1px solid #e2e8f0}
+    .pricing-tier-card strong{font-size:28px;color:#0f172a;letter-spacing:-.04em}
+    .pricing-tier-card span{color:#2563eb;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .pricing-tier-card .public-btn{width:100%}
+    .pricing-governance-grid,.pricing-faq-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+    .pricing-final-cta{margin:40px 7% 70px;padding:58px;border-radius:30px;text-align:center;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff}
+    .pricing-final-cta h2{max-width:760px;margin:0 auto;font-size:clamp(30px,4vw,52px);line-height:1.06;letter-spacing:-.04em}
+    .pricing-final-cta p{max-width:680px;margin:18px auto 26px;color:#dbeafe;line-height:1.7}
+    .pricing-final-cta .public-btn-primary{background:#fff;color:#1d4ed8}
+    @media(max-width:1200px){.pricing-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pricing-governance-grid,.pricing-faq-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:760px){.pricing-plan-grid,.pricing-module-grid,.pricing-module-tier-grid,.pricing-governance-grid,.pricing-faq-grid{grid-template-columns:1fr}.pricing-final-cta{margin-left:5%;margin-right:5%;padding:34px}}
   </style>
 </head>
 
 <body class="public-page">
 
-  <header class="public-header">
-    <a href="index.html" class="public-logo">
-      <span class="public-logo-icon">▣</span>
-      <span>
-        <strong>SherGuard</strong>
-        <small>Trust Intelligence Platform</small>
-      </span>
-    </a>
-
-    <nav class="public-nav">
-      <a href="index.html">Home</a>
-      <a href="index.html#platform">Platform</a>
-      <a href="developers.html">Developers</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="login.html">Login</a>
-      <a href="register.html" class="public-nav-cta">Start Free</a>
-    </nav>
-  </header>
-
-  <main>
-
-    <section class="pricing-clean-hero">
-      <span class="public-eyebrow">Pricing</span>
-
-      <h1>Simple pricing for modern trust security.</h1>
-
-      <p>
-        Protect your business from fake signups, risky devices, bots,
-        API abuse, and payment fraud through real-time trust intelligence.
-      </p>
-    </section>
-
-    <section class="pricing-plan-section">
-      <div class="pricing-section-heading">
-        <span>Full platform plans</span>
-        <h2>One subscription for your complete trust security stack.</h2>
-        <p>
-          Choose a full SherGuard plan with modules, usage limits,
-          API keys, team seats, dashboard access, and support included.
-        </p>
-      </div>
-
-      <div class="pricing-plan-grid">
-
-        <article class="pricing-plan-card">
-          <span class="pricing-plan-label">Free</span>
-          <h3>$0<span>/mo</span></h3>
-          <p>For testing SherGuard before upgrading.</p>
-
-          <ul>
-            <li>50 daily requests</li>
-            <li>1 API key</li>
-            <li>1 team seat</li>
-            <li>Basic dashboard access</li>
-            <li>Email + device testing</li>
-            <li>Basic support</li>
-          </ul>
-
-          <a href="register.html" class="public-btn public-btn-secondary">Start Free</a>
-        </article>
-
-        <article class="pricing-plan-card pricing-plan-featured">
-          <div class="pricing-popular-badge">Most Popular</div>
-          <span class="pricing-plan-label">Starter</span>
-          <h3>$39<span>/mo</span></h3>
-          <p>For small SaaS apps and early businesses.</p>
-
-          <ul>
-            <li>1,250 daily requests</li>
-            <li>3 API keys</li>
-            <li>3 team seats</li>
-            <li>Email, device, and bot intelligence</li>
-            <li>Security dashboard</li>
-            <li>Email support</li>
-          </ul>
-
-          <a href="register.html" class="public-btn public-btn-primary">Start Starter</a>
-        </article>
-
-        <article class="pricing-plan-card">
-          <span class="pricing-plan-label">Growth</span>
-          <h3>$99<span>/mo</span></h3>
-          <p>For growing platforms with API risk exposure.</p>
-
-          <ul>
-            <li>12,500 daily requests</li>
-            <li>10 API keys</li>
-            <li>10 team seats</li>
-            <li>API Abuse Intelligence</li>
-            <li>Usage controls</li>
-            <li>Priority email support</li>
-          </ul>
-
-          <a href="register.html" class="public-btn public-btn-secondary">Start Growth</a>
-        </article>
-
-        <article class="pricing-plan-card">
-          <span class="pricing-plan-label">Business</span>
-          <h3>$249<span>/mo</span></h3>
-          <p>For serious platforms handling payments and teams.</p>
-
-          <ul>
-            <li>125,000 daily requests</li>
-            <li>50 API keys</li>
-            <li>50 team seats</li>
-            <li>Payment Fraud Intelligence</li>
-            <li>AI policy and governance controls</li>
-            <li>Priority support</li>
-          </ul>
-
-          <a href="register.html" class="public-btn public-btn-secondary">Start Business</a>
-        </article>
-
-        <article class="pricing-plan-card">
-          <span class="pricing-plan-label">Enterprise</span>
-          <h3>Custom</h3>
-          <p>For marketplaces, fintech, AI platforms, and large teams.</p>
-
-          <ul>
-            <li>Custom request volume</li>
-            <li>Custom API key limits</li>
-            <li>Custom team seats</li>
-            <li>All detection modules</li>
-            <li>Dedicated onboarding</li>
-            <li>Dedicated support</li>
-          </ul>
-
-          <a href="contact.html" class="public-btn public-btn-secondary">Contact Sales</a>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="pricing-module-section">
-      <div class="pricing-section-heading">
-        <span>Individual modules</span>
-        <h2>Subscribe only to the intelligence module your business needs.</h2>
-        <p>
-          If your business does not need full platform protection,
-          you can subscribe to a single intelligence module and secure
-          only the systems you need.
-        </p>
-      </div>
-
-      <div class="pricing-module-grid">
-
-        <article class="pricing-module-card">
-          <div>
-            <span class="pricing-plan-label">Module</span>
-            <h3>Email Risk Intelligence</h3>
-            <p>Protect signups from disposable emails, risky domains, and suspicious identities.</p>
-          </div>
-
-          <div class="pricing-module-tier-grid">
-            <div class="pricing-tier-card">
-              <span>Limited</span>
-              <strong>$19/mo</strong>
-              <ul>
-                <li>API access</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Email support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
-            </div>
-
-            <div class="pricing-tier-card">
-              <span>Unlimited</span>
-              <strong>$79/mo</strong>
-              <ul>
-                <li>Unlimited module usage</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Priority support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-module-card">
-          <div>
-            <span class="pricing-plan-label">Module</span>
-            <h3>Device Risk Intelligence</h3>
-            <p>Detect risky devices, suspicious browsers, automation signals, and unknown environments.</p>
-          </div>
-
-          <div class="pricing-module-tier-grid">
-            <div class="pricing-tier-card">
-              <span>Limited</span>
-              <strong>$29/mo</strong>
-              <ul>
-                <li>API access</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Email support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
-            </div>
-
-            <div class="pricing-tier-card">
-              <span>Unlimited</span>
-              <strong>$99/mo</strong>
-              <ul>
-                <li>Unlimited module usage</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Priority support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-module-card">
-          <div>
-            <span class="pricing-plan-label">Module</span>
-            <h3>Bot Detection Intelligence</h3>
-            <p>Identify scraping, scripted sessions, fast-click bots, fake activity, and automation abuse.</p>
-          </div>
-
-          <div class="pricing-module-tier-grid">
-            <div class="pricing-tier-card">
-              <span>Limited</span>
-              <strong>$39/mo</strong>
-              <ul>
-                <li>API access</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Email support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
-            </div>
-
-            <div class="pricing-tier-card">
-              <span>Unlimited</span>
-              <strong>$129/mo</strong>
-              <ul>
-                <li>Unlimited module usage</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Priority support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-module-card">
-          <div>
-            <span class="pricing-plan-label">Module</span>
-            <h3>API Abuse Intelligence</h3>
-            <p>Protect APIs from burst traffic, credential abuse, scraping, and endpoint misuse.</p>
-          </div>
-
-          <div class="pricing-module-tier-grid">
-            <div class="pricing-tier-card">
-              <span>Limited</span>
-              <strong>$49/mo</strong>
-              <ul>
-                <li>API access</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Email support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
-            </div>
-
-            <div class="pricing-tier-card">
-              <span>Unlimited</span>
-              <strong>$149/mo</strong>
-              <ul>
-                <li>Unlimited module usage</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Priority support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-module-card">
-          <div>
-            <span class="pricing-plan-label">Module</span>
-            <h3>Payment Fraud Intelligence</h3>
-            <p>Analyze risky payments, billing mismatches, proxy usage, and checkout fraud patterns.</p>
-          </div>
-
-          <div class="pricing-module-tier-grid">
-            <div class="pricing-tier-card">
-              <span>Limited</span>
-              <strong>$59/mo</strong>
-              <ul>
-                <li>API access</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Email support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
-            </div>
-
-            <div class="pricing-tier-card">
-              <span>Unlimited</span>
-              <strong>$179/mo</strong>
-              <ul>
-                <li>Unlimited module usage</li>
-                <li>Dashboard access</li>
-                <li>Risk analytics</li>
-                <li>Priority support</li>
-              </ul>
-              <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="pricing-governance-section">
-      <div class="pricing-section-heading">
-        <span>Included controls</span>
-        <h2>AI policy controls are part of the platform, not a separate detection module.</h2>
-        <p>
-          SherGuard includes AI Agent Permissions as a governance and settings layer
-          for controlling automated actions, approval rules, and organization policy.
-        </p>
-      </div>
-
-      <div class="pricing-governance-grid">
-        <article class="pricing-governance-card">
-          <h3>AI Agent Permissions</h3>
-          <p>Control AI actions, enforcement behavior, approvals, and risk tolerance settings.</p>
-        </article>
-
-        <article class="pricing-governance-card">
-          <h3>Scoped API Keys</h3>
-          <p>Create module-specific keys for secure application and backend integrations.</p>
-        </article>
-
-        <article class="pricing-governance-card">
-          <h3>Usage Controls</h3>
-          <p>Monitor daily usage, module activity, API access, and plan-based limits.</p>
-        </article>
-
-        <article class="pricing-governance-card">
-          <h3>Team Management</h3>
-          <p>Manage users, roles, invitations, sessions, and organization access.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="pricing-faq-section">
-      <div class="pricing-section-heading">
-        <span>Questions</span>
-        <h2>Pricing FAQ</h2>
-      </div>
-
-      <div class="pricing-faq-grid">
-        <article>
-          <h3>Can I start with one module?</h3>
-          <p>Yes. You can subscribe to one intelligence module and upgrade later to a full platform plan.</p>
-        </article>
-
-        <article>
-          <h3>Which plan should I choose first?</h3>
-          <p>Starter is best for small teams. Growth is better if you need API protection and higher usage.</p>
-        </article>
-
-        <article>
-          <h3>Is AI Agent Permissions a module?</h3>
-          <p>No. It is a governance and settings control layer included with platform plans.</p>
-        </article>
-
-        <article>
-          <h3>Do plans include support?</h3>
-          <p>Yes. Free includes basic support, paid plans include email or priority support, and Enterprise includes dedicated support.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="pricing-final-cta">
-      <h2>Start protecting your platform with SherGuard.</h2>
-      <p>
-        Create your organization, choose a full plan or single module,
-        generate API keys, and begin monitoring fraud, abuse, bots,
-        APIs, devices, and payments from one dashboard.
-      </p>
-      <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
-    </section>
-
-  </main>
-
-  <footer class="public-footer public-footer-advanced pricing-simple-footer">
-
-    <div>
+<header class="public-header">
+  <a href="index.html" class="public-logo">
+    <span class="public-logo-icon">▣</span>
+    <span>
       <strong>SherGuard</strong>
-      <p>AI-powered trust, fraud, and abuse prevention platform for modern online businesses.</p>
-    </div>
+      <small>Trust Intelligence Platform</small>
+    </span>
+  </a>
 
-    <div>
-      <h4>Platform</h4>
-      <a href="index.html">Home</a>
-      <a href="index.html#platform">Platform</a>
-      <a href="developers.html">Developers</a>
-      <a href="pricing.html">Pricing</a>
-    </div>
+  <nav class="public-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#platform">Platform</a>
+    <a href="developers.html">Developers</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="login.html">Login</a>
+    <a href="register.html" class="public-nav-cta">Start Free</a>
+  </nav>
+</header>
 
-    <div>
-      <h4>Company</h4>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="register.html">Start Free</a>
-    </div>
+<main>
 
-    <div>
-      <h4>Legal</h4>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="refund-policy.html">Refund Policy</a>
-    </div>
+<section class="pricing-clean-hero">
+  <span class="public-eyebrow">Pricing</span>
+  <h1>Simple pricing for modern trust security.</h1>
+  <p>
+    Protect your business from fake signups, risky devices,
+    bots, API abuse, and payment fraud through real-time trust intelligence.
+  </p>
+</section>
 
-    <div>
-      <h4>Support</h4>
-      <a href="mailto:support@sherguard.com">support@sherguard.com</a>
-    </div>
+<section class="pricing-plan-section">
+  <div class="pricing-section-heading">
+    <span>Full platform plans</span>
+    <h2>One subscription for your complete trust intelligence stack.</h2>
+    <p>
+      Every full platform plan includes all five SherGuard detection modules.
+      Usage limits, API keys, team seats, and support increase by plan.
+    </p>
+  </div>
 
-    <div class="public-footer-bottom">
-      <span>© 2026 SherGuard. All rights reserved.</span>
-    </div>
+  <div class="pricing-plan-grid">
 
-  </footer>
+    <article class="pricing-plan-card">
+      <span class="pricing-plan-label">Free</span>
+      <h3>$0<span>/mo</span></h3>
+      <p>For testing SherGuard and validating early use cases.</p>
+      <ul>
+        <li>10 daily checks per module</li>
+        <li>50 total daily checks</li>
+        <li>1 API key</li>
+        <li>1 team seat</li>
+        <li>All 5 detection modules included</li>
+        <li>Basic support</li>
+      </ul>
+      <a href="register.html" class="public-btn public-btn-secondary">Start Free</a>
+    </article>
+
+    <article class="pricing-plan-card pricing-plan-featured">
+      <div class="pricing-popular-badge">Most Popular</div>
+      <span class="pricing-plan-label">Starter</span>
+      <h3>$39<span>/mo</span></h3>
+      <p>For small businesses, early SaaS apps, and testing production workflows.</p>
+      <ul>
+        <li>250 daily checks per module</li>
+        <li>1,250 total daily checks</li>
+        <li>3 API keys</li>
+        <li>3 team seats</li>
+        <li>All 5 detection modules included</li>
+        <li>Email support</li>
+      </ul>
+      <a href="register.html" class="public-btn public-btn-primary">Start Starter</a>
+    </article>
+
+    <article class="pricing-plan-card">
+      <span class="pricing-plan-label">Growth</span>
+      <h3>$99<span>/mo</span></h3>
+      <p>For growing platforms with more signups, traffic, APIs, and risk activity.</p>
+      <ul>
+        <li>2,500 daily checks per module</li>
+        <li>12,500 total daily checks</li>
+        <li>10 API keys</li>
+        <li>10 team seats</li>
+        <li>All 5 detection modules included</li>
+        <li>Priority email support</li>
+      </ul>
+      <a href="register.html" class="public-btn public-btn-secondary">Start Growth</a>
+    </article>
+
+    <article class="pricing-plan-card">
+      <span class="pricing-plan-label">Business</span>
+      <h3>$249<span>/mo</span></h3>
+      <p>For serious platforms handling fraud, payments, APIs, and team operations.</p>
+      <ul>
+        <li>25,000 daily checks per module</li>
+        <li>125,000 total daily checks</li>
+        <li>50 API keys</li>
+        <li>50 team seats</li>
+        <li>All 5 detection modules included</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="register.html" class="public-btn public-btn-secondary">Start Business</a>
+    </article>
+
+    <article class="pricing-plan-card">
+      <span class="pricing-plan-label">Enterprise</span>
+      <h3>Custom</h3>
+      <p>For marketplaces, fintech, AI platforms, enterprise APIs, and large teams.</p>
+      <ul>
+        <li>Unlimited module checks</li>
+        <li>Unlimited API keys</li>
+        <li>Unlimited team seats</li>
+        <li>All 5 detection modules included</li>
+        <li>Custom onboarding</li>
+        <li>Dedicated support</li>
+      </ul>
+      <a href="contact.html" class="public-btn public-btn-secondary">Contact Sales</a>
+    </article>
+
+  </div>
+</section>
+
+<section class="pricing-module-section">
+  <div class="pricing-section-heading">
+    <span>Individual modules</span>
+    <h2>Subscribe only to the intelligence module your business needs.</h2>
+    <p>
+      If your business does not need full platform protection,
+      you can subscribe to a single intelligence module and secure only
+      the systems you need.
+    </p>
+  </div>
+
+  <div class="pricing-module-grid">
+
+    <article class="pricing-module-card">
+      <div>
+        <span class="pricing-plan-label">Module</span>
+        <h3>Email Risk Intelligence</h3>
+        <p>Protect signup forms from disposable emails, risky domains, and suspicious identities.</p>
+      </div>
+      <div class="pricing-module-tier-grid">
+        <div class="pricing-tier-card">
+          <span>Limited</span>
+          <strong>$19/mo</strong>
+          <ul><li>API access</li><li>Dashboard access</li><li>Risk analytics</li><li>Email support</li></ul>
+          <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
+        </div>
+        <div class="pricing-tier-card">
+          <span>Unlimited</span>
+          <strong>$79/mo</strong>
+          <ul><li>Unlimited module usage</li><li>Dashboard access</li><li>Risk analytics</li><li>Priority support</li></ul>
+          <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pricing-module-card">
+      <div>
+        <span class="pricing-plan-label">Module</span>
+        <h3>Device Risk Intelligence</h3>
+        <p>Detect risky devices, suspicious browsers, automation signals, and unknown environments.</p>
+      </div>
+      <div class="pricing-module-tier-grid">
+        <div class="pricing-tier-card">
+          <span>Limited</span>
+          <strong>$29/mo</strong>
+          <ul><li>API access</li><li>Dashboard access</li><li>Risk analytics</li><li>Email support</li></ul>
+          <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
+        </div>
+        <div class="pricing-tier-card">
+          <span>Unlimited</span>
+          <strong>$99/mo</strong>
+          <ul><li>Unlimited module usage</li><li>Dashboard access</li><li>Risk analytics</li><li>Priority support</li></ul>
+          <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pricing-module-card">
+      <div>
+        <span class="pricing-plan-label">Module</span>
+        <h3>Bot Detection Intelligence</h3>
+        <p>Identify scraping, scripted sessions, fast-click bots, fake activity, and automation abuse.</p>
+      </div>
+      <div class="pricing-module-tier-grid">
+        <div class="pricing-tier-card">
+          <span>Limited</span>
+          <strong>$39/mo</strong>
+          <ul><li>API access</li><li>Dashboard access</li><li>Risk analytics</li><li>Email support</li></ul>
+          <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
+        </div>
+        <div class="pricing-tier-card">
+          <span>Unlimited</span>
+          <strong>$129/mo</strong>
+          <ul><li>Unlimited module usage</li><li>Dashboard access</li><li>Risk analytics</li><li>Priority support</li></ul>
+          <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pricing-module-card">
+      <div>
+        <span class="pricing-plan-label">Module</span>
+        <h3>API Abuse Intelligence</h3>
+        <p>Protect backend APIs from burst traffic, credential abuse, scraping, and endpoint misuse.</p>
+      </div>
+      <div class="pricing-module-tier-grid">
+        <div class="pricing-tier-card">
+          <span>Limited</span>
+          <strong>$49/mo</strong>
+          <ul><li>API access</li><li>Dashboard access</li><li>Risk analytics</li><li>Email support</li></ul>
+          <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
+        </div>
+        <div class="pricing-tier-card">
+          <span>Unlimited</span>
+          <strong>$149/mo</strong>
+          <ul><li>Unlimited module usage</li><li>Dashboard access</li><li>Risk analytics</li><li>Priority support</li></ul>
+          <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pricing-module-card">
+      <div>
+        <span class="pricing-plan-label">Module</span>
+        <h3>Payment Fraud Intelligence</h3>
+        <p>Analyze risky payments, billing mismatches, proxy usage, and checkout fraud patterns.</p>
+      </div>
+      <div class="pricing-module-tier-grid">
+        <div class="pricing-tier-card">
+          <span>Limited</span>
+          <strong>$59/mo</strong>
+          <ul><li>API access</li><li>Dashboard access</li><li>Risk analytics</li><li>Email support</li></ul>
+          <a href="register.html" class="public-btn public-btn-secondary">Start Limited</a>
+        </div>
+        <div class="pricing-tier-card">
+          <span>Unlimited</span>
+          <strong>$179/mo</strong>
+          <ul><li>Unlimited module usage</li><li>Dashboard access</li><li>Risk analytics</li><li>Priority support</li></ul>
+          <a href="register.html" class="public-btn public-btn-primary">Start Unlimited</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="pricing-governance-section">
+  <div class="pricing-section-heading">
+    <span>Included controls</span>
+    <h2>AI Agent Permissions is a governance setting, not a detection module.</h2>
+    <p>
+      It is included as a platform control layer for AI policy,
+      approval rules, organization settings, and automated action governance.
+    </p>
+  </div>
+
+  <div class="pricing-governance-grid">
+    <article class="pricing-governance-card"><h3>AI Agent Permissions</h3><p>Control AI actions, approvals, risk tolerance, and enforcement behavior.</p></article>
+    <article class="pricing-governance-card"><h3>Scoped API Keys</h3><p>Create secure module-specific API keys for application integrations.</p></article>
+    <article class="pricing-governance-card"><h3>Usage Controls</h3><p>Monitor daily checks, API keys, team seats, and plan-based limits.</p></article>
+    <article class="pricing-governance-card"><h3>Team Management</h3><p>Manage users, roles, invitations, sessions, and organization access.</p></article>
+  </div>
+</section>
+
+<section class="pricing-faq-section">
+  <div class="pricing-section-heading">
+    <span>Questions</span>
+    <h2>Pricing FAQ</h2>
+  </div>
+
+  <div class="pricing-faq-grid">
+    <article><h3>Do full plans include all modules?</h3><p>Yes. Every full platform plan includes Email Risk, Device Risk, Bot Detection, API Abuse, and Payment Fraud Intelligence.</p></article>
+    <article><h3>What changes between plans?</h3><p>Daily checks, API keys, team seats, and support level increase by plan.</p></article>
+    <article><h3>Is AI Agent Permissions sold separately?</h3><p>No. It is a platform governance and settings layer, not a separate detection module.</p></article>
+    <article><h3>Can I start with one module?</h3><p>Yes. You can subscribe to an individual module and upgrade later to a full platform plan.</p></article>
+  </div>
+</section>
+
+<section class="pricing-final-cta">
+  <h2>Start protecting your platform with SherGuard.</h2>
+  <p>
+    Create your organization, choose a full plan or single module,
+    generate API keys, and begin monitoring fraud, abuse, bots,
+    APIs, devices, and payments from one dashboard.
+  </p>
+  <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
+</section>
+
+</main>
+
+<footer class="public-footer public-footer-advanced pricing-simple-footer">
+  <div><strong>SherGuard</strong><p>AI-powered trust, fraud, and abuse prevention platform for modern online businesses.</p></div>
+  <div><h4>Platform</h4><a href="index.html">Home</a><a href="index.html#platform">Platform</a><a href="developers.html">Developers</a><a href="pricing.html">Pricing</a></div>
+  <div><h4>Company</h4><a href="contact.html">Contact</a><a href="login.html">Login</a><a href="register.html">Start Free</a></div>
+  <div><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund-policy.html">Refund Policy</a></div>
+  <div><h4>Support</h4><a href="mailto:support@sherguard.com">support@sherguard.com</a></div>
+  <div class="public-footer-bottom"><span>© 2026 SherGuard. All rights reserved.</span></div>
+</footer>
 
 </body>
 </html>
