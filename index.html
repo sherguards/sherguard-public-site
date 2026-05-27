@@ -48,11 +48,24 @@
           and payment fraud through real-time trust intelligence.
         </h1>
     
-        <p>
-          SherGuard helps SaaS platforms, marketplaces, APIs, e-commerce brands,
-          and online businesses detect suspicious activity before it becomes fraud,
-          abuse, or operational risk.
-        </p>
+        <div class="sg-demo-live-stats">
+
+          <div class="sg-demo-stat-card">
+            <strong id="sgPublicSuccessful">4449</strong>
+            <span>Successful</span>
+          </div>
+        
+          <div class="sg-demo-stat-card">
+            <strong id="sgPublicBlocked">11</strong>
+            <span>Blocked</span>
+          </div>
+        
+          <div class="sg-demo-stat-card">
+            <strong id="sgPublicTotal">4460</strong>
+            <span>Total Requests</span>
+          </div>
+        
+        </div>
     
         <div class="public-hero-actions">
           <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
@@ -308,5 +321,34 @@ Content-Type: application/json
       <span>© 2026 SherGuard. All rights reserved.</span>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var successfulEl = document.getElementById('sgPublicSuccessful');
+      var blockedEl = document.getElementById('sgPublicBlocked');
+      var totalEl = document.getElementById('sgPublicTotal');
+  
+      if (!successfulEl || !blockedEl || !totalEl) {
+        return;
+      }
+  
+      var successful = 4449;
+      var blocked = 11;
+  
+      function updatePublicStats() {
+        successful += Math.floor(Math.random() * 5) + 1;
+  
+        if (Math.random() > 0.7) {
+          blocked += 1;
+        }
+  
+        successfulEl.textContent = successful;
+        blockedEl.textContent = blocked;
+        totalEl.textContent = successful + blocked;
+      }
+  
+      setInterval(updatePublicStats, 3000);
+    })();
+  </script>
 </body>
 </html>
