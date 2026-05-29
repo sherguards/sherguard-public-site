@@ -24,25 +24,45 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "SherGuard",
-      "applicationCategory": "SecurityApplication",
-      "operatingSystem": "Web",
-      "url": "https://sherguard.com/",
-      "description": "SherGuard is a trust intelligence platform that helps businesses detect fake signups, risky devices, bots, API abuse, payment fraud, and suspicious activity in real time.",
-      "offers": {
-        "@type": "Offer",
-        "url": "https://sherguard.com/pricing.html",
-        "priceCurrency": "USD"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "SHER MALIK LLC",
-        "url": "https://sherguard.com/"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://sherguard.com/#organization",
+          "name": "SherGuard",
+          "legalName": "SHER MALIK LLC",
+          "url": "https://sherguard.com/",
+          "description": "SherGuard is a cybersecurity and trust intelligence platform for fraud prevention, bot detection, API abuse protection, risky device analysis, and payment fraud intelligence."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://sherguard.com/#website",
+          "url": "https://sherguard.com/",
+          "name": "SherGuard",
+          "publisher": {
+            "@id": "https://sherguard.com/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://sherguard.com/#software",
+          "name": "SherGuard",
+          "applicationCategory": "SecurityApplication",
+          "operatingSystem": "Web",
+          "url": "https://sherguard.com/",
+          "description": "SherGuard is a trust intelligence platform that helps businesses detect fake signups, risky devices, bots, API abuse, payment fraud, and suspicious activity in real time.",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://sherguard.com/pricing.html",
+            "priceCurrency": "USD"
+          },
+          "publisher": {
+            "@id": "https://sherguard.com/#organization"
+          }
+        }
+      ]
     }
     </script>
-    
+
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/public-pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
