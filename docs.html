@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard API Docs - Fraud Detection, Bot Detection & Trust Intelligence API</title>
+
+  <meta
+    name="description"
+    content="SherGuard API documentation for fraud detection, bot detection, device risk intelligence, API abuse monitoring, payment fraud prevention, scoped API keys, and trust intelligence integrations."
+  />
+
+  <link rel="canonical" href="https://sherguard.com/docs.html" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <meta property="og:url" content="https://sherguard.com/docs.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SherGuard API Documentation" />
+  <meta property="og:description" content="Integrate SherGuard trust intelligence APIs for fraud prevention, bot detection, API abuse protection, device risk analysis, and payment fraud intelligence." />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/public-pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body class="public-page">
+
+  <header class="public-header">
+    <a href="index.html" class="public-logo">
+      <span class="public-logo-icon">▣</span>
+      <span>
+        <strong>SherGuard</strong>
+        <small>Trust Intelligence Platform</small>
+      </span>
+    </a>
+
+    <nav class="public-nav">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="developers.html">Developers</a>
+      <a href="docs.html">Docs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="public-nav-cta">Start Free</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="public-pricing-hero">
+      <span class="public-eyebrow">API Documentation</span>
+
+      <h1>Build fraud detection, bot protection, and trust intelligence into your application.</h1>
+
+      <p>
+        SherGuard APIs help developers analyze email risk, device risk,
+        bot behavior, API abuse, payment fraud, and suspicious activity
+        using scoped API keys and real-time trust intelligence.
+      </p>
+
+      <div class="public-hero-actions">
+        <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
+        <a href="developers.html" class="public-btn public-btn-secondary">Developer Overview</a>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Authentication</span>
+        <h2>Send your SherGuard API key with every request.</h2>
+        <p>
+          SherGuard uses organization-scoped API keys. Each key can be limited
+          to specific modules so your applications only access the trust
+          intelligence features they are allowed to use.
+        </p>
+      </div>
+
+      <div class="public-code-card">
+<pre><code>x-api-key: sherguard_your_api_key_here
+Content-Type: application/json</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Base URL</span>
+        <h2>Use the SherGuard API base URL for production requests.</h2>
+        <p>
+          Public API endpoints are designed for backend integrations, signup
+          protection, checkout protection, API security, and trust monitoring.
+        </p>
+      </div>
+
+      <div class="public-code-card">
+<pre><code>https://sherguard-api.onrender.com</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Available Endpoints</span>
+        <h2>Trust intelligence APIs for fraud and abuse detection.</h2>
+        <p>
+          Each endpoint returns risk scoring, reasons, signals, confidence,
+          and recommended decisions your business can use in real time.
+        </p>
+      </div>
+
+      <div class="public-api-grid">
+
+        <article class="public-api-card">
+          <h3>Email Risk Intelligence</h3>
+          <p>
+            Detect disposable emails, suspicious domains, fake signups,
+            role-based accounts, and risky identity signals.
+          </p>
+
+          <div class="public-endpoint">POST /v1/email-risk</div>
+
+<pre><code>{
+  "email": "test@temp-mail.org"
+}</code></pre>
+        </article>
+
+        <article class="public-api-card">
+          <h3>Device Risk Intelligence</h3>
+          <p>
+            Analyze user agents, screen size, timezone, browser behavior,
+            automation indicators, and risky environments.
+          </p>
+
+          <div class="public-endpoint">POST /v1/device-risk</div>
+
+<pre><code>{
+  "user_agent": "Headless Bot Browser",
+  "screen_size": "800x600",
+  "timezone": "Unknown",
+  "language": "unknown"
+}</code></pre>
+        </article>
+
+        <article class="public-api-card">
+          <h3>Bot Detection Intelligence</h3>
+          <p>
+            Analyze session timing, click volume, mouse movement,
+            scroll activity, and automation behavior signals.
+          </p>
+
+          <div class="public-endpoint">POST /v1/bot-risk</div>
+
+<pre><code>{
+  "session_time": 8,
+  "clicks": 220,
+  "mouse_movement": false,
+  "scroll_activity": false,
+  "keypress_activity": false
+}</code></pre>
+        </article>
+
+        <article class="public-api-card">
+          <h3>API Abuse Intelligence</h3>
+          <p>
+            Monitor burst traffic, repeated requests, endpoint misuse,
+            credential abuse, missing headers, and suspicious API clients.
+          </p>
+
+          <div class="public-endpoint">POST /v1/api-abuse</div>
+
+<pre><code>{
+  "endpoint": "/api/login",
+  "method": "POST",
+  "status_code": 401,
+  "rate": 240,
+  "repeated_requests": 40
+}</code></pre>
+        </article>
+
+        <article class="public-api-card">
+          <h3>Payment Fraud Intelligence</h3>
+          <p>
+            Analyze risky payments, billing mismatches, failed attempts,
+            proxy or VPN usage, velocity fraud, and checkout risk.
+          </p>
+
+          <div class="public-endpoint">POST /v1/payment-fraud</div>
+
+<pre><code>{
+  "amount": 1499,
+  "currency": "USD",
+  "billing_country": "US",
+  "shipping_country": "GB",
+  "failed_attempts": 3
+}</code></pre>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>Response Format</span>
+        <h2>Receive actionable trust intelligence in every response.</h2>
+        <p>
+          SherGuard responses are designed to help applications decide whether
+          to allow, monitor, challenge, review, or block suspicious activity.
+        </p>
+      </div>
+
+      <div class="public-code-card">
+<pre><code>{
+  "success": true,
+  "module": "Email Risk Intelligence",
+  "risk_level": "High Risk",
+  "score": 91,
+  "decision": "Block",
+  "confidence": "High",
+  "reasons": [
+    "Disposable email domain detected",
+    "Temporary provider pattern found"
+  ],
+  "signals": {
+    "domain_type": "Disposable",
+    "provider_type": "Temporary"
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>API Key Scopes</span>
+        <h2>Control which modules each API key can access.</h2>
+        <p>
+          Scoped API keys help protect your organization by limiting keys to
+          only the modules needed by each application, backend service, or
+          integration.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Email Risk Scope</h3>
+          <p>Allow applications to analyze signup emails and suspicious identity signals.</p>
+        </article>
+
+        <article>
+          <h3>Device Risk Scope</h3>
+          <p>Allow applications to analyze browsers, user agents, and device environments.</p>
+        </article>
+
+        <article>
+          <h3>Bot Detection Scope</h3>
+          <p>Allow applications to analyze session behavior, automation, and bot signals.</p>
+        </article>
+
+        <article>
+          <h3>API Abuse Scope</h3>
+          <p>Allow backend services to monitor suspicious API traffic and endpoint abuse.</p>
+        </article>
+
+        <article>
+          <h3>Payment Fraud Scope</h3>
+          <p>Allow checkout systems to analyze risky payments and fraud indicators.</p>
+        </article>
+
+        <article>
+          <h3>Usage Monitoring</h3>
+          <p>Track API usage, module access, plan limits, and organization activity from the dashboard.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Integration Flow</span>
+        <h2>Simple integration for production systems.</h2>
+        <p>
+          SherGuard can be connected to signup flows, checkout systems,
+          API gateways, backend services, and trust monitoring workflows.
+        </p>
+      </div>
+
+      <div class="sg-workflow-grid">
+        <article>
+          <span>1</span>
+          <h3>Create an API key</h3>
+          <p>Generate a scoped key from your SherGuard dashboard for the modules your application needs.</p>
+        </article>
+
+        <article>
+          <span>2</span>
+          <h3>Send trust signals</h3>
+          <p>Send email, device, bot, API, or payment data to the correct SherGuard endpoint.</p>
+        </article>
+
+        <article>
+          <span>3</span>
+          <h3>Apply the decision</h3>
+          <p>Use the risk score, reasons, and recommended decision inside your product workflow.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-cta-section">
+      <h2>Start integrating SherGuard APIs.</h2>
+      <p>
+        Create your organization, generate scoped API keys,
+        and connect real-time trust intelligence into your application.
+      </p>
+      <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
+    </section>
+
+  </main>
+
+  <footer class="public-footer public-footer-advanced">
+    <div>
+      <strong>SherGuard</strong>
+      <p>Trust intelligence platform by SHER MALIK LLC.</p>
+      <p>Fraud prevention, abuse detection, API protection, and payment risk intelligence for modern businesses.</p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="developers.html">Developers</a>
+      <a href="docs.html">Docs</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Start Free</a>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="refund-policy.html">Refund Policy</a>
+    </div>
+
+    <div>
+      <h4>Support</h4>
+      <a href="mailto:support@sherguard.com">support@sherguard.com</a>
+    </div>
+
+    <div class="public-footer-bottom">
+      <span>© 2026 SherGuard. All rights reserved.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
