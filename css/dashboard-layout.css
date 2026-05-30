@@ -2808,3 +2808,103 @@ body {
   color: #475569 !important;
   letter-spacing: -0.01em !important;
 }
+
+/* SherGuard dashboard mobile layout polish only */
+@media (max-width: 768px) {
+  .main-content {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding: 22px 16px;
+  }
+
+  .topbar {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    gap: 18px;
+  }
+
+  .topbar h2,
+  .topbar h1 {
+    font-size: 30px;
+    line-height: 1.08;
+    max-width: 100%;
+    word-break: normal;
+  }
+
+  .topbar p {
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+
+  .dashboard-engine-card {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 22px !important;
+    margin-top: 18px;
+  }
+
+  .dashboard-engine-card p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .insight-card,
+  .dashboard-card,
+  .analytics-card,
+  .security-card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .live-request-card,
+  .request-volume-card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .live-request-volume,
+  .request-volume-summary {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .live-request-volume > div,
+  .request-volume-summary > div {
+    min-width: 0;
+  }
+
+  .top-api-endpoints,
+  .endpoint-list,
+  .endpoint-row {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .endpoint-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .endpoint-row span:first-child,
+  .endpoint-row strong:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .endpoint-row span:last-child,
+  .endpoint-row strong:last-child {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
