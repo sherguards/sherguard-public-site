@@ -1243,20 +1243,20 @@ if (data.security_status === 'Critical') {
         requestVolumeChart.innerHTML = `
           <div class="enterprise-volume-stats">
     
-            <div class="enterprise-volume-item">
-              <strong>${successfulRequests}</strong>
-              <span>Successful</span>
-            </div>
-    
-            <div class="enterprise-volume-item">
-              <strong>${blockedRequests}</strong>
-              <span>Blocked</span>
-            </div>
-    
-            <div class="enterprise-volume-item">
-              <strong>${totalRequests}</strong>
-              <span>Total Requests</span>
-            </div>
+  <div class="enterprise-volume-item enterprise-volume-success">
+  <strong>${successfulRequests}</strong>
+  <span>Successful</span>
+</div>
+
+<div class="enterprise-volume-item enterprise-volume-blocked">
+  <strong>${blockedRequests}</strong>
+  <span>Blocked</span>
+</div>
+
+<div class="enterprise-volume-item enterprise-volume-total">
+  <strong>${totalRequests}</strong>
+  <span>Total Requests</span>
+</div>
     
           </div>
         `;
