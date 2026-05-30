@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Fake Signup Detection Guide - Stop Fake Accounts Before They Cause Fraud</title>
+
+  <meta
+    name="description"
+    content="Learn how fake signup detection works, why fake accounts hurt online businesses, and how SherGuard helps detect disposable emails, risky devices, bots, API abuse, and suspicious signup activity."
+  />
+
+  <link rel="canonical" href="https://sherguard.com/blog-fake-signup-detection.html" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <meta property="og:url" content="https://sherguard.com/blog-fake-signup-detection.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Fake Signup Detection Guide - SherGuard" />
+  <meta property="og:description" content="A practical guide to detecting fake signups, disposable emails, bot registrations, risky devices, and account abuse before they damage your business." />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/public-pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body class="public-page">
+
+  <header class="public-header">
+    <a href="index.html" class="public-logo">
+      <span class="public-logo-icon">▣</span>
+      <span>
+        <strong>SherGuard</strong>
+        <small>Trust Intelligence Platform</small>
+      </span>
+    </a>
+
+    <nav class="public-nav">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="developers.html">Developers</a>
+      <a href="docs.html">Docs</a>
+      <a href="blog.html">Blog</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="register.html" class="public-nav-cta">Start Free</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="public-pricing-hero">
+      <span class="public-eyebrow">Fraud Prevention Guide</span>
+
+      <h1>Fake Signup Detection: How to Stop Fake Accounts Before They Cause Fraud</h1>
+
+      <p>
+        Fake signups are one of the earliest signals of fraud, bot abuse,
+        spam, API misuse, payment risk, and account-based attacks. This guide
+        explains how modern businesses can detect fake registrations before
+        they damage growth, security, and customer trust.
+      </p>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Overview</span>
+        <h2>Why fake signup detection matters</h2>
+        <p>
+          A fake signup may look harmless at first. It may be just one email,
+          one device, one browser session, or one API request. But at scale,
+          fake accounts can become a serious business risk.
+        </p>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>What this guide covers</h3>
+        <pre><code>1. What fake signups are
+2. Why fake accounts hurt businesses
+3. Common fake signup signals
+4. Disposable email detection
+5. Bot and device risk signals
+6. API abuse during registration
+7. Payment fraud connections
+8. How SherGuard helps detect signup risk</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Fake Accounts</span>
+        <h2>What is a fake signup?</h2>
+        <p>
+          A fake signup is an account registration that does not represent a
+          trustworthy, legitimate user. It may be created by a bot, fraudster,
+          spammer, scraper, reseller, attacker, or automated system.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Disposable Email Signup</h3>
+          <p>
+            A user registers with a temporary or throwaway email provider to
+            avoid accountability, bypass identity checks, or create many accounts.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bot Registration</h3>
+          <p>
+            Automated scripts create accounts at scale for spam, abuse,
+            scraping, fake trials, credential testing, or marketplace fraud.
+          </p>
+        </article>
+
+        <article>
+          <h3>Suspicious Device Signup</h3>
+          <p>
+            The signup comes from a risky browser, headless environment,
+            unusual timezone, missing signals, or automation-like device profile.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Business Risk</span>
+        <h2>How fake signups damage businesses</h2>
+        <p>
+          Fake accounts create hidden costs. They can increase infrastructure
+          usage, distort analytics, abuse free trials, damage marketplaces,
+          create spam, increase support workload, and lead to payment fraud.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Free Trial Abuse</h3>
+          <p>
+            Attackers create repeated accounts to access free usage, bypass
+            trial limits, and consume resources without becoming paying customers.
+          </p>
+        </article>
+
+        <article>
+          <h3>Spam and Platform Abuse</h3>
+          <p>
+            Fake accounts can post spam, send messages, scrape data, abuse
+            communities, or manipulate marketplace activity.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bad Analytics</h3>
+          <p>
+            Fake users make growth metrics unreliable. Signups, conversion
+            rates, activation numbers, and user behavior data become polluted.
+          </p>
+        </article>
+
+        <article>
+          <h3>Security Attacks</h3>
+          <p>
+            Fake registrations may be the first step in credential stuffing,
+            account takeover testing, API abuse, scraping, or fraud operations.
+          </p>
+        </article>
+
+        <article>
+          <h3>Payment Risk</h3>
+          <p>
+            Fake accounts are often used before risky checkout attempts,
+            stolen card testing, refund abuse, or chargeback-related activity.
+          </p>
+        </article>
+
+        <article>
+          <h3>Trust Damage</h3>
+          <p>
+            If fake users interact with real customers, the platform can lose
+            credibility, marketplace quality, and customer confidence.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>Detection Signals</span>
+        <h2>Fake signup detection requires multiple trust signals.</h2>
+        <p>
+          No single signal is enough. A real fraud-prevention system should
+          analyze email risk, device risk, bot behavior, API activity, payment
+          signals, and organization context together.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Email Signals</h3>
+          <p>Disposable domains, suspicious keywords, risky providers, role-based addresses, and temporary email patterns.</p>
+        </article>
+
+        <article>
+          <h3>Device Signals</h3>
+          <p>Headless browsers, automation frameworks, unknown environments, unusual screen sizes, and suspicious user agents.</p>
+        </article>
+
+        <article>
+          <h3>Behavior Signals</h3>
+          <p>Very short sessions, high click volume, missing mouse movement, no scrolling, and scripted behavior patterns.</p>
+        </article>
+
+        <article>
+          <h3>API Signals</h3>
+          <p>Burst traffic, repeated registration attempts, suspicious endpoints, missing headers, and abnormal request rates.</p>
+        </article>
+
+        <article>
+          <h3>Payment Signals</h3>
+          <p>Billing mismatches, failed attempts, proxy or VPN usage, high-risk checkout behavior, and velocity patterns.</p>
+        </article>
+
+        <article>
+          <h3>Organization Signals</h3>
+          <p>Plan usage, API key activity, team access, session context, and historical trust behavior.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Email Risk</span>
+        <h2>Disposable email detection is one of the first defenses.</h2>
+        <p>
+          Many fake accounts begin with temporary email addresses. Disposable
+          email providers allow users to create short-lived inboxes that are
+          difficult to verify, track, or hold accountable.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Temporary Domains</h3>
+          <p>
+            Domains commonly used by temporary inbox services are often linked
+            to fake signups, spam accounts, and trial abuse.
+          </p>
+        </article>
+
+        <article>
+          <h3>Suspicious Local Parts</h3>
+          <p>
+            Email names containing words such as test, fake, spam, bot, demo,
+            abuse, or guest can increase signup risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Provider Classification</h3>
+          <p>
+            Classifying emails by provider type helps separate business emails,
+            free consumer emails, disposable emails, and suspicious domains.
+          </p>
+        </article>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Example email risk request</h3>
+        <pre><code>POST /v1/email-risk
+x-api-key: sherguard_your_api_key
+Content-Type: application/json
+
+{
+  "email": "signup@test-temp-mail.org"
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Device Risk</span>
+        <h2>Fake signups often come from risky devices or automated environments.</h2>
+        <p>
+          Fraudsters frequently use automation tools, headless browsers,
+          browser farms, virtual environments, proxies, or suspicious device
+          setups to create accounts at scale.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Headless Browser Signals</h3>
+          <p>
+            Browsers controlled by automation frameworks can indicate scripts,
+            account factories, scraping tools, or bot-driven signup attempts.
+          </p>
+        </article>
+
+        <article>
+          <h3>Suspicious User Agents</h3>
+          <p>
+            User agents containing bot, selenium, webdriver, puppeteer,
+            playwright, headless, or automation-like patterns may increase risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Environment Mismatch</h3>
+          <p>
+            Unknown timezone, missing language, unusual screen size, or strange
+            browser context can help identify suspicious registrations.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Bot Detection</span>
+        <h2>Behavior analysis helps separate real users from automated signups.</h2>
+        <p>
+          A user may have a normal email address but still behave like a bot.
+          This is why signup protection should evaluate behavior, not only
+          identity fields.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Fast Sessions</h3>
+          <p>
+            Extremely short sessions with completed signup actions can indicate
+            scripted registration instead of human behavior.
+          </p>
+        </article>
+
+        <article>
+          <h3>High Click Volume</h3>
+          <p>
+            Unusual click speed or repeated interactions can indicate automation,
+            brute-force behavior, or scripted signup activity.
+          </p>
+        </article>
+
+        <article>
+          <h3>Missing Human Signals</h3>
+          <p>
+            No mouse movement, no scrolling, no keypress activity, or perfectly
+            repeated behavior may increase bot risk.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>API Abuse</span>
+        <h2>Fake signup attacks often appear as API abuse.</h2>
+        <p>
+          Modern signup forms usually connect to backend APIs. Attackers may
+          bypass the normal user interface and send direct API requests to
+          registration endpoints.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Burst Traffic</h3>
+          <p>
+            Many signup attempts in a short period may indicate automated abuse,
+            account creation attacks, or credential testing infrastructure.
+          </p>
+        </article>
+
+        <article>
+          <h3>Repeated Requests</h3>
+          <p>
+            Repeated calls to signup, login, verification, or token endpoints
+            can reveal abuse patterns before fraud spreads.
+          </p>
+        </article>
+
+        <article>
+          <h3>Missing Headers</h3>
+          <p>
+            Requests without expected headers, authorization context, or client
+            metadata may indicate non-browser automation or suspicious clients.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Risk Decisions</span>
+        <h2>What should businesses do with fake signup risk?</h2>
+        <p>
+          The goal is not always to block every suspicious account immediately.
+          A good trust system gives your business multiple response options
+          based on risk level and confidence.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Allow</h3>
+          <p>
+            Low-risk signups can move forward normally, reducing friction for
+            legitimate users and customers.
+          </p>
+        </article>
+
+        <article>
+          <h3>Monitor</h3>
+          <p>
+            Medium-risk signups can be tracked more closely with additional
+            logging, usage limits, or delayed access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Challenge</h3>
+          <p>
+            Suspicious users can be asked for email verification, additional
+            checks, stronger authentication, or manual review.
+          </p>
+        </article>
+
+        <article>
+          <h3>Limit</h3>
+          <p>
+            Risky accounts can receive lower usage limits, restricted API
+            access, or reduced trial capacity.
+          </p>
+        </article>
+
+        <article>
+          <h3>Review</h3>
+          <p>
+            Higher-risk cases can be routed to fraud teams, support teams, or
+            administrators before full account access is granted.
+          </p>
+        </article>
+
+        <article>
+          <h3>Block</h3>
+          <p>
+            Clearly abusive signups, disposable identities, bot patterns, or
+            dangerous API activity can be blocked before account creation.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>SherGuard</span>
+        <h2>How SherGuard helps detect fake signups.</h2>
+        <p>
+          SherGuard connects multiple risk signals into one trust intelligence
+          platform. Instead of checking email risk, bot behavior, devices, APIs,
+          and payments separately, SherGuard helps teams evaluate risk across
+          the full customer journey.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Email Risk Intelligence</h3>
+          <p>Detect disposable emails, suspicious domains, provider type, and risky signup patterns.</p>
+        </article>
+
+        <article>
+          <h3>Device Risk Intelligence</h3>
+          <p>Identify suspicious browsers, automation signals, user-agent risk, and risky environments.</p>
+        </article>
+
+        <article>
+          <h3>Bot Detection Intelligence</h3>
+          <p>Analyze behavior signals, session timing, clicks, scrolling, and automation indicators.</p>
+        </article>
+
+        <article>
+          <h3>API Abuse Intelligence</h3>
+          <p>Monitor repeated requests, burst traffic, endpoint abuse, and suspicious API clients.</p>
+        </article>
+
+        <article>
+          <h3>Payment Fraud Intelligence</h3>
+          <p>Connect signup risk with payment mismatches, failed attempts, and risky checkout activity.</p>
+        </article>
+
+        <article>
+          <h3>Security Center</h3>
+          <p>View trust activity, risk events, usage, and security signals from one dashboard.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Best Practices</span>
+        <h2>Fake signup prevention checklist</h2>
+        <p>
+          Businesses can reduce fake registrations by combining technical
+          checks, risk scoring, verification, monitoring, and response rules.
+        </p>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Signup protection checklist</h3>
+        <pre><code>✓ Check email domain reputation
+✓ Detect disposable email providers
+✓ Analyze browser and device signals
+✓ Watch for headless or automated environments
+✓ Monitor signup API request volume
+✓ Detect repeated signup attempts
+✓ Review bot behavior signals
+✓ Connect signup risk with payment risk
+✓ Apply allow, monitor, challenge, review, or block decisions
+✓ Track risk events inside a security dashboard</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Conclusion</span>
+        <h2>Fake signup detection is a trust intelligence problem.</h2>
+        <p>
+          Fake signups are not just an email problem. They are connected to
+          identity risk, device risk, bot behavior, API abuse, payment fraud,
+          and long-term platform trust.
+        </p>
+
+        <p>
+          Businesses that detect fake signups early can reduce abuse, protect
+          revenue, improve analytics, defend APIs, and give real users a better
+          experience.
+        </p>
+
+        <p>
+          SherGuard helps bring these signals together into one platform so
+          businesses can detect suspicious activity earlier and respond with
+          confidence.
+        </p>
+      </div>
+    </section>
+
+    <section class="public-cta-section">
+      <h2>Start detecting fake signups with SherGuard.</h2>
+      <p>
+        Create your organization, explore the dashboard, generate API keys,
+        and begin monitoring signup risk, device risk, bots, API abuse,
+        and payment fraud from one trust intelligence platform.
+      </p>
+      <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
+    </section>
+
+  </main>
+
+  <footer class="public-footer public-footer-advanced">
+    <div>
+      <strong>SherGuard</strong>
+      <p>Trust intelligence platform by SHER MALIK LLC.</p>
+      <p>Fraud prevention, abuse detection, API protection, and payment risk intelligence for modern businesses.</p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="developers.html">Developers</a>
+      <a href="docs.html">Docs</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="blog.html">Blog</a>
+      <a href="blog-fake-signup-detection.html">Fake Signup Detection</a>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Start Free</a>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="refund-policy.html">Refund Policy</a>
+    </div>
+
+    <div class="public-footer-bottom">
+      <span>© 2026 SherGuard. All rights reserved.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
