@@ -3131,18 +3131,27 @@ body {
   }
 }
 
-/* Final Request Volume color override */
-#requestVolumeChart strong:nth-of-type(1),
-#requestVolumeChart b:nth-of-type(1) {
+/* Request Volume final colors */
+.enterprise-volume-success strong {
   color: #2563eb !important;
 }
 
-#requestVolumeChart strong:nth-of-type(2),
-#requestVolumeChart b:nth-of-type(2) {
+.enterprise-volume-success span {
+  color: #1d4ed8 !important;
+}
+
+.enterprise-volume-blocked strong {
   color: #dc2626 !important;
 }
 
-#requestVolumeChart strong:nth-of-type(3),
-#requestVolumeChart b:nth-of-type(3) {
+.enterprise-volume-blocked span {
+  color: #b91c1c !important;
+}
+
+.enterprise-volume-total strong {
   color: #16a34a !important;
+}
+
+.enterprise-volume-total span {
+  color: #15803d !important;
 }
