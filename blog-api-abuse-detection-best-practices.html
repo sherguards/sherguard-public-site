@@ -1,0 +1,364 @@
+<!-- START AFTER <main> -->
+
+    <section class="public-pricing-hero">
+        <span class="public-eyebrow">API Abuse Intelligence</span>
+      
+        <h1>API Abuse Detection Best Practices: A Complete Guide for Modern Businesses</h1>
+      
+        <p>
+          APIs power modern software, mobile applications, AI systems, SaaS
+          platforms, marketplaces, fintech products, and enterprise integrations.
+          Unfortunately, they have also become one of the most targeted attack
+          surfaces on the internet. This guide explains API abuse, common attack
+          patterns, detection techniques, and best practices for protecting modern
+          businesses.
+        </p>
+      </section>
+      
+      <section class="public-section">
+        <div class="public-section-heading">
+          <span>Overview</span>
+      
+      ```
+      <h2>Why API abuse is a growing cybersecurity problem</h2>
+      
+      <p>
+        Most businesses now expose APIs to customers, partners, internal
+        applications, mobile apps, and third-party systems. APIs enable
+        innovation and automation, but they also create opportunities for
+        attackers.
+      </p>
+      
+      <p>
+        Unlike traditional websites, APIs are designed for machine-to-machine
+        communication. This makes them attractive targets for automation,
+        credential attacks, scraping, fraud operations, and abuse campaigns.
+      </p>
+      
+      <p>
+        Attackers increasingly target APIs because they often provide direct
+        access to data, business logic, user accounts, authentication systems,
+        and payment functionality.
+      </p>
+      ```
+      
+        </div>
+      
+        <div class="public-doc-card">
+          <h3>What this guide covers</h3>
+          <pre><code>1. What API abuse is
+      2. Why APIs are attacked
+      3. Common API abuse patterns
+      4. Credential stuffing attacks
+      5. Token abuse
+      6. API scraping
+      7. Burst traffic attacks
+      8. Sensitive endpoint abuse
+      9. API monitoring
+      10. Risk scoring
+      11. Fraud prevention
+      12. Trust intelligence</code></pre>
+        </div>
+      </section>
+      
+      <section class="public-section">
+        <div class="public-section-heading">
+          <span>API Security</span>
+      
+      ```
+      <h2>What is API abuse?</h2>
+      
+      <p>
+        API abuse occurs when a user, bot, attacker, script, or automated system
+        uses an API in a way that violates intended usage patterns or creates
+        risk for the organization operating the service.
+      </p>
+      
+      <p>
+        Abuse does not always mean a vulnerability exists. Many attacks use
+        legitimate API functionality in ways that create operational, financial,
+        or security problems.
+      </p>
+      
+      <p>
+        For example, a signup endpoint may function correctly but still be abused
+        by bots creating thousands of fake accounts.
+      </p>
+      ```
+      
+        </div>
+      
+        <div class="public-feature-grid">
+          <article>
+            <h3>Excessive Requests</h3>
+            <p>
+              Large volumes of automated requests can overload infrastructure and
+              consume resources intended for legitimate customers.
+            </p>
+          </article>
+      
+      ```
+      <article>
+        <h3>Automated Abuse</h3>
+        <p>
+          Bots frequently target APIs because they allow direct interaction with
+          backend systems.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Business Logic Abuse</h3>
+        <p>
+          Attackers may exploit workflows and business processes without exploiting
+          software vulnerabilities.
+        </p>
+      </article>
+      ```
+      
+        </div>
+      </section>
+      
+      <section class="public-section public-dark-section sg-dark-section">
+        <div class="public-section-heading">
+          <span>Attack Surface</span>
+      
+      ```
+      <h2>Why attackers target APIs</h2>
+      
+      <p>
+        APIs often expose the most valuable functionality inside an application.
+        Authentication systems, user profiles, payment operations, search
+        systems, reporting tools, and account management features are commonly
+        available through APIs.
+      </p>
+      
+      <p>
+        By targeting APIs directly, attackers can bypass user interfaces and
+        interact with backend systems at scale.
+      </p>
+      ```
+      
+        </div>
+      
+        <div class="public-feature-grid public-dark-feature-grid">
+          <article>
+            <h3>User Accounts</h3>
+            <p>
+              Login and account endpoints are common targets for credential attacks
+              and account takeover attempts.
+            </p>
+          </article>
+      
+      ```
+      <article>
+        <h3>Customer Data</h3>
+        <p>
+          APIs frequently expose profile data, account information, and business
+          records that attackers want to access.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Payment Systems</h3>
+        <p>
+          Checkout APIs, billing systems, and transaction workflows can become
+          targets for fraud operations.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Business Intelligence</h3>
+        <p>
+          Reporting and analytics endpoints may expose valuable business
+          information.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Automation Opportunities</h3>
+        <p>
+          APIs are designed for automation, making them attractive to attackers
+          running large-scale abuse campaigns.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Scalability</h3>
+        <p>
+          A single attacker can generate enormous API traffic through automation
+          tools and bot infrastructure.
+        </p>
+      </article>
+      ```
+      
+        </div>
+      </section>
+      
+      <section class="public-section">
+        <div class="public-section-heading">
+          <span>Credential Stuffing</span>
+      
+      ```
+      <h2>One of the most common API attacks</h2>
+      
+      <p>
+        Credential stuffing occurs when attackers use usernames and passwords
+        obtained from previous breaches to attempt logins against another service.
+      </p>
+      
+      <p>
+        APIs make these attacks easier because login endpoints can often be
+        targeted directly with automated tools.
+      </p>
+      
+      <p>
+        Attackers may submit thousands or millions of login attempts while
+        rotating IP addresses, devices, user agents, and automation frameworks.
+      </p>
+      ```
+      
+        </div>
+      
+        <div class="public-feature-grid">
+          <article>
+            <h3>Repeated Login Attempts</h3>
+            <p>
+              Large volumes of failed authentication attempts are a common indicator
+              of credential stuffing activity.
+            </p>
+          </article>
+      
+      ```
+      <article>
+        <h3>Automation Tools</h3>
+        <p>
+          Selenium, Puppeteer, Playwright, and custom bot frameworks are commonly
+          used during credential attacks.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Account Takeover Risk</h3>
+        <p>
+          Successful credential stuffing can lead to account compromise,
+          financial loss, and customer trust issues.
+        </p>
+      </article>
+      ```
+      
+        </div>
+      </section>
+      
+      <section class="public-section">
+        <div class="public-section-heading">
+          <span>Token Abuse</span>
+      
+      ```
+      <h2>API tokens are frequently targeted</h2>
+      
+      <p>
+        Modern applications often rely on tokens for authentication and access
+        control. Attackers seek to steal, reuse, share, or automate token usage
+        in order to gain unauthorized access.
+      </p>
+      
+      <p>
+        A compromised token may provide direct access to APIs without requiring
+        repeated login attempts.
+      </p>
+      
+      <p>
+        Token abuse is particularly dangerous because activity may appear
+        legitimate unless organizations monitor behavior and risk patterns.
+      </p>
+      ```
+      
+        </div>
+      
+        <div class="public-feature-grid">
+          <article>
+            <h3>Stolen Tokens</h3>
+            <p>
+              Attackers may obtain tokens through phishing, malware, exposed logs,
+              or insecure storage practices.
+            </p>
+          </article>
+      
+      ```
+      <article>
+        <h3>Shared Credentials</h3>
+        <p>
+          Organizations sometimes discover API keys and tokens being shared
+          across unauthorized users and systems.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Persistent Access</h3>
+        <p>
+          Long-lived tokens can provide attackers with ongoing access if they
+          are not properly rotated and monitored.
+        </p>
+      </article>
+      ```
+      
+        </div>
+      </section>
+      
+      <section class="public-section">
+        <div class="public-section-heading">
+          <span>API Scraping</span>
+      
+      ```
+      <h2>Attackers increasingly use APIs for large-scale data collection</h2>
+      
+      <p>
+        Scraping attacks often target APIs because structured data is easier to
+        collect than content rendered through a browser.
+      </p>
+      
+      <p>
+        Attackers may scrape pricing information, product catalogs, customer
+        records, marketplace listings, inventory data, analytics information,
+        and competitive intelligence.
+      </p>
+      
+      <p>
+        While some automated access may be legitimate, excessive collection
+        activity can create operational and competitive risk.
+      </p>
+      ```
+      
+        </div>
+      
+        <div class="public-feature-grid">
+          <article>
+            <h3>Content Extraction</h3>
+            <p>
+              Attackers can collect structured data directly from API responses.
+            </p>
+          </article>
+      
+      ```
+      <article>
+        <h3>Competitive Monitoring</h3>
+        <p>
+          Businesses may find competitors continuously monitoring pricing,
+          products, and inventory through APIs.
+        </p>
+      </article>
+      
+      <article>
+        <h3>Infrastructure Costs</h3>
+        <p>
+          Large-scale scraping can significantly increase bandwidth, compute, and
+          database usage.
+        </p>
+      </article>
+      ```
+      
+        </div>
+      </section>
+      
+      <!-- END OF PART 1 -->
+      
