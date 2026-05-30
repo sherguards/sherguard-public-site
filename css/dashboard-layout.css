@@ -3133,17 +3133,18 @@ body {
 
 /* Request Volume Colors */
 
-#requestVolumeChart > div:first-child strong,
-#requestVolumeChart > div:first-child b {
-  color: #2563eb !important; /* Successful */
+#requestVolumeChart .successful-value,
+#requestVolumeChart .success-value,
+#requestVolumeChart .allowed-value {
+  color: #2563eb !important; /* Blue */
 }
 
-#requestVolumeChart > div:nth-child(2) strong,
-#requestVolumeChart > div:nth-child(2) b {
-  color: #dc2626 !important; /* Blocked */
+#requestVolumeChart .blocked-value,
+#requestVolumeChart .risk-value {
+  color: #dc2626 !important; /* Red */
 }
 
-#requestVolumeChart > div:nth-child(3) strong,
-#requestVolumeChart > div:nth-child(3) b {
-  color: #16a34a !important; /* Total Requests */
+#requestVolumeChart .total-value,
+#requestVolumeChart .requests-value {
+  color: #16a34a !important; /* Green */
 }
