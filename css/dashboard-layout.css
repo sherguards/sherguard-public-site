@@ -3048,13 +3048,6 @@ body {
     overflow: hidden !important;
   }
 
-  #requestVolumeChart > div {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
-    text-align: center !important;
-  }
-
   #requestVolumeChart strong,
   #requestVolumeChart b {
     color: #2563eb !important;
@@ -3104,4 +3097,36 @@ body {
 #topEndpointsList span:last-child {
   color: #2563eb !important;
   font-weight: 900 !important;
+}
+
+/* Fix Request Volume stats on mobile */
+
+@media (max-width: 768px) {
+
+  #requestVolumeChart > div {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  #requestVolumeChart > div > * {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    text-align: center !important;
+  }
+
+  #requestVolumeChart strong,
+  #requestVolumeChart b {
+    font-size: 32px !important;
+    line-height: 1 !important;
+  }
+
+  #requestVolumeChart span,
+  #requestVolumeChart small,
+  #requestVolumeChart p {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+  }
 }
