@@ -85,3 +85,68 @@
       padding: 28px;
     }
   }
+
+  /* SherGuard public mobile polish */
+@media (max-width: 768px) {
+  .public-header {
+    padding: 22px 7%;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .public-logo {
+    width: 100%;
+  }
+
+  .public-nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+    justify-content: flex-start;
+  }
+
+  .public-nav a {
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .public-nav-cta {
+    padding: 12px 20px !important;
+    border-radius: 999px;
+  }
+
+  .public-hero,
+  .public-pricing-hero {
+    padding-top: 64px;
+    padding-left: 7%;
+    padding-right: 7%;
+    text-align: center;
+    overflow: visible;
+  }
+
+  .public-hero h1,
+  .public-pricing-hero h1 {
+    font-size: clamp(36px, 10vw, 48px);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .public-hero p,
+  .public-pricing-hero p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .public-hero-actions {
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .public-hero-actions .public-btn {
+    font-size: 15px;
+    padding: 14px 22px;
+  }
+}
