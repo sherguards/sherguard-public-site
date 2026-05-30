@@ -2972,3 +2972,136 @@ body {
     word-break: break-word !important;
   }
 }
+
+/* ===== FINAL MOBILE + ANALYTICS FIX ===== */
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 18px 14px !important;
+    overflow-x: hidden !important;
+  }
+
+  .dashboard-top-header {
+    display: block !important;
+  }
+
+  .dashboard-top-header h2 {
+    white-space: normal !important;
+    font-size: 26px !important;
+    line-height: 1.15 !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .dashboard-title-actions {
+    margin-top: 16px !important;
+    justify-content: flex-start !important;
+  }
+
+  .dashboard-subtitle {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .dashboard-live-row {
+    width: 100% !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+  }
+
+  .dashboard-engine-card,
+  .dashboard-top-info-card {
+    min-height: auto !important;
+  }
+
+  .enterprise-chart-card {
+    padding: 22px 18px !important;
+    overflow: hidden !important;
+  }
+
+  .enterprise-chart-header {
+    display: block !important;
+  }
+
+  .enterprise-chart-header h4 {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+    color: #2563eb !important;
+    margin-bottom: 8px !important;
+  }
+
+  .enterprise-chart-header span {
+    display: block !important;
+    font-size: 14px !important;
+    color: #16a34a !important;
+    font-weight: 800 !important;
+  }
+
+  #requestVolumeChart {
+    width: 100% !important;
+    padding: 24px 14px !important;
+    overflow: hidden !important;
+  }
+
+  #requestVolumeChart > div {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    text-align: center !important;
+  }
+
+  #requestVolumeChart strong,
+  #requestVolumeChart b {
+    color: #2563eb !important;
+    font-size: 42px !important;
+    line-height: 1 !important;
+  }
+
+  #requestVolumeChart span,
+  #requestVolumeChart small,
+  #requestVolumeChart p {
+    color: #475569 !important;
+    font-weight: 800 !important;
+  }
+
+  #topEndpointsList div {
+    gap: 10px !important;
+    padding: 14px 16px !important;
+  }
+
+  #topEndpointsList div span:first-child {
+    font-size: 14px !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  #topEndpointsList div span:last-child {
+    font-size: 14px !important;
+    color: #2563eb !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* Desktop + mobile analytics colors */
+.enterprise-chart-header h4 {
+  color: #2563eb !important;
+}
+
+.enterprise-chart-header span {
+  color: #16a34a !important;
+  font-weight: 800 !important;
+}
+
+#requestVolumeChart strong,
+#requestVolumeChart b {
+  color: #2563eb !important;
+}
+
+#topEndpointsList span:last-child {
+  color: #2563eb !important;
+  font-weight: 900 !important;
+}
