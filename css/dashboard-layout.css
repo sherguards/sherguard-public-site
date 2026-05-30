@@ -3155,3 +3155,16 @@ body {
 .enterprise-volume-total span {
   color: #15803d !important;
 }
+
+/* Final force Request Volume number colors */
+#requestVolumeChart .enterprise-volume-stats .enterprise-volume-item.enterprise-volume-success strong {
+  color: #2563eb !important;
+}
+
+#requestVolumeChart .enterprise-volume-stats .enterprise-volume-item.enterprise-volume-blocked strong {
+  color: #dc2626 !important;
+}
+
+#requestVolumeChart .enterprise-volume-stats .enterprise-volume-item.enterprise-volume-total strong {
+  color: #16a34a !important;
+}
