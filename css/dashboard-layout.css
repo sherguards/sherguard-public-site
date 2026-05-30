@@ -3130,3 +3130,20 @@ body {
     line-height: 1.3 !important;
   }
 }
+
+/* Request Volume Colors */
+
+#requestVolumeChart > div:first-child strong,
+#requestVolumeChart > div:first-child b {
+  color: #2563eb !important; /* Successful */
+}
+
+#requestVolumeChart > div:nth-child(2) strong,
+#requestVolumeChart > div:nth-child(2) b {
+  color: #dc2626 !important; /* Blocked */
+}
+
+#requestVolumeChart > div:nth-child(3) strong,
+#requestVolumeChart > div:nth-child(3) b {
+  color: #16a34a !important; /* Total Requests */
+}
