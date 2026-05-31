@@ -74,7 +74,7 @@
         console.error('Settings /auth/me failed:', error);
       }
   
-      setText('settingsFullName', user.full_name || user.name || user.email || 'SherGuard User');
+      setText('settingsFullName', user.full_name || user.name || 'SherGuard User');
       setText('settingsEmail', user.email || 'Unavailable');
       setText('settingsRole', user.role || 'admin');
       setText('settingsAccountStatus', user.is_active === false ? 'Disabled' : 'Active');
@@ -87,7 +87,7 @@
         var organizationName = 'SherGuard Organization';
         var planName = 'free';
       
-        if (org.organization && typeof org.organization === 'object') {
+        if (org && org.organization && typeof org.organization === 'object') {
           organizationName =
             org.organization.name ||
             org.organization.organization_name ||
@@ -95,17 +95,6 @@
       
           planName =
             org.organization.plan ||
-            org.plan ||
-            planName;
-        } else {
-          organizationName =
-            org.organization_name ||
-            org.name ||
-            org.company_name ||
-            organizationName;
-      
-          planName =
-            org.plan ||
             planName;
         }
       
@@ -113,7 +102,11 @@
         setText('settingsPlan', planName);
       
       } catch (error) {
-        
+        console.error('Settings organization failed:', error);
+        setText('settingsOrganization', 'Current Organization');
+        setText('settingsPlan', 'free');
+      }
+
         console.error('Settings organization failed:', error);
         setText('settingsOrganization', 'Current Organization');
         setText('settingsPlan', 'free');
