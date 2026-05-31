@@ -1,116 +1,125 @@
 (function () {
     'use strict';
   
-    const API_BASE_URL = 'https://sherguard-api.onrender.com';
+    var API_BASE_URL = 'https://sherguard-api.onrender.com';
+  
+    function token() {
+      return localStorage.getItem('aiTrustToken');
+    }
   
     function setText(id, value) {
-      const el = document.getElementById(id);
+      var el = document.getElementById(id);
       if (!el) return;
       el.textContent = value || '—';
     }
   
-    function getToken() {
-      return localStorage.getItem('aiTrustToken');
-    }
-  
-    async function apiGet(path) {
-      const response = await fetch(API_BASE_URL + path, {
+    function apiGet(path) {
+      return fetch(API_BASE_URL + path, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + getToken()
+          'Authorization': 'Bearer ' + token()
         }
+      }).then(function (response) {
+        return response.json();
       });
-  
-      return response.json();
     }
   
-    async function apiPost(path, body) {
-      const response = await fetch(API_BASE_URL + path, {
+    function apiPost(path, body) {
+      return fetch(API_BASE_URL + path, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + getToken()
+          'Authorization': 'Bearer ' + token()
         },
         body: JSON.stringify(body)
+      }).then(function (response) {
+        return response.json();
       });
-  
-      return response.json();
     }
   
-    function normalizeUser(data) {
-      if (!data) return null;
-      if (data.user) return data.user;
-      return data;
+    function apiDelete(path) {
+      return fetch(API_BASE_URL + path, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token()
+        }
+      }).then(function (response) {
+        return response.json();
+      });
     }
   
-    async function loadSettingsProfile() {
+    function getLocalUser() {
       try {
-        const meData = await apiGet('/auth/me');
-        const user = normalizeUser(meData);
+        var raw = localStorage.getItem('aiTrustUser');
+        if (!raw) return {};
+        var parsed = JSON.parse(raw);
+        return parsed.user || parsed || {};
+      } catch {
+        return {};
+      }
+    }
   
-        setText('settingsFullName', user.full_name || user.name || 'SherGuard User');
-        setText('settingsEmail', user.email || 'No email available');
-        setText('settingsRole', user.role || 'admin');
-        setText('settingsAccountStatus', user.is_active === false ? 'Disabled' : 'Active');
-        setText('settingsEmailVerified', user.is_verified === false ? 'Not Verified' : 'Verified');
-        setText(
-          'settingsMemberSince',
-          user.created_at ? new Date(user.created_at).toLocaleDateString() : '—'
-        );
+    async function loadProfile() {
+      var user = getLocalUser();
   
-        localStorage.setItem('aiTrustUser', JSON.stringify(user));
-  
+      try {
+        var me = await apiGet('/auth/me');
+        if (me && me.user) {
+          user = me.user;
+          localStorage.setItem('aiTrustUser', JSON.stringify(user));
+        }
       } catch (error) {
-        console.error('Settings user load failed:', error);
-  
-        const stored = JSON.parse(localStorage.getItem('aiTrustUser') || '{}');
-  
-        setText('settingsFullName', stored.full_name || 'SherGuard User');
-        setText('settingsEmail', stored.email || 'Unavailable');
-        setText('settingsRole', stored.role || 'admin');
-        setText('settingsAccountStatus', 'Active');
-        setText('settingsEmailVerified', 'Verified');
-        setText('settingsMemberSince', '—');
+        console.error('Settings /auth/me failed:', error);
       }
   
+      setText('settingsFullName', user.full_name || user.name || user.email || 'SherGuard User');
+      setText('settingsEmail', user.email || 'Unavailable');
+      setText('settingsRole', user.role || 'admin');
+      setText('settingsAccountStatus', user.is_active === false ? 'Disabled' : 'Active');
+      setText('settingsEmailVerified', user.is_verified === false ? 'Not Verified' : 'Verified');
+      setText('settingsMemberSince', user.created_at ? new Date(user.created_at).toLocaleDateString() : '—');
+  
       try {
-        const orgData = await apiGet('/organization/profile');
+        var org = await apiGet('/organization/profile');
   
         setText(
           'settingsOrganization',
-          orgData.organization_name ||
-          orgData.name ||
-          orgData.organization ||
+          org.organization_name ||
+          org.name ||
+          org.organization ||
+          org.company_name ||
           'SherGuard Organization'
         );
   
-        setText('settingsPlan', orgData.plan || 'free');
+        setText('settingsPlan', org.plan || 'free');
   
       } catch (error) {
-        console.error('Settings organization load failed:', error);
+        console.error('Settings organization failed:', error);
         setText('settingsOrganization', 'Current Organization');
         setText('settingsPlan', 'free');
       }
     }
   
-    function togglePasswordVisibility(buttonId, inputId) {
-      const btn = document.getElementById(buttonId);
-      const input = document.getElementById(inputId);
+    function togglePassword(inputId, btn) {
+      var input = document.getElementById(inputId);
+      if (!input || !btn) return;
   
-      if (!btn || !input) return;
-  
-      btn.addEventListener('click', function () {
-        input.type = input.type === 'password' ? 'text' : 'password';
-        btn.textContent = input.type === 'password' ? 'Show' : 'Hide';
-      });
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        input.type = 'password';
+        btn.textContent = 'Show';
+      }
     }
   
     async function changePassword() {
-      const currentPassword = document.getElementById('settingsCurrentPassword')?.value || '';
-      const newPassword = document.getElementById('settingsNewPassword')?.value || '';
-      const confirmPassword = document.getElementById('settingsConfirmPassword')?.value || '';
-      const message = document.getElementById('settingsSecurityMessage');
+      var currentPassword = document.getElementById('settingsCurrentPassword')?.value || '';
+      var newPassword = document.getElementById('settingsNewPassword')?.value || '';
+      var confirmPassword = document.getElementById('settingsConfirmPassword')?.value || '';
+      var message = document.getElementById('settingsSecurityMessage');
   
       if (!currentPassword || !newPassword || !confirmPassword) {
         message.textContent = 'Please fill all password fields.';
@@ -131,7 +140,7 @@
       }
   
       try {
-        const result = await apiPost('/auth/change-password', {
+        var result = await apiPost('/auth/change-password', {
           current_password: currentPassword,
           new_password: newPassword
         });
@@ -156,36 +165,84 @@
       }
     }
   
-    function scrollToSessions() {
-      const section = document.querySelector('.team-management-card');
-      if (!section) return;
+    function viewActiveSessions() {
+      var sessionsBody = document.getElementById('teamSessionsTableBody');
+      var section = document.querySelector('.team-management-card');
   
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      section.classList.add('section-highlight');
+      if (section) {
+        section.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
   
-      setTimeout(function () {
-        section.classList.remove('section-highlight');
-      }, 1600);
+        section.classList.add('section-highlight');
+  
+        setTimeout(function () {
+          section.classList.remove('section-highlight');
+        }, 1600);
+      }
+  
+      if (sessionsBody) {
+        sessionsBody.closest('.team-invitations-block')?.classList.add('section-highlight');
+      }
+    }
+  
+    async function forceLogoutAllSessions() {
+      var message = document.getElementById('settingsSessionMessage');
+  
+      if (!confirm('This will force logout all active sessions for your organization. Continue?')) {
+        return;
+      }
+  
+      try {
+        var result = await apiDelete('/organization/sessions/force-logout-all');
+  
+        message.textContent = result.message || 'All sessions logged out.';
+        message.style.color = '#16a34a';
+  
+      } catch (error) {
+        message.textContent = 'Failed to force logout sessions.';
+        message.style.color = '#dc2626';
+        console.error('Force logout failed:', error);
+      }
+    }
+  
+    function bindSettingsEvents() {
+      document.addEventListener('click', function (event) {
+        if (event.target.id === 'showCurrentPasswordBtn') {
+          togglePassword('settingsCurrentPassword', event.target);
+        }
+  
+        if (event.target.id === 'showNewPasswordBtn') {
+          togglePassword('settingsNewPassword', event.target);
+        }
+  
+        if (event.target.id === 'showConfirmPasswordBtn') {
+          togglePassword('settingsConfirmPassword', event.target);
+        }
+  
+        if (event.target.id === 'settingsChangePasswordBtn') {
+          changePassword();
+        }
+  
+        if (event.target.id === 'settingsViewSessionsBtn') {
+          viewActiveSessions();
+        }
+  
+        if (event.target.id === 'settingsForceLogoutBtn') {
+          forceLogoutAllSessions();
+        }
+      });
     }
   
     function initSettings() {
-      const changePasswordBtn = document.getElementById('settingsChangePasswordBtn');
-      const viewSessionsBtn = document.getElementById('settingsViewSessionsBtn');
-  
-      if (changePasswordBtn) {
-        changePasswordBtn.addEventListener('click', changePassword);
-      }
-  
-      if (viewSessionsBtn) {
-        viewSessionsBtn.addEventListener('click', scrollToSessions);
-      }
-  
-      togglePasswordVisibility('showCurrentPasswordBtn', 'settingsCurrentPassword');
-      togglePasswordVisibility('showNewPasswordBtn', 'settingsNewPassword');
-      togglePasswordVisibility('showConfirmPasswordBtn', 'settingsConfirmPassword');
-  
-      loadSettingsProfile();
+      bindSettingsEvents();
+      loadProfile();
     }
   
-    document.addEventListener('DOMContentLoaded', initSettings);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSettings);
+    } else {
+      initSettings();
+    }
   })();
