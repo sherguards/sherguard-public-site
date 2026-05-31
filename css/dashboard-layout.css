@@ -3342,3 +3342,29 @@ body {
   border-color: #2563eb;
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
 }
+
+.settings-password-field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.settings-password-field input {
+  min-height: 46px;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
+.settings-password-field button {
+  min-height: 46px;
+  border: none;
+  border-radius: 14px;
+  padding: 0 14px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 900;
+  cursor: pointer;
+}
