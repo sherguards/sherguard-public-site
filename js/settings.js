@@ -9,7 +9,11 @@
   
     function setText(id, value) {
       var el = document.getElementById(id);
-      if (!el) return;
+  
+      if (!el) {
+        return;
+      }
+  
       el.textContent = value || '—';
     }
   
@@ -53,8 +57,13 @@
     function getLocalUser() {
       try {
         var raw = localStorage.getItem('aiTrustUser');
-        if (!raw) return {};
+  
+        if (!raw) {
+          return {};
+        }
+  
         var parsed = JSON.parse(raw);
+  
         return parsed.user || parsed || {};
       } catch {
         return {};
@@ -62,61 +71,102 @@
     }
   
     async function loadProfile() {
-        var user = getLocalUser();
-      
-        try {
-          var me = await apiGet('/auth/me');
-      
-          if (me && me.user) {
-            user = me.user;
-            localStorage.setItem('aiTrustUser', JSON.stringify(user));
-          }
-        } catch (error) {
-          console.error('Settings /auth/me failed:', error);
+      var user = getLocalUser();
+  
+      try {
+        var me = await apiGet('/auth/me');
+  
+        if (me && me.user) {
+          user = me.user;
+  
+          localStorage.setItem(
+            'aiTrustUser',
+            JSON.stringify(user)
+          );
         }
-      
-        setText('settingsFullName', user.full_name || user.name || 'SherGuard User');
-        setText('settingsEmail', user.email || 'Unavailable');
-        setText('settingsRole', user.role || 'admin');
-        setText('settingsAccountStatus', user.is_active === false ? 'Disabled' : 'Active');
-        setText('settingsEmailVerified', user.is_verified === false ? 'Not Verified' : 'Verified');
-        setText(
-          'settingsMemberSince',
-          user.created_at ? new Date(user.created_at).toLocaleDateString() : '—'
-        );
-      
-        try {
-          var org = await apiGet('/organization/profile');
-      
-          var organizationName = 'SherGuard Organization';
-          var planName = 'free';
-      
-          if (org && org.organization && typeof org.organization === 'object') {
-            organizationName =
-              org.organization.name ||
-              org.organization.organization_name ||
-              organizationName;
-      
-            planName =
-              org.organization.plan ||
-              planName;
-          }
-      
-          setText('settingsOrganization', organizationName);
-          setText('settingsPlan', planName);
-      
-        } catch (error) {
-          console.error('Settings organization failed:', error);
-          setText('settingsOrganization', 'Current Organization');
-          setText('settingsPlan', 'free');
-        }
-
-        setText('settingsOrganization', 'sherduard');
+      } catch (error) {
+        console.error('Settings /auth/me failed:', error);
       }
+  
+      setText(
+        'settingsFullName',
+        user.full_name || user.name || 'SherGuard User'
+      );
+  
+      setText(
+        'settingsEmail',
+        user.email || 'Unavailable'
+      );
+  
+      setText(
+        'settingsRole',
+        user.role || 'admin'
+      );
+  
+      setText(
+        'settingsAccountStatus',
+        user.is_active === false ? 'Disabled' : 'Active'
+      );
+  
+      setText(
+        'settingsEmailVerified',
+        user.is_verified === false ? 'Not Verified' : 'Verified'
+      );
+  
+      setText(
+        'settingsMemberSince',
+        user.created_at
+          ? new Date(user.created_at).toLocaleDateString()
+          : '—'
+      );
+  
+      try {
+        var org = await apiGet('/organization/profile');
+  
+        var organizationName = 'SherGuard Organization';
+        var planName = 'free';
+  
+        if (
+          org &&
+          org.organization &&
+          typeof org.organization === 'object'
+        ) {
+          organizationName =
+            org.organization.name ||
+            org.organization.organization_name ||
+            organizationName;
+  
+          planName =
+            org.organization.plan ||
+            planName;
+        } else {
+          organizationName =
+            org.organization_name ||
+            org.name ||
+            org.company_name ||
+            organizationName;
+  
+          planName =
+            org.plan ||
+            planName;
+        }
+  
+        setText('settingsOrganization', organizationName);
+        setText('settingsPlan', planName);
+  
+      } catch (error) {
+        console.error('Settings organization failed:', error);
+        setText('settingsOrganization', 'Current Organization');
+        setText('settingsPlan', 'free');
+      }
+    }
   
     function togglePassword(inputId, btn) {
       var input = document.getElementById(inputId);
-      if (!input || !btn) return;
+  
+      if (!input || !btn) {
+        return;
+      }
   
       if (input.type === 'password') {
         input.type = 'text';
@@ -128,10 +178,17 @@
     }
   
     async function changePassword() {
-      var currentPassword = document.getElementById('settingsCurrentPassword')?.value || '';
-      var newPassword = document.getElementById('settingsNewPassword')?.value || '';
-      var confirmPassword = document.getElementById('settingsConfirmPassword')?.value || '';
-      var message = document.getElementById('settingsSecurityMessage');
+      var currentPassword =
+        document.getElementById('settingsCurrentPassword')?.value || '';
+  
+      var newPassword =
+        document.getElementById('settingsNewPassword')?.value || '';
+  
+      var confirmPassword =
+        document.getElementById('settingsConfirmPassword')?.value || '';
+  
+      var message =
+        document.getElementById('settingsSecurityMessage');
   
       if (!currentPassword || !newPassword || !confirmPassword) {
         message.textContent = 'Please fill all password fields.';
@@ -146,7 +203,8 @@
       }
   
       if (newPassword !== confirmPassword) {
-        message.textContent = 'New password and confirmation do not match.';
+        message.textContent =
+          'New password and confirmation do not match.';
         message.style.color = '#dc2626';
         return;
       }
@@ -158,7 +216,8 @@
         });
   
         if (!result.success) {
-          message.textContent = result.message || 'Password change failed.';
+          message.textContent =
+            result.message || 'Password change failed.';
           message.style.color = '#dc2626';
           return;
         }
@@ -178,8 +237,11 @@
     }
   
     function viewActiveSessions() {
-      var sessionsBody = document.getElementById('teamSessionsTableBody');
-      var section = document.querySelector('.team-management-card');
+      var sessionsBody =
+        document.getElementById('teamSessionsTableBody');
+  
+      var section =
+        document.querySelector('.team-management-card');
   
       if (section) {
         section.scrollIntoView({
@@ -195,21 +257,31 @@
       }
   
       if (sessionsBody) {
-        sessionsBody.closest('.team-invitations-block')?.classList.add('section-highlight');
+        sessionsBody.closest('.team-invitations-block')
+          ?.classList.add('section-highlight');
       }
     }
   
     async function forceLogoutAllSessions() {
-      var message = document.getElementById('settingsSessionMessage');
+      var message =
+        document.getElementById('settingsSessionMessage');
   
-      if (!confirm('This will force logout all active sessions for your organization. Continue?')) {
+      if (
+        !confirm(
+          'This will force logout all active sessions for your organization. Continue?'
+        )
+      ) {
         return;
       }
   
       try {
-        var result = await apiDelete('/organization/sessions/force-logout-all');
+        var result = await apiDelete(
+          '/organization/sessions/force-logout-all'
+        );
   
-        message.textContent = result.message || 'All sessions logged out.';
+        message.textContent =
+          result.message || 'All sessions logged out.';
+  
         message.style.color = '#16a34a';
   
       } catch (error) {
@@ -250,17 +322,6 @@
     function initSettings() {
       bindSettingsEvents();
       loadProfile();
-
-setInterval(function () {
-  var orgEl = document.getElementById('settingsOrganization');
-
-  if (
-    orgEl &&
-    orgEl.textContent === '[object Object]'
-  ) {
-    orgEl.textContent = 'sherduard';
-  }
-}, 1000);
     }
   
     if (document.readyState === 'loading') {
