@@ -46,10 +46,7 @@
           );
         }
       } catch (error) {
-        console.error(
-          'Settings profile sync failed:',
-          error
-        );
+        console.error('Settings profile sync failed:', error);
       }
   
       if (!user) {
@@ -64,36 +61,14 @@
         return;
       }
   
-      setText(
-        'settingsFullName',
-        user.full_name || user.name || 'Unnamed User'
-      );
-  
-      setText(
-        'settingsEmail',
-        user.email || 'No email available'
-      );
-  
-      setText(
-        'settingsRole',
-        user.role || 'admin'
-      );
-  
-      setText(
-        'settingsAccountStatus',
-        user.is_active === false ? 'Disabled' : 'Active'
-      );
-  
-      setText(
-        'settingsEmailVerified',
-        user.is_verified === false ? 'Not Verified' : 'Verified'
-      );
-  
+      setText('settingsFullName', user.full_name || user.name || 'Unnamed User');
+      setText('settingsEmail', user.email || 'No email available');
+      setText('settingsRole', user.role || 'admin');
+      setText('settingsAccountStatus', user.is_active === false ? 'Disabled' : 'Active');
+      setText('settingsEmailVerified', user.is_verified === false ? 'Not Verified' : 'Verified');
       setText(
         'settingsMemberSince',
-        user.created_at
-          ? new Date(user.created_at).toLocaleDateString()
-          : '—'
+        user.created_at ? new Date(user.created_at).toLocaleDateString() : '—'
       );
   
       try {
@@ -108,19 +83,13 @@
             'SherGuard Organization'
           );
   
-          setText(
-            'settingsPlan',
-            organization.plan || 'free'
-          );
+          setText('settingsPlan', organization.plan || 'free');
         }
       } catch (error) {
         setText('settingsOrganization', 'Current Organization');
         setText('settingsPlan', 'free');
   
-        console.error(
-          'Settings organization sync failed:',
-          error
-        );
+        console.error('Settings organization sync failed:', error);
       }
     }
   
@@ -157,8 +126,7 @@
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization':
-                'Bearer ' + localStorage.getItem('aiTrustToken')
+              'Authorization': 'Bearer ' + localStorage.getItem('aiTrustToken')
             }
           }
         ).then(function (response) {
@@ -166,8 +134,7 @@
         });
   
         if (message) {
-          message.textContent =
-            result.message || 'All sessions were logged out.';
+          message.textContent = result.message || 'All sessions were logged out.';
           message.style.color = '#16a34a';
         }
   
@@ -181,10 +148,77 @@
           message.style.color = '#dc2626';
         }
   
-        console.error(
-          'Settings force logout failed:',
-          error
-        );
+        console.error('Settings force logout failed:', error);
+      }
+    }
+  
+    async function changePassword() {
+      const currentPassword =
+        document.getElementById('settingsCurrentPassword')?.value || '';
+  
+      const newPassword =
+        document.getElementById('settingsNewPassword')?.value || '';
+  
+      const confirmPassword =
+        document.getElementById('settingsConfirmPassword')?.value || '';
+  
+      const message =
+        document.getElementById('settingsSecurityMessage');
+  
+      if (!currentPassword || !newPassword || !confirmPassword) {
+        if (message) {
+          message.textContent = 'Please fill all password fields.';
+          message.style.color = '#dc2626';
+        }
+        return;
+      }
+  
+      if (newPassword.length < 8) {
+        if (message) {
+          message.textContent = 'New password must be at least 8 characters.';
+          message.style.color = '#dc2626';
+        }
+        return;
+      }
+  
+      if (newPassword !== confirmPassword) {
+        if (message) {
+          message.textContent = 'New password and confirmation do not match.';
+          message.style.color = '#dc2626';
+        }
+        return;
+      }
+  
+      try {
+        const result = await aiTrustApiPost('/auth/change-password', {
+          current_password: currentPassword,
+          new_password: newPassword
+        });
+  
+        if (!result.success) {
+          if (message) {
+            message.textContent = result.message || 'Password change failed.';
+            message.style.color = '#dc2626';
+          }
+          return;
+        }
+  
+        document.getElementById('settingsCurrentPassword').value = '';
+        document.getElementById('settingsNewPassword').value = '';
+        document.getElementById('settingsConfirmPassword').value = '';
+  
+        if (message) {
+          message.textContent = 'Password changed successfully.';
+          message.style.color = '#16a34a';
+        }
+  
+      } catch (error) {
+        if (message) {
+          message.textContent = 'Password change request failed.';
+          message.style.color = '#dc2626';
+        }
+  
+        console.error('Password change failed:', error);
       }
     }
   
@@ -199,16 +233,7 @@
         document.getElementById('settingsForceLogoutBtn');
   
       if (changePasswordBtn) {
-        changePasswordBtn.addEventListener('click', function () {
-          const message =
-            document.getElementById('settingsSecurityMessage');
-  
-          if (message) {
-            message.textContent =
-              'Change Password will be enabled in the next backend phase.';
-            message.style.color = '#2563eb';
-          }
-        });
+        changePasswordBtn.addEventListener('click', changePassword);
       }
   
       if (viewSessionsBtn) {
@@ -216,10 +241,7 @@
       }
   
       if (forceLogoutBtn) {
-        forceLogoutBtn.addEventListener(
-          'click',
-          forceLogoutAllSessions
-        );
+        forceLogoutBtn.addEventListener('click', forceLogoutAllSessions);
       }
   
       loadSettingsProfile();
