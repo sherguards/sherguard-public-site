@@ -110,6 +110,8 @@
           setText('settingsOrganization', 'Current Organization');
           setText('settingsPlan', 'free');
         }
+
+        setText('settingsOrganization', 'sherduard');
       }
   
     function togglePassword(inputId, btn) {
