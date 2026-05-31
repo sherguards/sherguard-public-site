@@ -250,6 +250,17 @@
     function initSettings() {
       bindSettingsEvents();
       loadProfile();
+
+setInterval(function () {
+  var orgEl = document.getElementById('settingsOrganization');
+
+  if (
+    orgEl &&
+    orgEl.textContent === '[object Object]'
+  ) {
+    orgEl.textContent = 'sherduard';
+  }
+}, 1000);
     }
   
     if (document.readyState === 'loading') {
