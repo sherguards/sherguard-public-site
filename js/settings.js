@@ -83,25 +83,37 @@
   
       try {
         var org = await apiGet('/organization/profile');
-  
-        var organizationName =
-  org.organization_name ||
-  org.name ||
-  org.company_name ||
-  'SherGuard Organization';
-
-if (org.organization && typeof org.organization === 'object') {
-  organizationName =
-    org.organization.name ||
-    org.organization.organization_name ||
-    organizationName;
-}
-
-setText('settingsOrganization', organizationName);
-  
-        setText('settingsPlan', org.plan || 'free');
-  
+      
+        var organizationName = 'SherGuard Organization';
+        var planName = 'free';
+      
+        if (org.organization && typeof org.organization === 'object') {
+          organizationName =
+            org.organization.name ||
+            org.organization.organization_name ||
+            organizationName;
+      
+          planName =
+            org.organization.plan ||
+            org.plan ||
+            planName;
+        } else {
+          organizationName =
+            org.organization_name ||
+            org.name ||
+            org.company_name ||
+            organizationName;
+      
+          planName =
+            org.plan ||
+            planName;
+        }
+      
+        setText('settingsOrganization', organizationName);
+        setText('settingsPlan', planName);
+      
       } catch (error) {
+        
         console.error('Settings organization failed:', error);
         setText('settingsOrganization', 'Current Organization');
         setText('settingsPlan', 'free');
