@@ -3320,3 +3320,25 @@ body {
     text-align: left;
   }
 }
+
+.settings-password-form {
+  display: grid;
+  gap: 12px;
+}
+
+.settings-password-form input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #ffffff;
+  outline: none;
+}
+
+.settings-password-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+}
