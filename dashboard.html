@@ -2288,9 +2288,29 @@
         <h5>Change Password</h5>
         <p>Update your password using your current password. This will be enabled after backend password route is added.</p>
 
-        <button id="settingsChangePasswordBtn" class="settings-primary-btn" type="button">
-          Change Password
-        </button>
+        <div class="settings-password-form">
+          <input
+            id="settingsCurrentPassword"
+            type="password"
+            placeholder="Current password"
+          />
+        
+          <input
+            id="settingsNewPassword"
+            type="password"
+            placeholder="New password"
+          />
+        
+          <input
+            id="settingsConfirmPassword"
+            type="password"
+            placeholder="Confirm new password"
+          />
+        
+          <button id="settingsChangePasswordBtn" class="settings-primary-btn" type="button">
+            Change Password
+          </button>
+        </div>
 
         <p id="settingsSecurityMessage" class="settings-message">
           Password security is ready for backend connection.
