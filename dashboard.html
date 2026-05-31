@@ -116,6 +116,16 @@
             </span>
             <span>AI Agent Permissions</span>
           </button>
+
+          <button class="nav-item" type="button" data-scroll-target="settings">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 15.5A3.5 3.5 0 1 0 12 8.5A3.5 3.5 0 0 0 12 15.5Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19.4 15A1.8 1.8 0 0 0 19.8 13L18.7 11.1A1.8 1.8 0 0 1 18.7 9.3L19.8 7.4A1.8 1.8 0 0 0 19.4 5.4L18.6 4.6A1.8 1.8 0 0 0 16.6 4.2L14.7 5.3A1.8 1.8 0 0 1 12.9 5.3L11 4.2A1.8 1.8 0 0 0 9 4.6L8.2 5.4A1.8 1.8 0 0 0 7.8 7.4L8.9 9.3A1.8 1.8 0 0 1 8.9 11.1L7.8 13A1.8 1.8 0 0 0 8.2 15L9 15.8A1.8 1.8 0 0 0 11 16.2L12.9 15.1A1.8 1.8 0 0 1 14.7 15.1L16.6 16.2A1.8 1.8 0 0 0 18.6 15.8L19.4 15Z" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span>Settings</span>
+          </button>
         </nav>
       </div>
     </aside>
@@ -2204,6 +2214,116 @@
   </div>
 </section>
 
+<section id="settings" class="dashboard-section settings-management-card">
+  <div class="section-header">
+    <div>
+      <h3>Settings</h3>
+      <p>Manage your profile, account security, organization details, and session access.</p>
+    </div>
+  </div>
+
+  <div class="settings-grid">
+    <article class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <span class="settings-eyebrow">Profile</span>
+          <h4>Profile Information</h4>
+          <p>Your current SherGuard account details.</p>
+        </div>
+      </div>
+
+      <div class="settings-profile-grid">
+        <div class="settings-profile-row">
+          <span>Full Name</span>
+          <strong id="settingsFullName">Loading...</strong>
+        </div>
+
+        <div class="settings-profile-row">
+          <span>Email Address</span>
+          <strong id="settingsEmail">Loading...</strong>
+        </div>
+
+        <div class="settings-profile-row">
+          <span>Role</span>
+          <strong id="settingsRole">Loading...</strong>
+        </div>
+
+        <div class="settings-profile-row">
+          <span>Organization</span>
+          <strong id="settingsOrganization">Loading...</strong>
+        </div>
+
+        <div class="settings-profile-row">
+          <span>Current Plan</span>
+          <strong id="settingsPlan">Loading...</strong>
+        </div>
+
+        <div class="settings-profile-row">
+          <span>Account Status</span>
+          <strong id="settingsAccountStatus">Loading...</strong>
+        </div>
+
+        <div class="settings-profile-row">
+          <span>Email Verification</span>
+          <strong id="settingsEmailVerified">Loading...</strong>
+        </div>
+
+        <div class="settings-profile-row">
+          <span>Member Since</span>
+          <strong id="settingsMemberSince">Loading...</strong>
+        </div>
+      </div>
+    </article>
+
+    <article class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <span class="settings-eyebrow">Security</span>
+          <h4>Password & Account Security</h4>
+          <p>Password change will be connected in the next safe backend phase.</p>
+        </div>
+      </div>
+
+      <div class="settings-action-panel">
+        <h5>Change Password</h5>
+        <p>Update your password using your current password. This will be enabled after backend password route is added.</p>
+
+        <button id="settingsChangePasswordBtn" class="settings-primary-btn" type="button">
+          Change Password
+        </button>
+
+        <p id="settingsSecurityMessage" class="settings-message">
+          Password security is ready for backend connection.
+        </p>
+      </div>
+    </article>
+
+    <article class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <span class="settings-eyebrow">Sessions</span>
+          <h4>Session Security</h4>
+          <p>Review active login sessions and force logout risky sessions.</p>
+        </div>
+      </div>
+
+      <div class="settings-action-panel">
+        <button id="settingsViewSessionsBtn" class="settings-secondary-btn" type="button">
+          View Active Sessions
+        </button>
+
+        <button id="settingsForceLogoutBtn" class="settings-danger-btn" type="button">
+          Force Logout All Sessions
+        </button>
+
+        <p id="settingsSessionMessage" class="settings-message">
+          Session controls use the existing Team Management session system.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <script src="auth-guard.js"></script>
 <script src="backend-api.js"></script>
   <script src="main.js"></script>
@@ -2216,6 +2336,7 @@
   <script src="ai-agent-permissions.js"></script>
   <script src="api-keys.js"></script>
   <script src="team-management.js"></script>
+  <script src="settings.js"></script>
 
   <!-- Clear Activity Modal -->
 <div id="clearModal" style="
