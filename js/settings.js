@@ -62,56 +62,55 @@
     }
   
     async function loadProfile() {
-      var user = getLocalUser();
-  
-      try {
-        var me = await apiGet('/auth/me');
-        if (me && me.user) {
-          user = me.user;
-          localStorage.setItem('aiTrustUser', JSON.stringify(user));
-        }
-      } catch (error) {
-        console.error('Settings /auth/me failed:', error);
-      }
-  
-      setText('settingsFullName', user.full_name || user.name || 'SherGuard User');
-      setText('settingsEmail', user.email || 'Unavailable');
-      setText('settingsRole', user.role || 'admin');
-      setText('settingsAccountStatus', user.is_active === false ? 'Disabled' : 'Active');
-      setText('settingsEmailVerified', user.is_verified === false ? 'Not Verified' : 'Verified');
-      setText('settingsMemberSince', user.created_at ? new Date(user.created_at).toLocaleDateString() : '—');
-  
-      try {
-        var org = await apiGet('/organization/profile');
+        var user = getLocalUser();
       
-        var organizationName = 'SherGuard Organization';
-        var planName = 'free';
+        try {
+          var me = await apiGet('/auth/me');
       
-        if (org && org.organization && typeof org.organization === 'object') {
-          organizationName =
-            org.organization.name ||
-            org.organization.organization_name ||
-            organizationName;
-      
-          planName =
-            org.organization.plan ||
-            planName;
+          if (me && me.user) {
+            user = me.user;
+            localStorage.setItem('aiTrustUser', JSON.stringify(user));
+          }
+        } catch (error) {
+          console.error('Settings /auth/me failed:', error);
         }
       
-        setText('settingsOrganization', organizationName);
-        setText('settingsPlan', planName);
+        setText('settingsFullName', user.full_name || user.name || 'SherGuard User');
+        setText('settingsEmail', user.email || 'Unavailable');
+        setText('settingsRole', user.role || 'admin');
+        setText('settingsAccountStatus', user.is_active === false ? 'Disabled' : 'Active');
+        setText('settingsEmailVerified', user.is_verified === false ? 'Not Verified' : 'Verified');
+        setText(
+          'settingsMemberSince',
+          user.created_at ? new Date(user.created_at).toLocaleDateString() : '—'
+        );
       
-      } catch (error) {
-        console.error('Settings organization failed:', error);
-        setText('settingsOrganization', 'Current Organization');
-        setText('settingsPlan', 'free');
+        try {
+          var org = await apiGet('/organization/profile');
+      
+          var organizationName = 'SherGuard Organization';
+          var planName = 'free';
+      
+          if (org && org.organization && typeof org.organization === 'object') {
+            organizationName =
+              org.organization.name ||
+              org.organization.organization_name ||
+              organizationName;
+      
+            planName =
+              org.organization.plan ||
+              planName;
+          }
+      
+          setText('settingsOrganization', organizationName);
+          setText('settingsPlan', planName);
+      
+        } catch (error) {
+          console.error('Settings organization failed:', error);
+          setText('settingsOrganization', 'Current Organization');
+          setText('settingsPlan', 'free');
+        }
       }
-
-        console.error('Settings organization failed:', error);
-        setText('settingsOrganization', 'Current Organization');
-        setText('settingsPlan', 'free');
-      }
-    }
   
     function togglePassword(inputId, btn) {
       var input = document.getElementById(inputId);
