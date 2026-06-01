@@ -464,6 +464,27 @@
       inviteBtn.addEventListener('click', sendInvite);
     }
 
+    const clearAuditLogsBtn = document.getElementById('clearAuditLogsBtn');
+
+if (clearAuditLogsBtn) {
+  clearAuditLogsBtn.addEventListener('click', async function () {
+    if (!confirm('Clear all audit logs? One final clear_audit_logs record will remain.')) return;
+
+    try {
+      const result = await apiFetch('/organization/audit-logs', {
+        method: 'DELETE'
+      });
+
+      alert(result.message || 'Audit logs cleared.');
+      loadAuditLogs();
+
+    } catch (error) {
+      alert('Failed to clear audit logs.');
+      console.error('Clear audit logs failed:', error);
+    }
+  });
+}
+
     const clearInactiveSessionsBtn = document.getElementById('clearInactiveSessionsBtn');
 
     if (clearInactiveSessionsBtn) {
