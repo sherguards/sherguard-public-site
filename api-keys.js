@@ -74,35 +74,69 @@ const revokedKeys = keys.filter(function (key) {
         return key.is_active;
       }).length;
 
+      const apiKeyLimitsByPlan = {
+        free: 1,
+        starter: 3,
+        growth: 10,
+        business: 50,
+        enterprise: 999999
+      };
+
+      let currentPlan = 'free';
+
+      try {
+        const organizationProfile = await aiTrustApiGet('/organization/profile');
+
+        if (
+          organizationProfile &&
+          organizationProfile.organization &&
+          organizationProfile.organization.plan
+        ) {
+          currentPlan = String(
+            organizationProfile.organization.plan || 'free'
+          ).toLowerCase();
+        }
+      } catch (error) {
+        console.error('API key plan lookup failed:', error);
+      }
+
+      const apiKeyLimit =
+        apiKeyLimitsByPlan[currentPlan] || apiKeyLimitsByPlan.free;
+
       if (usageText) {
-        usageText.textContent =
-          activeKeys + ' / 5 active API keys used';
+        if (apiKeyLimit >= 999999) {
+          usageText.textContent =
+            activeKeys + ' / Unlimited active API keys used';
+        } else {
+          usageText.textContent =
+            activeKeys + ' / ' + apiKeyLimit + ' active API keys used';
+        }
       }
 
       const createBtn = document.getElementById('createApiKeyBtn');
 
       if (createBtn) {
         let limitMessage = document.getElementById('apiKeyLimitMessage');
-      
+
         if (!limitMessage) {
           limitMessage = document.createElement('p');
           limitMessage.id = 'apiKeyLimitMessage';
           limitMessage.className = 'api-key-limit-message';
           createBtn.insertAdjacentElement('afterend', limitMessage);
         }
-      
-        if (activeKeys >= 5) {
+
+        if (activeKeys >= apiKeyLimit) {
           createBtn.disabled = true;
           createBtn.textContent = 'Limit Reached';
-      
+
           limitMessage.textContent =
-            'API key limit reached. Upgrade your plan to create more API keys.';
-      
+            'API key limit reached for your current plan. Upgrade your plan to create more API keys.';
+
           limitMessage.classList.remove('hidden');
         } else {
           createBtn.disabled = false;
           createBtn.textContent = 'Create API Key';
-      
+
           limitMessage.textContent = '';
           limitMessage.classList.add('hidden');
         }
