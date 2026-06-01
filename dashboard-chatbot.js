@@ -2,6 +2,17 @@
     'use strict';
   
     var welcomeTimer = null;
+    var buttonTextTimer = null;
+
+var buttonMessages = [
+  'Need Help?',
+  'Ask About API Keys',
+  'Dashboard Help',
+  'Risk Score Help',
+  'Contact Support'
+];
+
+var currentButtonMessageIndex = 0;
   
     var helpEmail = 'support@sherguard.com';
     var securityEmail = 'security@sherguard.com';
@@ -496,6 +507,30 @@
         button.style.display = 'inline-block';
       }
     }
+
+    function updateChatbotButtonText() {
+      var button = document.getElementById('dashboardChatbotButton');
+    
+      if (!button) {
+        return;
+      }
+    
+      button.setAttribute(
+        'data-help-text',
+        buttonMessages[currentButtonMessageIndex]
+      );
+    
+      currentButtonMessageIndex =
+        (currentButtonMessageIndex + 1) % buttonMessages.length;
+    }
+    
+    function startChatbotButtonRotation() {
+      updateChatbotButtonText();
+    
+      buttonTextTimer = setInterval(function () {
+        updateChatbotButtonText();
+      }, 4000);
+    }
   
     function bindEvents() {
       document.getElementById('dashboardChatbotButton')
@@ -536,6 +571,7 @@
       );
   
       hideWelcomeAfterDelay();
+      startChatbotButtonRotation();
     }
   
     if (document.readyState === 'loading') {
