@@ -4,12 +4,69 @@
   const API_BASE_URL =
     'https://sherguard-api.onrender.com';
 
+  const IDLE_TIMEOUT_MS =
+    30 * 60 * 1000;
+
+  let idleTimer = null;
+
   const token =
     localStorage.getItem('aiTrustToken');
 
   if (!token) {
     window.location.href = 'login.html';
     return;
+  }
+
+  function clearAuthAndRedirect(reason) {
+    localStorage.removeItem(
+      'aiTrustToken'
+    );
+
+    localStorage.removeItem(
+      'aiTrustUser'
+    );
+
+    if (reason) {
+      sessionStorage.setItem(
+        'sherGuardLogoutReason',
+        reason
+      );
+    }
+
+    window.location.href =
+      'login.html';
+  }
+
+  function resetIdleTimer() {
+    if (idleTimer) {
+      clearTimeout(idleTimer);
+    }
+
+    idleTimer = setTimeout(function () {
+      clearAuthAndRedirect(
+        'Your session was logged out after 30 minutes of inactivity.'
+      );
+    }, IDLE_TIMEOUT_MS);
+  }
+
+  function bindIdleEvents() {
+    [
+      'click',
+      'mousemove',
+      'keydown',
+      'scroll',
+      'touchstart'
+    ].forEach(function (eventName) {
+      window.addEventListener(
+        eventName,
+        resetIdleTimer,
+        {
+          passive: true
+        }
+      );
+    });
+
+    resetIdleTimer();
   }
 
   async function validateSession() {
@@ -42,16 +99,9 @@
       applyModuleVisibility(user);
 
     } catch (error) {
-      localStorage.removeItem(
-        'aiTrustToken'
+      clearAuthAndRedirect(
+        'Your session expired. Please log in again.'
       );
-
-      localStorage.removeItem(
-        'aiTrustUser'
-      );
-
-      window.location.href =
-        'login.html';
     }
   }
 
@@ -107,5 +157,6 @@
     });
   }
 
+  bindIdleEvents();
   validateSession();
 })();
