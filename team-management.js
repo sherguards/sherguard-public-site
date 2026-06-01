@@ -234,14 +234,19 @@
             <td><span class="team-status-badge pending">${invite.status}</span></td>
             <td>${invite.invited_by_email || 'Unknown'}</td>
             <td>
-              <button
-                class="team-action-btn danger team-cancel-invite-btn"
-                data-invite-id="${invite.id}"
-                ${canCancel ? '' : 'disabled'}
-              >
-                Cancel
-              </button>
-            </td>
+  ${
+    canCancel
+      ? `
+        <button
+          class="team-action-btn danger team-cancel-invite-btn"
+          data-invite-id="${invite.id}"
+        >
+          Cancel
+        </button>
+      `
+      : '<span class="team-muted-action">No action</span>'
+  }
+</td>
           </tr>
         `;
       }).join('');
