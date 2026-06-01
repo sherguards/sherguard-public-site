@@ -237,8 +237,9 @@
   }
 
   .dashboard-chatbot-button::after {
-    content: "Need Help?";
+    content: attr(data-help-text);
     white-space: nowrap;
+    transition: opacity 0.25s ease;
   }
   
   @keyframes chatbotPulse {
