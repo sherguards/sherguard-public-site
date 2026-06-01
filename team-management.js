@@ -206,10 +206,41 @@
     }
   }
 
+  function ensureClearCancelledInvitesButton() {
+    const invitationsBlock =
+      document.getElementById('teamInvitationsTableBody')
+        ?.closest('.team-invitations-block');
+  
+    if (!invitationsBlock || document.getElementById('clearCancelledInvitesBtn')) {
+      return;
+    }
+  
+    const title = invitationsBlock.querySelector('h4');
+  
+    if (!title) {
+      return;
+    }
+  
+    const header = document.createElement('div');
+    header.className = 'team-session-header';
+  
+    title.parentNode.insertBefore(header, title);
+    header.appendChild(title);
+  
+    const button = document.createElement('button');
+    button.id = 'clearCancelledInvitesBtn';
+    button.className = 'team-action-btn warning';
+    button.type = 'button';
+    button.textContent = 'Clear Cancelled Invitations';
+  
+    header.appendChild(button);
+  }
+
   async function loadTeamInvitations() {
     const body = document.getElementById('teamInvitationsTableBody');
 
     if (!body) return;
+    ensureClearCancelledInvitesButton();
 
     try {
       const data = await aiTrustApiGet('/team-invitations');
@@ -560,6 +591,20 @@ if (clearAuditLogsBtn) {
         loadTeamMembers();
         return;
       }
+
+      const clearCancelledInvitesBtn = event.target.closest('#clearCancelledInvitesBtn');
+
+if (clearCancelledInvitesBtn) {
+  if (!confirm('Clear all cancelled invitations?')) return;
+
+  const result = await apiFetch('/team-invitations/cancelled', {
+    method: 'DELETE'
+  });
+
+  alert(result.message || 'Cancelled invitations cleared.');
+  loadTeamInvitations();
+  return;
+}
 
       const cancelInviteBtn = event.target.closest('.team-cancel-invite-btn');
 
