@@ -1,2 +1,0 @@
-const PADDLE_CLIENT_TOKEN = "live_4dfc1e701c40bbbb3335d2107a7
-";
