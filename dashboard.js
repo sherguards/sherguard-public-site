@@ -1,5 +1,7 @@
 (function () {
   'use strict';
+  let riskDistributionChart = null;
+  let moduleActivityChart = null;
 
   function getData(key) {
     try {
@@ -1141,6 +1143,124 @@ if (data.security_status === 'Critical') {
     }
   }
 
+  function renderAnalyticsCharts(stats, records) {
+
+    const riskCanvas =
+      document.getElementById(
+        'riskDistributionChart'
+      );
+  
+    const moduleCanvas =
+      document.getElementById(
+        'moduleActivityChart'
+      );
+  
+    if (
+      !riskCanvas ||
+      !moduleCanvas ||
+      typeof Chart === 'undefined'
+    ) {
+      return;
+    }
+  
+    if (riskDistributionChart) {
+      riskDistributionChart.destroy();
+    }
+  
+    riskDistributionChart =
+      new Chart(riskCanvas, {
+        type: 'doughnut',
+        data: {
+          labels: [
+            'High Risk',
+            'Medium Risk',
+            'Low Risk'
+          ],
+          datasets: [{
+            data: [
+              stats.high,
+              stats.medium,
+              stats.low
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+  
+    const moduleCounts = {
+      Email: 0,
+      Device: 0,
+      Bot: 0,
+      API: 0,
+      Payment: 0
+    };
+  
+    records.forEach(function(record) {
+  
+      const module =
+        String(
+          record.moduleName || ''
+        ).toLowerCase();
+  
+      if (module.includes('email')) {
+        moduleCounts.Email++;
+      }
+  
+      else if (module.includes('device')) {
+        moduleCounts.Device++;
+      }
+  
+      else if (module.includes('bot')) {
+        moduleCounts.Bot++;
+      }
+  
+      else if (module.includes('api')) {
+        moduleCounts.API++;
+      }
+  
+      else if (module.includes('payment')) {
+        moduleCounts.Payment++;
+      }
+  
+    });
+  
+    if (moduleActivityChart) {
+      moduleActivityChart.destroy();
+    }
+  
+    moduleActivityChart =
+      new Chart(moduleCanvas, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Email',
+            'Device',
+            'Bot',
+            'API',
+            'Payment'
+          ],
+          datasets: [{
+            label: 'Events',
+            data: [
+              moduleCounts.Email,
+              moduleCounts.Device,
+              moduleCounts.Bot,
+              moduleCounts.API,
+              moduleCounts.Payment
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+  
+  }
+
   async function runDashboard() {
     const previousStats = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsPrevStats')) || 'null');
     const analyticsSummary = await fetchAnalyticsSummary();
@@ -1307,6 +1427,10 @@ if (data.security_status === 'Critical') {
     updateConnectedModules();
     updateThreatTicker(records, stats);
     updateDashboardTimeline(records);
+    renderAnalyticsCharts(
+      stats,
+      records
+    );
     updateTotalChecksLastEventTime(records);
     triggerTotalChecksPulse(stats.total);
 
