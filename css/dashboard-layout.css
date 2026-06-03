@@ -3378,3 +3378,12 @@ body {
 .enterprise-chart-card canvas {
   display: block;
 }
+
+#riskTrendChart {
+  width: 100% !important;
+  height: 240px !important;
+}
+
+.enterprise-chart-wide {
+  grid-column: 1 / -1;
+}
