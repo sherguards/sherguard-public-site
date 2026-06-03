@@ -1300,50 +1300,53 @@ if (data.security_status === 'Critical') {
       return;
     }
   
-    const latestRecords = records.slice(-30);
+    const latestRecords =
+      records
+        .slice()
+        .sort(function(a, b) {
+          return new Date(a.timestamp || 0) - new Date(b.timestamp || 0);
+        })
+        .slice(-12);
   
     const labels = [];
     const highData = [];
     const mediumData = [];
     const lowData = [];
   
-    for (let i = 0; i < latestRecords.length; i += 5) {
+    let highTotal = 0;
+    let mediumTotal = 0;
+    let lowTotal = 0;
   
-      const bucket =
-        latestRecords.slice(i, i + 5);
+    latestRecords.forEach(function(record) {
   
-      let high = 0;
-      let medium = 0;
-      let low = 0;
+      const timeLabel =
+        record.timestamp
+          ? new Date(record.timestamp).toLocaleTimeString()
+          : 'Event';
   
-      bucket.forEach(function(record) {
+      labels.push(timeLabel);
   
-        const risk =
-          String(
-            record.riskLabel ||
-            record.riskLevel ||
-            ''
-          ).toLowerCase();
+      const risk =
+        String(
+          record.riskLabel ||
+          record.riskLevel ||
+          record.risk_level ||
+          ''
+        ).toLowerCase();
   
-        if (risk.includes('high')) {
-          high++;
-        } else if (risk.includes('medium')) {
-          medium++;
-        } else {
-          low++;
-        }
+      if (risk.includes('high')) {
+        highTotal++;
+      } else if (risk.includes('medium')) {
+        mediumTotal++;
+      } else {
+        lowTotal++;
+      }
   
-      });
+      highData.push(highTotal);
+      mediumData.push(mediumTotal);
+      lowData.push(lowTotal);
   
-      labels.push(
-        'Group ' +
-        (labels.length + 1)
-      );
-  
-      highData.push(high);
-      mediumData.push(medium);
-      lowData.push(low);
-    }
+    });
   
     if (!riskTrendChart) {
   
