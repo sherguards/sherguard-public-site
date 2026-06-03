@@ -3368,3 +3368,13 @@ body {
   font-weight: 900;
   cursor: pointer;
 }
+
+#riskDistributionChart,
+#moduleActivityChart {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+.enterprise-chart-card canvas {
+  display: block;
+}
