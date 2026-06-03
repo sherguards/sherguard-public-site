@@ -1217,7 +1217,18 @@ if (data.security_status === 'Critical') {
                 stats.high,
                 stats.medium,
                 stats.low
-              ]
+              ],
+              backgroundColor: [
+                '#dc2626',
+                '#d97706',
+                '#16a34a'
+              ],
+              borderColor: [
+                '#dc2626',
+                '#d97706',
+                '#16a34a'
+              ],
+              borderWidth: 2
             }]
           },
           options: {
