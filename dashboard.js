@@ -2,6 +2,7 @@
   'use strict';
   let riskDistributionChart = null;
   let moduleActivityChart = null;
+  let riskTrendChart = null;
 
   function getData(key) {
     try {
@@ -1261,6 +1262,108 @@ if (data.security_status === 'Critical') {
   
   }
 
+  function renderRiskTrendChart(records) {
+
+    const canvas =
+      document.getElementById(
+        'riskTrendChart'
+      );
+  
+    if (
+      !canvas ||
+      typeof Chart === 'undefined'
+    ) {
+      return;
+    }
+  
+    const latestRecords =
+      records
+        .slice(-20);
+  
+    const labels = [];
+  
+    const highData = [];
+    const mediumData = [];
+    const lowData = [];
+  
+    latestRecords.forEach(function(record) {
+  
+      labels.push(
+        new Date(
+          record.timestamp ||
+          Date.now()
+        ).toLocaleTimeString()
+      );
+  
+      const risk =
+        String(
+          record.riskLabel ||
+          record.riskLevel ||
+          ''
+        ).toLowerCase();
+  
+      highData.push(
+        risk.includes('high')
+          ? 1
+          : 0
+      );
+  
+      mediumData.push(
+        risk.includes('medium')
+          ? 1
+          : 0
+      );
+  
+      lowData.push(
+        risk.includes('low')
+          ? 1
+          : 0
+      );
+  
+    });
+  
+    if (riskTrendChart) {
+      riskTrendChart.destroy();
+    }
+  
+    riskTrendChart =
+      new Chart(canvas, {
+        type: 'line',
+  
+        data: {
+          labels: labels,
+  
+          datasets: [
+  
+            {
+              label: 'High Risk',
+              data: highData,
+              tension: 0.35
+            },
+  
+            {
+              label: 'Medium Risk',
+              data: mediumData,
+              tension: 0.35
+            },
+  
+            {
+              label: 'Low Risk',
+              data: lowData,
+              tension: 0.35
+            }
+  
+          ]
+        },
+  
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+  
+  }
+
   async function runDashboard() {
     const previousStats = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsPrevStats')) || 'null');
     const analyticsSummary = await fetchAnalyticsSummary();
@@ -1431,6 +1534,11 @@ if (data.security_status === 'Critical') {
       stats,
       records
     );
+
+    renderRiskTrendChart(
+      records
+    );
+    
     updateTotalChecksLastEventTime(records);
     triggerTotalChecksPulse(stats.total);
 
