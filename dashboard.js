@@ -1262,15 +1262,30 @@ if (data.security_status === 'Critical') {
               'Payment'
             ],
             datasets: [{
-              label: 'Events',
-              data: [
-                moduleCounts.Email,
-                moduleCounts.Device,
-                moduleCounts.Bot,
-                moduleCounts.API,
-                moduleCounts.Payment
-              ]
-            }]
+  label: 'Events',
+  data: [
+    moduleCounts.Email,
+    moduleCounts.Device,
+    moduleCounts.Bot,
+    moduleCounts.API,
+    moduleCounts.Payment
+  ],
+  backgroundColor: [
+    '#2563eb',
+    '#16a34a',
+    '#dc2626',
+    '#d97706',
+    '#7c3aed'
+  ],
+  borderColor: [
+    '#1d4ed8',
+    '#15803d',
+    '#b91c1c',
+    '#b45309',
+    '#6d28d9'
+  ],
+  borderWidth: 1
+}]
           },
           options: {
             responsive: true,
