@@ -1164,33 +1164,6 @@ if (data.security_status === 'Critical') {
       return;
     }
   
-    if (riskDistributionChart) {
-      riskDistributionChart.destroy();
-    }
-  
-    riskDistributionChart =
-      new Chart(riskCanvas, {
-        type: 'doughnut',
-        data: {
-          labels: [
-            'High Risk',
-            'Medium Risk',
-            'Low Risk'
-          ],
-          datasets: [{
-            data: [
-              stats.high,
-              stats.medium,
-              stats.low
-            ]
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      });
-  
     const moduleCounts = {
       Email: 0,
       Device: 0,
@@ -1228,139 +1201,84 @@ if (data.security_status === 'Critical') {
   
     });
   
-    if (moduleActivityChart) {
-      moduleActivityChart.destroy();
+    if (!riskDistributionChart) {
+  
+      riskDistributionChart =
+        new Chart(riskCanvas, {
+          type: 'doughnut',
+          data: {
+            labels: [
+              'High Risk',
+              'Medium Risk',
+              'Low Risk'
+            ],
+            datasets: [{
+              data: [
+                stats.high,
+                stats.medium,
+                stats.low
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false
+          }
+        });
+  
+    } else {
+  
+      riskDistributionChart.data.datasets[0].data = [
+        stats.high,
+        stats.medium,
+        stats.low
+      ];
+  
+      riskDistributionChart.update('none');
     }
   
-    moduleActivityChart =
-      new Chart(moduleCanvas, {
-        type: 'bar',
-        data: {
-          labels: [
-            'Email',
-            'Device',
-            'Bot',
-            'API',
-            'Payment'
-          ],
-          datasets: [{
-            label: 'Events',
-            data: [
-              moduleCounts.Email,
-              moduleCounts.Device,
-              moduleCounts.Bot,
-              moduleCounts.API,
-              moduleCounts.Payment
-            ]
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      });
+    if (!moduleActivityChart) {
   
-  }
-
-  function renderRiskTrendChart(records) {
-
-    const canvas =
-      document.getElementById(
-        'riskTrendChart'
-      );
+      moduleActivityChart =
+        new Chart(moduleCanvas, {
+          type: 'bar',
+          data: {
+            labels: [
+              'Email',
+              'Device',
+              'Bot',
+              'API',
+              'Payment'
+            ],
+            datasets: [{
+              label: 'Events',
+              data: [
+                moduleCounts.Email,
+                moduleCounts.Device,
+                moduleCounts.Bot,
+                moduleCounts.API,
+                moduleCounts.Payment
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false
+          }
+        });
   
-    if (
-      !canvas ||
-      typeof Chart === 'undefined'
-    ) {
-      return;
+    } else {
+  
+      moduleActivityChart.data.datasets[0].data = [
+        moduleCounts.Email,
+        moduleCounts.Device,
+        moduleCounts.Bot,
+        moduleCounts.API,
+        moduleCounts.Payment
+      ];
+  
+      moduleActivityChart.update('none');
     }
-  
-    const latestRecords =
-      records
-        .slice(-20);
-  
-    const labels = [];
-  
-    const highData = [];
-    const mediumData = [];
-    const lowData = [];
-  
-    latestRecords.forEach(function(record) {
-  
-      labels.push(
-        new Date(
-          record.timestamp ||
-          Date.now()
-        ).toLocaleTimeString()
-      );
-  
-      const risk =
-        String(
-          record.riskLabel ||
-          record.riskLevel ||
-          ''
-        ).toLowerCase();
-  
-      highData.push(
-        risk.includes('high')
-          ? 1
-          : 0
-      );
-  
-      mediumData.push(
-        risk.includes('medium')
-          ? 1
-          : 0
-      );
-  
-      lowData.push(
-        risk.includes('low')
-          ? 1
-          : 0
-      );
-  
-    });
-  
-    if (riskTrendChart) {
-      riskTrendChart.destroy();
-    }
-  
-    riskTrendChart =
-      new Chart(canvas, {
-        type: 'line',
-  
-        data: {
-          labels: labels,
-  
-          datasets: [
-  
-            {
-              label: 'High Risk',
-              data: highData,
-              tension: 0.35
-            },
-  
-            {
-              label: 'Medium Risk',
-              data: mediumData,
-              tension: 0.35
-            },
-  
-            {
-              label: 'Low Risk',
-              data: lowData,
-              tension: 0.35
-            }
-  
-          ]
-        },
-  
-        options: {
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      });
   
   }
 
