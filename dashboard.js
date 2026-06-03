@@ -1282,6 +1282,111 @@ if (data.security_status === 'Critical') {
   
   }
 
+  function renderRiskTrendChart(records) {
+
+    const canvas =
+      document.getElementById(
+        'riskTrendChart'
+      );
+  
+    if (
+      !canvas ||
+      typeof Chart === 'undefined'
+    ) {
+      return;
+    }
+  
+    if (!records || records.length === 0) {
+      return;
+    }
+  
+    const latestRecords = records.slice(-30);
+  
+    const labels = [];
+    const highData = [];
+    const mediumData = [];
+    const lowData = [];
+  
+    for (let i = 0; i < latestRecords.length; i += 5) {
+  
+      const bucket =
+        latestRecords.slice(i, i + 5);
+  
+      let high = 0;
+      let medium = 0;
+      let low = 0;
+  
+      bucket.forEach(function(record) {
+  
+        const risk =
+          String(
+            record.riskLabel ||
+            record.riskLevel ||
+            ''
+          ).toLowerCase();
+  
+        if (risk.includes('high')) {
+          high++;
+        } else if (risk.includes('medium')) {
+          medium++;
+        } else {
+          low++;
+        }
+  
+      });
+  
+      labels.push(
+        'Group ' +
+        (labels.length + 1)
+      );
+  
+      highData.push(high);
+      mediumData.push(medium);
+      lowData.push(low);
+    }
+  
+    if (!riskTrendChart) {
+  
+      riskTrendChart =
+        new Chart(canvas, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'High Risk',
+                data: highData,
+                tension: 0.35
+              },
+              {
+                label: 'Medium Risk',
+                data: mediumData,
+                tension: 0.35
+              },
+              {
+                label: 'Low Risk',
+                data: lowData,
+                tension: 0.35
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false
+          }
+        });
+  
+      return;
+    }
+  
+    riskTrendChart.data.labels = labels;
+    riskTrendChart.data.datasets[0].data = highData;
+    riskTrendChart.data.datasets[1].data = mediumData;
+    riskTrendChart.data.datasets[2].data = lowData;
+  
+    riskTrendChart.update('none');
+  }
+
   async function runDashboard() {
     const previousStats = JSON.parse(localStorage.getItem(aiTrustScopedKey('aiTrustOsPrevStats')) || 'null');
     const analyticsSummary = await fetchAnalyticsSummary();
