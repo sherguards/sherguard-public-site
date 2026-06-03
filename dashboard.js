@@ -1538,7 +1538,7 @@ if (data.security_status === 'Critical') {
     renderRiskTrendChart(
       records
     );
-    
+
     updateTotalChecksLastEventTime(records);
     triggerTotalChecksPulse(stats.total);
 
@@ -1614,7 +1614,14 @@ window.addEventListener('aiTrustOsActivityUpdated', function () {
   runDashboard();
 });
 
-  setInterval(runDashboard, 3000);
+  setInterval(function () {
+  const scrollX = window.scrollX;
+  const scrollY = window.scrollY;
+
+  runDashboard().then(function () {
+    window.scrollTo(scrollX, scrollY);
+  });
+}, 30000);
   setInterval(function () {
     updateTotalChecksLastEventTime(window.latestDashboardRecords || []);
 }, 1000);
@@ -1679,5 +1686,5 @@ fetchSecurityCenter();
 
 setInterval(function () {
   fetchSecurityCenter();
-}, 5000);
+}, 30000);
 })();
