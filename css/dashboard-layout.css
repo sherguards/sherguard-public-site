@@ -3387,3 +3387,19 @@ body {
 .enterprise-chart-wide {
   grid-column: 1 / -1;
 }
+
+#riskDistributionChart,
+#moduleActivityChart,
+#riskTrendChart {
+  width: 100% !important;
+  height: 220px !important;
+  max-height: 220px !important;
+}
+
+.enterprise-chart-card {
+  min-height: 300px !important;
+}
+
+.enterprise-chart-wide {
+  min-height: 320px !important;
+}
