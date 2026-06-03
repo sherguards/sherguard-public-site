@@ -275,6 +275,28 @@
           </div>
       
         </div>
+
+        <div class="enterprise-chart-grid">
+
+          <div class="enterprise-chart-card">
+            <div class="enterprise-chart-header">
+              <h4>Risk Distribution</h4>
+              <span>High / Medium / Low Risk Events</span>
+            </div>
+        
+            <canvas id="riskDistributionChart"></canvas>
+          </div>
+        
+          <div class="enterprise-chart-card">
+            <div class="enterprise-chart-header">
+              <h4>Module Activity</h4>
+              <span>Email, Device, Bot, API, Payment</span>
+            </div>
+        
+            <canvas id="moduleActivityChart"></canvas>
+          </div>
+        
+        </div>
       </section>
 
       <section class="dashboard-section api-key-management-card">
@@ -2350,6 +2372,7 @@
   </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="auth-guard.js"></script>
 <script src="backend-api.js"></script>
   <script src="main.js"></script>
