@@ -3369,37 +3369,33 @@ body {
   cursor: pointer;
 }
 
-#riskDistributionChart,
-#moduleActivityChart {
-  width: 100% !important;
-  height: 300px !important;
-}
+/* ===== FINAL CHART SIZE FIX ===== */
 
-.enterprise-chart-card canvas {
-  display: block;
-}
-
-#riskTrendChart {
-  width: 100% !important;
-  height: 240px !important;
+.enterprise-chart-card {
+  height: 360px !important;
+  min-height: 360px !important;
+  max-height: 360px !important;
+  overflow: hidden !important;
 }
 
 .enterprise-chart-wide {
-  grid-column: 1 / -1;
+  grid-column: 1 / -1 !important;
+  height: 360px !important;
+  min-height: 360px !important;
+  max-height: 360px !important;
+}
+
+.enterprise-chart-card canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 240px !important;
+  max-height: 240px !important;
 }
 
 #riskDistributionChart,
 #moduleActivityChart,
 #riskTrendChart {
   width: 100% !important;
-  height: 220px !important;
-  max-height: 220px !important;
-}
-
-.enterprise-chart-card {
-  min-height: 300px !important;
-}
-
-.enterprise-chart-wide {
-  min-height: 320px !important;
+  height: 240px !important;
+  max-height: 240px !important;
 }
