@@ -1359,17 +1359,29 @@ if (data.security_status === 'Critical') {
               {
                 label: 'High Risk',
                 data: highData,
-                tension: 0.35
+                tension: 0.35,
+                borderColor: '#dc2626',
+                backgroundColor: 'rgba(220, 38, 38, 0.14)',
+                pointBorderColor: '#dc2626',
+                pointBackgroundColor: '#ffffff'
               },
               {
                 label: 'Medium Risk',
                 data: mediumData,
-                tension: 0.35
+                tension: 0.35,
+                borderColor: '#d97706',
+                backgroundColor: 'rgba(217, 119, 6, 0.14)',
+                pointBorderColor: '#d97706',
+                pointBackgroundColor: '#ffffff'
               },
               {
                 label: 'Low Risk',
                 data: lowData,
-                tension: 0.35
+                tension: 0.35,
+                borderColor: '#16a34a',
+                backgroundColor: 'rgba(22, 163, 74, 0.14)',
+                pointBorderColor: '#16a34a',
+                pointBackgroundColor: '#ffffff'
               }
             ]
           },
