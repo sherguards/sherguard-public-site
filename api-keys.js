@@ -249,7 +249,7 @@
 
     const name = input && input.value
       ? input.value.trim()
-      : 'Default API Key';
+      : 'Primary API Key';
 
     if (name.length < 2) {
       alert('API key name must be at least 2 characters.');
