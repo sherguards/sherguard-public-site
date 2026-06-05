@@ -83,5 +83,10 @@
   <loc>https://sherguard.com/blog/blog-fake-signup-detection.html</loc>
 </url>
 
+<!-- sitemap.xml URL block -->
+<url>
+  <loc>https://sherguard.com/blog/blog-account-takeover-prevention.html</loc>
+</url>
+
 
 </urlset>

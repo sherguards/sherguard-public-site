@@ -1,0 +1,788 @@
+<!-- /blog/blog-account-takeover-prevention.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Takeover Prevention: How to Stop Credential Stuffing and Session Hijacking - SherGuard</title>
+  <meta
+    name="description"
+    content="Learn how account takeover prevention works using phishing-resistant authentication, device trust, session monitoring, recovery hardening, and real-time risk signals."
+  />
+  <link rel="canonical" href="https://sherguard.com/blog/blog-account-takeover-prevention.html" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta property="og:url" content="https://sherguard.com/blog/blog-account-takeover-prevention.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Account Takeover Prevention: How to Stop Credential Stuffing and Session Hijacking" />
+  <meta
+    property="og:description"
+    content="An enterprise guide to account takeover prevention, login anomaly detection, risk-based authentication, session protection, and recovery abuse prevention."
+  />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/public-pages.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body class="public-page">
+  <header class="public-header">
+    <a href="../index.html" class="public-logo">
+      <span class="public-logo-icon">▣</span>
+      <span>
+        <strong>SherGuard</strong>
+        <small>Trust Intelligence Platform</small>
+      </span>
+    </a>
+
+    <nav class="public-nav">
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../register.html" class="public-nav-cta">Start Free</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="public-pricing-hero">
+      <span class="public-eyebrow">Identity Security Guide</span>
+      <h1>Account Takeover Prevention: How to Stop Credential Stuffing and Session Hijacking</h1>
+      <p>
+        Account takeover prevention protects customer and employee accounts from
+        credential stuffing, password spraying, phishing, session hijacking,
+        recovery abuse, and other identity attacks that turn trusted accounts
+        into fraud infrastructure.
+      </p>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Introduction</span>
+        <h2>Account takeover is one of the fastest ways attackers monetize trust</h2>
+        <p>
+          Account takeover, often shortened to ATO, happens when an attacker
+          gains control of a legitimate user account and uses that account to
+          access data, transfer value, abuse permissions, or pivot deeper into
+          the environment. This makes ATO especially dangerous because the
+          attacker does not need to look suspicious after compromise. They are
+          operating with the victim’s identity.
+        </p>
+        <p>
+          For consumer platforms, that can mean stolen balances, fraudulent
+          orders, malicious payouts, loyalty theft, fake purchases, reputation
+          damage, and a surge in support costs. For SaaS companies and
+          enterprise platforms, it can mean exposed customer data, tenant-wide
+          compromise, privileged configuration changes, malicious API access,
+          and large-scale abuse launched from trusted workspaces.
+        </p>
+        <p>
+          Modern ATO defenses are no longer limited to passwords and lockouts.
+          They involve phishing-resistant authentication, device and session
+          trust, adaptive step-up, recovery flow hardening, anomaly detection,
+          and strong linkage between login risk and business actions. They also
+          connect directly to
+          <a href="/blog/blog-online-fraud-detection.html">online fraud detection</a>,
+          <a href="/blog/blog-device-risk-intelligence.html">device risk intelligence</a>,
+          and the quality of the original account onboarding process.
+        </p>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Executive summary</h3>
+        <pre><code>1. Account takeover is an identity abuse problem, not only an authentication problem.
+2. Attackers use credential stuffing, phishing, recovery abuse, token theft, and session hijacking.
+3. Password-only defenses are too weak for modern risk environments.
+4. The best programs combine strong authentication with adaptive risk-based controls.
+5. New-device detection, behavioral anomalies, and session risk matter as much as password checks.
+6. Recovery flows, MFA reset flows, and admin actions need the same protection as login pages.
+7. Teams should protect both consumer accounts and internal or privileged accounts differently.
+8. Metrics must include takeover rate, step-up success, recovery abuse, and customer friction.
+9. ATO prevention should be integrated with fraud, support, and incident response workflows.
+10. SherGuard helps unify device, behavior, API, and risk intelligence around suspicious account activity.</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Overview</span>
+        <h2>What modern account takeover prevention looks like</h2>
+        <p>
+          Effective account takeover prevention uses layers. At the credential
+          layer, the goal is to reduce stolen-secret reliance with strong
+          password hygiene, passkeys where possible, and multi-factor
+          authentication. At the access layer, the goal is to identify whether
+          a login or session is consistent with the user’s historical behavior,
+          device, and environment. At the recovery layer, the goal is to stop
+          attackers from bypassing login security by abusing password reset,
+          MFA reset, or support-assisted recovery workflows.
+        </p>
+        <p>
+          Mature enterprise teams also distinguish between authentication
+          success and access trust. A login can technically succeed while still
+          being risky. For example, a correct password entered from a new device
+          on hostile infrastructure immediately followed by payout edits or API
+          key generation should not be treated the same as a normal login from a
+          known device performing routine behavior.
+        </p>
+        <p>
+          This is where adaptive or step-up security becomes critical. Instead
+          of challenging every session, teams challenge only when context
+          changes materially. That reduces customer friction while raising the
+          attacker’s cost. The same philosophy applies to
+          <a href="/blog/blog-fake-signup-detection.html">fake signup detection</a>:
+          low friction for good users, higher scrutiny for weak-trust activity.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Strong Primary Authentication</h3>
+          <p>
+            Reduce reliance on shared secrets with strong password policy,
+            passkeys, secure MFA options, and hardened enrollment practices.
+          </p>
+        </article>
+
+        <article>
+          <h3>Risk-Based Login Decisions</h3>
+          <p>
+            Evaluate device trust, network context, behavioral anomalies,
+            impossible travel, and infrastructure risk before granting access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Session Protection</h3>
+          <p>
+            Monitor post-login actions, session changes, token usage, and
+            privilege escalation to catch attackers after initial access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Recovery Hardening</h3>
+          <p>
+            Protect password reset, email change, MFA reset, and support-led
+            verification paths because attackers frequently abuse them.
+          </p>
+        </article>
+
+        <article>
+          <h3>Privileged Account Controls</h3>
+          <p>
+            Apply stricter authentication, shorter sessions, and stronger review
+            requirements to administrators, finance users, and support staff.
+          </p>
+        </article>
+
+        <article>
+          <h3>Unified Detection</h3>
+          <p>
+            Feed authentication, device, API, payment, and support events into a
+            common risk model for faster decisions and cleaner investigations.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>Why It Matters</span>
+        <h2>Why account takeover is so damaging for digital businesses</h2>
+        <p>
+          ATO is damaging because it weaponizes legitimate accounts. Once the
+          attacker is inside, many legacy controls trust the session by default.
+          That lets the attacker move faster, appear less suspicious, and take
+          advantage of normal entitlements such as saved payment methods,
+          personal data, connected integrations, support identity, or internal
+          permissions.
+        </p>
+        <p>
+          The business cost compounds quickly. Users lose confidence, support
+          queues fill up, recovery becomes manual, and teams may need to revoke
+          sessions or reset large groups of accounts. In B2B SaaS, a single
+          compromised admin account can expose an entire tenant or trigger
+          contractual, legal, and reputational consequences well beyond the
+          initial incident.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Direct Financial Loss</h3>
+          <p>
+            Attackers can use stored value, payment methods, refunds, or payout
+            settings as soon as they control an account.
+          </p>
+        </article>
+
+        <article>
+          <h3>Customer Trust Damage</h3>
+          <p>
+            Users typically blame the platform when their account is hijacked,
+            even if the stolen credentials originated elsewhere.
+          </p>
+        </article>
+
+        <article>
+          <h3>Support Overload</h3>
+          <p>
+            ATO incidents generate password reset tickets, identity disputes,
+            refund requests, and high-touch recovery work that scales poorly.
+          </p>
+        </article>
+
+        <article>
+          <h3>Privilege Escalation</h3>
+          <p>
+            In workspaces or enterprise apps, hijacked accounts can invite new
+            users, change settings, export data, or create persistent access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Abuse of Trusted APIs</h3>
+          <p>
+            Compromised sessions and tokens allow attackers to interact with
+            authenticated APIs while appearing like legitimate users.
+          </p>
+        </article>
+
+        <article>
+          <h3>Investigative Complexity</h3>
+          <p>
+            When an attacker uses a real account, event trails can look normal
+            unless the platform tracks context and decision rationale carefully.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Key Concepts</span>
+        <h2>How attackers take over accounts in real environments</h2>
+        <p>
+          The most common ATO path is credential stuffing, where attackers test
+          breached username and password pairs across many services in the hope
+          that users have reused them. But that is only one path. Attackers also
+          steal sessions through phishing, intercept or social-engineer recovery
+          processes, abuse MFA fatigue, or capture tokens from infected devices
+          and malicious browser extensions.
+        </p>
+        <p>
+          From a defender’s perspective, it helps to think in terms of takeover
+          vectors rather than specific tools. Each vector leaves different
+          traces. Credential stuffing creates volume anomalies and broad account
+          distribution. Phishing often produces known-good credentials from a
+          new or inconsistent environment. Recovery abuse may involve changes to
+          email, phone, or MFA settings before any obvious fraud occurs.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Credential Stuffing</h3>
+          <p>
+            Attackers use breached passwords at scale against login endpoints,
+            APIs, and mobile flows to find accounts with reused credentials.
+          </p>
+        </article>
+
+        <article>
+          <h3>Password Spraying</h3>
+          <p>
+            Low-volume attempts across many accounts with a small set of common
+            passwords can evade simplistic account lockout strategies.
+          </p>
+        </article>
+
+        <article>
+          <h3>Phishing and Real-Time Relay</h3>
+          <p>
+            Users are tricked into approving or revealing authentication secrets
+            that attackers use immediately against the target service.
+          </p>
+        </article>
+
+        <article>
+          <h3>Session Hijacking</h3>
+          <p>
+            Stolen cookies, session tokens, or OAuth artifacts can let an
+            attacker bypass password checks entirely.
+          </p>
+        </article>
+
+        <article>
+          <h3>Recovery Flow Abuse</h3>
+          <p>
+            Password reset, support-assisted identity changes, or MFA reset
+            flows are targeted because they often have weaker controls.
+          </p>
+        </article>
+
+        <article>
+          <h3>Privileged Misuse</h3>
+          <p>
+            Attackers prioritize admin, finance, seller, and team owner accounts
+            because these identities unlock more value with fewer steps.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Implementation Guidance</span>
+        <h2>Design a layered ATO defense stack around identity, context, and recovery</h2>
+        <p>
+          The strongest ATO defenses combine authentication controls and trust
+          intelligence. Authentication proves who the user claims to be.
+          Risk-based context helps determine whether the session still looks
+          trustworthy. That combination is far stronger than either element on
+          its own.
+        </p>
+        <p>
+          A practical defense stack starts with hardening authentication, then
+          adds rate limits and anti-automation around login, then protects the
+          session, and finally secures all escape hatches such as recovery,
+          support changes, and MFA reset. Many breaches occur not because login
+          was weak in isolation, but because one of these adjacent workflows was
+          treated as lower risk.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Passkeys and Strong MFA</h3>
+          <p>
+            Prefer phishing-resistant methods when possible and require stronger
+            factors for privileged or high-risk user populations.
+          </p>
+        </article>
+
+        <article>
+          <h3>Login Throttling</h3>
+          <p>
+            Rate limits, IP analysis, user-level counters, and bot detection
+            reduce the efficiency of automated password attacks.
+          </p>
+        </article>
+
+        <article>
+          <h3>New Device Detection</h3>
+          <p>
+            Treat logins from unseen devices, inconsistent browsers, or hostile
+            infrastructure as candidates for step-up verification.
+          </p>
+        </article>
+
+        <article>
+          <h3>Post-Login Step-Up</h3>
+          <p>
+            Re-authenticate or challenge for sensitive actions such as payout
+            edits, exports, owner changes, and secret generation.
+          </p>
+        </article>
+
+        <article>
+          <h3>Token and Session Controls</h3>
+          <p>
+            Revoke suspicious sessions, shorten lifetimes for high-risk users,
+            bind trust to device context, and watch for abnormal token reuse.
+          </p>
+        </article>
+
+        <article>
+          <h3>Recovery Flow Security</h3>
+          <p>
+            Subject password reset, phone change, email change, and support-led
+            recovery to their own risk evaluation and logging.
+          </p>
+        </article>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>ATO response ladder</h3>
+        <pre><code>known_user + known_device + normal_behavior = allow
+
+known_user + new_device = step_up_authentication
+known_user + malicious_infrastructure = challenge_or_limit
+valid_login + high_risk_action = reauthenticate_before_action
+recovery_request + weak_context = manual_review
+confirmed_takeover = revoke_sessions + rotate_tokens + notify_user + investigate</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Examples and Attack Scenarios</span>
+        <h2>Common account takeover scenarios security teams should model</h2>
+        <p>
+          ATO scenarios differ by business model. In commerce environments,
+          attackers often want wallet access, stored cards, or address changes.
+          In marketplaces, they may want seller payouts or listing control. In
+          SaaS, they often want workspace access, API keys, data exports, or
+          privileged configuration. Modeling these scenarios clearly helps teams
+          protect the most valuable moments rather than focusing only on the
+          login page.
+        </p>
+        <p>
+          The most resilient programs trace how the attacker would move after
+          login. That means protecting not just authentication but also the
+          first sensitive action after authentication. A session that is allowed
+          to log in may still need a stronger check before it changes payout
+          rules, generates secrets, or invites additional administrators.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Consumer Wallet Takeover</h3>
+          <p>
+            Attackers sign in using reused credentials, change addresses, add
+            payment methods, and place orders before the customer notices.
+          </p>
+        </article>
+
+        <article>
+          <h3>Seller Payout Hijack</h3>
+          <p>
+            A compromised seller or creator account is used to change payout
+            details and redirect future funds.
+          </p>
+        </article>
+
+        <article>
+          <h3>Admin Workspace Compromise</h3>
+          <p>
+            An attacker gains access to a SaaS owner account, exports data,
+            changes authentication settings, and creates persistence.
+          </p>
+        </article>
+
+        <article>
+          <h3>MFA Reset Abuse</h3>
+          <p>
+            Attackers authenticate weakly through a reset flow or socially
+            engineer support to remove stronger factors.
+          </p>
+        </article>
+
+        <article>
+          <h3>Session Token Replay</h3>
+          <p>
+            Malware or phishing steals browser tokens so the attacker can reuse
+            a trusted session without re-entering secrets.
+          </p>
+        </article>
+
+        <article>
+          <h3>Dormant Account Revival</h3>
+          <p>
+            Old accounts with stale security settings are taken over quietly and
+            abused because activity remains below normal alert thresholds.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Best Practices</span>
+        <h2>Best practices and metrics for account takeover prevention</h2>
+        <p>
+          Good ATO programs track both security efficacy and customer impact.
+          Security teams want to stop takeovers early, but aggressive friction
+          on every login quickly damages user experience. Measurement is what
+          keeps the program balanced and credible to product, support, and
+          executive stakeholders.
+        </p>
+        <p>
+          ATO metrics should include both upstream and downstream signals:
+          attack volume, step-up rate, compromise confirmation rate, recovery
+          success, false positives, and sensitive action abuse after login. If
+          you measure only failed logins, you will miss cases where attackers
+          log in successfully from suspicious context.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Attack Volume by Vector</h3>
+          <p>
+            Separate credential stuffing, password spraying, recovery abuse,
+            token replay, and phishing-driven attempts when analyzing risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Step-Up Effectiveness</h3>
+          <p>
+            Track how often high-risk logins are challenged and how frequently
+            legitimate versus malicious users complete the challenge.
+          </p>
+        </article>
+
+        <article>
+          <h3>Recovery Abuse Rate</h3>
+          <p>
+            Measure password reset misuse, MFA reset attempts, and support-led
+            identity disputes separately from standard login metrics.
+          </p>
+        </article>
+
+        <article>
+          <h3>Sensitive Action Risk</h3>
+          <p>
+            Watch exports, payout edits, ownership changes, secret generation,
+            and profile changes immediately after risky authentication events.
+          </p>
+        </article>
+
+        <article>
+          <h3>Customer Friction Cost</h3>
+          <p>
+            Monitor challenge abandonment, legitimate lockouts, support contacts,
+            and recovery time so protection does not harm loyal users.
+          </p>
+        </article>
+
+        <article>
+          <h3>Containment Speed</h3>
+          <p>
+            Measure how quickly suspicious sessions are revoked, tokens are
+            rotated, accounts are secured, and users are notified.
+          </p>
+        </article>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>ATO prevention checklist</h3>
+        <pre><code>✓ Prefer strong authentication and phishing-resistant methods where possible
+✓ Apply anti-automation controls to login and recovery pages
+✓ Detect new-device and hostile-infrastructure logins
+✓ Step up before high-risk post-login actions
+✓ Protect password reset and MFA reset like primary login
+✓ Isolate privileged accounts with stronger rules
+✓ Revoke compromised sessions quickly
+✓ Rotate secrets and tokens after confirmed takeover
+✓ Log authentication context and decision rationale
+✓ Train support teams on recovery abuse and social engineering
+✓ Track both compromise rate and friction cost
+✓ Connect takeover events to downstream fraud and API activity</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>SherGuard</span>
+        <h2>How SherGuard helps reduce account takeover risk</h2>
+        <p>
+          SherGuard helps teams detect suspicious account access by connecting
+          login context, device trust, automation signals, API activity, and
+          downstream business actions into one trust workflow. That unified view
+          is valuable because takeover attempts often look benign in one system
+          and suspicious only when events are compared across multiple layers.
+        </p>
+        <p>
+          Teams using SherGuard can connect risky authentication activity to
+          high-value actions and adjacent fraud patterns, including weak-trust
+          onboarding from
+          <a href="/blog/blog-fake-signup-detection.html">fake signups</a>
+          and fraudulent authenticated behavior described in
+          <a href="/blog/blog-online-fraud-detection.html">online fraud detection</a>
+          programs.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Device Risk Intelligence</h3>
+          <p>
+            Identify suspicious devices, inconsistent browsers, automation
+            traces, and abnormal environments during login and session use.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bot Detection Intelligence</h3>
+          <p>
+            Distinguish human login behavior from credential stuffing,
+            scripted attempts, or replay tooling directed at auth endpoints.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Abuse Intelligence</h3>
+          <p>
+            Detect suspicious activity against login APIs, token endpoints,
+            account settings routes, and recovery-related backend services.
+          </p>
+        </article>
+
+        <article>
+          <h3>Adaptive Trust Signals</h3>
+          <p>
+            Use context from device, behavior, and history to support risk-based
+            authentication and post-login step-up decisions.
+          </p>
+        </article>
+
+        <article>
+          <h3>Downstream Action Monitoring</h3>
+          <p>
+            Link risky access attempts to exports, payout changes, secret
+            creation, profile edits, and other takeover monetization steps.
+          </p>
+        </article>
+
+        <article>
+          <h3>Security Center</h3>
+          <p>
+            Centralize suspicious identity events, analyst review, and broader
+            trust telemetry for faster incident response and tuning.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>FAQ</span>
+        <h2>Account Takeover Prevention FAQ</h2>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>What is account takeover?</h3>
+          <p>
+            Account takeover is the unauthorized control of a legitimate user
+            account by an attacker who then abuses that account’s access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Is MFA enough to stop account takeover?</h3>
+          <p>
+            MFA is essential, but strong programs also protect recovery flows,
+            risky sessions, hostile infrastructure, and post-login actions.
+          </p>
+        </article>
+
+        <article>
+          <h3>What causes most ATO attacks?</h3>
+          <p>
+            Common causes include breached credentials, password reuse,
+            phishing, recovery manipulation, automated login attacks, and token
+            theft from compromised environments.
+          </p>
+        </article>
+
+        <article>
+          <h3>Why should recovery flows be protected like login?</h3>
+          <p>
+            Because attackers often bypass strong login defenses by targeting
+            password reset, support verification, or MFA reset workflows.
+          </p>
+        </article>
+
+        <article>
+          <h3>What actions should trigger step-up authentication?</h3>
+          <p>
+            High-risk actions such as payout edits, ownership transfers, exports,
+            API key creation, and security setting changes should be protected.
+          </p>
+        </article>
+
+        <article>
+          <h3>How does SherGuard help prevent ATO?</h3>
+          <p>
+            SherGuard combines device, behavior, API, and trust signals so teams
+            can identify suspicious access and risky post-login activity sooner.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Conclusion</span>
+        <h2>Account takeover prevention depends on strong identity plus contextual trust</h2>
+        <p>
+          Attackers no longer rely on one technique. They combine stolen
+          credentials, phishing, automation, and recovery manipulation to find
+          the weakest point in the identity journey.
+        </p>
+        <p>
+          The most resilient organizations design defenses around the full
+          lifecycle: login, session, recovery, privileged actions, and incident
+          containment. They move beyond static authentication controls and make
+          trust-aware decisions based on real-time context.
+        </p>
+        <p>
+          If your platform holds payments, data, seller permissions, API access,
+          or collaboration rights, account takeover prevention should be treated
+          as a core product and business requirement, not an edge case.
+        </p>
+      </div>
+    </section>
+
+    <section class="public-cta-section">
+      <h2>Reduce account takeover risk with SherGuard.</h2>
+      <p>
+        Connect suspicious login context, device risk, bot signals, API abuse,
+        and post-login behavior into one trust intelligence workflow.
+      </p>
+      <a href="../register.html" class="public-btn public-btn-primary">Start Free</a>
+    </section>
+  </main>
+
+  <footer class="public-footer public-footer-advanced">
+    <div>
+      <strong>SherGuard</strong>
+      <p>Trust intelligence platform by SHER MALIK LLC.</p>
+      <p>Fraud prevention, abuse detection, API protection, and payment risk intelligence for modern businesses.</p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+      <a href="../pricing.html">Pricing</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="../blog.html">Blog</a>
+      <a href="/blog/blog-fake-signup-detection.html">Fake Signup Detection Guide</a>
+      <a href="/blog/blog-device-risk-intelligence.html">Device Risk Intelligence Guide</a>
+      <a href="/blog/blog-bot-traffic-damages-online-businesses.html">Bot Traffic Guide</a>
+      <a href="/blog/blog-api-abuse-detection-best-practices.html">API Abuse Detection Guide</a>
+      <a href="/blog/blog-payment-fraud-prevention-guide.html">Payment Fraud Prevention Guide</a>
+      <a href="/blog/blog-building-a-trust-intelligence-strategy.html">Trust Intelligence Strategy</a>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../login.html">Login</a>
+      <a href="../register.html">Start Free</a>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <a href="../terms.html">Terms</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../refund-policy.html">Refund Policy</a>
+    </div>
+
+    <div class="public-footer-bottom">
+      <span>© 2026 SherGuard. All rights reserved.</span>
+    </div>
+  </footer>
+</body>
+</html>
