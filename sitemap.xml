@@ -93,5 +93,10 @@
   <loc>https://sherguard.com/blog/blog-marketplace-fraud-prevention.html</loc>
 </url>
 
+<!-- sitemap.xml URL block -->
+<url>
+  <loc>https://sherguard.com/blog/blog-online-fraud-detection.html</loc>
+</url>
+
 
 </urlset>

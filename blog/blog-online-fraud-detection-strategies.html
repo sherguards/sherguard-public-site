@@ -1,0 +1,785 @@
+<!-- /blog/blog-online-fraud-detection.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Fraud Detection: How to Build a Real-Time Risk Intelligence Program - SherGuard</title>
+  <meta
+    name="description"
+    content="Learn how online fraud detection works using rules, machine learning, graph signals, real-time scoring, device intelligence, and operational feedback loops."
+  />
+  <link rel="canonical" href="https://sherguard.com/blog/blog-online-fraud-detection.html" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta property="og:url" content="https://sherguard.com/blog/blog-online-fraud-detection.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Online Fraud Detection: How to Build a Real-Time Risk Intelligence Program" />
+  <meta
+    property="og:description"
+    content="An enterprise guide to online fraud detection, risk scoring, rules, models, graph analytics, feature engineering, concept drift, and fraud operations."
+  />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/public-pages.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body class="public-page">
+  <header class="public-header">
+    <a href="../index.html" class="public-logo">
+      <span class="public-logo-icon">▣</span>
+      <span>
+        <strong>SherGuard</strong>
+        <small>Trust Intelligence Platform</small>
+      </span>
+    </a>
+
+    <nav class="public-nav">
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../register.html" class="public-nav-cta">Start Free</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="public-pricing-hero">
+      <span class="public-eyebrow">Risk Intelligence Guide</span>
+      <h1>Online Fraud Detection: How to Build a Real-Time Risk Intelligence Program</h1>
+      <p>
+        Online fraud detection helps digital businesses detect suspicious
+        behavior in real time across signups, logins, sessions, payments,
+        listings, API traffic, account activity, and high-risk business actions.
+      </p>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Introduction</span>
+        <h2>Online fraud detection is a real-time decisioning problem</h2>
+        <p>
+          Fraud is no longer a single event that appears neatly at checkout. It
+          unfolds across the customer journey. A fraudulent session might begin
+          as a weak signup, develop into suspicious browsing, escalate into API
+          abuse, pivot into account compromise, and end in payment loss or trust
+          and safety damage. That means modern fraud detection has to operate as
+          a continuous decisioning system rather than a one-time transaction
+          filter.
+        </p>
+        <p>
+          Enterprise teams face an additional challenge: they must make these
+          decisions quickly. If a model takes too long, the product flow breaks.
+          If a system is too conservative, false positives erode growth. If a
+          system is too permissive, attackers adapt and scale faster than human
+          reviewers can respond. The operating model therefore has to balance
+          precision, recall, explainability, latency, and business impact.
+        </p>
+        <p>
+          This is why leading programs use multiple complementary methods:
+          deterministic rules, behavioral heuristics, device intelligence,
+          statistical anomaly detection, graph relationships, supervised models,
+          and rigorous feedback loops. They also connect
+          <a href="/blog/blog-fake-signup-detection.html">fake signup detection</a>,
+          <a href="/blog/blog-account-takeover-prevention.html">account takeover prevention</a>,
+          and business-specific abuse patterns into one shared risk framework.
+        </p>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Executive summary</h3>
+        <pre><code>1. Online fraud detection should evaluate activity across the full customer lifecycle, not just transactions.
+2. Strong programs combine rules, models, graph linkage, device trust, and behavior analysis.
+3. Real-time decisions require disciplined feature engineering and latency-aware architecture.
+4. Detection quality depends on feedback loops, labeling, analyst workflows, and policy design.
+5. Fraudsters adapt quickly, so concept drift and rule decay must be monitored continuously.
+6. Different business actions deserve different risk thresholds and response playbooks.
+7. Measurement should include fraud capture, false-positive cost, review efficiency, and business outcomes.
+8. Explainability matters because analysts and product teams need to understand why a decision was made.
+9. Online fraud detection is most effective when connected to identity, API, and trust signals.
+10. SherGuard helps unify multi-signal risk intelligence across the customer journey.</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Overview</span>
+        <h2>What a production-grade fraud detection program includes</h2>
+        <p>
+          A real production fraud detection environment is part scoring engine,
+          part telemetry pipeline, part analyst platform, and part business
+          policy layer. It continuously ingests events, computes features,
+          retrieves historical context, evaluates risk, and triggers actions.
+          Those actions may be automated or human-assisted, but they should
+          always map to an explicit risk appetite.
+        </p>
+        <p>
+          Quality comes from combining multiple perspectives. Rules are useful
+          for known bad conditions and fast transparent decisions. Models are
+          useful for complex or nonlinear patterns. Graph analysis is useful for
+          coordinated abuse and linked entities. Behavioral analytics help with
+          subtle automation and session-level anomalies. Manual review remains
+          essential for edge cases and for producing the labels that keep the
+          system learning.
+        </p>
+        <p>
+          The strongest teams design all of these layers together. They do not
+          treat machine learning as a replacement for policy logic or for
+          analyst operations. Instead, they treat the full system as a risk
+          intelligence program that adapts as attack patterns and business
+          conditions change.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Event Ingestion</h3>
+          <p>
+            Collect high-value events from signup, login, session, payment, API,
+            messaging, support, seller, and admin workflows.
+          </p>
+        </article>
+
+        <article>
+          <h3>Feature Computation</h3>
+          <p>
+            Turn raw events into trust signals such as velocity, history,
+            linkage, behavioral patterns, and lifecycle context.
+          </p>
+        </article>
+
+        <article>
+          <h3>Real-Time Scoring</h3>
+          <p>
+            Evaluate events within latency budgets that fit the product flow and
+            still allow strong contextual decisioning.
+          </p>
+        </article>
+
+        <article>
+          <h3>Action Orchestration</h3>
+          <p>
+            Map risk outcomes to allow, challenge, hold, limit, review, or block
+            actions based on business tolerance.
+          </p>
+        </article>
+
+        <article>
+          <h3>Analyst Workflow</h3>
+          <p>
+            Give fraud teams case visibility, linked entities, decision reason
+            codes, and clear investigation context.
+          </p>
+        </article>
+
+        <article>
+          <h3>Feedback and Tuning</h3>
+          <p>
+            Feed confirmed abuse, disputes, support outcomes, and analyst
+            decisions back into rules, features, and models.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>Why It Matters</span>
+        <h2>Why modern online fraud detection must cover more than payment screening</h2>
+        <p>
+          Fraudsters exploit whatever surface is weakest. If payment screening
+          improves, they move earlier into signups, promotions, referrals,
+          sessions, or account compromise. If checkout defenses improve, they
+          pivot to seller onboarding, fake reviews, or authenticated abuse. That
+          means a narrow fraud program creates blind spots that attackers will
+          eventually find.
+        </p>
+        <p>
+          Businesses also need protection because fraud loss is broader than
+          direct theft. Infrastructure waste, support burden, model pollution,
+          promotional leakage, product abuse, and trust erosion all carry real
+          cost. A mature fraud program therefore aims to protect revenue,
+          operating margin, and platform integrity at the same time.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Blended Attack Paths</h3>
+          <p>
+            Attackers often move across identities, sessions, payments, APIs,
+            and review systems rather than using one obvious fraud channel.
+          </p>
+        </article>
+
+        <article>
+          <h3>Speed of Abuse</h3>
+          <p>
+            Fraud campaigns can scale in minutes, making delayed or manual-only
+            detection too slow for many digital businesses.
+          </p>
+        </article>
+
+        <article>
+          <h3>False-Positive Cost</h3>
+          <p>
+            Legitimate users lost to aggressive controls can quietly cost the
+            business as much as visible fraud loss.
+          </p>
+        </article>
+
+        <article>
+          <h3>Operational Complexity</h3>
+          <p>
+            Fraud data lives across many systems, so fragmented tooling leads to
+            slow investigations and inconsistent response logic.
+          </p>
+        </article>
+
+        <article>
+          <h3>Adversarial Adaptation</h3>
+          <p>
+            Fraudsters probe defenses, rotate infrastructure, and change tactics,
+            so static controls degrade without reinforcement.
+          </p>
+        </article>
+
+        <article>
+          <h3>Cross-Team Dependence</h3>
+          <p>
+            Product, engineering, security, fraud, operations, support, and
+            finance all depend on clean risk signals and explainable decisions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Key Concepts</span>
+        <h2>The four pillars of online fraud detection</h2>
+        <p>
+          Most high-performing fraud programs use four pillars in combination.
+          The first is real-time rules for known bad logic and explicit policy
+          enforcement. The second is machine learning for complex patterns and
+          probabilistic scoring. The third is graph or linkage analysis for
+          coordinated abuse and entity relationship discovery. The fourth is
+          human review and policy governance to handle uncertainty and keep the
+          system aligned with business goals.
+        </p>
+        <p>
+          The specific mix depends on the business. A startup may begin with
+          rules, device intelligence, and manual review. A scaled business may
+          add behavioral models, streaming features, graph retrieval, and
+          segment-specific scorecards. What matters most is not novelty, but the
+          ability to make timely, explainable, high-quality decisions.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Deterministic Rules</h3>
+          <p>
+            Ideal for clear policy constraints, compliance boundaries, and
+            obvious bad patterns that should never pass.
+          </p>
+        </article>
+
+        <article>
+          <h3>Probabilistic Models</h3>
+          <p>
+            Useful when fraud signals interact in nonlinear ways or when weak
+            signals need to be combined robustly.
+          </p>
+        </article>
+
+        <article>
+          <h3>Graph and Link Analysis</h3>
+          <p>
+            Essential for uncovering fraud rings, reused infrastructure, mule
+            networks, and coordinated abuse hidden behind many accounts.
+          </p>
+        </article>
+
+        <article>
+          <h3>Behavioral Analytics</h3>
+          <p>
+            Session-level timing, navigation, input patterns, and flow anomalies
+            help detect subtle abuse and low-friction automation.
+          </p>
+        </article>
+
+        <article>
+          <h3>Human Review</h3>
+          <p>
+            Analysts resolve ambiguity, handle high-value edge cases, and create
+            labels that improve the system over time.
+          </p>
+        </article>
+
+        <article>
+          <h3>Policy Orchestration</h3>
+          <p>
+            Every score needs a response framework that reflects risk appetite,
+            customer experience, and business criticality.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Implementation Guidance</span>
+        <h2>Design the architecture for trust scoring, explainability, and speed</h2>
+        <p>
+          Real-time fraud detection depends on disciplined architecture. Teams
+          need event collection that is reliable and low-latency, feature
+          computation that can mix historical and fresh data, scoring systems
+          that are resilient under traffic spikes, and rule or policy engines
+          that can be updated without risky deployments. Without that
+          foundation, even a good model will underperform in production.
+        </p>
+        <p>
+          Explainability is equally important. Analysts need to know why the
+          system scored an event as risky. Product and operations partners need
+          to understand what action was taken and why. Decision reason codes,
+          evidence summaries, and linked-entity context are therefore core
+          requirements, not nice-to-have features.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Streaming Telemetry</h3>
+          <p>
+            Capture and normalize events quickly enough to support decisions
+            during signup, login, payment, and other live workflows.
+          </p>
+        </article>
+
+        <article>
+          <h3>Historical Context</h3>
+          <p>
+            Retrieve prior entity behavior, risk outcomes, and relationship data
+            so scores reflect history, not just one request.
+          </p>
+        </article>
+
+        <article>
+          <h3>Feature Governance</h3>
+          <p>
+            Maintain clear ownership, definitions, lineage, and monitoring for
+            the features used in live scoring.
+          </p>
+        </article>
+
+        <article>
+          <h3>Score Calibration</h3>
+          <p>
+            Tune thresholds by segment, action type, geography, and product
+            surface rather than relying on one universal cutoff.
+          </p>
+        </article>
+
+        <article>
+          <h3>Reason Codes</h3>
+          <p>
+            Expose why a decision happened so analysts can act confidently and
+            business teams can trust the system.
+          </p>
+        </article>
+
+        <article>
+          <h3>Drift Monitoring</h3>
+          <p>
+            Watch performance changes and feature behavior over time so fraud
+            logic does not decay unnoticed.
+          </p>
+        </article>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Reference fraud decision pipeline</h3>
+        <pre><code>ingest_event()
+enrich_with_identity_device_and_history()
+compute_velocity_and_behavior_features()
+retrieve_linked_entities()
+run_rules()
+run_models()
+assemble_reason_codes()
+map_score_to_action()
+log_decision_for_review_and_feedback()</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Examples and Attack Scenarios</span>
+        <h2>Attack scenarios that show why unified fraud detection matters</h2>
+        <p>
+          Fraud is often easier to detect when events are viewed as a chain. A
+          suspicious signup followed by light browsing, fast coupon redemption,
+          API bursts, and failed payment attempts should not be evaluated as
+          unrelated incidents. Yet many organizations still split these signals
+          across isolated systems.
+        </p>
+        <p>
+          Scenario-based design helps teams close those gaps. It forces the
+          business to ask how an attacker would progress from one stage to the
+          next, what signals become available at each step, and where the
+          platform can intervene with the least customer friction and the
+          greatest business protection.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Synthetic Account Progression</h3>
+          <p>
+            Weak-trust registrations age quietly, then activate for promo abuse,
+            review manipulation, or transaction fraud weeks later.
+          </p>
+        </article>
+
+        <article>
+          <h3>Credential Attack to Purchase Flow</h3>
+          <p>
+            Stolen credentials are tested, valid accounts are taken over, and
+            stored payment methods are abused rapidly after access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bot-Driven Entitlement Abuse</h3>
+          <p>
+            Automated systems register accounts, drain free usage, create API
+            keys, and resell access or value externally.
+          </p>
+        </article>
+
+        <article>
+          <h3>Coordinated Marketplace Ring</h3>
+          <p>
+            Linked accounts create sellers, buyers, listings, and reviews that
+            only look normal when viewed separately.
+          </p>
+        </article>
+
+        <article>
+          <h3>Refund and Support Manipulation</h3>
+          <p>
+            Fraudsters combine purchasing, account changes, and support contacts
+            to exploit policy edges that no single system alone can see.
+          </p>
+        </article>
+
+        <article>
+          <h3>API-Led Abuse Expansion</h3>
+          <p>
+            Attackers move from normal browser sessions into direct API
+            interactions once they learn which authenticated actions are valuable.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Best Practices</span>
+        <h2>Best practices and metrics for operating online fraud detection at scale</h2>
+        <p>
+          A strong fraud program is measurable, explainable, and adaptive. Teams
+          should review performance by action type, user segment, geography,
+          traffic source, and monetization surface. They should also compare
+          what the system prevented with what still escaped, because attackers
+          will often shift channels when one surface becomes harder to abuse.
+        </p>
+        <p>
+          Fraud metrics should connect technical decision quality with business
+          outcomes. Precision and recall matter, but so do approval rates,
+          conversion quality, analyst workload, chargebacks, support tickets,
+          abuse complaints, and the share of revenue touched by high-risk
+          decisions. The program is successful only if those metrics improve in
+          combination.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Decision Precision</h3>
+          <p>
+            Measure how often blocked or reviewed events are later confirmed as
+            fraud compared with approved events.
+          </p>
+        </article>
+
+        <article>
+          <h3>False-Positive Impact</h3>
+          <p>
+            Quantify how many good users were challenged, delayed, or lost as a
+            result of fraud controls.
+          </p>
+        </article>
+
+        <article>
+          <h3>Segment Performance</h3>
+          <p>
+            Track accuracy and conversion by customer type, geography, channel,
+            and flow because fraud patterns are rarely uniform.
+          </p>
+        </article>
+
+        <article>
+          <h3>Rule and Model Drift</h3>
+          <p>
+            Review degrading features, stale rules, and attack pattern changes
+            before fraud loss rises visibly.
+          </p>
+        </article>
+
+        <article>
+          <h3>Analyst Leverage</h3>
+          <p>
+            Monitor queue size, investigation time, hit rate, and assisted
+            action value to improve review operations.
+          </p>
+        </article>
+
+        <article>
+          <h3>Lifecycle Coverage</h3>
+          <p>
+            Confirm that detection exists across signup, session, API, payment,
+            review, support, and other high-risk business actions.
+          </p>
+        </article>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Online fraud detection checklist</h3>
+        <pre><code>✓ Cover the full customer journey, not just transactions
+✓ Combine rules, models, graph linkage, and behavioral analysis
+✓ Keep latency budgets aligned with product experience
+✓ Track feature quality and scoring drift continuously
+✓ Use reason codes and explainable decisions
+✓ Segment thresholds by action and business context
+✓ Feed analyst outcomes and disputes back into the system
+✓ Protect APIs and authenticated workflows alongside front-end pages
+✓ Build case tooling around linked entities and event chains
+✓ Measure both business loss and customer friction
+✓ Revisit action policies as the business model evolves
+✓ Connect fraud detection with identity, trust, and security operations</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>SherGuard</span>
+        <h2>How SherGuard helps teams build real-time online fraud detection</h2>
+        <p>
+          SherGuard provides a trust intelligence layer that connects identity,
+          device, behavior, bot, API, and payment signals into actionable risk
+          decisions. That makes it easier for teams to move beyond isolated
+          fraud checks and toward a lifecycle-aware fraud operating model.
+        </p>
+        <p>
+          Whether the business is focused on
+          <a href="/blog/blog-fake-signup-detection.html">signup quality</a>,
+          <a href="/blog/blog-account-takeover-prevention.html">account access risk</a>,
+          marketplace abuse, or
+          <a href="/blog/blog-saas-fraud-detection.html">SaaS fraud detection</a>,
+          SherGuard helps centralize signals and decisions so analysts can act
+          more quickly and product teams can apply risk-aware controls with more
+          confidence.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Email and Identity Signals</h3>
+          <p>
+            Evaluate the quality of registrations and entity trust during early
+            lifecycle moments where risk first appears.
+          </p>
+        </article>
+
+        <article>
+          <h3>Device Risk Intelligence</h3>
+          <p>
+            Detect high-risk browsers, automation environments, and suspicious
+            device patterns tied to abusive sessions.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bot Detection Intelligence</h3>
+          <p>
+            Identify automated traffic, scripted activity, and low-friction
+            abuse aimed at valuable product flows.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Abuse Intelligence</h3>
+          <p>
+            Monitor backend routes, token usage, and abnormal request behavior
+            that traditional web-only tools often miss.
+          </p>
+        </article>
+
+        <article>
+          <h3>Payment and Trust Context</h3>
+          <p>
+            Connect behavioral and identity risk with transaction and abuse
+            signals for more holistic decisioning.
+          </p>
+        </article>
+
+        <article>
+          <h3>Security Center</h3>
+          <p>
+            Give teams a centralized environment for risk visibility, trust
+            events, review workflows, and operational tuning.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>FAQ</span>
+        <h2>Online Fraud Detection FAQ</h2>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>What is online fraud detection?</h3>
+          <p>
+            Online fraud detection is the process of identifying suspicious
+            digital activity across accounts, payments, sessions, APIs, and
+            other business workflows in real time.
+          </p>
+        </article>
+
+        <article>
+          <h3>Do rules still matter if you use machine learning?</h3>
+          <p>
+            Yes. Rules, models, graph analysis, and human review each solve
+            different parts of the problem and work best together.
+          </p>
+        </article>
+
+        <article>
+          <h3>Why is explainability important in fraud systems?</h3>
+          <p>
+            Analysts and business teams need to understand why a decision was
+            made so they can investigate, tune policy, and trust the program.
+          </p>
+        </article>
+
+        <article>
+          <h3>What is concept drift in fraud detection?</h3>
+          <p>
+            Concept drift is the degradation that happens when attacker behavior,
+            customer behavior, or business conditions change over time.
+          </p>
+        </article>
+
+        <article>
+          <h3>Should every risky event be blocked?</h3>
+          <p>
+            No. Many businesses need a tiered response model with review,
+            challenges, limits, delays, or monitoring instead of hard blocks.
+          </p>
+        </article>
+
+        <article>
+          <h3>How does SherGuard support online fraud detection?</h3>
+          <p>
+            SherGuard helps teams combine trust signals from multiple surfaces
+            into consistent, real-time fraud decisions and analyst workflows.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Conclusion</span>
+        <h2>Online fraud detection succeeds when trust signals become operational decisions</h2>
+        <p>
+          Fraud detection is not only about finding bad events. It is about
+          building a system that turns telemetry into timely, explainable, and
+          commercially sound decisions.
+        </p>
+        <p>
+          The most resilient programs combine rules, models, link analysis,
+          operational feedback, and business-aware response policies. They
+          protect the entire lifecycle, not just the last step before money
+          moves.
+        </p>
+        <p>
+          If your business depends on digital trust, online fraud detection
+          should be treated as a core platform capability that supports growth,
+          risk reduction, and better customer experience at the same time.
+        </p>
+      </div>
+    </section>
+
+    <section class="public-cta-section">
+      <h2>Build real-time fraud detection with SherGuard.</h2>
+      <p>
+        Unify identity, device, bot, API, and payment trust signals so your
+        teams can make better fraud decisions faster.
+      </p>
+      <a href="../register.html" class="public-btn public-btn-primary">Start Free</a>
+    </section>
+  </main>
+
+  <footer class="public-footer public-footer-advanced">
+    <div>
+      <strong>SherGuard</strong>
+      <p>Trust intelligence platform by SHER MALIK LLC.</p>
+      <p>Fraud prevention, abuse detection, API protection, and payment risk intelligence for modern businesses.</p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+      <a href="../pricing.html">Pricing</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="../blog.html">Blog</a>
+      <a href="/blog/blog-fake-signup-detection.html">Fake Signup Detection Guide</a>
+      <a href="/blog/blog-device-risk-intelligence.html">Device Risk Intelligence Guide</a>
+      <a href="/blog/blog-bot-traffic-damages-online-businesses.html">Bot Traffic Guide</a>
+      <a href="/blog/blog-api-abuse-detection-best-practices.html">API Abuse Detection Guide</a>
+      <a href="/blog/blog-payment-fraud-prevention-guide.html">Payment Fraud Prevention Guide</a>
+      <a href="/blog/blog-building-a-trust-intelligence-strategy.html">Trust Intelligence Strategy</a>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../login.html">Login</a>
+      <a href="../register.html">Start Free</a>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <a href="../terms.html">Terms</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../refund-policy.html">Refund Policy</a>
+    </div>
+
+    <div class="public-footer-bottom">
+      <span>© 2026 SherGuard. All rights reserved.</span>
+    </div>
+  </footer>
+</body>
+</html>
