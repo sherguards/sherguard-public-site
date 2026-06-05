@@ -88,15 +88,20 @@
         throw new Error('Session expired');
       }
 
-      const user =
-        await response.json();
+      const result =
+  await response.json();
 
-      localStorage.setItem(
-        'aiTrustUser',
-        JSON.stringify(user)
-      );
+const user =
+  result && result.user
+    ? result.user
+    : result;
 
-      applyModuleVisibility(user);
+localStorage.setItem(
+  'aiTrustUser',
+  JSON.stringify(user)
+);
+
+applyModuleVisibility(user);
 
     } catch (error) {
       clearAuthAndRedirect(
