@@ -78,4 +78,10 @@
   <loc>https://sherguard.com/blog/blog-building-a-trust-intelligence-strategy.html</loc>
 </url>
 
+<!-- sitemap.xml URL block -->
+<url>
+  <loc>https://sherguard.com/blog/blog-fake-signup-detection.html</loc>
+</url>
+
+
 </urlset>
