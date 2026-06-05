@@ -1,0 +1,785 @@
+<!-- /blog/blog-saas-fraud-detection.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SaaS Fraud Detection: How to Protect Trials, Accounts, APIs, and Revenue - SherGuard</title>
+  <meta
+    name="description"
+    content="Learn how SaaS fraud detection works across free trial abuse, account abuse, API key misuse, subscription fraud, workspace compromise, and AI usage abuse."
+  />
+  <link rel="canonical" href="https://sherguard.com/blog/blog-saas-fraud-detection.html" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta property="og:url" content="https://sherguard.com/blog/blog-saas-fraud-detection.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="SaaS Fraud Detection: How to Protect Trials, Accounts, APIs, and Revenue" />
+  <meta
+    property="og:description"
+    content="An enterprise guide to SaaS fraud detection covering trial abuse, workspace abuse, API key misuse, billing risk, support fraud, and trust-based controls."
+  />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/public-pages.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body class="public-page">
+  <header class="public-header">
+    <a href="../index.html" class="public-logo">
+      <span class="public-logo-icon">▣</span>
+      <span>
+        <strong>SherGuard</strong>
+        <small>Trust Intelligence Platform</small>
+      </span>
+    </a>
+
+    <nav class="public-nav">
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../register.html" class="public-nav-cta">Start Free</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="public-pricing-hero">
+      <span class="public-eyebrow">SaaS Security Guide</span>
+      <h1>SaaS Fraud Detection: How to Protect Trials, Accounts, APIs, and Revenue</h1>
+      <p>
+        SaaS fraud detection helps subscription businesses identify abusive
+        signups, free-trial farming, workspace misuse, API key abuse, billing
+        fraud, support fraud, and other activity that damages revenue and trust.
+      </p>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Introduction</span>
+        <h2>SaaS fraud rarely looks like traditional card fraud, but it is still expensive</h2>
+        <p>
+          SaaS fraud is often misunderstood because it does not always begin
+          with a stolen card or an obvious chargeback. Many SaaS losses begin
+          with fake accounts, free-trial abuse, weak-trust workspaces, account
+          sharing, abusive API usage, promo extraction, or compromised admin
+          accounts. Those patterns may not appear in finance reports
+          immediately, but they quietly increase cloud cost, support burden,
+          abuse moderation, and churn risk.
+        </p>
+        <p>
+          SaaS businesses are especially exposed because they grant digital
+          entitlements quickly. A new account can create a workspace, invite
+          users, send messages, generate API keys, access AI features, connect
+          integrations, or consume storage and compute within minutes. If the
+          business evaluates trust only at card authorization or only after
+          abuse is reported, fraud actors have already extracted value.
+        </p>
+        <p>
+          That is why SaaS fraud detection should be lifecycle-based. It should
+          begin at registration, continue through verification and activation,
+          re-score accounts at key milestones, and connect with
+          <a href="/blog/blog-fake-signup-detection.html">fake signup detection</a>,
+          <a href="/blog/blog-account-takeover-prevention.html">account takeover prevention</a>,
+          <a href="/blog/blog-api-abuse-detection-best-practices.html">API abuse detection</a>,
+          and broader online trust operations.
+        </p>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Executive summary</h3>
+        <pre><code>1. SaaS fraud begins early, often before payment loss appears.
+2. Free-trial abuse, fake workspaces, API misuse, and account compromise are major SaaS fraud patterns.
+3. Entitlement abuse is as important as payment abuse for SaaS businesses.
+4. Trust should be scored across the full lifecycle: signup, activation, workspace behavior, API use, billing, and support.
+5. Different SaaS surfaces need different controls: accounts, tenants, admins, invites, tokens, and usage quotas.
+6. AI products and developer platforms are especially vulnerable to usage extraction and key abuse.
+7. Metrics should include cloud cost leakage, conversion quality, abusive tenant density, and false-positive impact.
+8. Response models should use verification, quota controls, holds, step-up checks, and review rather than only hard blocks.
+9. Fraud detection should be connected to growth, billing, support, product, and security operations.
+10. SherGuard helps unify identity, device, bot, API, and trust signals for SaaS protection.</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Overview</span>
+        <h2>What SaaS fraud detection needs to protect</h2>
+        <p>
+          SaaS fraud detection protects more than transactions. It protects
+          entitlements, compute, seats, integrations, APIs, support workflows,
+          workspace reputation, and the quality of product analytics. That
+          makes it broader than a payment-only or authentication-only problem.
+        </p>
+        <p>
+          The key difference in SaaS is that value extraction can happen in many
+          forms. An attacker may create thousands of free trials, share one paid
+          account across many organizations, resell access, harvest AI tokens,
+          abuse outbound messaging, or generate API keys for automation. These
+          actions may cause direct loss, but they also distort activation and
+          retention analysis if abusive accounts are treated like customer
+          demand.
+        </p>
+        <p>
+          Mature SaaS teams therefore score trust at both the account level and
+          the tenant or workspace level. A single user may look low-risk alone,
+          but the workspace may still behave suspiciously through aggressive
+          invitation patterns, abnormal feature activation, quota spikes, or API
+          activity that does not match expected customer maturity.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Signup Trust</h3>
+          <p>
+            Evaluate whether a new user or organization looks attributable and
+            commercially plausible before granting valuable entitlements.
+          </p>
+        </article>
+
+        <article>
+          <h3>Activation Quality</h3>
+          <p>
+            Separate healthy product adoption from scripted onboarding, shallow
+            engagement, or rapid entitlement extraction.
+          </p>
+        </article>
+
+        <article>
+          <h3>Workspace Risk</h3>
+          <p>
+            Score tenant behavior such as invite velocity, admin changes,
+            suspicious team composition, and abnormal usage concentration.
+          </p>
+        </article>
+
+        <article>
+          <h3>API and Token Risk</h3>
+          <p>
+            Watch for abnormal key creation, request spikes, hostile
+            infrastructure, and automation patterns tied to value extraction.
+          </p>
+        </article>
+
+        <article>
+          <h3>Billing and Plan Abuse</h3>
+          <p>
+            Detect promo cycling, downgrade-upgrade loops, stolen payment usage,
+            and attempts to extract value before a billing event fails.
+          </p>
+        </article>
+
+        <article>
+          <h3>Support and Recovery Risk</h3>
+          <p>
+            Protect account ownership changes, refund requests, and admin
+            recovery flows from social engineering and abuse.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>Why It Matters</span>
+        <h2>Why SaaS fraud affects margins, infrastructure, and customer confidence</h2>
+        <p>
+          SaaS fraud is dangerous because it often hides inside normal-looking
+          usage. A trial farm may look like growth. A compromised admin account
+          may look like customer activity. An abusive API user may look like a
+          power user until infrastructure cost spikes. These patterns create
+          losses that are easy to miss if the business monitors only chargebacks
+          or only authentication failures.
+        </p>
+        <p>
+          The impact is broader than finance. Fraud reduces conversion quality,
+          increases cloud and AI inference spend, triggers abuse complaints,
+          overloads support, and undermines trust in core business metrics. If
+          a SaaS company cannot distinguish healthy product demand from abusive
+          extraction, pricing, spend allocation, and growth strategy all become
+          less reliable.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Free Infrastructure Loss</h3>
+          <p>
+            Fraud actors drain storage, compute, AI credits, bandwidth, or
+            premium processing without becoming real customers.
+          </p>
+        </article>
+
+        <article>
+          <h3>Poor Pipeline Quality</h3>
+          <p>
+            Fake trials and low-trust signups make marketing and sales
+            performance appear stronger than monetization reality.
+          </p>
+        </article>
+
+        <article>
+          <h3>Abuse of Product Features</h3>
+          <p>
+            Messaging, automation, outbound integrations, and collaboration
+            features can be misused for spam, scraping, or malicious operations.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Key Misuse</h3>
+          <p>
+            Developer-oriented SaaS products are especially attractive to
+            attackers seeking programmable, resellable access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Admin and Tenant Risk</h3>
+          <p>
+            A single compromised or fraudulent admin can create broad enterprise
+            exposure across an entire workspace.
+          </p>
+        </article>
+
+        <article>
+          <h3>Support Burden</h3>
+          <p>
+            Refund disputes, ownership claims, entitlement complaints, and
+            abuse escalations increase operational cost quickly.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Key Concepts</span>
+        <h2>Think in terms of account risk, tenant risk, and entitlement risk</h2>
+        <p>
+          Many SaaS teams focus only on the user account, but abuse often
+          happens at the tenant level. One organization can contain many users,
+          many API keys, many integrations, and many high-value actions. That
+          means the platform must score both the individual actor and the
+          workspace or organization they control.
+        </p>
+        <p>
+          Entitlement risk is the third critical layer. Even if identity and
+          tenant context look acceptable, some actions should still depend on
+          trust. Creating a production API key, enabling outbound messaging,
+          exporting bulk data, upgrading quotas, or creating many sub-accounts
+          are not the same as casually viewing a dashboard. Fraud detection
+          needs to reflect those differences.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Account Trust</h3>
+          <p>
+            Score identity quality, device trust, behavior, and historical
+            linkage for the individual user.
+          </p>
+        </article>
+
+        <article>
+          <h3>Tenant Trust</h3>
+          <p>
+            Evaluate workspace age, invite velocity, admin behavior, plan
+            changes, usage shape, and linked risky entities.
+          </p>
+        </article>
+
+        <article>
+          <h3>Entitlement Risk</h3>
+          <p>
+            Protect actions that unlock disproportionate value or business
+            impact relative to the rest of the product.
+          </p>
+        </article>
+
+        <article>
+          <h3>Usage Authenticity</h3>
+          <p>
+            Distinguish real adoption from scripted workflows, quota spikes,
+            repetitive automation, or synthetic feature usage.
+          </p>
+        </article>
+
+        <article>
+          <h3>Billing Trust</h3>
+          <p>
+            Combine plan choice, promo behavior, failed payments, and upgrade or
+            downgrade patterns into a broader fraud view.
+          </p>
+        </article>
+
+        <article>
+          <h3>Recovery and Ownership Trust</h3>
+          <p>
+            Protect account recovery, owner transfer, billing admin changes, and
+            support-led entitlement actions with stronger controls.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Implementation Guidance</span>
+        <h2>Place trust gates around moments where SaaS value is created or extracted</h2>
+        <p>
+          Strong SaaS fraud programs do not rely on one decision at signup.
+          They maintain trust gates at the moments where value changes
+          materially: registration, verification, first workspace creation,
+          first invite burst, first API key, first premium action, first
+          upgrade, first payout-like action if applicable, and any ownership or
+          admin change.
+        </p>
+        <p>
+          This matters because many abusers behave patiently. They may pass
+          lightweight onboarding, wait through verification, and only extract
+          value once the account looks more legitimate. Lifecycle trust gates
+          reduce that exposure while still keeping the user experience fast for
+          genuine customers.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Registration Gate</h3>
+          <p>
+            Score identity, device, acquisition context, and automation risk
+            before granting baseline product access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Verification Gate</h3>
+          <p>
+            Decide whether the account can verify normally, needs stronger proof,
+            or should be limited after verification.
+          </p>
+        </article>
+
+        <article>
+          <h3>Workspace Gate</h3>
+          <p>
+            Review organizational behavior when a user creates a team, invites
+            many members, or claims a business identity.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Gate</h3>
+          <p>
+            Add trust checks before issuing production keys or increasing API
+            throughput for new or weak-trust tenants.
+          </p>
+        </article>
+
+        <article>
+          <h3>Billing Gate</h3>
+          <p>
+            Evaluate plan changes, promo usage, failed payments, and chargeback
+            or refund patterns as part of trust scoring.
+          </p>
+        </article>
+
+        <article>
+          <h3>Ownership Gate</h3>
+          <p>
+            Protect owner transfers, admin privilege changes, support recovery,
+            and sensitive exports with step-up controls.
+          </p>
+        </article>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>SaaS trust control model</h3>
+        <pre><code>if signup_risk is low:
+  allow_standard_onboarding()
+if signup_risk is medium:
+  verify_and_limit_credits()
+if tenant_risk rises:
+  reduce_quota_or_require_review()
+if api_risk is high:
+  hold_key_issue_or_throttle()
+if owner_change or payout_like_action:
+  step_up_and_log_for_review()</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Examples and Attack Scenarios</span>
+        <h2>SaaS fraud scenarios that hide inside normal product activity</h2>
+        <p>
+          SaaS fraud often masquerades as product engagement. That is why
+          scenario-based planning is so important. Teams need to understand how
+          a bad actor would use a new account, a free plan, a workspace, or an
+          API key if their goal were to extract as much value as possible before
+          the platform responds.
+        </p>
+        <p>
+          These scenarios vary by product category. A communication platform may
+          see spam and outbound abuse. An AI platform may see token extraction
+          and automation. A developer platform may see API key resale. A B2B
+          collaboration product may see account sharing, tenant takeover, or
+          fake business onboarding. The common thread is trust abuse around
+          entitlements.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Free Trial Farming</h3>
+          <p>
+            Attackers create many accounts and workspaces to consume credits,
+            experimentation time, or premium features repeatedly.
+          </p>
+        </article>
+
+        <article>
+          <h3>AI Usage Extraction</h3>
+          <p>
+            Abusers automate prompts, generation jobs, or inference-heavy
+            actions to drain model-related cost at scale.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Key Resale</h3>
+          <p>
+            Attackers create or steal keys and distribute access externally to
+            monetize your infrastructure as a commodity.
+          </p>
+        </article>
+
+        <article>
+          <h3>Account Sharing and Reseller Abuse</h3>
+          <p>
+            One subscription is used far beyond normal organizational boundaries
+            or resold through unauthorized channels.
+          </p>
+        </article>
+
+        <article>
+          <h3>Support Fraud and Recovery Abuse</h3>
+          <p>
+            Fraudsters manipulate ownership, refunds, or recovery processes by
+            social engineering support or exploiting weak verification flows.
+          </p>
+        </article>
+
+        <article>
+          <h3>Workspace Compromise</h3>
+          <p>
+            A hijacked owner account is used to export data, add persistence,
+            create keys, or redirect billing operations.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Best Practices</span>
+        <h2>Best practices and metrics for SaaS fraud detection</h2>
+        <p>
+          The best SaaS fraud programs are operated jointly by product, fraud,
+          security, growth, and support teams. Abuse decisions influence
+          onboarding, monetization, customer experience, and infrastructure
+          cost. That means the business needs shared metrics and explicit
+          decision ownership.
+        </p>
+        <p>
+          Measure not just blocked activity, but account quality over time. A
+          useful SaaS program can show whether suspicious cohorts activate,
+          convert, expand, churn, dispute, or generate abuse complaints
+          differently from healthy cohorts. That is how the team proves that
+          trust controls are improving commercial quality rather than simply
+          blocking volume.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Qualified Activation Rate</h3>
+          <p>
+            Compare activation quality by risk tier to see whether approved
+            accounts become healthy users or expensive noise.
+          </p>
+        </article>
+
+        <article>
+          <h3>Abusive Tenant Density</h3>
+          <p>
+            Measure how many workspaces by cohort later trigger trust, support,
+            billing, or abuse events.
+          </p>
+        </article>
+
+        <article>
+          <h3>Infrastructure Leakage</h3>
+          <p>
+            Estimate cloud, storage, email, AI, or compute spend attributed to
+            weak-trust or abusive accounts.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Abuse Rate</h3>
+          <p>
+            Track suspicious key usage, abnormal request distribution, hostile
+            infrastructure contact, and throttled traffic by tenant.
+          </p>
+        </article>
+
+        <article>
+          <h3>Support Fraud Rate</h3>
+          <p>
+            Monitor refund abuse, ownership disputes, recovery anomalies, and
+            social engineering attempts against support workflows.
+          </p>
+        </article>
+
+        <article>
+          <h3>False-Positive Business Cost</h3>
+          <p>
+            Quantify delayed sales motion, reduced conversion, blocked invites,
+            and friction for legitimate customers and developers.
+          </p>
+        </article>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>SaaS fraud detection checklist</h3>
+        <pre><code>✓ Score trust at signup, verification, activation, and expansion
+✓ Separate account-level, tenant-level, and entitlement-level risk
+✓ Control trial credits and premium access by trust tier
+✓ Protect API key issuance and throughput expansion
+✓ Detect workspace abuse, invite bursts, and ownership anomalies
+✓ Connect billing risk with non-payment abuse signals
+✓ Protect support, refund, and recovery workflows
+✓ Measure infrastructure cost leakage from weak-trust cohorts
+✓ Track qualified activation and conversion by risk tier
+✓ Tune controls by product surface and customer segment
+✓ Link SaaS fraud signals to ATO and API abuse monitoring
+✓ Centralize signals in a shared trust intelligence workflow</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>SherGuard</span>
+        <h2>How SherGuard helps SaaS businesses reduce fraud and abuse</h2>
+        <p>
+          SherGuard helps SaaS teams combine identity, device, behavior, API,
+          and payment signals into one trust view so they can score accounts and
+          tenants more intelligently. That makes it easier to prevent free-trial
+          abuse, risky workspaces, API misuse, and suspicious lifecycle actions
+          before they become expensive incidents.
+        </p>
+        <p>
+          SherGuard is especially useful when your fraud patterns cut across
+          multiple layers of the product. Signup quality may matter for later
+          API abuse. Device risk may matter for admin takeovers. Billing signals
+          may matter for throughput expansion requests. A unified trust model
+          helps teams make those connections operationally.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Email and Identity Risk</h3>
+          <p>
+            Evaluate account and organizational onboarding quality before
+            granting entitlements or higher-trust product access.
+          </p>
+        </article>
+
+        <article>
+          <h3>Device Risk Intelligence</h3>
+          <p>
+            Detect suspicious environments, automation traces, and risky devices
+            during access and lifecycle events.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bot Detection Intelligence</h3>
+          <p>
+            Identify scripted accounts, automated entitlement extraction, and
+            low-friction abuse against valuable product flows.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Abuse Intelligence</h3>
+          <p>
+            Monitor key issuance, token usage, endpoint concentration, and
+            suspicious backend request behavior.
+          </p>
+        </article>
+
+        <article>
+          <h3>Payment and Billing Context</h3>
+          <p>
+            Combine trust signals with subscription events, failed payments, and
+            billing anomalies for stronger decisions.
+          </p>
+        </article>
+
+        <article>
+          <h3>Security Center</h3>
+          <p>
+            Give fraud, security, and operations teams shared visibility into
+            trust events, risky tenants, and lifecycle decisions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>FAQ</span>
+        <h2>SaaS Fraud Detection FAQ</h2>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>What is SaaS fraud detection?</h3>
+          <p>
+            SaaS fraud detection is the practice of identifying abusive or
+            economically harmful activity across accounts, tenants, APIs,
+            billing, and support workflows.
+          </p>
+        </article>
+
+        <article>
+          <h3>Why is SaaS fraud different from e-commerce fraud?</h3>
+          <p>
+            SaaS businesses expose digital entitlements, APIs, compute, and
+            collaboration features that can be abused without immediate payment
+            fraud signals.
+          </p>
+        </article>
+
+        <article>
+          <h3>What is the biggest SaaS fraud risk?</h3>
+          <p>
+            It depends on the product, but common risks include trial abuse,
+            abusive automation, API key misuse, account takeover, and tenant-
+            level entitlement extraction.
+          </p>
+        </article>
+
+        <article>
+          <h3>Should SaaS businesses score tenants as well as users?</h3>
+          <p>
+            Yes. Many abuse patterns emerge only at the workspace or
+            organization level rather than the individual user level.
+          </p>
+        </article>
+
+        <article>
+          <h3>How do AI and developer products change the risk profile?</h3>
+          <p>
+            They increase the value of compute, model access, and API keys,
+            making automation abuse and entitlement extraction more attractive.
+          </p>
+        </article>
+
+        <article>
+          <h3>How does SherGuard help SaaS teams?</h3>
+          <p>
+            SherGuard helps teams combine identity, device, bot, API, and
+            billing-related trust signals into lifecycle-aware decisions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Conclusion</span>
+        <h2>SaaS fraud detection should protect entitlements as carefully as revenue</h2>
+        <p>
+          Modern SaaS abuse is not limited to stolen cards or obvious fake
+          accounts. It targets the value your product exposes: access, compute,
+          API surfaces, collaboration rights, and customer trust.
+        </p>
+        <p>
+          The most effective teams score trust across accounts, tenants, and
+          high-value actions. They protect the lifecycle from signup through
+          expansion and support, rather than waiting for abuse to show up in
+          billing reports.
+        </p>
+        <p>
+          If your SaaS business depends on fast onboarding and valuable digital
+          entitlements, fraud detection should be embedded into the product’s
+          operating model from day one.
+        </p>
+      </div>
+    </section>
+
+    <section class="public-cta-section">
+      <h2>Protect your SaaS business with SherGuard.</h2>
+      <p>
+        Score account, tenant, API, and billing trust in one platform so your
+        teams can reduce abuse without adding unnecessary friction.
+      </p>
+      <a href="../register.html" class="public-btn public-btn-primary">Start Free</a>
+    </section>
+  </main>
+
+  <footer class="public-footer public-footer-advanced">
+    <div>
+      <strong>SherGuard</strong>
+      <p>Trust intelligence platform by SHER MALIK LLC.</p>
+      <p>Fraud prevention, abuse detection, API protection, and payment risk intelligence for modern businesses.</p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+      <a href="../pricing.html">Pricing</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="../blog.html">Blog</a>
+      <a href="/blog/blog-fake-signup-detection.html">Fake Signup Detection Guide</a>
+      <a href="/blog/blog-device-risk-intelligence.html">Device Risk Intelligence Guide</a>
+      <a href="/blog/blog-bot-traffic-damages-online-businesses.html">Bot Traffic Guide</a>
+      <a href="/blog/blog-api-abuse-detection-best-practices.html">API Abuse Detection Guide</a>
+      <a href="/blog/blog-payment-fraud-prevention-guide.html">Payment Fraud Prevention Guide</a>
+      <a href="/blog/blog-building-a-trust-intelligence-strategy.html">Trust Intelligence Strategy</a>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../login.html">Login</a>
+      <a href="../register.html">Start Free</a>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <a href="../terms.html">Terms</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../refund-policy.html">Refund Policy</a>
+    </div>
+
+    <div class="public-footer-bottom">
+      <span>© 2026 SherGuard. All rights reserved.</span>
+    </div>
+  </footer>
+</body>
+</html>
