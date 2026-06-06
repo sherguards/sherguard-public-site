@@ -384,7 +384,14 @@
             }),
             domainReputation: buildDomainReputation({
               domainType: domainType,
-              providerType: providerType
+              providerType: providerType,
+              riskLabel: riskLabel,
+              riskReasons:
+                Array.isArray(item.reasons)
+                  ? item.reasons
+                  : Array.isArray(item.riskReasons)
+                  ? item.riskReasons
+                  : []
             }),
             behavioralRisk: {
               velocity: 'Backend Synced',
