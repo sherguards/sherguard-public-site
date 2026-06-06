@@ -1434,6 +1434,16 @@ if (data.security_status === 'Critical') {
     const apiUsageAnalytics = await fetchApiUsageAnalytics();
     const records = await collectAllData();
     window.latestDashboardRecords = records;
+
+    window.dispatchEvent(
+      new CustomEvent('sherguardDashboardEventsSynced', {
+        detail: {
+          records: records,
+          timestamp: new Date().toISOString()
+        }
+      })
+    );
+
     const stats = calculateStats(records);
 
     if (analyticsSummary) {
