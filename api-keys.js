@@ -1,8 +1,22 @@
 (function () {
   'use strict';
 
+  /*
+    SherGuard API Key Management
+    Backend-first module.
+
+    - API keys are loaded only from backend /api-keys.
+    - API key creation uses backend /api-keys.
+    - API key revoke uses backend /api-keys/{id}.
+    - Plan/limit display uses backend /organization/profile.
+    - No local API key activity/history/revoked-key hiding is used.
+    - LocalStorage is used only for JWT token through existing auth system.
+  */
+
   function formatApiKeyDate(value) {
-    if (!value) return 'Never';
+    if (!value) {
+      return 'Never';
+    }
 
     try {
       return new Date(value).toLocaleString();
@@ -33,208 +47,184 @@
     });
   }
 
-  function getHiddenRevokedApiKeyIds() {
+  function getApiKeyLimitByPlan(plan) {
+    const apiKeyLimitsByPlan = {
+      free: 1,
+      starter: 3,
+      growth: 10,
+      business: 50,
+      enterprise: 999999,
+      owner: 999999
+    };
+
+    return apiKeyLimitsByPlan[plan] || apiKeyLimitsByPlan.free;
+  }
+
+  async function getCurrentOrganizationPlan() {
     try {
-      return JSON.parse(
-        localStorage.getItem('sherguardHiddenRevokedApiKeys') || '[]'
-      );
-    } catch {
-      return [];
+      const organizationProfile = await aiTrustApiGet('/organization/profile');
+
+      if (
+        organizationProfile &&
+        organizationProfile.organization &&
+        organizationProfile.organization.plan
+      ) {
+        return String(
+          organizationProfile.organization.plan || 'free'
+        ).toLowerCase();
+      }
+
+      if (
+        organizationProfile &&
+        organizationProfile.plan
+      ) {
+        return String(
+          organizationProfile.plan || 'free'
+        ).toLowerCase();
+      }
+
+    } catch (error) {
+      console.error('API key plan lookup failed:', error);
+    }
+
+    return 'free';
+  }
+
+  function renderUsageAndLimit(keys, plan) {
+    const usageText = document.getElementById('apiKeyUsageText');
+    const createBtn = document.getElementById('createApiKeyBtn');
+
+    const activeKeys = keys.filter(function (key) {
+      return key.is_active;
+    }).length;
+
+    const apiKeyLimit = getApiKeyLimitByPlan(plan);
+
+    if (usageText) {
+      if (apiKeyLimit >= 999999) {
+        usageText.textContent =
+          activeKeys + ' / Unlimited active API keys used';
+      } else {
+        usageText.textContent =
+          activeKeys + ' / ' + apiKeyLimit + ' active API keys used';
+      }
+    }
+
+    if (!createBtn) {
+      return;
+    }
+
+    let limitMessage = document.getElementById('apiKeyLimitMessage');
+
+    if (!limitMessage) {
+      limitMessage = document.createElement('p');
+      limitMessage.id = 'apiKeyLimitMessage';
+      limitMessage.className = 'api-key-limit-message';
+      createBtn.insertAdjacentElement('afterend', limitMessage);
+    }
+
+    if (activeKeys >= apiKeyLimit) {
+      createBtn.disabled = true;
+      createBtn.textContent = 'Limit Reached';
+
+      limitMessage.textContent =
+        'API key limit reached for your current plan. Upgrade your plan to create more API keys.';
+
+      limitMessage.classList.remove('hidden');
+    } else {
+      createBtn.disabled = false;
+      createBtn.textContent = 'Create API Key';
+
+      limitMessage.textContent = '';
+      limitMessage.classList.add('hidden');
     }
   }
 
-  function saveHiddenRevokedApiKeyIds(ids) {
-    localStorage.setItem(
-      'sherguardHiddenRevokedApiKeys',
-      JSON.stringify(ids)
-    );
+  function renderApiKeysTable(keys) {
+    const body = document.getElementById('apiKeysTableBody');
+
+    if (!body) {
+      return;
+    }
+
+    if (!keys.length) {
+      body.innerHTML = `
+        <tr>
+          <td colspan="8">No API keys created yet.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    body.innerHTML = keys.map(function (key) {
+      const statusClass = key.is_active
+        ? 'api-key-status-active'
+        : 'api-key-status-revoked';
+
+      const statusText = key.is_active
+        ? 'Active'
+        : 'Revoked';
+
+      const scopes = Array.isArray(key.scopes)
+        ? key.scopes
+        : [];
+
+      const scopeHtml = scopes.length
+        ? scopes.map(function (scope) {
+            return '<span class="api-key-scope-pill">' +
+              formatScopeLabel(scope) +
+            '</span>';
+          }).join(' ')
+        : '<span class="api-key-scope-pill">All Modules</span>';
+
+      return `
+        <tr>
+          <td>${key.name || 'Primary API Key'}</td>
+          <td>${key.key_prefix || '—'}</td>
+          <td>${scopeHtml}</td>
+          <td class="${statusClass}">${statusText}</td>
+          <td>${key.request_count || 0}</td>
+          <td>${formatApiKeyDate(key.last_used_at)}</td>
+          <td>${key.created_by_email || 'Unknown'}</td>
+          <td>
+            <button
+              class="api-key-revoke-btn"
+              data-api-key-id="${key.id}"
+              ${key.is_active ? '' : 'disabled'}
+            >
+              ${key.is_active ? 'Revoke' : 'Revoked'}
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
   }
 
   async function loadApiKeys() {
     const body = document.getElementById('apiKeysTableBody');
 
-    if (!body) return;
+    if (!body) {
+      return;
+    }
+
+    body.innerHTML = `
+      <tr>
+        <td colspan="8">Loading API keys from backend...</td>
+      </tr>
+    `;
 
     try {
       const data = await aiTrustApiGet('/api-keys');
+      const keys = Array.isArray(data.keys) ? data.keys : [];
+      const currentPlan = await getCurrentOrganizationPlan();
 
-      const keys = data.keys || [];
-      const hiddenRevokedIds = getHiddenRevokedApiKeyIds();
-
-      const visibleKeys = keys.filter(function (key) {
-        return key.is_active || !hiddenRevokedIds.includes(String(key.id));
-      });
-
-      const revokedKeys = keys.filter(function (key) {
-        return !key.is_active;
-      });
-
-      const usageText = document.getElementById('apiKeyUsageText');
-
-      const activeKeys = keys.filter(function (key) {
-        return key.is_active;
-      }).length;
-
-      const apiKeyLimitsByPlan = {
-        free: 1,
-        starter: 3,
-        growth: 10,
-        business: 50,
-        enterprise: 999999,
-        owner: 999999
-      };
-
-      let currentPlan = 'free';
-
-      try {
-        const organizationProfile = await aiTrustApiGet('/organization/profile');
-
-        if (
-          organizationProfile &&
-          organizationProfile.organization &&
-          organizationProfile.organization.plan
-        ) {
-          currentPlan = String(
-            organizationProfile.organization.plan || 'free'
-          ).toLowerCase();
-        }
-      } catch (error) {
-        console.error('API key plan lookup failed:', error);
-      }
-
-      const apiKeyLimit =
-        apiKeyLimitsByPlan[currentPlan] || apiKeyLimitsByPlan.free;
-
-      if (usageText) {
-        if (apiKeyLimit >= 999999) {
-          usageText.textContent =
-            activeKeys + ' / Unlimited active API keys used';
-        } else {
-          usageText.textContent =
-            activeKeys + ' / ' + apiKeyLimit + ' active API keys used';
-        }
-      }
-
-      const createBtn = document.getElementById('createApiKeyBtn');
-
-      if (createBtn) {
-        let limitMessage = document.getElementById('apiKeyLimitMessage');
-
-        if (!limitMessage) {
-          limitMessage = document.createElement('p');
-          limitMessage.id = 'apiKeyLimitMessage';
-          limitMessage.className = 'api-key-limit-message';
-          createBtn.insertAdjacentElement('afterend', limitMessage);
-        }
-
-        if (activeKeys >= apiKeyLimit) {
-          createBtn.disabled = true;
-          createBtn.textContent = 'Limit Reached';
-
-          limitMessage.textContent =
-            'API key limit reached for your current plan. Upgrade your plan to create more API keys.';
-
-          limitMessage.classList.remove('hidden');
-        } else {
-          createBtn.disabled = false;
-          createBtn.textContent = 'Create API Key';
-
-          limitMessage.textContent = '';
-          limitMessage.classList.add('hidden');
-        }
-      }
-
-      let clearRevokedBtn = document.getElementById('clearRevokedApiKeysBtn');
-      const tableWrap = document.querySelector('.api-key-table-wrap');
-
-      if (!clearRevokedBtn && tableWrap) {
-        clearRevokedBtn = document.createElement('button');
-        clearRevokedBtn.id = 'clearRevokedApiKeysBtn';
-        clearRevokedBtn.type = 'button';
-        clearRevokedBtn.className = 'api-key-clear-revoked-btn';
-        clearRevokedBtn.textContent = 'Clear Revoked Keys';
-        tableWrap.insertAdjacentElement('beforebegin', clearRevokedBtn);
-      }
-
-      if (clearRevokedBtn) {
-        if (revokedKeys.length) {
-          clearRevokedBtn.style.display = 'inline-flex';
-        } else {
-          clearRevokedBtn.style.display = 'none';
-        }
-
-        clearRevokedBtn.onclick = function () {
-          const ids = getHiddenRevokedApiKeyIds();
-
-          revokedKeys.forEach(function (key) {
-            const id = String(key.id);
-
-            if (!ids.includes(id)) {
-              ids.push(id);
-            }
-          });
-
-          saveHiddenRevokedApiKeyIds(ids);
-          loadApiKeys();
-        };
-      }
-
-      if (!visibleKeys.length) {
-        body.innerHTML = `
-          <tr>
-            <td colspan="8">No API keys created yet.</td>
-          </tr>
-        `;
-        return;
-      }
-
-      body.innerHTML = visibleKeys.map(function (key) {
-        const statusClass = key.is_active
-          ? 'api-key-status-active'
-          : 'api-key-status-revoked';
-
-        const statusText = key.is_active
-          ? 'Active'
-          : 'Revoked';
-
-        const scopes = Array.isArray(key.scopes)
-          ? key.scopes
-          : [];
-
-        const scopeHtml = scopes.length
-          ? scopes.map(function (scope) {
-              return '<span class="api-key-scope-pill">' +
-                formatScopeLabel(scope) +
-              '</span>';
-            }).join(' ')
-          : '<span class="api-key-scope-pill">All Modules</span>';
-
-        return `
-          <tr>
-            <td>${key.name}</td>
-            <td>${key.key_prefix}</td>
-            <td>${scopeHtml}</td>
-            <td class="${statusClass}">${statusText}</td>
-            <td>${key.request_count || 0}</td>
-            <td>${formatApiKeyDate(key.last_used_at)}</td>
-            <td>${key.created_by_email || 'Unknown'}</td>
-            <td>
-              <button
-                class="api-key-revoke-btn"
-                data-api-key-id="${key.id}"
-                ${key.is_active ? '' : 'disabled'}
-              >
-                Revoke
-              </button>
-            </td>
-          </tr>
-        `;
-      }).join('');
+      renderUsageAndLimit(keys, currentPlan);
+      renderApiKeysTable(keys);
 
     } catch (error) {
       body.innerHTML = `
         <tr>
-          <td colspan="8">Failed to load API keys.</td>
+          <td colspan="8">Failed to load API keys from backend.</td>
         </tr>
       `;
 
@@ -292,6 +282,10 @@
         box.classList.remove('hidden');
       }
 
+      if (input) {
+        input.value = '';
+      }
+
       await loadApiKeys();
 
     } catch (error) {
@@ -306,15 +300,20 @@
     }
 
     try {
-      await fetch(
+      const response = await fetch(
         'https://sherguard-api.onrender.com/api-keys/' + apiKeyId,
         {
           method: 'DELETE',
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('aiTrustToken')
+            Authorization: 'Bearer ' + localStorage.getItem('aiTrustToken')
           }
         }
       );
+
+      if (!response.ok) {
+        alert('Failed to revoke API key.');
+        return;
+      }
 
       await loadApiKeys();
 
@@ -324,7 +323,7 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function bindEvents() {
     const createBtn = document.getElementById('createApiKeyBtn');
 
     if (createBtn) {
@@ -337,7 +336,9 @@
       copyBtn.addEventListener('click', async function () {
         const value = document.getElementById('newApiKeyValue');
 
-        if (!value) return;
+        if (!value) {
+          return;
+        }
 
         try {
           await navigator.clipboard.writeText(
@@ -367,7 +368,9 @@
     document.addEventListener('click', function (event) {
       const revokeBtn = event.target.closest('.api-key-revoke-btn');
 
-      if (!revokeBtn) return;
+      if (!revokeBtn) {
+        return;
+      }
 
       const apiKeyId = revokeBtn.getAttribute('data-api-key-id');
 
@@ -376,6 +379,31 @@
       }
     });
 
+    window.addEventListener('aiTrustOsActivityUpdated', function () {
+      setTimeout(function () {
+        loadApiKeys();
+      }, 500);
+    });
+  }
+
+  function init() {
+    if (!document.getElementById('apiKeysTableBody')) {
+      return;
+    }
+
+    bindEvents();
     loadApiKeys();
-  });
+  }
+
+  window.SherGuardApiKeys = {
+    load: loadApiKeys,
+    create: createApiKey,
+    revoke: revokeApiKey
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
