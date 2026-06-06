@@ -1501,11 +1501,11 @@ renderBreakdown(result.breakdown || []);
     function renderThreatFeed() {
 
       const container = document.getElementById('emailThreatFeed');
-    
+
       if (!container) return;
-    
-      const recent = state.activity.slice(0, 6);
-    
+
+      const recent = getCombinedEmailActivity().slice(0, 6);
+
       if (!recent.length) {
         container.innerHTML = `
           <h4>Real-Time Threat Feed</h4>
@@ -1513,15 +1513,15 @@ renderBreakdown(result.breakdown || []);
         `;
         return;
       }
-    
+
       container.innerHTML = `
         <h4>Real-Time Threat Feed</h4>
-    
+
         <div class="email-threat-feed-list">
           ${recent.map(item => {
-    
+
             let message = 'Low-risk signup observed.';
-    
+
             if (item.domainType === 'disposable') {
               message = 'Disposable email signup blocked.';
             } else if (item.riskLabel === 'High Risk') {
@@ -1529,7 +1529,7 @@ renderBreakdown(result.breakdown || []);
             } else if (item.providerType === 'free') {
               message = 'Public email provider monitored.';
             }
-    
+
             return `
               <div class="email-threat-feed-item">
                 <span>${new Date(item.timestamp).toLocaleTimeString()}</span>
@@ -1602,21 +1602,15 @@ renderBreakdown(result.breakdown || []);
 
       let trustStatus = 'Stable';
 
-      const highRiskCount = activity.filter(
-        (item) => item.riskLabel === 'High Risk'
-      ).length;
-
       const disposableCount = activity.filter(
         (item) =>
           item.providerType === 'disposable' ||
           item.domainType === 'disposable'
       ).length;
 
-      if (highRiskCount >= 5 || disposableCount >= 3) {
-        trustStatus = 'Under Attack';
-      } else if (highRiskCount >= 3) {
+      if (high >= 3 || disposableCount >= 3) {
         trustStatus = 'Critical';
-      } else if (medium >= 5) {
+      } else if (high >= 1 || medium >= 3) {
         trustStatus = 'Elevated';
       }
 
@@ -1624,7 +1618,9 @@ renderBreakdown(result.breakdown || []);
     }
   
     function updateInsights() {
-      if (state.activity.length === 0) {
+      const activity = getCombinedEmailActivity();
+
+      if (activity.length === 0) {
         setText(dom.insightMostDomain, 'None yet');
         setText(dom.insightMostRisk, 'None yet');
         setText(dom.insightHighPct, '0%');
@@ -1633,44 +1629,61 @@ renderBreakdown(result.breakdown || []);
         setText(dom.insightText, 'Run the first check to build email intelligence insights.');
         return;
       }
-  
-      const mostCommonDomain = getMostCommonValue(state.activity.map((item) => item.domain || 'Unknown'));
-      const mostCommonRisk = getMostCommonValue(state.activity.map((item) => item.riskLabel || 'Unknown'));
-      const highRiskPct = percentage(state.activity.filter((item) => item.riskLabel === 'High Risk').length, state.activity.length);
-      const freeProviderPct = percentage(state.activity.filter((item) => item.providerType === 'free').length, state.activity.length);
-      const lastChecked = state.activity[0] ? state.activity[0].rawEmail : 'None yet';
-  
+
+      const mostCommonDomain = getMostCommonValue(
+        activity.map((item) => item.domain || 'Unknown')
+      );
+
+      const mostCommonRisk = getMostCommonValue(
+        activity.map((item) => item.riskLabel || 'Unknown')
+      );
+
+      const highRiskPct = percentage(
+        activity.filter((item) => item.riskLabel === 'High Risk').length,
+        activity.length
+      );
+
+      const freeProviderPct = percentage(
+        activity.filter((item) => item.providerType === 'free').length,
+        activity.length
+      );
+
+      const lastChecked = activity[0]
+        ? activity[0].rawEmail
+        : 'None yet';
+
       setText(dom.insightMostDomain, mostCommonDomain || 'Unknown');
       setText(dom.insightMostRisk, mostCommonRisk || 'Unknown');
       setText(dom.insightHighPct, highRiskPct + '%');
       setText(dom.insightFreePct, freeProviderPct + '%');
       setText(dom.insightLastEmail, lastChecked);
+
       let insightMessage =
-  'History shows ' +
-  highRiskPct +
-  '% high-risk outcomes and ' +
-  freeProviderPct +
-  '% free-provider usage across saved checks.';
+        'History shows ' +
+        highRiskPct +
+        '% high-risk outcomes and ' +
+        freeProviderPct +
+        '% free-provider usage across saved checks.';
 
-const disposableCount = state.activity.filter(
-  (item) =>
-    item.providerType === 'disposable' ||
-    item.domainType === 'disposable'
-).length;
+      const disposableCount = activity.filter(
+        (item) =>
+          item.providerType === 'disposable' ||
+          item.domainType === 'disposable'
+      ).length;
 
-const highRiskCount = state.activity.filter(
-  (item) => item.riskLabel === 'High Risk'
-).length;
+      const highRiskCount = activity.filter(
+        (item) => item.riskLabel === 'High Risk'
+      ).length;
 
-if (disposableCount >= 3) {
-  insightMessage += ' Repeated disposable-email attack patterns detected.';
-}
+      if (disposableCount >= 3) {
+        insightMessage += ' Repeated disposable-email attack patterns detected.';
+      }
 
-if (highRiskCount >= 5) {
-  insightMessage += ' Elevated high-risk signup activity detected.';
-}
+      if (highRiskCount >= 5) {
+        insightMessage += ' Elevated high-risk signup activity detected.';
+      }
 
-setText(dom.insightText, insightMessage);
+      setText(dom.insightText, insightMessage);
     }
   
     function renderAnalytics() {
@@ -2181,6 +2194,13 @@ setText(dom.insightText, insightMessage);
     }
 
     window.addEventListener('sherguardDashboardEventsSynced', function () {
+      const combinedActivity = getCombinedEmailActivity();
+
+      if (combinedActivity.length > 0) {
+        state.latestResult = combinedActivity[0];
+        renderResult(state.latestResult);
+      }
+
       renderAnalytics();
       renderActivityTable();
       renderThreatFeed();
