@@ -1882,8 +1882,21 @@ renderBreakdown(result.breakdown || []);
     function renderActivityTable() {
       if (!dom.activityBody) return;
   
+      const allActivity = getCombinedEmailActivity();
       const filtered = getFilteredActivity();
-      updateFilterCount(filtered.length, state.activity.length);
+
+      updateFilterCount(filtered.length, allActivity.length);
+
+      if (
+        filtered.length === 0 &&
+        allActivity.length > 0 &&
+        dom.searchInput &&
+        dom.searchInput.value.trim()
+      ) {
+        dom.searchInput.value = '';
+        renderActivityTable();
+        return;
+      }
   
       if (filtered.length === 0) {
         const message = state.activity.length > 0
