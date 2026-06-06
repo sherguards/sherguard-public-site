@@ -1020,28 +1020,53 @@ if (riskPercent >= 50) {
 
     const el = document.getElementById('connectedModulesText');
     if (!el) return;
-  
-    const modules = [
-      'aiTrustOsEmailRiskActivity',
-      'aiTrustOsDeviceRiskActivity',
-      'aiTrustOsBotRiskActivity',
-      'aiTrustOsApiAbuseActivity',
-      'aiTrustOsPaymentFraudActivity',
-    ];
-  
-    let activeCount = 0;
-  
-    modules.forEach(key => {
-      try {
-        const data = JSON.parse(localStorage.getItem(aiTrustScopedKey(key)) || '[]');
-  
-        if (Array.isArray(data) && data.length > 0) {
-          activeCount++;
-        }
-      } catch {}
+
+    const records = Array.isArray(window.latestDashboardRecords)
+      ? window.latestDashboardRecords
+      : [];
+
+    const activeModules = new Set();
+
+    records.forEach(function (record) {
+      const moduleName = String(
+        record.moduleName ||
+        record.module ||
+        record.module_key ||
+        ''
+      ).toLowerCase();
+
+      if (moduleName.includes('email')) {
+        activeModules.add('Email Risk');
+      }
+
+      if (moduleName.includes('device')) {
+        activeModules.add('Device Risk');
+      }
+
+      if (moduleName.includes('bot')) {
+        activeModules.add('Bot Detection');
+      }
+
+      if (moduleName.includes('api')) {
+        activeModules.add('API Abuse');
+      }
+
+      if (moduleName.includes('payment')) {
+        activeModules.add('Payment Fraud');
+      }
     });
-  
-    el.textContent = `${activeCount} active risk module${activeCount !== 1 ? 's' : ''} connected`;
+
+    if (activeModules.size === 0) {
+      el.textContent = '0 active risk modules connected';
+      return;
+    }
+
+    el.textContent =
+      activeModules.size +
+      ' active risk module' +
+      (activeModules.size !== 1 ? 's' : '') +
+      ' connected: ' +
+      Array.from(activeModules).join(', ');
   }
 
   function updateDashboardTimeline(records) {
