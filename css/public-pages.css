@@ -1511,3 +1511,72 @@
     padding: 64px 6% 44px;
   }
 }
+
+/* ========================================
+   SHERGUARD BLOG ARTICLE HERO GLOBAL FIX
+======================================== */
+
+.public-pricing-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 24px 80px;
+  text-align: center;
+}
+
+.public-pricing-hero h1 {
+  max-width: 1100px;
+  margin: 24px auto;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.public-pricing-hero p {
+  max-width: 950px;
+  margin: 0 auto;
+  font-size: 22px;
+  line-height: 1.8;
+}
+
+.public-pricing-hero .public-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+
+  .public-pricing-hero h1 {
+    font-size: clamp(42px, 7vw, 64px);
+    line-height: 1.1;
+  }
+
+  .public-pricing-hero p {
+    font-size: 20px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .public-pricing-hero {
+    padding: 72px 20px 56px;
+  }
+
+  .public-pricing-hero h1 {
+    font-size: clamp(34px, 9vw, 48px);
+    line-height: 1.12;
+    max-width: 100%;
+  }
+
+  .public-pricing-hero p {
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 100%;
+  }
+}
