@@ -1,9 +1,22 @@
 (function () {
   'use strict';
 
+  /*
+    SherGuard Team Management
+    Backend-first module.
+
+    - Team members load from backend /organization/users.
+    - Invitations load from backend /team-invitations.
+    - Sessions load from backend /organization/sessions.
+    - Audit logs load from backend /organization/audit-logs.
+    - No team data is stored in localStorage.
+    - All actions are backend actions.
+  */
+
   let teamUsers = [];
   let teamInvites = [];
   let teamSessions = [];
+  let auditLogs = [];
 
   let userPage = 1;
   const pageSize = 5;
@@ -13,12 +26,39 @@
       ...(options || {}),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('aiTrustToken'),
+        Authorization: 'Bearer ' + localStorage.getItem('aiTrustToken'),
         ...((options && options.headers) || {})
       }
-    }).then(function (response) {
-      return response.json();
+    }).then(async function (response) {
+      const data = await response.json().catch(function () {
+        return {};
+      });
+
+      if (!response.ok) {
+        throw new Error(data.message || data.detail || 'Backend request failed.');
+      }
+
+      return data;
     });
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function formatDate(value) {
+    if (!value) return 'Unknown';
+
+    try {
+      return new Date(value).toLocaleString();
+    } catch (error) {
+      return value;
+    }
   }
 
   function setMessage(message, isError) {
@@ -83,6 +123,36 @@
     header.appendChild(btn);
   }
 
+  function ensureClearCancelledInvitesButton() {
+    const invitationsBlock =
+      document.getElementById('teamInvitationsTableBody')
+        ?.closest('.team-invitations-block');
+
+    if (!invitationsBlock || document.getElementById('clearCancelledInvitesBtn')) {
+      return;
+    }
+
+    const title = invitationsBlock.querySelector('h4');
+
+    if (!title) {
+      return;
+    }
+
+    const header = document.createElement('div');
+    header.className = 'team-session-header';
+
+    title.parentNode.insertBefore(header, title);
+    header.appendChild(title);
+
+    const button = document.createElement('button');
+    button.id = 'clearCancelledInvitesBtn';
+    button.className = 'team-action-btn warning';
+    button.type = 'button';
+    button.textContent = 'Clear Cancelled Invitations';
+
+    header.appendChild(button);
+  }
+
   function getFilteredUsers() {
     const search = (
       document.getElementById('teamUserSearchInput')?.value || ''
@@ -136,8 +206,8 @@
 
       return `
         <tr>
-          <td>${user.full_name || 'Unnamed User'}</td>
-          <td>${user.email}</td>
+          <td>${escapeHtml(user.full_name || 'Unnamed User')}</td>
+          <td>${escapeHtml(user.email || 'Unknown')}</td>
           <td>
             <select class="team-role-select team-user-role-select" data-user-id="${user.id}">
               <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
@@ -188,9 +258,15 @@
 
     if (!body) return;
 
+    body.innerHTML = `
+      <tr>
+        <td colspan="5">Loading team members from backend...</td>
+      </tr>
+    `;
+
     try {
       const data = await aiTrustApiGet('/organization/users');
-      teamUsers = data.users || [];
+      teamUsers = Array.isArray(data.users) ? data.users : [];
 
       ensureToolbar();
       renderTeamMembers();
@@ -198,7 +274,7 @@
     } catch (error) {
       body.innerHTML = `
         <tr>
-          <td colspan="5">Failed to load team members.</td>
+          <td colspan="5">Failed to load team members from backend.</td>
         </tr>
       `;
 
@@ -206,50 +282,27 @@
     }
   }
 
-  function ensureClearCancelledInvitesButton() {
-    const invitationsBlock =
-      document.getElementById('teamInvitationsTableBody')
-        ?.closest('.team-invitations-block');
-  
-    if (!invitationsBlock || document.getElementById('clearCancelledInvitesBtn')) {
-      return;
-    }
-  
-    const title = invitationsBlock.querySelector('h4');
-  
-    if (!title) {
-      return;
-    }
-  
-    const header = document.createElement('div');
-    header.className = 'team-session-header';
-  
-    title.parentNode.insertBefore(header, title);
-    header.appendChild(title);
-  
-    const button = document.createElement('button');
-    button.id = 'clearCancelledInvitesBtn';
-    button.className = 'team-action-btn warning';
-    button.type = 'button';
-    button.textContent = 'Clear Cancelled Invitations';
-  
-    header.appendChild(button);
-  }
-
   async function loadTeamInvitations() {
     const body = document.getElementById('teamInvitationsTableBody');
 
     if (!body) return;
+
     ensureClearCancelledInvitesButton();
+
+    body.innerHTML = `
+      <tr>
+        <td colspan="5">Loading invitations from backend...</td>
+      </tr>
+    `;
 
     try {
       const data = await aiTrustApiGet('/team-invitations');
-      teamInvites = data.invitations || [];
+      teamInvites = Array.isArray(data.invitations) ? data.invitations : [];
 
       if (!teamInvites.length) {
         body.innerHTML = `
           <tr>
-            <td colspan="5">No pending invitations.</td>
+            <td colspan="5">No invitations found.</td>
           </tr>
         `;
         return;
@@ -260,24 +313,24 @@
 
         return `
           <tr>
-            <td>${invite.email}</td>
-            <td><span class="team-role-badge">${invite.role}</span></td>
-            <td><span class="team-status-badge pending">${invite.status}</span></td>
-            <td>${invite.invited_by_email || 'Unknown'}</td>
+            <td>${escapeHtml(invite.email || 'Unknown')}</td>
+            <td><span class="team-role-badge">${escapeHtml(invite.role || 'viewer')}</span></td>
+            <td><span class="team-status-badge pending">${escapeHtml(invite.status || 'pending')}</span></td>
+            <td>${escapeHtml(invite.invited_by_email || 'Unknown')}</td>
             <td>
-  ${
-    canCancel
-      ? `
-        <button
-          class="team-action-btn danger team-cancel-invite-btn"
-          data-invite-id="${invite.id}"
-        >
-          Cancel
-        </button>
-      `
-      : '<span class="team-muted-action">No action</span>'
-  }
-</td>
+              ${
+                canCancel
+                  ? `
+                    <button
+                      class="team-action-btn danger team-cancel-invite-btn"
+                      data-invite-id="${invite.id}"
+                    >
+                      Cancel
+                    </button>
+                  `
+                  : '<span class="team-muted-action">No action</span>'
+              }
+            </td>
           </tr>
         `;
       }).join('');
@@ -285,7 +338,7 @@
     } catch (error) {
       body.innerHTML = `
         <tr>
-          <td colspan="5">Failed to load invitations.</td>
+          <td colspan="5">Failed to load invitations from backend.</td>
         </tr>
       `;
 
@@ -298,9 +351,15 @@
 
     if (!body) return;
 
+    body.innerHTML = `
+      <tr>
+        <td colspan="13">Loading sessions from backend...</td>
+      </tr>
+    `;
+
     try {
       const data = await aiTrustApiGet('/organization/sessions');
-      teamSessions = data.sessions || [];
+      teamSessions = Array.isArray(data.sessions) ? data.sessions : [];
 
       let activeSessions = 0;
       let trustedSessions = 0;
@@ -343,28 +402,24 @@
           trustedSessions += 1;
         }
 
+        const userAgent = session.user_agent || 'Unknown';
+
         return `
           <tr>
-            <td>${session.email || 'Unknown'}</td>
-            <td>${session.ip_address || 'Unknown'}</td>
-            <td title="${session.user_agent || 'Unknown'}">
-              ${(session.user_agent || 'Unknown').slice(0, 55)}...
+            <td>${escapeHtml(session.email || 'Unknown')}</td>
+            <td>${escapeHtml(session.ip_address || 'Unknown')}</td>
+            <td title="${escapeHtml(userAgent)}">
+              ${escapeHtml(userAgent.slice(0, 55))}${userAgent.length > 55 ? '...' : ''}
             </td>
-            <td>${session.login_method || 'Unknown'}</td>
+            <td>${escapeHtml(session.login_method || 'Unknown')}</td>
             <td class="${statusClass}">${statusText}</td>
-            <td>${lifecycleStatus}</td>
-            <td><span class="team-risk-badge ${riskClass}">${sessionRisk}</span></td>
-            <td>${riskScore}</td>
-            <td>${detectedThreat}</td>
-            <td>${securityRecommendation}</td>
-            <td>${session.last_activity_age || 'Unknown activity'}</td>
-            <td>
-              ${
-                session.last_seen_at
-                  ? new Date(session.last_seen_at).toLocaleString()
-                  : 'Unknown'
-              }
-            </td>
+            <td>${escapeHtml(lifecycleStatus)}</td>
+            <td><span class="team-risk-badge ${riskClass}">${escapeHtml(sessionRisk)}</span></td>
+            <td>${escapeHtml(riskScore)}</td>
+            <td>${escapeHtml(detectedThreat)}</td>
+            <td>${escapeHtml(securityRecommendation)}</td>
+            <td>${escapeHtml(session.last_activity_age || 'Unknown activity')}</td>
+            <td>${formatDate(session.last_seen_at)}</td>
             <td>
               <div class="team-action-buttons">
                 <button
@@ -391,7 +446,7 @@
     } catch (error) {
       body.innerHTML = `
         <tr>
-          <td colspan="13">Failed to load sessions.</td>
+          <td colspan="13">Failed to load sessions from backend.</td>
         </tr>
       `;
 
@@ -438,7 +493,8 @@
 
       if (emailInput) emailInput.value = '';
 
-      loadTeamInvitations();
+      await loadTeamInvitations();
+      await loadAuditLogs();
 
     } catch (error) {
       setMessage('Failed to send invitation.', true);
@@ -451,11 +507,17 @@
 
     if (!body) return;
 
+    body.innerHTML = `
+      <tr>
+        <td colspan="5">Loading audit logs from backend...</td>
+      </tr>
+    `;
+
     try {
       const data = await aiTrustApiGet('/organization/audit-logs');
-      const logs = data.logs || [];
+      auditLogs = Array.isArray(data.logs) ? data.logs : [];
 
-      if (!logs.length) {
+      if (!auditLogs.length) {
         body.innerHTML = `
           <tr>
             <td colspan="5">No audit logs yet.</td>
@@ -464,18 +526,18 @@
         return;
       }
 
-      body.innerHTML = logs.slice(0, 25).map(function (log) {
+      body.innerHTML = auditLogs.slice(0, 25).map(function (log) {
         const details = log.details
           ? JSON.stringify(log.details)
           : 'No details';
 
         return `
           <tr>
-            <td>${log.timestamp ? new Date(log.timestamp).toLocaleString() : 'Unknown'}</td>
-            <td>${log.email || 'Unknown'}</td>
-            <td><span class="team-role-badge">${log.role || 'admin'}</span></td>
-            <td><strong>${log.action || 'Unknown action'}</strong></td>
-            <td>${details}</td>
+            <td>${formatDate(log.timestamp)}</td>
+            <td>${escapeHtml(log.email || 'Unknown')}</td>
+            <td><span class="team-role-badge">${escapeHtml(log.role || 'admin')}</span></td>
+            <td><strong>${escapeHtml(log.action || 'Unknown action')}</strong></td>
+            <td>${escapeHtml(details)}</td>
           </tr>
         `;
       }).join('');
@@ -483,7 +545,7 @@
     } catch (error) {
       body.innerHTML = `
         <tr>
-          <td colspan="5">Failed to load audit logs.</td>
+          <td colspan="5">Failed to load audit logs from backend.</td>
         </tr>
       `;
 
@@ -491,7 +553,16 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  async function refreshTeamManagement() {
+    await Promise.all([
+      loadTeamMembers(),
+      loadTeamInvitations(),
+      loadTeamSessions(),
+      loadAuditLogs()
+    ]);
+  }
+
+  function bindEvents() {
     ensureForceLogoutButton();
 
     const inviteBtn = document.getElementById('teamInviteBtn');
@@ -502,24 +573,24 @@
 
     const clearAuditLogsBtn = document.getElementById('clearAuditLogsBtn');
 
-if (clearAuditLogsBtn) {
-  clearAuditLogsBtn.addEventListener('click', async function () {
-    if (!confirm('Clear all audit logs? One final clear_audit_logs record will remain.')) return;
+    if (clearAuditLogsBtn) {
+      clearAuditLogsBtn.addEventListener('click', async function () {
+        if (!confirm('Clear all audit logs? One final clear_audit_logs record will remain.')) return;
 
-    try {
-      const result = await apiFetch('/organization/audit-logs', {
-        method: 'DELETE'
+        try {
+          const result = await apiFetch('/organization/audit-logs', {
+            method: 'DELETE'
+          });
+
+          alert(result.message || 'Audit logs cleared.');
+          await loadAuditLogs();
+
+        } catch (error) {
+          alert(error.message || 'Failed to clear audit logs.');
+          console.error('Clear audit logs failed:', error);
+        }
       });
-
-      alert(result.message || 'Audit logs cleared.');
-      loadAuditLogs();
-
-    } catch (error) {
-      alert('Failed to clear audit logs.');
-      console.error('Clear audit logs failed:', error);
     }
-  });
-}
 
     const clearInactiveSessionsBtn = document.getElementById('clearInactiveSessionsBtn');
 
@@ -533,10 +604,11 @@ if (clearAuditLogsBtn) {
           });
 
           alert(result.message || 'Inactive sessions cleared.');
-          loadTeamSessions();
+          await loadTeamSessions();
+          await loadAuditLogs();
 
         } catch (error) {
-          alert('Failed to clear inactive sessions.');
+          alert(error.message || 'Failed to clear inactive sessions.');
           console.error('Clear inactive sessions failed:', error);
         }
       });
@@ -565,12 +637,20 @@ if (clearAuditLogsBtn) {
 
         if (!confirm('Remove this user from the organization?')) return;
 
-        const result = await apiFetch('/organization/users/' + userId, {
-          method: 'DELETE'
-        });
+        try {
+          const result = await apiFetch('/organization/users/' + userId, {
+            method: 'DELETE'
+          });
 
-        alert(result.message || 'User removed.');
-        loadTeamMembers();
+          alert(result.message || 'User removed.');
+          await loadTeamMembers();
+          await loadAuditLogs();
+
+        } catch (error) {
+          alert(error.message || 'Failed to remove user.');
+          console.error('Remove user failed:', error);
+        }
+
         return;
       }
 
@@ -580,31 +660,47 @@ if (clearAuditLogsBtn) {
         const userId = toggleBtn.getAttribute('data-user-id');
         const isActive = toggleBtn.getAttribute('data-active') === 'true';
 
-        const result = await apiFetch('/organization/users/' + userId + '/status', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            is_active: isActive
-          })
-        });
+        try {
+          const result = await apiFetch('/organization/users/' + userId + '/status', {
+            method: 'PATCH',
+            body: JSON.stringify({
+              is_active: isActive
+            })
+          });
 
-        alert(result.message || 'User status updated.');
-        loadTeamMembers();
+          alert(result.message || 'User status updated.');
+          await loadTeamMembers();
+          await loadAuditLogs();
+
+        } catch (error) {
+          alert(error.message || 'Failed to update user status.');
+          console.error('Update user status failed:', error);
+        }
+
         return;
       }
 
       const clearCancelledInvitesBtn = event.target.closest('#clearCancelledInvitesBtn');
 
-if (clearCancelledInvitesBtn) {
-  if (!confirm('Clear all cancelled invitations?')) return;
+      if (clearCancelledInvitesBtn) {
+        if (!confirm('Clear all cancelled invitations?')) return;
 
-  const result = await apiFetch('/team-invitations/cancelled', {
-    method: 'DELETE'
-  });
+        try {
+          const result = await apiFetch('/team-invitations/cancelled', {
+            method: 'DELETE'
+          });
 
-  alert(result.message || 'Cancelled invitations cleared.');
-  loadTeamInvitations();
-  return;
-}
+          alert(result.message || 'Cancelled invitations cleared.');
+          await loadTeamInvitations();
+          await loadAuditLogs();
+
+        } catch (error) {
+          alert(error.message || 'Failed to clear cancelled invitations.');
+          console.error('Clear cancelled invitations failed:', error);
+        }
+
+        return;
+      }
 
       const cancelInviteBtn = event.target.closest('.team-cancel-invite-btn');
 
@@ -613,12 +709,20 @@ if (clearCancelledInvitesBtn) {
 
         if (!confirm('Cancel this invitation?')) return;
 
-        const result = await apiFetch('/team-invitations/' + inviteId, {
-          method: 'DELETE'
-        });
+        try {
+          const result = await apiFetch('/team-invitations/' + inviteId, {
+            method: 'DELETE'
+          });
 
-        alert(result.message || 'Invitation cancelled.');
-        loadTeamInvitations();
+          alert(result.message || 'Invitation cancelled.');
+          await loadTeamInvitations();
+          await loadAuditLogs();
+
+        } catch (error) {
+          alert(error.message || 'Failed to cancel invitation.');
+          console.error('Cancel invitation failed:', error);
+        }
+
         return;
       }
 
@@ -629,15 +733,23 @@ if (clearCancelledInvitesBtn) {
 
         if (!confirm('Revoke this login session?')) return;
 
-        const result = await apiFetch('/organization/sessions/' + sessionId + '/status', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            is_active: false
-          })
-        });
+        try {
+          const result = await apiFetch('/organization/sessions/' + sessionId + '/status', {
+            method: 'PATCH',
+            body: JSON.stringify({
+              is_active: false
+            })
+          });
 
-        alert(result.message || 'Session revoked.');
-        loadTeamSessions();
+          alert(result.message || 'Session revoked.');
+          await loadTeamSessions();
+          await loadAuditLogs();
+
+        } catch (error) {
+          alert(error.message || 'Failed to revoke session.');
+          console.error('Revoke session failed:', error);
+        }
+
         return;
       }
 
@@ -646,12 +758,19 @@ if (clearCancelledInvitesBtn) {
       if (forceBtn) {
         if (!confirm('Force logout all active sessions?')) return;
 
-        const result = await apiFetch('/organization/sessions/force-logout-all', {
-          method: 'DELETE'
-        });
+        try {
+          const result = await apiFetch('/organization/sessions/force-logout-all', {
+            method: 'DELETE'
+          });
 
-        alert(result.message || 'All sessions logged out.');
-        loadTeamSessions();
+          alert(result.message || 'All sessions logged out.');
+          await loadTeamSessions();
+          await loadAuditLogs();
+
+        } catch (error) {
+          alert(error.message || 'Failed to force logout sessions.');
+          console.error('Force logout failed:', error);
+        }
       }
     });
 
@@ -663,20 +782,52 @@ if (clearCancelledInvitesBtn) {
       const userId = roleSelect.getAttribute('data-user-id');
       const role = roleSelect.value;
 
-      const result = await apiFetch('/organization/users/' + userId + '/role', {
-        method: 'PATCH',
-        body: JSON.stringify({
-          role: role
-        })
-      });
+      try {
+        const result = await apiFetch('/organization/users/' + userId + '/role', {
+          method: 'PATCH',
+          body: JSON.stringify({
+            role: role
+          })
+        });
 
-      alert(result.message || 'User role updated.');
-      loadTeamMembers();
+        alert(result.message || 'User role updated.');
+        await loadTeamMembers();
+        await loadAuditLogs();
+
+      } catch (error) {
+        alert(error.message || 'Failed to update user role.');
+        console.error('Update user role failed:', error);
+        await loadTeamMembers();
+      }
     });
 
-    loadTeamMembers();
-    loadTeamInvitations();
-    loadTeamSessions();
-    loadAuditLogs();
-  });
+    window.addEventListener('aiTrustOsActivityUpdated', function () {
+      setTimeout(function () {
+        refreshTeamManagement();
+      }, 500);
+    });
+  }
+
+  function init() {
+    if (!document.getElementById('teamMembersTableBody')) {
+      return;
+    }
+
+    bindEvents();
+    refreshTeamManagement();
+  }
+
+  window.SherGuardTeamManagement = {
+    refresh: refreshTeamManagement,
+    loadTeamMembers: loadTeamMembers,
+    loadTeamInvitations: loadTeamInvitations,
+    loadTeamSessions: loadTeamSessions,
+    loadAuditLogs: loadAuditLogs
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
