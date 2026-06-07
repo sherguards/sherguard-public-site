@@ -12,10 +12,10 @@
   const token =
     localStorage.getItem('aiTrustToken');
 
-  if (!token) {
-    window.location.href = 'login.html';
-    return;
-  }
+    if (!token) {
+      window.location.replace('login.html');
+      return;
+    }
 
   function clearAuthAndRedirect(reason) {
     localStorage.removeItem(
@@ -33,8 +33,9 @@
       );
     }
 
-    window.location.href =
-      'login.html';
+    window.location.replace(
+      'login.html'
+    );
   }
 
   function resetIdleTimer() {
@@ -161,6 +162,12 @@ applyModuleVisibility(user);
       }
     });
   }
+
+  window.addEventListener('pageshow', function () {
+    if (!localStorage.getItem('aiTrustToken')) {
+      window.location.replace('login.html');
+    }
+  });
 
   bindIdleEvents();
   validateSession();
