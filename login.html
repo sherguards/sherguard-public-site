@@ -223,7 +223,7 @@
         showStatus('Login successful. Opening dashboard...', 'success');
 
         setTimeout(function() {
-          window.location.href = DASHBOARD_URL;
+          window.location.replace(DASHBOARD_URL);
         }, 700);
 
       } catch (error) {
