@@ -1713,14 +1713,21 @@ window.addEventListener('aiTrustOsActivityUpdated', function () {
   runDashboard();
 });
 
-  setInterval(function () {
-  const scrollX = window.scrollX;
-  const scrollY = window.scrollY;
+setInterval(function () {
+  const activeElement = document.activeElement;
 
-  runDashboard().then(function () {
-    window.scrollTo(scrollX, scrollY);
-  });
+  const userIsEditing =
+    activeElement &&
+    ['INPUT', 'TEXTAREA', 'SELECT'].includes(activeElement.tagName);
+
+  if (userIsEditing) {
+    return;
+  }
+
+  runDashboard();
 }, 30000);
+
+
   setInterval(function () {
     updateTotalChecksLastEventTime(window.latestDashboardRecords || []);
 }, 1000);
