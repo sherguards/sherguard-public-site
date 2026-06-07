@@ -50,10 +50,14 @@
 
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function () {
+  
       localStorage.removeItem('aiTrustToken');
       localStorage.removeItem('aiTrustUser');
-
-      window.location.href = 'login.html';
+  
+      sessionStorage.clear();
+  
+      window.location.replace('login.html');
+  
     });
   }
 
