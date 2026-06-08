@@ -276,7 +276,9 @@
 
       setLoading(true);
 
-      try {
+await runSherGuardVerification();
+
+try {
         const response = await fetch(
           API_BASE_URL + '/auth/login',
           {
