@@ -3,25 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
     <title>Login - SherGuard</title>
-  
+
     <meta
       name="description"
       content="Securely access your SherGuard organization dashboard, trust intelligence platform, API security controls, and fraud prevention tools."
     />
-  
+
     <meta name="robots" content="noindex,nofollow" />
-  
+
     <link rel="canonical" href="https://sherguard.com/login.html" />
-  
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  
+
     <meta property="og:url" content="https://sherguard.com/login.html" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="SherGuard Login" />
     <meta property="og:description" content="Secure login for SherGuard organizations, administrators, and trust intelligence platform users." />
-  
+
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/auth.css" />
     <link rel="stylesheet" href="css/responsive.css" />
@@ -117,6 +117,64 @@
           </div>
         </div>
 
+        <div
+          id="sherguardVerifyBox"
+          style="
+            display:none;
+            align-items:center;
+            gap:12px;
+            padding:14px 16px;
+            border:1px solid #dbe3f0;
+            border-radius:14px;
+            margin-bottom:18px;
+            background:#ffffff;
+          "
+        >
+          <img
+            src="logo-symbol.png"
+            alt="SherGuard"
+            style="
+              width:28px;
+              height:28px;
+              object-fit:contain;
+            "
+          />
+
+          <div style="flex:1;">
+            <div
+              style="
+                font-size:14px;
+                font-weight:600;
+                color:#0f172a;
+              "
+            >
+              SherGuard Verification
+            </div>
+
+            <div
+              id="verifyMessage"
+              style="
+                font-size:13px;
+                color:#64748b;
+              "
+            >
+              Verifying trust...
+            </div>
+          </div>
+
+          <div
+            id="verifySpinner"
+            style="
+              width:18px;
+              height:18px;
+              border:2px solid #dbeafe;
+              border-top:2px solid #2563eb;
+              border-radius:50%;
+              animation:spin 1s linear infinite;
+            "
+          ></div>
+        </div>
+
         <button
           type="submit"
           class="auth-btn"
@@ -133,7 +191,7 @@
         New to SherGuard?
         <a href="register.html">Create an account</a>
       </div>
-      
+
       <div class="auth-switch">
         <a href="forgot-password.html">
           Forgot your password?
@@ -148,61 +206,6 @@
     </section>
 
   </main>
-
-  <div
-    id="sherguardVerifyModal"
-    style="
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(15,23,42,.65);
-      z-index:99999;
-      align-items:center;
-      justify-content:center;
-    "
-  >
-    <div
-      style="
-        width:340px;
-        background:#ffffff;
-        border-radius:18px;
-        padding:28px;
-        text-align:center;
-        box-shadow:0 25px 60px rgba(15,23,42,.25);
-      "
-    >
-      <img
-        src="logo-symbol.png"
-        alt="SherGuard"
-        style="
-          width:56px;
-          height:56px;
-          object-fit:contain;
-          margin-bottom:14px;
-        "
-      />
-  
-      <h3
-        style="
-          margin:0 0 8px;
-          color:#0f172a;
-          font-size:22px;
-        "
-      >
-        SherGuard Verification
-      </h3>
-  
-      <p
-        id="verifyMessage"
-        style="
-          margin:0;
-          color:#64748b;
-        "
-      >
-        Verifying trust...
-      </p>
-    </div>
-  </div>
 
   <script>
     const loginForm = document.getElementById('loginForm');
@@ -219,36 +222,28 @@
     });
 
     const API_BASE_URL = 'https://sherguard-api.onrender.com';
-    async function runSherGuardVerification() {
-  const modal =
-    document.getElementById(
-      'sherguardVerifyModal'
-    );
-
-  const message =
-    document.getElementById(
-      'verifyMessage'
-    );
-
-  modal.style.display = 'flex';
-
-  message.textContent =
-    'Verifying trust...';
-
-  await new Promise(resolve =>
-    setTimeout(resolve, 1200)
-  );
-
-  message.textContent =
-    'Trust verified';
-
-  await new Promise(resolve =>
-    setTimeout(resolve, 800)
-  );
-
-  modal.style.display = 'none';
-}
     const DASHBOARD_URL = 'dashboard.html';
+
+    async function runSherGuardVerification() {
+      const box = document.getElementById('sherguardVerifyBox');
+      const message = document.getElementById('verifyMessage');
+      const spinner = document.getElementById('verifySpinner');
+
+      box.style.display = 'flex';
+      spinner.style.display = 'block';
+      message.textContent = 'Verifying trust...';
+
+      await new Promise(function(resolve) {
+        setTimeout(resolve, 1200);
+      });
+
+      message.textContent = 'Trust verified';
+      spinner.style.display = 'none';
+
+      await new Promise(function(resolve) {
+        setTimeout(resolve, 700);
+      });
+    }
 
     function showStatus(message, type) {
       statusBox.className = 'auth-status-box auth-status-' + type;
@@ -276,9 +271,9 @@
 
       setLoading(true);
 
-await runSherGuardVerification();
+      try {
+        await runSherGuardVerification();
 
-try {
         const response = await fetch(
           API_BASE_URL + '/auth/login',
           {
@@ -324,6 +319,18 @@ try {
       }
     });
   </script>
+
+  <style>
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 
 </body>
 </html>
