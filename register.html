@@ -152,6 +152,61 @@
 
   </main>
 
+  <div
+    id="sherguardVerifyModal"
+    style="
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,.65);
+      z-index:99999;
+      align-items:center;
+      justify-content:center;
+    "
+  >
+    <div
+      style="
+        width:340px;
+        background:#ffffff;
+        border-radius:18px;
+        padding:28px;
+        text-align:center;
+        box-shadow:0 25px 60px rgba(15,23,42,.25);
+      "
+    >
+      <img
+        src="logo-symbol.png"
+        alt="SherGuard"
+        style="
+          width:56px;
+          height:56px;
+          object-fit:contain;
+          margin-bottom:14px;
+        "
+      />
+  
+      <h3
+        style="
+          margin:0 0 8px;
+          color:#0f172a;
+          font-size:22px;
+        "
+      >
+        SherGuard Verification
+      </h3>
+  
+      <p
+        id="verifyMessage"
+        style="
+          margin:0;
+          color:#64748b;
+        "
+      >
+        Verifying trust...
+      </p>
+    </div>
+  </div>
+
   <script>
     const registerForm = document.getElementById('registerForm');
     const statusBox = document.getElementById('statusBox');
