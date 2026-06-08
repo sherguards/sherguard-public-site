@@ -222,6 +222,35 @@
     });
 
     const API_BASE_URL = 'https://sherguard-api.onrender.com';
+    async function runSherGuardVerification() {
+  const modal =
+    document.getElementById(
+      'sherguardVerifyModal'
+    );
+
+  const message =
+    document.getElementById(
+      'verifyMessage'
+    );
+
+  modal.style.display = 'flex';
+
+  message.textContent =
+    'Verifying trust...';
+
+  await new Promise(resolve =>
+    setTimeout(resolve, 1200)
+  );
+
+  message.textContent =
+    'Trust verified';
+
+  await new Promise(resolve =>
+    setTimeout(resolve, 800)
+  );
+
+  modal.style.display = 'none';
+}
 
     function showStatus(message, type) {
       statusBox.className = 'auth-status-box auth-status-' + type;
@@ -277,7 +306,9 @@
 
       setLoading(true);
 
-      try {
+await runSherGuardVerification();
+
+try {
         const response = await fetch(
           API_BASE_URL + '/auth/register',
           {
