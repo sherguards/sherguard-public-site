@@ -290,6 +290,104 @@
         console.error('Force logout failed:', error);
       }
     }
+
+    async function deleteAccountPermanently() {
+
+      var message =
+        document.getElementById(
+          'settingsDeleteAccountMessage'
+        );
+
+      if (
+        !confirm(
+          'Are you sure you want to permanently delete your account?'
+        )
+      ) {
+        return;
+      }
+
+      var password = prompt(
+        'Enter your password to continue account deletion.'
+      );
+
+      if (!password) {
+        return;
+      }
+
+      if (
+        !confirm(
+          'FINAL WARNING: This action cannot be undone. Delete account permanently?'
+        )
+      ) {
+        return;
+      }
+
+      try {
+
+        var response = await fetch(
+          API_BASE_URL + '/auth/delete-account',
+          {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token()
+            },
+            body: JSON.stringify({
+              password: password
+            })
+          }
+        );
+
+        var result =
+          await response.json();
+
+        if (!result.success) {
+
+          message.textContent =
+            result.message ||
+            'Account deletion failed.';
+
+          message.style.color =
+            '#dc2626';
+
+          return;
+        }
+
+        message.textContent =
+          'Account deleted successfully.';
+
+        message.style.color =
+          '#16a34a';
+
+        localStorage.removeItem(
+          'aiTrustToken'
+        );
+
+        localStorage.removeItem(
+          'aiTrustUser'
+        );
+
+        setTimeout(function () {
+
+          window.location.href =
+            'register.html';
+
+        }, 1200);
+
+      } catch (error) {
+
+        message.textContent =
+          'Account deletion request failed.';
+
+        message.style.color =
+          '#dc2626';
+
+        console.error(
+          'Delete account failed:',
+          error
+        );
+      }
+    }
   
     function bindSettingsEvents() {
       document.addEventListener('click', function (event) {
@@ -315,6 +413,10 @@
   
         if (event.target.id === 'settingsForceLogoutBtn') {
           forceLogoutAllSessions();
+        }
+
+        if (event.target.id === 'settingsDeleteAccountBtn') {
+          deleteAccountPermanently();
         }
       });
     }
