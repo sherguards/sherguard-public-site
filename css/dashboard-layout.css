@@ -3414,3 +3414,28 @@ body {
   cursor: pointer !important;
   box-shadow: 0 14px 28px rgba(37, 99, 235, 0.10) !important;
 }
+
+.dashboard-title-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: nowrap !important;
+}
+
+.manage-subscription-btn {
+  max-width: 220px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-top-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .dashboard-title-actions {
+    flex-wrap: wrap !important;
+  }
+}
