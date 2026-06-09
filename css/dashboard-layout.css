@@ -3195,7 +3195,7 @@ body {
 }
 
 .settings-card:first-child {
-  grid-row: span 2;
+  grid-row: auto;
 }
 
 .settings-card-header {
