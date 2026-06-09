@@ -3399,3 +3399,18 @@ body {
   height: 240px !important;
   max-height: 240px !important;
 }
+
+.manage-subscription-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 11px 18px !important;
+  border-radius: 999px !important;
+  border: 1px solid #bfdbfe !important;
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.10) !important;
+}
