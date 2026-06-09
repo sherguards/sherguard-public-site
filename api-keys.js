@@ -37,6 +37,30 @@
     return labels[scope] || scope;
   }
 
+  function getHiddenRevokedApiKeyIds() {
+    try {
+      const raw = localStorage.getItem('sherGuardHiddenRevokedApiKeys');
+
+      if (!raw) {
+        return [];
+      }
+
+      const parsed = JSON.parse(raw);
+
+      return Array.isArray(parsed) ? parsed : [];
+
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveHiddenRevokedApiKeyIds(ids) {
+    localStorage.setItem(
+      'sherGuardHiddenRevokedApiKeys',
+      JSON.stringify(ids)
+    );
+  }
+
   function getSelectedScopes() {
     const checkboxes = document.querySelectorAll(
       'input[name="apiKeyScopes"]:checked'
@@ -142,21 +166,39 @@
 
   function renderApiKeysTable(keys) {
     const body = document.getElementById('apiKeysTableBody');
+    const clearBtn = document.getElementById('clearRevokedApiKeysBtn');
+    const hiddenRevokedIds = getHiddenRevokedApiKeyIds();
 
     if (!body) {
       return;
     }
 
-    if (!keys.length) {
+    const revokedKeys = keys.filter(function (key) {
+      return !key.is_active;
+    });
+
+    if (clearBtn) {
+      if (revokedKeys.length) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+    }
+
+    const visibleKeys = keys.filter(function (key) {
+      return !hiddenRevokedIds.includes(String(key.id));
+    });
+
+    if (!visibleKeys.length) {
       body.innerHTML = `
         <tr>
-          <td colspan="8">No API keys created yet.</td>
+          <td colspan="8">No visible API keys. Removed revoked keys are hidden.</td>
         </tr>
       `;
       return;
     }
 
-    body.innerHTML = keys.map(function (key) {
+    body.innerHTML = visibleKeys.map(function (key) {
       const statusClass = key.is_active
         ? 'api-key-status-active'
         : 'api-key-status-revoked';
@@ -294,6 +336,23 @@
     }
   }
 
+  async function clearRevokedApiKeys() {
+    const data = await aiTrustApiGet('/api-keys');
+    const keys = Array.isArray(data.keys) ? data.keys : [];
+
+    const revokedIds = keys
+      .filter(function (key) {
+        return !key.is_active;
+      })
+      .map(function (key) {
+        return String(key.id);
+      });
+
+    saveHiddenRevokedApiKeyIds(revokedIds);
+
+    await loadApiKeys();
+  }
+
   async function revokeApiKey(apiKeyId) {
     if (!confirm('Revoke this API key? This cannot be undone.')) {
       return;
@@ -328,6 +387,12 @@
 
     if (createBtn) {
       createBtn.addEventListener('click', createApiKey);
+    }
+
+    const clearRevokedBtn = document.getElementById('clearRevokedApiKeysBtn');
+
+    if (clearRevokedBtn) {
+      clearRevokedBtn.addEventListener('click', clearRevokedApiKeys);
     }
 
     const copyBtn = document.getElementById('copyNewApiKeyBtn');
