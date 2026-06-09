@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Account Takeover Detection Guide</title>
+
+<meta name="description"
+content="Learn how account takeover detection helps identify suspicious logins, stolen credentials, risky devices, bots, and fraud activity." />
+
+<link rel="canonical"
+href="https://sherguard.com/blog/blog-account-takeover-detection-guide.html" />
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Account Takeover Detection Guide">
+<meta property="og:description"
+content="Learn how account takeover detection helps identify suspicious logins, stolen credentials, risky devices, bots, and fraud activity.">
+<meta property="og:url"
+content="https://sherguard.com/blog/blog-account-takeover-detection-guide.html">
+
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/public-pages.css">
+<link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body class="public-page">
+
+<header class="public-header">
+
+<a href="../index.html" class="public-logo">
+<span class="public-logo-icon">▣</span>
+<span>
+<strong>SherGuard</strong>
+<small>Trust Intelligence Platform</small>
+</span>
+</a>
+
+<nav class="public-nav">
+<a href="../index.html">Home</a>
+<a href="../features.html">Features</a>
+<a href="../developers.html">Developers</a>
+<a href="../docs.html">Docs</a>
+<a href="../blog.html">Blog</a>
+<a href="../pricing.html">Pricing</a>
+<a href="../register.html" class="public-nav-cta">Start Free</a>
+</nav>
+
+</header>
+
+<main>
+
+<section class="public-pricing-hero">
+
+<span class="public-eyebrow">Account Security Guide</span>
+
+<h1>Account Takeover Detection Guide</h1>
+
+<p>
+Account takeover detection helps businesses identify suspicious logins, stolen
+credential use, risky devices, bot-driven authentication attacks, session
+anomalies, payment abuse, API misuse, and fraud signals before compromised
+accounts damage customers, revenue, and platform trust.
+</p>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>Introduction</span>
+
+<h2>Account takeover starts when trust is stolen</h2>
+
+<p>
+Account takeover happens when an attacker gains unauthorized access to a
+legitimate user account. Unlike fake accounts, account takeover attacks abuse
+real identities that already have history, permissions, payment methods,
+subscriptions, reputation, saved data, API access, or platform trust.
+</p>
+
+<p>
+This makes account takeover one of the most damaging forms of online fraud.
+A fake account may start with low trust. A compromised account often starts
+with high trust because the platform already recognizes the user.
+</p>
+
+<p>
+Attackers use stolen passwords, credential stuffing, phishing, malware,
+session hijacking, password spraying, social engineering, SIM swap attacks,
+and weak account recovery workflows to access accounts. Once inside, they may
+change passwords, add payment methods, create API keys, export data, abuse
+stored cards, manipulate marketplace listings, change payouts, or perform
+fraudulent transactions.
+</p>
+
+<p>
+For SaaS platforms, mobile apps, fintech products, marketplaces, e-commerce
+stores, AI tools, developer platforms, gaming platforms, communities, and
+enterprise applications, account takeover detection is now a critical layer
+of cybersecurity, fraud prevention, trust and safety, and customer protection.
+</p>
+
+<p>
+Strong detection requires more than checking whether a password is correct.
+Businesses need to understand whether the login, device, session, behavior,
+API activity, payment action, and account changes appear trustworthy.
+</p>
+
+</div>
+
+<div class="public-doc-card">
+
+<h3>What this guide covers</h3>
+
+<pre><code>1. What account takeover detection is
+2. Why compromised accounts are dangerous
+3. Common account takeover attack methods
+4. Suspicious login detection
+5. Device risk and session monitoring
+6. Bot-driven credential attacks
+7. API abuse after account compromise
+8. Payment fraud from taken-over accounts
+9. Best practices for account protection
+10. How SherGuard helps detect account takeover</code></pre>
+
+</div>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>Overview</span>
+
+<h2>What is account takeover detection?</h2>
+
+<p>
+Account takeover detection is the process of identifying when a legitimate
+account may be accessed or controlled by someone other than the rightful user.
+It evaluates signals before login, during authentication, after access is
+granted, and before sensitive actions occur.
+</p>
+
+<p>
+Traditional authentication systems often focus on credentials. If the username
+and password are correct, access may be allowed. But modern account takeover
+attacks often involve real credentials, stolen sessions, compromised devices,
+or manipulated recovery workflows. That means the authentication event can look
+valid while the user behind the session is not legitimate.
+</p>
+
+<p>
+Modern detection systems analyze login context, device reputation, IP and
+network risk, behavioral patterns, session changes, account history, failed
+login velocity, API activity, payment behavior, password reset events, and
+sensitive account modifications.
+</p>
+
+<p>
+The goal is to identify suspicious access early and respond with the correct
+action, such as monitoring, step-up verification, session restriction, manual
+review, or blocking.
+</p>
+
+</div>
+
+<div class="public-feature-grid">
+
+<article>
+<h3>Suspicious Login Detection</h3>
+<p>
+Identify unusual login attempts, unfamiliar locations, risky devices, and
+credential attack patterns.
+</p>
+</article>
+
+<article>
+<h3>Device Risk Intelligence</h3>
+<p>
+Detect new devices, headless browsers, emulators, automation frameworks, and
+repeated risky environments.
+</p>
+</article>
+
+<article>
+<h3>Session Monitoring</h3>
+<p>
+Watch what happens after login to detect abnormal activity from compromised
+accounts.
+</p>
+</article>
+
+<article>
+<h3>Behavioral Signals</h3>
+<p>
+Compare current account behavior with normal usage patterns to identify
+possible compromise.
+</p>
+</article>
+
+<article>
+<h3>API Abuse Detection</h3>
+<p>
+Monitor authenticated API traffic, token activity, exports, and sensitive
+endpoint access.
+</p>
+</article>
+
+<article>
+<h3>Payment Fraud Signals</h3>
+<p>
+Detect unauthorized purchases, saved-card abuse, refund fraud, payout changes,
+and transaction anomalies.
+</p>
+</article>
+
+</div>
+
+</section>
+
+<section class="public-section public-dark-section sg-dark-section">
+
+<div class="public-section-heading">
+
+<span>Why It Matters</span>
+
+<h2>Why account takeover is dangerous for online businesses</h2>
+
+<p>
+Account takeover is dangerous because attackers inherit the trust of a real
+user. The platform may already know the account, recognize the billing history,
+trust the device history, allow saved payment methods, and provide access to
+private data or business workflows.
+</p>
+
+<p>
+A compromised account can create damage quickly. In e-commerce, attackers may
+use saved cards, loyalty points, shipping addresses, or order history. In SaaS,
+they may access workspaces, invite users, export data, change billing details,
+or create API keys. In marketplaces, they may manipulate listings, messages,
+reviews, or seller payouts. In fintech, they may target balances, identity
+records, payment instruments, or transfer workflows.
+</p>
+
+<p>
+Account takeover also damages customer trust. Even when credentials were stolen
+from another breach, users often blame the platform where the abuse occurs.
+This creates support burden, fraud investigations, refund requests, security
+alerts, and brand reputation risk.
+</p>
+
+<p>
+Detecting account takeover early helps businesses reduce fraud losses, protect
+users, preserve trust, lower support cost, and keep high-risk actions secure.
+</p>
+
+</div>
+
+<div class="public-feature-grid public-dark-feature-grid">
+
+<article>
+<h3>Customer Harm</h3>
+<p>
+Compromised accounts expose users to unauthorized purchases, data theft, and
+identity abuse.
+</p>
+</article>
+
+<article>
+<h3>Financial Loss</h3>
+<p>
+Attackers can create chargebacks, refund abuse, payout fraud, and payment
+losses.
+</p>
+</article>
+
+<article>
+<h3>Data Exposure</h3>
+<p>
+Private information, invoices, documents, messages, and organization records
+may be accessed.
+</p>
+</article>
+
+<article>
+<h3>API Key Abuse</h3>
+<p>
+Taken-over developer or admin accounts may create or misuse API keys.
+</p>
+</article>
+
+<article>
+<h3>Support Burden</h3>
+<p>
+Account recovery, refund requests, password resets, and fraud investigations
+increase workload.
+</p>
+</article>
+
+<article>
+<h3>Trust Damage</h3>
+<p>
+Users lose confidence when accounts appear unsafe or suspicious activity is not
+detected quickly.
+</p>
+</article>
+
+</div>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>Attack Scenarios</span>
+
+<h2>Common account takeover attack methods</h2>
+
+<p>
+Account takeover can happen through many paths. Some attacks begin with stolen
+credentials. Others target sessions, recovery workflows, devices, phishing,
+support teams, or API tokens.
+</p>
+
+<p>
+The strongest account takeover detection programs monitor all of these paths
+because attackers often combine methods. A credential stuffing attack may lead
+to login success. A successful login may lead to session abuse. A compromised
+session may lead to payment fraud or API key creation.
+</p>
+
+</div>
+
+<div class="public-feature-grid">
+
+<article>
+<h3>Credential Stuffing</h3>
+<p>
+Attackers test breached username and password pairs against login pages and
+authentication APIs.
+</p>
+</article>
+
+<article>
+<h3>Password Spraying</h3>
+<p>
+Attackers test common passwords across many accounts to avoid simple lockout
+rules.
+</p>
+</article>
+
+<article>
+<h3>Phishing</h3>
+<p>
+Users are tricked into entering credentials or MFA codes into fake login pages.
+</p>
+</article>
+
+<article>
+<h3>Session Hijacking</h3>
+<p>
+Attackers steal or replay authentication tokens after a legitimate user has
+already logged in.
+</p>
+</article>
+
+<article>
+<h3>Recovery Abuse</h3>
+<p>
+Weak password reset, MFA reset, or support-assisted recovery workflows are
+exploited.
+</p>
+</article>
+
+<article>
+<h3>Malware and Device Compromise</h3>
+<p>
+Compromised devices may leak passwords, cookies, tokens, or sensitive account
+data.
+</p>
+</article>
+
+</div>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>Key Concepts</span>
+
+<h2>Signals used to detect account takeover</h2>
+
+<p>
+Account takeover detection depends on signal correlation. A new device alone
+may not prove compromise. A new location alone may not prove fraud. A password
+change alone may be legitimate. But when multiple suspicious signals appear
+together, risk becomes much stronger.
+</p>
+
+<p>
+A strong account protection system evaluates identity, device, behavior,
+network, session, API, payment, and historical activity together.
+</p>
+
+</div>
+
+<div class="public-feature-grid">
+
+<article>
+<h3>New Device Login</h3>
+<p>
+A login from an unfamiliar device may require additional verification or
+monitoring.
+</p>
+</article>
+
+<article>
+<h3>Impossible Travel</h3>
+<p>
+Rapid location changes can indicate stolen credentials or session compromise.
+</p>
+</article>
+
+<article>
+<h3>Risky Network</h3>
+<p>
+Proxy, VPN, hosting, Tor, or suspicious ASN traffic may raise account risk.
+</p>
+</article>
+
+<article>
+<h3>Behavior Change</h3>
+<p>
+Unexpected navigation, typing, checkout, API usage, or admin activity may
+indicate compromise.
+</p>
+</article>
+
+<article>
+<h3>Sensitive Action Attempts</h3>
+<p>
+Password changes, payout edits, exports, API key creation, and payment changes
+need extra scrutiny.
+</p>
+</article>
+
+<article>
+<h3>Post-Login Fraud</h3>
+<p>
+Fraud often happens after authentication, so session activity must be monitored
+continuously.
+</p>
+</article>
+
+</div>
+
+</section>
+
+<section class="public-section public-dark-section sg-dark-section">
+
+<div class="public-section-heading">
+
+<span>Technical Deep Dive</span>
+
+<h2>How account takeover risk scoring works</h2>
+
+<p>
+Account takeover risk scoring evaluates login and session activity to determine
+whether the current user appears trustworthy. It combines signals from
+authentication, device risk, behavioral analytics, API usage, account history,
+payment activity, and session context.
+</p>
+
+<p>
+A low-risk login from a known device with normal behavior may proceed without
+friction. A medium-risk login from a new device may trigger monitoring or
+step-up verification. A high-risk login from a suspicious device, risky network,
+automation framework, or abnormal location may be blocked or reviewed.
+</p>
+
+<p>
+Risk scoring should continue after authentication. Attackers may pass the login
+step but reveal themselves through unusual post-login behavior, such as
+changing account settings, exporting data, adding team members, creating API
+keys, changing payout details, or attempting high-value payments.
+</p>
+
+<p>
+Continuous account takeover detection helps businesses respond before damage
+occurs.
+</p>
+
+</div>
+
+<div class="public-doc-card">
+
+<h3>Example Account Takeover Detection Workflow</h3>
+
+<pre><code>collect_login_event()
+evaluate_device_risk()
+analyze_network_reputation()
+compare_behavior_history()
+monitor_session_activity()
+check_api_and_payment_actions()
+calculate_account_takeover_score()
+
+if risk is low:
+  allow_session()
+elif risk is medium:
+  monitor_or_step_up()
+elif risk is high:
+  restrict_sensitive_actions()
+else:
+  block_session_and_alert()</code></pre>
+
+</div>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>Best Practices</span>
+
+<h2>Account takeover detection best practices</h2>
+
+<p>
+Strong account takeover defense requires layered controls. Businesses should
+protect authentication, monitor sessions, secure account recovery, detect bots,
+analyze devices, protect APIs, and monitor payments.
+</p>
+
+<p>
+The goal is not to add friction to every user. The goal is to apply stronger
+security when risk increases.
+</p>
+
+</div>
+
+<div class="public-feature-grid">
+
+<article>
+<h3>Use Risk-Based Authentication</h3>
+<p>
+Challenge suspicious logins based on device, behavior, network, and account
+risk.
+</p>
+</article>
+
+<article>
+<h3>Monitor Sessions Continuously</h3>
+<p>
+Evaluate user activity after login, especially before high-value account
+actions.
+</p>
+</article>
+
+<article>
+<h3>Protect Account Recovery</h3>
+<p>
+Secure password reset, MFA reset, email change, and support recovery workflows.
+</p>
+</article>
+
+<article>
+<h3>Detect Bot Login Attacks</h3>
+<p>
+Credential stuffing and password spraying often rely on automation.
+</p>
+</article>
+
+<article>
+<h3>Secure APIs</h3>
+<p>
+Monitor authenticated API traffic, token usage, exports, and API key activity.
+</p>
+</article>
+
+<article>
+<h3>Monitor Payment Behavior</h3>
+<p>
+Watch for unauthorized purchases, saved-card abuse, refund fraud, and payout
+changes.
+</p>
+</article>
+
+</div>
+
+<div class="public-doc-card">
+
+<h3>Account Takeover Detection Checklist</h3>
+
+<pre><code>✓ Detect suspicious logins
+✓ Monitor new device access
+✓ Analyze device risk
+✓ Detect credential stuffing
+✓ Detect password spraying
+✓ Monitor session behavior
+✓ Protect account recovery
+✓ Detect API abuse after login
+✓ Review sensitive account changes
+✓ Monitor payment fraud signals
+✓ Apply step-up verification
+✓ Centralize account risk in trust intelligence</code></pre>
+
+</div>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>Business Impact</span>
+
+<h2>How account takeover affects different businesses</h2>
+
+<p>
+Account takeover affects every online business differently, but the common
+risk is the same: attackers gain access to an account the business already
+trusts.
+</p>
+
+<p>
+For small businesses and startups, even a few compromised accounts can create
+customer support issues and payment loss. For growing companies and large
+enterprises, account takeover can become a major fraud, security, compliance,
+and trust problem.
+</p>
+
+</div>
+
+<div class="public-feature-grid">
+
+<article>
+<h3>SaaS Platforms</h3>
+<p>
+Protect workspaces, billing settings, admins, exports, team invitations, and
+API keys.
+</p>
+</article>
+
+<article>
+<h3>Mobile Apps</h3>
+<p>
+Detect suspicious logins, risky devices, emulator traffic, and account abuse.
+</p>
+</article>
+
+<article>
+<h3>Marketplaces</h3>
+<p>
+Protect buyers, sellers, listings, reviews, messages, payouts, and reputation
+systems.
+</p>
+</article>
+
+<article>
+<h3>Fintech Products</h3>
+<p>
+Protect balances, payment instruments, identity records, transfers, and
+recovery workflows.
+</p>
+</article>
+
+<article>
+<h3>E-Commerce Stores</h3>
+<p>
+Protect stored cards, loyalty points, customer profiles, refund workflows, and
+order history.
+</p>
+</article>
+
+<article>
+<h3>AI Platforms</h3>
+<p>
+Protect API credits, model access, subscriptions, usage billing, and developer
+accounts.
+</p>
+</article>
+
+</div>
+
+</section>
+
+<section class="public-section public-dark-section sg-dark-section">
+
+<div class="public-section-heading">
+
+<span>SherGuard</span>
+
+<h2>How SherGuard helps detect account takeover</h2>
+
+<p>
+SherGuard helps businesses detect account takeover by combining suspicious
+login monitoring, Device Risk Intelligence, Bot Detection, Fake Signup
+Detection, API Abuse Detection, Payment Fraud Detection, and broader trust
+intelligence.
+</p>
+
+<p>
+Instead of reviewing account activity in isolation, SherGuard helps teams
+connect risky devices, bot-driven login attempts, suspicious API requests,
+payment anomalies, session behavior, and identity risk into one account
+protection workflow.
+</p>
+
+<p>
+SherGuard supports online businesses of every size, including small businesses,
+startups, SaaS platforms, mobile applications, marketplaces, fintech products,
+AI platforms, e-commerce stores, developer tools, and enterprise organizations.
+</p>
+
+<p>
+By helping teams stop fake signups, identify risky devices, detect bots,
+prevent API abuse, and reduce payment fraud, SherGuard protects the entire
+business from one trust intelligence platform.
+</p>
+
+</div>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>FAQ</span>
+
+<h2>Account Takeover Detection FAQ</h2>
+
+</div>
+
+<div class="public-feature-grid">
+
+<article>
+<h3>What is account takeover detection?</h3>
+<p>
+Account takeover detection identifies suspicious access or behavior that may
+indicate a real account has been compromised.
+</p>
+</article>
+
+<article>
+<h3>What causes account takeover?</h3>
+<p>
+Common causes include credential stuffing, phishing, password spraying, malware,
+session hijacking, and recovery abuse.
+</p>
+</article>
+
+<article>
+<h3>Can MFA stop account takeover?</h3>
+<p>
+MFA helps, but attackers can still use phishing, session hijacking, recovery
+abuse, and compromised devices.
+</p>
+</article>
+
+<article>
+<h3>Why is device risk important?</h3>
+<p>
+Compromised accounts often show new devices, suspicious browsers, emulator
+traffic, or automation signals.
+</p>
+</article>
+
+<article>
+<h3>Can account takeover lead to payment fraud?</h3>
+<p>
+Yes. Attackers may use saved cards, change billing details, abuse refunds, or
+attempt unauthorized transactions.
+</p>
+</article>
+
+<article>
+<h3>How does SherGuard help?</h3>
+<p>
+SherGuard connects device risk, bot detection, API abuse, payment fraud, and
+account activity to detect account takeover.
+</p>
+</article>
+
+</div>
+
+</section>
+
+<section class="public-section">
+
+<div class="public-section-heading">
+
+<span>Conclusion</span>
+
+<h2>Account takeover detection protects trusted users</h2>
+
+<p>
+Account takeover is dangerous because attackers abuse accounts that businesses
+already trust. They may use real credentials, real sessions, real devices, or
+real account history to hide inside legitimate workflows.
+</p>
+
+<p>
+Modern account takeover detection requires continuous monitoring across login
+events, devices, sessions, APIs, payments, recovery workflows, and sensitive
+account actions.
+</p>
+
+<p>
+Businesses that detect suspicious account activity early can protect customers,
+reduce fraud, preserve trust, and prevent unauthorized access before damage
+occurs.
+</p>
+
+</div>
+
+</section>
+
+<section class="public-cta-section">
+
+<h2>Protect Accounts With SherGuard</h2>
+
+<p>
+Stop fake signups, identify risky devices, detect bots, prevent API abuse,
+and reduce payment fraud from one trust intelligence platform.
+</p>
+
+<a href="../register.html" class="public-btn public-btn-primary">
+Start Free
+</a>
+
+</section>
+
+</main>
+
+</body>
+</html>
