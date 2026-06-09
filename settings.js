@@ -291,6 +291,51 @@
       }
     }
 
+    async function openSubscriptionPortal() {
+
+      try {
+
+        var result = await apiGet(
+          '/billing/customer-portal'
+        );
+
+        if (!result.success) {
+
+          alert(
+            result.message ||
+            'Subscription portal unavailable.'
+          );
+
+          return;
+        }
+
+        if (!result.portal_url) {
+
+          alert(
+            'Subscription portal URL not found.'
+          );
+
+          return;
+        }
+
+        window.open(
+          result.portal_url,
+          '_blank'
+        );
+
+      } catch (error) {
+
+        console.error(
+          'Subscription portal failed:',
+          error
+        );
+
+        alert(
+          'Unable to open subscription portal.'
+        );
+      }
+    }
+
     async function deleteAccountPermanently() {
 
       var message =
@@ -417,6 +462,10 @@
 
         if (event.target.id === 'settingsDeleteAccountBtn') {
           deleteAccountPermanently();
+        }
+
+        if (event.target.id === 'manageSubscriptionBtn') {
+          openSubscriptionPortal();
         }
       });
     }
