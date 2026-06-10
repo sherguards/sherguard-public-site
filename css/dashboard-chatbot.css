@@ -258,3 +258,12 @@
       box-shadow: 0 18px 42px rgba(37, 99, 235, 0.35);
     }
   }
+
+  .dashboard-chatbot-suggestions.is-hidden {
+    display: none !important;
+  }
+  
+  .dashboard-chatbot-panel.is-open .dashboard-chatbot-messages {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
