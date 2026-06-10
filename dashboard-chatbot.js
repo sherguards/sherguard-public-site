@@ -132,318 +132,344 @@ var currentButtonMessageIndex = 0;
   
     function answerQuestion(rawQuestion) {
       var question = normalize(rawQuestion);
-  
+    
       if (!question) {
         return 'Please type a SherGuard dashboard question.';
       }
-  
+    
       if (includesAny(question, blockedTopics)) {
         return [
-          'I can only help with safe SherGuard dashboard usage, account management, module explanations, API key setup, billing guidance, and support questions.',
+          'I cannot help with hacking, bypassing limits, stealing data, exposing private customer information, backend files, source code, API secrets, JWT tokens, billing bypass, or admin access.',
+          '',
+          'I can only help with safe SherGuard dashboard usage, modules, API keys, billing guidance, subscriptions, settings, and support.',
           '',
           'For security concerns, contact ' + securityEmail + '.'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('dashboard') !== -1 ||
-        question.indexOf('how does it work') !== -1 ||
-        question.indexOf('whole dashboard') !== -1
-      ) {
+    
+      if (question.indexOf('dashboard') !== -1) {
         return [
-          'The SherGuard dashboard gives one place to monitor trust and fraud signals.',
+          'Dashboard is the main SherGuard control center.',
           '',
-          'Main areas:',
-          '• Security Center shows your current security posture.',
-          '• Enterprise Analytics shows API traffic and system activity.',
-          '• Risk modules analyze Email, Device, Bot, API Abuse, and Payment Fraud.',
-          '• API Key Management creates scoped developer keys.',
-          '• Team Management controls users, roles, sessions, and audit logs.',
-          '• Settings manages profile, password, and session security.'
+          'Where it is:',
+          'Left Sidebar → Dashboard',
+          '',
+          'What it shows:',
+          '• Organization plan',
+          '• Today’s usage',
+          '• Security Center status',
+          '• Enterprise Analytics',
+          '• Global risk level',
+          '• Recent activity',
+          '• Risk trends across modules'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('setting') !== -1 ||
-        question.indexOf('profile') !== -1 ||
-        question.indexOf('password') !== -1
-      ) {
+    
+      if (question.indexOf('security center') !== -1) {
         return [
-          'Open the left sidebar and click Settings near the bottom.',
+          'Security Center shows your current organization security posture.',
           '',
-          'In Settings you can:',
-          '• View full name, email, role, organization, plan, and verification status.',
-          '• Change your password using your current password.',
-          '• View session security controls.',
-          '• Force logout active organization sessions if needed.'
+          'Where it is:',
+          'Dashboard top area → Security Center card',
+          '',
+          'It shows:',
+          '• Stable, Elevated, or Critical status',
+          '• Priority level',
+          '• Trend',
+          '• Recommended action'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('api key') !== -1 ||
-        question.indexOf('create api') !== -1 ||
-        question.indexOf('developer key') !== -1 ||
-        question.indexOf('where to put api') !== -1
-      ) {
+    
+      if (question.indexOf('analytics') !== -1 || question.indexOf('chart') !== -1 || question.indexOf('traffic') !== -1) {
         return [
-          'Go to API Key Management in the dashboard.',
+          'Enterprise Analytics shows platform activity and API traffic.',
           '',
-          'Steps:',
-          '1. Enter an API key name.',
-          '2. Select allowed module scopes such as Email Risk, Device Risk, Bot Detection, API Abuse, or Payment Fraud.',
-          '3. Click Create API Key.',
-          '4. Copy the key immediately. It is shown only once.',
+          'Where it is:',
+          'Dashboard → Enterprise Analytics',
           '',
-          'Use the key in your integration request header as:',
-          'x-api-key: your_api_key_here'
+          'It shows:',
+          '• Total API requests',
+          '• Average response time',
+          '• Threat events',
+          '• Active API keys',
+          '• Request volume',
+          '• Top endpoints',
+          '• Risk distribution',
+          '• Module activity',
+          '• Risk trend'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('email risk') !== -1 ||
-        question.indexOf('email module') !== -1
-      ) {
+    
+      if (question.indexOf('email risk') !== -1 || question.indexOf('email module') !== -1) {
         return [
-          'Email Risk Intelligence checks signup email quality and fraud indicators.',
+          'Email Risk Intelligence helps detect fake signup emails and risky email patterns.',
           '',
-          'It can show:',
-          '• Risk score',
+          'Where it is:',
+          'Left Sidebar → Email Risk',
+          '',
+          'It shows:',
+          '• Email risk score',
           '• Risk level',
           '• Final decision',
           '• Provider type',
           '• Domain type',
-          '• Triggered risk reasons',
-          '• Activity history',
-          '',
-          'Use it when you want to review fake signups, disposable emails, suspicious domains, or risky email patterns.'
+          '• Risk reasons',
+          '• Activity history'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('device') !== -1 ||
-        question.indexOf('fingerprint') !== -1
-      ) {
+    
+      if (question.indexOf('device risk') !== -1 || question.indexOf('device') !== -1 || question.indexOf('fingerprint') !== -1) {
         return [
-          'Device Risk Intelligence checks browser, device, screen, timezone, user-agent, and automation signals.',
+          'Device Risk Intelligence checks browser, OS, device fingerprint, timezone, screen size, and automation signals.',
           '',
-          'It helps detect:',
+          'Where it is:',
+          'Left Sidebar → Device Risk',
+          '',
+          'Use it to detect:',
+          '• Risky devices',
           '• Headless browsers',
-          '• Bot-style devices',
-          '• suspicious user agents',
-          '• risky device fingerprints',
-          '• repeated high-risk device patterns.',
-          '',
-          'Click Analyze Current Device to run the check.'
+          '• Automation signals',
+          '• Suspicious fingerprints',
+          '• Repeated risky device behavior'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('bot') !== -1 ||
-        question.indexOf('automation') !== -1
-      ) {
+    
+      if (question.indexOf('bot') !== -1 || question.indexOf('bot detection') !== -1 || question.indexOf('automation') !== -1) {
         return [
-          'Bot Detection Intelligence analyzes behavior signals such as clicks, session time, mouse movement, scroll activity, and keypress activity.',
+          'Bot Detection Intelligence analyzes behavior signals to detect automated activity.',
           '',
-          'It helps detect:',
-          '• fast-click bots',
-          '• scraper behavior',
-          '• scripted signup activity',
-          '• credential stuffing patterns',
-          '• AI agent automation behavior.'
-        ].join('\n');
-      }
-  
-      if (
-        question.indexOf('api abuse') !== -1 ||
-        question.indexOf('api module') !== -1 ||
-        question.indexOf('endpoint') !== -1
-      ) {
-        return [
-          'API Abuse Intelligence detects suspicious API traffic.',
-          '',
-          'It reviews:',
-          '• endpoint behavior',
-          '• request rate',
-          '• repeated requests',
-          '• missing headers',
-          '• auth header status',
-          '• status codes',
-          '• IP reputation.',
-          '',
-          'Use it to identify scraping, burst traffic, token abuse, credential stuffing, and sensitive endpoint abuse.'
-        ].join('\n');
-      }
-  
-      if (
-        question.indexOf('payment') !== -1 ||
-        question.indexOf('fraud') !== -1 ||
-        question.indexOf('chargeback') !== -1
-      ) {
-        return [
-          'Payment Fraud Intelligence reviews transaction risk.',
+          'Where it is:',
+          'Left Sidebar → Bot Detection',
           '',
           'It checks:',
-          '• amount',
-          '• currency',
-          '• payment method',
-          '• billing country',
-          '• shipping country',
-          '• failed attempts',
-          '• VPN or proxy signals.',
-          '',
-          'It helps detect stolen card attempts, card testing, chargeback patterns, proxy/VPN payment abuse, and high-risk checkout behavior.'
+          '• Click behavior',
+          '• Session time',
+          '• Mouse movement',
+          '• Scroll activity',
+          '• Keypress activity',
+          '• Bot-like patterns'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('ai agent') !== -1 ||
-        question.indexOf('permission') !== -1 ||
-        question.indexOf('policy') !== -1
-      ) {
+    
+      if (question.indexOf('api abuse') !== -1 || question.indexOf('endpoint') !== -1) {
+        return [
+          'API Abuse Intelligence detects suspicious API traffic and abuse patterns.',
+          '',
+          'Where it is:',
+          'Left Sidebar → API Abuse',
+          '',
+          'It helps detect:',
+          '• Burst traffic',
+          '• Scraper API bots',
+          '• Credential stuffing',
+          '• Token abuse',
+          '• Sensitive endpoint abuse',
+          '• Abnormal API usage'
+        ].join('\n');
+      }
+    
+      if (question.indexOf('payment fraud') !== -1 || question.indexOf('payment') !== -1 || question.indexOf('chargeback') !== -1) {
+        return [
+          'Payment Fraud Intelligence reviews checkout and transaction risk.',
+          '',
+          'Where it is:',
+          'Left Sidebar → Payment Fraud',
+          '',
+          'It helps detect:',
+          '• Stolen card attempts',
+          '• Card testing',
+          '• Chargeback patterns',
+          '• Proxy or VPN payment abuse',
+          '• High-risk checkout behavior'
+        ].join('\n');
+      }
+    
+      if (question.indexOf('ai agent') !== -1 || question.indexOf('permission') !== -1 || question.indexOf('policy') !== -1) {
         return [
           'AI Agent Permissions controls automation boundaries across SherGuard.',
           '',
-          'You can review:',
-          '• Master AI enable status',
+          'Where it is:',
+          'Left Sidebar → AI Agent Permissions',
+          '',
+          'It controls:',
+          '• Master AI enable',
           '• Strict Mode',
           '• Auto Action',
           '• Approval Required',
           '• Permission Matrix',
-          '• Allowed, restricted, and blocked actions.',
-          '',
-          'This section is for controlling how automated decisions are allowed to behave.'
+          '• Allowed, restricted, and blocked actions'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('team') !== -1 ||
-        question.indexOf('invite') !== -1 ||
-        question.indexOf('role') !== -1 ||
-        question.indexOf('session') !== -1 ||
-        question.indexOf('audit') !== -1
-      ) {
+    
+      if (question.indexOf('api key') !== -1 || question.indexOf('developer key') !== -1 || question.indexOf('create api') !== -1) {
         return [
-          'Team Management controls organization access.',
+          'API Key Management lets you create scoped developer API keys.',
           '',
-          'You can:',
-          '• Invite team members.',
-          '• Assign admin, analyst, or viewer roles.',
-          '• Disable or remove users.',
-          '• Review active login sessions.',
-          '• Clear inactive sessions.',
-          '• Review audit logs.',
+          'Where it is:',
+          'Dashboard → API Key Management',
           '',
-          'Admins have full access. Analysts can review and run analysis. Viewers have read-only access.'
+          'How it works:',
+          '1. Enter API key name.',
+          '2. Select allowed modules.',
+          '3. Click Create API Key.',
+          '4. Copy the key immediately.',
+          '',
+          'Use it in requests as:',
+          'x-api-key: your_api_key_here'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('subscription') !== -1 ||
-        question.indexOf('plan') !== -1 ||
-        question.indexOf('billing') !== -1 ||
-        question.indexOf('upgrade') !== -1 ||
-        question.indexOf('limit') !== -1
-      ) {
+    
+      if (question.indexOf('team') !== -1 || question.indexOf('invite') !== -1 || question.indexOf('role') !== -1) {
         return [
-          'Your current plan appears in the top organization card and in Settings.',
+          'Team Management controls organization users and access.',
           '',
-          'Subscription benefits may include:',
-          '• higher daily usage limits',
-          '• more API keys',
-          '• more team members',
-          '• access to production usage levels',
-          '• business or enterprise support.',
+          'Where it is:',
+          'Dashboard → Team Management',
           '',
-          'Click Upgrade Plan at the top of the dashboard to view pricing. If you purchased a subscription but your plan does not update, contact ' + helpEmail + ' with your account email and payment details.'
+          'It includes:',
+          '• Invite team members',
+          '• Assign admin, analyst, or viewer roles',
+          '• Manage pending invitations',
+          '• Review active sessions',
+          '• Clear inactive sessions',
+          '• Review audit logs'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('security center') !== -1 ||
-        question.indexOf('monitoring') !== -1 ||
-        question.indexOf('priority') !== -1
-      ) {
+    
+      if (question.indexOf('settings') !== -1 || question.indexOf('setting') !== -1 || question.indexOf('profile') !== -1) {
         return [
-          'Security Center summarizes your current organization security posture.',
+          'Settings manages your account, profile, password, sessions, subscription, and account deletion.',
           '',
-          'It can show:',
-          '• current status such as Stable, Elevated, or Critical',
-          '• priority level',
-          '• current trend',
-          '• recommended action.',
+          'Where it is:',
+          'Left Sidebar → Settings',
           '',
-          'It updates from recent trust events, module activity, reputation signals, and risk trends.'
+          'It includes:',
+          '• Profile information',
+          '• Current plan',
+          '• Manage Subscription',
+          '• Logout',
+          '• Change Password',
+          '• Session Security',
+          '• Delete Account Permanently'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('analytics') !== -1 ||
-        question.indexOf('request') !== -1 ||
-        question.indexOf('traffic') !== -1 ||
-        question.indexOf('chart') !== -1
-      ) {
+    
+      if (question.indexOf('subscription') !== -1 || question.indexOf('manage subscription') !== -1) {
         return [
-          'Enterprise Analytics shows organization-wide API and activity metrics.',
+          'Manage Subscription opens the Paddle customer portal for paid customers.',
           '',
-          'It can show:',
-          '• total API requests',
-          '• average response time',
-          '• threat events',
-          '• active API keys',
-          '• request volume',
-          '• top endpoints.',
+          'Where it is:',
+          'Left Sidebar → Settings → Manage Subscription',
           '',
-          'These values update from backend request logs and analytics endpoints.'
+          'Paid customers can:',
+          '• View subscription',
+          '• Update payment method',
+          '• View invoices',
+          '• Cancel subscription',
+          '',
+          'Free users will see a message asking them to upgrade first.'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('high risk') !== -1 ||
-        question.indexOf('medium risk') !== -1 ||
-        question.indexOf('low risk') !== -1 ||
-        question.indexOf('risk score') !== -1
-      ) {
+    
+      if (question.indexOf('upgrade') !== -1 || question.indexOf('upgrade plan') !== -1) {
         return [
-          'SherGuard risk levels are based on score ranges:',
+          'Upgrade Plan sends you to SherGuard pricing.',
           '',
-          '• Low Risk: score below 50',
-          '• Medium Risk: score 50 to 79',
-          '• High Risk: score 80 or higher',
+          'Where it is:',
+          'Top of Dashboard → Upgrade Plan',
           '',
-          'Each module also shows reasons, signals, final decision, confidence, and activity history so the result is explainable.'
+          'Use it to choose a paid plan and unlock higher limits, more API access, more team capacity, and production usage.'
         ].join('\n');
       }
-  
-      if (
-        question.indexOf('support') !== -1 ||
-        question.indexOf('human') !== -1 ||
-        question.indexOf('contact') !== -1 ||
-        question.indexOf('problem') !== -1 ||
-        question.indexOf('not working') !== -1
-      ) {
+    
+      if (question.indexOf('billing') !== -1 || question.indexOf('invoice') !== -1 || question.indexOf('payment method') !== -1 || question.indexOf('cancel') !== -1) {
         return [
-          'If the dashboard answer does not solve your issue, contact a human support member.',
+          'Billing is managed through Paddle.',
           '',
-          'Support email: ' + helpEmail,
-          'Security email: ' + securityEmail,
+          'Where it is:',
+          'Settings → Manage Subscription',
           '',
-          'Please include:',
-          '• your account email',
-          '• what page or module has the problem',
-          '• what you clicked',
-          '• any error message or screenshot.'
+          'After you upgrade, you can:',
+          '• Manage payment method',
+          '• View billing details',
+          '• Download invoices',
+          '• Cancel subscription',
+          '',
+          'If billing does not update after payment, contact ' + helpEmail + '.'
         ].join('\n');
       }
-  
+    
+      if (question.indexOf('email verification') !== -1 || question.indexOf('verify email') !== -1 || question.indexOf('verification email') !== -1) {
+        return [
+          'Email Verification protects SherGuard accounts before login.',
+          '',
+          'How it works:',
+          '1. Create account.',
+          '2. SherGuard sends a verification email.',
+          '3. Click the verification link.',
+          '4. Then login is allowed.',
+          '',
+          'If you do not receive the email, check spam or contact ' + helpEmail + '.'
+        ].join('\n');
+      }
+    
+      if (question.indexOf('password reset') !== -1 || question.indexOf('forgot password') !== -1 || question.indexOf('reset password') !== -1) {
+        return [
+          'Password Reset lets you recover your account securely.',
+          '',
+          'Where it is:',
+          'Login page → Forgot your password?',
+          '',
+          'How it works:',
+          '1. Enter your account email.',
+          '2. Open the reset email.',
+          '3. Set a new password.',
+          '4. Login again.'
+        ].join('\n');
+      }
+    
+      if (question.indexOf('delete account') !== -1 || question.indexOf('delete my account') !== -1 || question.indexOf('permanently delete') !== -1) {
+        return [
+          'Delete Account Permanently removes your SherGuard user account.',
+          '',
+          'Where it is:',
+          'Left Sidebar → Settings → Delete Account Permanently',
+          '',
+          'Safety flow:',
+          '1. Click Delete Account Permanently.',
+          '2. Confirm.',
+          '3. Enter password.',
+          '4. Confirm final warning.',
+          '',
+          'This action cannot be undone.'
+        ].join('\n');
+      }
+    
+      if (question.indexOf('audit') !== -1 || question.indexOf('audit logs') !== -1) {
+        return [
+          'Audit Logs show important organization actions.',
+          '',
+          'Where it is:',
+          'Dashboard → Team Management → Audit Logs',
+          '',
+          'They help track:',
+          '• Admin actions',
+          '• Team changes',
+          '• Session actions',
+          '• Security actions',
+          '• Clear audit log events'
+        ].join('\n');
+      }
+    
       return [
-        'I can help with SherGuard dashboard usage, modules, API keys, team management, settings, subscriptions, risk results, and support.',
+        'I can help with SherGuard dashboard usage, modules, API keys, team management, settings, subscriptions, billing, risk results, and support.',
         '',
         'Try asking:',
-        '• How do I create an API key?',
-        '• What does High Risk mean?',
         '• Where is Settings?',
-        '• How does Payment Fraud work?',
-        '• How do I contact support?'
+        '• How do I manage subscription?',
+        '• How do I create an API key?',
+        '• What does Security Center show?',
+        '• How does Payment Fraud work?'
       ].join('\n');
     }
   
