@@ -473,15 +473,26 @@ var currentButtonMessageIndex = 0;
       ].join('\n');
     }
   
+    function hideSuggestionsAfterFirstQuestion() {
+      var suggestions =
+        document.getElementById('dashboardChatbotSuggestions');
+    
+      if (suggestions) {
+        suggestions.classList.add('is-hidden');
+      }
+    }
+    
     function askQuestion(question) {
       var input = document.getElementById('dashboardChatbotInput');
-  
+    
       if (input) {
         input.value = '';
       }
-  
+    
+      hideSuggestionsAfterFirstQuestion();
+    
       addMessage('user', question);
-  
+    
       setTimeout(function () {
         addMessage('bot', answerQuestion(question));
       }, 250);
