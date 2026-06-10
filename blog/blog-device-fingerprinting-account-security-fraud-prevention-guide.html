@@ -1,0 +1,783 @@
+<!-- FILE NAME: blog-device-fingerprinting-account-security-fraud-prevention-guide.html -->
+<!-- FINAL URL: https://sherguard.com/blog/blog-device-fingerprinting-account-security-fraud-prevention-guide.html -->
+<!-- SEO TITLE: Device Fingerprinting for Account Security -->
+<!-- META DESCRIPTION: Learn how device fingerprinting helps detect risky devices, account abuse, fraud patterns, bots, fake signups, and account takeover. -->
+<!-- CANONICAL URL: https://sherguard.com/blog/blog-device-fingerprinting-account-security-fraud-prevention-guide.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Device Fingerprinting for Account Security</title>
+
+  <meta
+    name="description"
+    content="Learn how device fingerprinting helps detect risky devices, account abuse, fraud patterns, bots, fake signups, and account takeover."
+  />
+
+  <link
+    rel="canonical"
+    href="https://sherguard.com/blog/blog-device-fingerprinting-account-security-fraud-prevention-guide.html"
+  />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:title"
+    content="Device Fingerprinting for Account Security"
+  />
+  <meta
+    property="og:description"
+    content="Learn how device fingerprinting helps detect risky devices, account abuse, fraud patterns, bots, fake signups, and account takeover."
+  />
+  <meta
+    property="og:url"
+    content="https://sherguard.com/blog/blog-device-fingerprinting-account-security-fraud-prevention-guide.html"
+  />
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/public-pages.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body class="public-page">
+  <header class="public-header">
+    <a href="../index.html" class="public-logo">
+      <span class="public-logo-icon">▣</span>
+      <span>
+        <strong>SherGuard</strong>
+        <small>Trust Intelligence Platform</small>
+      </span>
+    </a>
+
+    <nav class="public-nav">
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../register.html" class="public-nav-cta">Start Free</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="public-pricing-hero">
+      <span class="public-eyebrow">Device Security Guide</span>
+
+      <h1>
+        Device Fingerprinting for Account Security: How to Detect Risky Devices, Fraud Patterns, and Account Abuse
+      </h1>
+
+      <p>
+        Device fingerprinting helps security, fraud, and Trust &amp; Safety teams recognize suspicious devices,
+        repeated abuse, emulator traffic, risky browsers, account takeover attempts, fake signups, bot activity,
+        API misuse, and payment fraud patterns across modern digital platforms.
+      </p>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Introduction</span>
+
+        <h2>Account security needs more than usernames, passwords, and IP addresses</h2>
+
+        <p>
+          Online businesses can no longer rely on simple identity checks to decide whether an account, login,
+          payment, signup, or API request is trustworthy. Attackers can change email addresses, rotate IP
+          addresses, use disposable phone numbers, hide behind VPNs, automate browser sessions, and create new
+          accounts faster than manual teams can investigate them.
+        </p>
+
+        <p>
+          Device fingerprinting gives businesses another layer of account security. Instead of only asking who
+          the user claims to be, device fingerprinting helps answer a deeper question: does the device behind
+          this action look familiar, stable, suspicious, automated, risky, or connected to previous abuse?
+        </p>
+
+        <p>
+          For SaaS platforms, mobile apps, marketplaces, fintech products, e-commerce businesses, AI platforms,
+          developer platforms, and enterprise systems, device signals are now critical to fraud prevention.
+          A device can reveal repeat abuse even when the attacker changes names, emails, IPs, or payment details.
+        </p>
+
+        <p>
+          Device fingerprinting is not just a technical tool. It is a business protection layer. It helps reduce
+          fake signups, detect account takeover, stop multi-account abuse, prevent bots, protect APIs, reduce
+          card testing, improve risk-based authentication, and support stronger Trust &amp; Safety decisions.
+        </p>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Overview</span>
+
+        <h2>What device fingerprinting means in fraud prevention</h2>
+
+        <p>
+          Device fingerprinting is the process of collecting device, browser, application, and environment
+          signals to create a profile of the device interacting with a platform. These signals may include
+          browser type, operating system, screen size, language, timezone, hardware characteristics, mobile
+          app integrity indicators, automation traces, emulator indicators, and other technical attributes.
+        </p>
+
+        <p>
+          In fraud prevention, device fingerprinting becomes useful when it is connected to history. A single
+          device snapshot is helpful, but a device reputation system is stronger. If a device has created many
+          accounts, failed multiple payments, triggered bot signals, abused APIs, or appeared in account takeover
+          cases, that history should influence future risk decisions.
+        </p>
+
+        <p>
+          This is why modern teams often use the phrase device risk intelligence instead of only device
+          fingerprinting. The goal is not simply to create an identifier. The goal is to understand trust.
+          A device may be new, familiar, trusted, suspicious, risky, or previously associated with fraud.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Device Identification</h3>
+          <p>
+            Recognize devices across sessions, accounts, signups, logins, payments, and API activity using
+            consistent technical signals.
+          </p>
+        </article>
+
+        <article>
+          <h3>Device Reputation</h3>
+          <p>
+            Build risk history around devices that repeatedly appear in fake signups, failed payments, bot
+            sessions, or account abuse.
+          </p>
+        </article>
+
+        <article>
+          <h3>Risk-Based Decisions</h3>
+          <p>
+            Use device risk to decide whether to allow, monitor, verify, restrict, challenge, or block a
+            suspicious action.
+          </p>
+        </article>
+
+        <article>
+          <h3>Cross-Flow Protection</h3>
+          <p>
+            Apply device intelligence across onboarding, login, account recovery, checkout, API usage, and
+            sensitive business workflows.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>Why It Matters</span>
+
+        <h2>Risky devices are often the first signal behind larger fraud</h2>
+
+        <p>
+          Many fraud attacks begin before money is lost. A risky device may first appear during signup. Later,
+          the same device may attempt login abuse, create multiple accounts, call APIs repeatedly, farm free
+          credits, test stolen cards, or access sensitive account settings. If the business cannot connect those
+          events, the attacker gets more time to operate.
+        </p>
+
+        <p>
+          Device fingerprinting matters because attackers often reuse infrastructure. They may rotate emails
+          and IP addresses, but they still rely on browsers, mobile devices, emulators, virtual machines,
+          automation tools, operating systems, app environments, and repeat behavioral patterns. Device
+          intelligence helps uncover those connections.
+        </p>
+
+        <p>
+          For business leaders, the value is not only security. Device fingerprinting protects revenue,
+          reduces manual review, improves signup quality, lowers fraud losses, protects platform trust, and
+          gives teams better visibility into repeat abuse.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Account Takeover Risk</h3>
+          <p>
+            Suspicious device changes can reveal stolen credentials, session hijacking, phishing, or abnormal
+            access to trusted accounts.
+          </p>
+        </article>
+
+        <article>
+          <h3>Fake Signup Detection</h3>
+          <p>
+            Repeated device use across many new accounts can reveal account farming, trial abuse, spam accounts,
+            and promotional fraud.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bot Detection</h3>
+          <p>
+            Headless browsers, automation frameworks, emulators, and missing human behavior can increase device
+            risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Payment Fraud</h3>
+          <p>
+            Device signals help identify card testing, repeat failed payments, stolen-card attempts, and risky
+            checkout behavior.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Abuse</h3>
+          <p>
+            Device and session context can help connect suspicious API activity to accounts, tokens, and
+            automation patterns.
+          </p>
+        </article>
+
+        <article>
+          <h3>Trust &amp; Safety Operations</h3>
+          <p>
+            Device history helps teams investigate abuse clusters, linked accounts, marketplace fraud, and
+            repeat offenders.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Key Concepts</span>
+
+        <h2>The core signals behind device fingerprinting</h2>
+
+        <p>
+          Device fingerprinting uses many small signals to create a broader device profile. No single signal
+          should decide trust by itself. Browser version, screen size, timezone, operating system, app state,
+          network context, and interaction behavior are most useful when combined.
+        </p>
+
+        <p>
+          The strongest device intelligence systems look for consistency, history, and anomalies. A device that
+          has been seen before with normal behavior may be trusted more. A device connected to many accounts,
+          automation tools, emulator activity, or previous fraud should receive more scrutiny.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Browser and OS Signals</h3>
+          <p>
+            Browser type, browser version, operating system, user agent consistency, and rendering behavior can
+            reveal suspicious environments.
+          </p>
+        </article>
+
+        <article>
+          <h3>Screen and Environment Signals</h3>
+          <p>
+            Screen size, timezone, language, device type, and system settings help identify unusual or repeated
+            device patterns.
+          </p>
+        </article>
+
+        <article>
+          <h3>Mobile App Integrity</h3>
+          <p>
+            Mobile apps may need to detect emulators, rooted devices, tampered apps, cloned apps, and suspicious
+            runtime behavior.
+          </p>
+        </article>
+
+        <article>
+          <h3>Device Reputation</h3>
+          <p>
+            A device becomes more meaningful when connected to previous signups, logins, API calls, payments,
+            abuse outcomes, and account history.
+          </p>
+        </article>
+
+        <article>
+          <h3>Behavioral Context</h3>
+          <p>
+            Human behavior, form completion speed, navigation flow, session timing, and interaction quality
+            help separate real users from automation.
+          </p>
+        </article>
+
+        <article>
+          <h3>Entity Linkage</h3>
+          <p>
+            Device signals can connect accounts that otherwise appear separate through different emails, names,
+            IPs, or payment details.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Attack Scenarios</span>
+
+        <h2>How attackers abuse weak device security</h2>
+
+        <p>
+          Device fingerprinting becomes important because attackers rarely use one method alone. A fraudster may
+          create fake accounts, run automation, rotate networks, test payments, and abuse APIs as part of the
+          same operation. Device intelligence helps connect those events earlier.
+        </p>
+
+        <p>
+          In SaaS platforms, attackers may create repeated trial accounts from the same device environment to
+          avoid subscription limits. In AI platforms, device reuse may reveal credit farming, prompt abuse, or
+          API quota abuse. In marketplaces, one device may control fake buyers, fake sellers, and review
+          manipulation accounts. In fintech, suspicious devices may appear during onboarding, account recovery,
+          or payment actions. In e-commerce, the same risky device may attempt coupon abuse, card testing, or
+          refund fraud.
+        </p>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Common device-linked fraud patterns</h3>
+<pre><code>1. One device creating many accounts in a short period
+2. Multiple accounts using similar browser and environment signals
+3. New login from a device never seen before on a trusted account
+4. Emulator traffic appearing in mobile onboarding flows
+5. Scripted signup behavior combined with disposable emails
+6. Repeated failed payments from linked device environments
+7. Suspicious API activity tied to recently created accounts
+8. Marketplace buyer and seller accounts linked by device history
+9. Trial abuse using different emails but similar device fingerprints
+10. Account recovery attempts from risky or unfamiliar devices</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Technical Deep Dive</span>
+
+        <h2>How device risk scoring works in practice</h2>
+
+        <p>
+          A useful device risk system should not return only a raw fingerprint. Fraud and security teams need
+          a decision-ready output: device ID, risk score, trust level, reasons, history, linked accounts, and
+          recommended action.
+        </p>
+
+        <p>
+          Device risk scoring works best when the system considers both the current event and historical
+          behavior. A device making its first normal login may be low risk. A device creating many accounts,
+          using automation tools, appearing behind proxy infrastructure, and failing payments should be treated
+          differently.
+        </p>
+      </div>
+
+      <div class="public-doc-card">
+        <h3>Example device risk workflow</h3>
+<pre><code>collect_device_event(browser, os, screen, language, timezone, app_state, ip, session)
+
+device_profile = build_device_profile(
+  browser_signals,
+  operating_system,
+  screen_data,
+  environment_signals,
+  mobile_integrity,
+  automation_indicators
+)
+
+device_history = lookup_device_history(device_profile.id)
+
+risk_signals = evaluate(
+  first_seen_status,
+  account_count,
+  linked_accounts,
+  previous_abuse,
+  payment_failures,
+  bot_signals,
+  api_activity,
+  network_context
+)
+
+device_risk_score = calculate_device_risk(device_profile, device_history, risk_signals)
+
+if device_risk_score &lt; 25:
+  action = "allow"
+elif device_risk_score &lt; 55:
+  action = "monitor"
+elif device_risk_score &lt; 80:
+  action = "step_up_or_limit"
+else:
+  action = "block_or_review"</code></pre>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Low Risk</h3>
+          <p>
+            Known device, normal behavior, stable history, consistent location, and no connection to abuse.
+          </p>
+        </article>
+
+        <article>
+          <h3>Medium Risk</h3>
+          <p>
+            New device, unusual environment, inconsistent behavior, or limited history requiring monitoring.
+          </p>
+        </article>
+
+        <article>
+          <h3>High Risk</h3>
+          <p>
+            Device linked to fake accounts, automation, emulator use, API abuse, payment failures, or prior fraud.
+          </p>
+        </article>
+
+        <article>
+          <h3>Critical Risk</h3>
+          <p>
+            Device associated with coordinated abuse, account takeover, payment fraud, bot operations, or repeated policy evasion.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>Best Practices</span>
+
+        <h2>How to use device fingerprinting without creating unnecessary friction</h2>
+
+        <p>
+          Device fingerprinting should support better decisions, not punish legitimate users. A shared office
+          network, a family device, or a new phone does not automatically mean fraud. The goal is to evaluate
+          device context alongside email risk, account history, behavior, API activity, and payment patterns.
+        </p>
+
+        <p>
+          The best programs use progressive controls. Trusted devices move quickly. Unknown devices may be
+          monitored. Suspicious devices may face step-up verification. High-risk devices may be limited,
+          blocked, or sent for review.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Use Device Signals Across the Journey</h3>
+          <p>
+            Apply device intelligence at signup, login, checkout, account recovery, API key creation, and sensitive changes.
+          </p>
+        </article>
+
+        <article>
+          <h3>Connect Devices to Accounts</h3>
+          <p>
+            Track how many accounts are associated with a device and whether those accounts show suspicious behavior.
+          </p>
+        </article>
+
+        <article>
+          <h3>Detect Automation</h3>
+          <p>
+            Watch for headless browsers, scripted flows, abnormal interaction timing, and bot-like session behavior.
+          </p>
+        </article>
+
+        <article>
+          <h3>Protect Mobile Apps</h3>
+          <p>
+            Detect emulators, rooted devices, tampered apps, cloned apps, and suspicious app environments.
+          </p>
+        </article>
+
+        <article>
+          <h3>Use Risk-Based Step-Up</h3>
+          <p>
+            Require additional verification only when device risk increases or when the user attempts a sensitive action.
+          </p>
+        </article>
+
+        <article>
+          <h3>Feed Outcomes Back Into Risk Models</h3>
+          <p>
+            Confirmed fraud, chargebacks, abuse reports, and account restrictions should improve future device scoring.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Business Impact</span>
+
+        <h2>Device fingerprinting helps protect revenue, trust, and operational efficiency</h2>
+
+        <p>
+          Device fingerprinting affects more than the security team. It helps the whole business understand
+          which users are trustworthy, which accounts deserve more friction, and which activity needs review.
+        </p>
+
+        <p>
+          For marketing teams, device intelligence improves user-quality measurement by reducing fake signup
+          noise. For product teams, it helps separate real engagement from automated or fraudulent activity.
+          For support teams, it reduces repeated abuse and account recovery risk. For finance teams, it helps
+          reduce payment fraud, chargebacks, and promotion leakage. For executives, it improves confidence in
+          platform integrity and customer trust.
+        </p>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>SaaS Platforms</h3>
+          <p>
+            Reduce free trial abuse, workspace farming, fake users, API key misuse, and account takeover risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Mobile Apps</h3>
+          <p>
+            Detect emulator traffic, repeated installs, device tampering, bonus abuse, and suspicious onboarding.
+          </p>
+        </article>
+
+        <article>
+          <h3>Marketplaces</h3>
+          <p>
+            Link suspicious buyers, sellers, reviews, listings, refunds, messages, and payout activity.
+          </p>
+        </article>
+
+        <article>
+          <h3>Fintech Products</h3>
+          <p>
+            Strengthen onboarding, account recovery, payment review, risk scoring, and fraud investigation.
+          </p>
+        </article>
+
+        <article>
+          <h3>E-Commerce Businesses</h3>
+          <p>
+            Reduce card testing, coupon abuse, refund fraud, account abuse, and repeat checkout fraud.
+          </p>
+        </article>
+
+        <article>
+          <h3>AI Platforms</h3>
+          <p>
+            Detect credit farming, bot-driven usage, API quota abuse, fake accounts, and suspicious automation.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section public-dark-section sg-dark-section">
+      <div class="public-section-heading">
+        <span>How SherGuard Helps</span>
+
+        <h2>How SherGuard turns device signals into trust intelligence</h2>
+
+        <p>
+          SherGuard helps businesses use Device Risk Intelligence as part of a broader trust intelligence
+          workflow. Instead of reviewing device data in isolation, SherGuard connects device risk with fake
+          signup detection, bot behavior, API abuse, payment fraud signals, and account activity.
+        </p>
+
+        <p>
+          This matters because device risk often appears across multiple stages of abuse. A suspicious device
+          may first create fake accounts, then show bot behavior, then call sensitive APIs, then attempt payment
+          fraud or account takeover. SherGuard helps teams connect those signals before the abuse scales.
+        </p>
+      </div>
+
+      <div class="public-feature-grid public-dark-feature-grid">
+        <article>
+          <h3>Fake Signup Detection</h3>
+          <p>
+            Detect suspicious registrations, disposable email patterns, signup velocity, and account farming
+            connected to risky devices.
+          </p>
+        </article>
+
+        <article>
+          <h3>Device Risk Intelligence</h3>
+          <p>
+            Identify risky browsers, emulators, suspicious environments, repeated device reuse, and device
+            reputation patterns.
+          </p>
+        </article>
+
+        <article>
+          <h3>Bot Detection</h3>
+          <p>
+            Detect automation signals, scripted sessions, abnormal behavior, and bot activity tied to device
+            and session context.
+          </p>
+        </article>
+
+        <article>
+          <h3>API Abuse Detection</h3>
+          <p>
+            Connect suspicious API traffic, repeated requests, token misuse, and endpoint abuse to account and
+            device risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Payment Fraud Detection</h3>
+          <p>
+            Review payment behavior, failed attempts, card testing, billing mismatch, and chargeback indicators
+            alongside device risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Unified Risk Decisions</h3>
+          <p>
+            Give fraud, security, and Trust &amp; Safety teams explainable risk scores, reasons, and recommended
+            actions across the customer journey.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>FAQ</span>
+
+        <h2>Device Fingerprinting for Account Security FAQ</h2>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>What is device fingerprinting?</h3>
+          <p>
+            Device fingerprinting collects device, browser, app, and environment signals to help identify and
+            evaluate the device behind an online action.
+          </p>
+        </article>
+
+        <article>
+          <h3>How does device fingerprinting help fraud prevention?</h3>
+          <p>
+            It helps identify repeat abuse, risky devices, linked accounts, emulators, automation, suspicious
+            logins, and payment fraud patterns.
+          </p>
+        </article>
+
+        <article>
+          <h3>Is device fingerprinting useful for account takeover detection?</h3>
+          <p>
+            Yes. A login from an unfamiliar or risky device can indicate stolen credentials, session compromise,
+            phishing, or account takeover risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Can device fingerprinting stop fake signups?</h3>
+          <p>
+            It can help detect fake signup clusters when multiple accounts share suspicious device, browser,
+            automation, or environment signals.
+          </p>
+        </article>
+
+        <article>
+          <h3>Does device intelligence help mobile apps?</h3>
+          <p>
+            Yes. Mobile apps can use device intelligence to detect emulators, rooted devices, tampered apps,
+            repeated installs, and suspicious onboarding behavior.
+          </p>
+        </article>
+
+        <article>
+          <h3>How does SherGuard help?</h3>
+          <p>
+            SherGuard connects device risk with fake signup detection, bot detection, API abuse detection, and
+            payment fraud detection in one trust intelligence platform.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Conclusion</span>
+
+        <h2>Device fingerprinting is a critical layer of modern account security</h2>
+
+        <p>
+          Device fingerprinting helps businesses move beyond simple identity checks and understand the trust
+          level of the device behind each action. This is essential because attackers can change emails, rotate
+          IP addresses, create new accounts, and automate activity, but device and environment patterns often
+          reveal deeper relationships.
+        </p>
+
+        <p>
+          The strongest fraud prevention programs use device intelligence as part of a broader trust model.
+          Device signals become more powerful when connected to signup risk, behavior analytics, bot detection,
+          API usage, account history, and payment outcomes.
+        </p>
+
+        <p>
+          For SaaS platforms, mobile apps, marketplaces, fintech products, e-commerce businesses, AI platforms,
+          developer platforms, and enterprise organizations, device fingerprinting supports better security,
+          stronger fraud prevention, cleaner analytics, and more trusted customer experiences.
+        </p>
+      </div>
+    </section>
+
+    <section class="public-cta-section">
+      <h2>Strengthen account security with SherGuard.</h2>
+
+      <p>
+        Stop fake signups, identify risky devices, detect bots, prevent API abuse,
+        and reduce payment fraud from one trust intelligence platform.
+      </p>
+
+      <a href="../register.html" class="public-btn public-btn-primary">
+        Start Free
+      </a>
+    </section>
+  </main>
+
+  <footer class="public-footer public-footer-advanced">
+    <div>
+      <strong>SherGuard</strong>
+      <p>
+        Trust intelligence platform for fraud prevention, bot defense, API abuse
+        protection, device risk analysis, and payment fraud detection.
+      </p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <a href="../index.html">Home</a>
+      <a href="../features.html">Features</a>
+      <a href="../pricing.html">Pricing</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="../blog.html">Blog</a>
+      <a href="../developers.html">Developers</a>
+      <a href="../docs.html">Docs</a>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../register.html">Start Free</a>
+    </div>
+
+    <div class="public-footer-bottom">
+      <span>© 2026 SherGuard. All rights reserved.</span>
+    </div>
+  </footer>
+</body>
+</html>
