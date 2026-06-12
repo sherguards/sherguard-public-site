@@ -1,4 +1,4 @@
-/* Main dashboard navigation and shared UI interactions for AI Trust OS. */
+/* Main dashboard navigation and shared UI interactions for SherGuard. */
 (function () {
   window.aiAgentConfig = {
     masterEnabled: true,

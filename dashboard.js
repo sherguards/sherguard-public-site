@@ -22,7 +22,7 @@
       window.aiTrustSecurityCenter = data;
   
       console.log(
-        'AI Trust OS Security Center:',
+        'SherGuard Security Center:',
         data
       );
   
@@ -231,7 +231,7 @@
     const advice = getActionAdvice(highPercent, stats, policyConfig);
     const policy = getCurrentPolicy();
 
-    let insightMessage = `AI Trust OS reviewed ${stats.total} events across modules. High-risk activity is ${highPercent}%.`;
+    let insightMessage = `SherGuard reviewed ${stats.total} events across modules. High-risk activity is ${highPercent}%.`;
 
 if (stats.high >= 5) {
   insightMessage = 'High-risk activity spike detected across trust modules. Immediate review recommended.';
@@ -909,7 +909,7 @@ localStorage.removeItem(aiTrustScopedKey('aiTrustOsPrevStats'));
     }
   
     if (stats.high > 0) {
-      ticker.textContent = `Live Threat Feed: ${stats.high} high-risk signal(s) detected • Review recommended • AI Trust OS monitoring live`;
+      ticker.textContent = `Live Threat Feed: ${stats.high} high-risk signal(s) detected • Review recommended • SherGuard monitoring live`;
       return;
     }
   
