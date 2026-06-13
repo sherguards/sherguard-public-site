@@ -270,4 +270,28 @@
   <loc>https://sherguard.com/blog/blog-payment-velocity-fraud-detection-high-risk-transactions-guide.html</loc>
   </url>
 
+  <url>
+  <loc>https://sherguard.com/blog/blog-referral-fraud-prevention-fake-account-abuse-guide.html</loc>
+  </url>
+
+  <url>
+  <loc>https://sherguard.com/blog/blog-device-spoofing-detection-fingerprint-manipulation-guide.html</loc>
+  </url>
+
+  <url>
+  <loc>https://sherguard.com/blog/blog-bot-powered-fake-account-farm-detection-guide.html</loc>
+  </url>
+
+  <url>
+  <loc>https://sherguard.com/blog/blog-api-credential-abuse-detection-stolen-api-keys-guide.html</loc>
+  </url>
+
+  <url>
+  <loc>https://sherguard.com/blog/blog-marketplace-payment-laundering-fraud-detection-guide.html</loc>
+  </url>
+
+  <url>
+  <loc>https://sherguard.com/blog/blog-synthetic-identity-fraud-detection-digital-identity-risk-guide.html</loc>
+  </url>
+
 </urlset>
