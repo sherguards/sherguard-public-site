@@ -982,16 +982,28 @@
 
     const request = parserLayer();
 
-    const backendResult = await aiTrustApiPost('/analyze/api-abuse', {
-      endpoint: String(request.endpoint || '/unknown'),
-      method: String(request.method || 'GET'),
-      status_code: Number(request.status || 200),
-      request_rate: Number(request.rate || 0),
-      repeated_requests: Number(request.repeatedRequests || 0),
-      auth_header_present: Boolean(request.authHeaderPresent),
-      missing_headers: Boolean(request.missingHeaders),
-      ip_reputation: String(request.ipReputation || 'Unknown')
-    });
+    let backendResult;
+
+try {
+  backendResult = await aiTrustApiPost('/analyze/api-abuse', {
+    endpoint: String(request.endpoint || '/unknown'),
+    method: String(request.method || 'GET'),
+    status_code: Number(request.status || 200),
+    request_rate: Number(request.rate || 0),
+    repeated_requests: Number(request.repeatedRequests || 0),
+    auth_header_present: Boolean(request.authHeaderPresent),
+    missing_headers: Boolean(request.missingHeaders),
+    ip_reputation: String(request.ipReputation || 'Unknown')
+  });
+} catch (error) {
+  alert(
+    error &&
+    error.message
+      ? error.message
+      : 'Daily usage limit reached for this module. Upgrade required.'
+  );
+  return;
+}
 
     const mapped = mapBackendApiEvent({
       moduleName: 'API Abuse Intelligence',
