@@ -408,18 +408,29 @@
 
     function getCombinedEmailActivity() {
       const combined = []
-        .concat(state.activity || [])
-        .concat(getBackendEmailRiskEvents());
+        .concat(getBackendEmailRiskEvents())
+        .concat(state.activity || []);
 
       const seen = new Set();
 
       return combined
         .filter(function (item) {
-          const key = String(
-            item.event_id ||
-            item.id ||
-            item.timestamp + '-' + item.rawEmail + '-' + item.score
-          );
+          const normalizedEmail = String(
+            item.normalizedEmail ||
+            item.rawEmail ||
+            ''
+          ).toLowerCase();
+
+          const timestampMinute = item.timestamp
+            ? String(item.timestamp).slice(0, 16)
+            : 'unknown-time';
+
+          const key = [
+            normalizedEmail,
+            timestampMinute,
+            String(item.score || 0),
+            String(item.riskLabel || '')
+          ].join('|');
 
           if (seen.has(key)) return false;
 
@@ -2149,7 +2160,7 @@ renderBreakdown(result.breakdown || []);
   
     function buildCopyReport(result) {
       const lines = [
-        'AI Trust Layer — Email Risk Report',
+        'SherGuard — Email Risk Report',
         'Checked: ' + formatTimestamp(result.timestamp),
         'Email: ' + result.rawEmail,
         'Normalized Email: ' + result.normalizedEmail,
