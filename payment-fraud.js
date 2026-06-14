@@ -970,17 +970,29 @@
   async function analyzePayment() {
     var transaction = parserLayer();
 
-    var backendResult = await aiTrustApiPost('/analyze/payment-fraud', {
-      amount: Number(transaction.amount || 0),
-      currency: String(transaction.currency || 'USD'),
-      payment_method: String(transaction.method || 'Card'),
-      billing_country: String(transaction.billingCountry || 'Unknown'),
-      shipping_country: String(transaction.shippingCountry || 'Unknown'),
-      card_bin: String(transaction.cardBin || '000000'),
-      failed_attempts: Number(transaction.failedAttempts || 0),
-      vpn_detected: Boolean(transaction.vpnDetected),
-      proxy_detected: Boolean(transaction.proxyDetected)
-    });
+    var backendResult;
+
+try {
+  backendResult = await aiTrustApiPost('/analyze/payment-fraud', {
+    amount: Number(transaction.amount || 0),
+    currency: String(transaction.currency || 'USD'),
+    payment_method: String(transaction.method || 'Card'),
+    billing_country: String(transaction.billingCountry || 'Unknown'),
+    shipping_country: String(transaction.shippingCountry || 'Unknown'),
+    card_bin: String(transaction.cardBin || '000000'),
+    failed_attempts: Number(transaction.failedAttempts || 0),
+    vpn_detected: Boolean(transaction.vpnDetected),
+    proxy_detected: Boolean(transaction.proxyDetected)
+  });
+} catch (error) {
+  alert(
+    error &&
+    error.message
+      ? error.message
+      : 'Daily usage limit reached for this module. Upgrade required.'
+  );
+  return;
+}
 
     var mapped = mapBackendPaymentEvent({
       moduleName: 'Payment Fraud Intelligence',
