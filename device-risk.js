@@ -614,13 +614,25 @@
         65
       );
 
-    var automationDetected =
-      String(signals.automation || '').toLowerCase().includes('detected') ||
-      String(userAgent || '').toLowerCase().indexOf('headless') !== -1 ||
-      String(userAgent || '').toLowerCase().indexOf('selenium') !== -1 ||
-      String(userAgent || '').toLowerCase().indexOf('webdriver') !== -1 ||
-      String(userAgent || '').toLowerCase().indexOf('python-requests') !== -1 ||
-      riskLabel === 'High Risk';
+      var automationText = String(
+        signals.automation || ''
+      ).toLowerCase();
+  
+      var userAgentText = String(
+        userAgent || ''
+      ).toLowerCase();
+  
+      var automationDetected =
+        (
+          automationText === 'detected' ||
+          automationText === 'automation detected' ||
+          automationText === 'bot detected'
+        ) ||
+        userAgentText.indexOf('headless') !== -1 ||
+        userAgentText.indexOf('selenium') !== -1 ||
+        userAgentText.indexOf('webdriver') !== -1 ||
+        userAgentText.indexOf('python-requests') !== -1 ||
+        riskLabel === 'High Risk';
 
     var threatSeverity = buildThreatSeverityFromBackend({
       riskLabel: riskLabel,
