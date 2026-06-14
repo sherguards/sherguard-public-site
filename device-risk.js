@@ -1176,7 +1176,16 @@
     }).length;
 
     var automation = activity.filter(function (item) {
-      return item.automationDetected === true;
+      return (
+        item.automationDetected === true &&
+        (
+          item.riskLabel === 'High Risk' ||
+          String(
+            item.environment &&
+            item.environment.automation
+          ).toLowerCase().includes('detected')
+        )
+      );
     }).length;
 
     var escalation = activity.filter(function (item) {
@@ -2104,7 +2113,7 @@
     );
   }
 
-  window.AITrustOSDeviceRisk = {
+  window.SherGuardDeviceRisk = {
     init: init,
     analyze: analyzeDevice,
     getBackendDeviceEvents: getBackendDeviceEvents,
