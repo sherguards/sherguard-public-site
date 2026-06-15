@@ -2103,6 +2103,16 @@
     
     window.addEventListener('sherguardAiPolicyUpdated', function () {
       state.autoActionEnabled = loadAutoPreference();
+    
+      if (els.autoToggle) {
+        els.autoToggle.checked = state.autoActionEnabled;
+      }
+    
+      if (els.autoActionToggle) {
+        els.autoActionToggle.checked = state.autoActionEnabled;
+      }
+    
+      renderer.renderAutoState();
       renderer.renderAll();
     });
   }
