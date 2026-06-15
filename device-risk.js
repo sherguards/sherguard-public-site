@@ -2096,8 +2096,14 @@
 
     window.addEventListener('aiTrustOsActivityUpdated', function () {
       setTimeout(function () {
+        state.autoActionEnabled = loadAutoPreference();
         renderer.renderAll();
       }, 500);
+    });
+    
+    window.addEventListener('sherguardAiPolicyUpdated', function () {
+      state.autoActionEnabled = loadAutoPreference();
+      renderer.renderAll();
     });
   }
 
