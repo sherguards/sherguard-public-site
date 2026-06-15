@@ -17,8 +17,8 @@
 
   var moduleAutoActionMap = {
     'Email Risk': {
-      toggleId: 'emailAutoActionToggle',
-      storageKey: aiTrustScopedKey('aiTrustOsEmailRiskAutoAction')
+      toggleId: 'emailAutoAction',
+      storageKey: 'emailRiskAutoAction'
     },
     'Device Risk': {
       toggleId: 'deviceRiskAutoActionToggle',
@@ -656,6 +656,6 @@
     applyPermissions: applyPermissions,
     syncModuleAutoActions: syncModuleAutoActions
   };
-
+  
   init();
-})();
+  })();
