@@ -5,11 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>SherGuard - Trust Intelligence for Fraud, Bots, APIs & Payment Risk</title>
+  <title>SherGuard - Stop Fake Signups, Bots, API Abuse & Payment Fraud</title>
 
   <meta
     name="description"
-    content="SherGuard helps online businesses detect fake signups, risky devices, bots, API abuse, payment fraud, suspicious sessions, and automated abuse through real-time trust intelligence."
+    content="SherGuard helps SaaS, marketplaces, fintech, e-commerce, AI platforms, and developers detect fake signups, risky devices, bots, API abuse, account abuse, and payment fraud with real-time trust intelligence."
   />
 
   <link rel="canonical" href="https://sherguard.com/" />
@@ -17,8 +17,8 @@
 
   <meta property="og:url" content="https://sherguard.com/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="SherGuard - Trust Intelligence Platform" />
-  <meta property="og:description" content="Protect SaaS platforms, marketplaces, e-commerce stores, mobile apps, APIs, and online businesses from fraud, bots, risky devices, API abuse, and payment fraud." />
+  <meta property="og:title" content="SherGuard - Trust Intelligence for Fraud, Bots, APIs & Payment Risk" />
+  <meta property="og:description" content="Detect fake signups, risky devices, bots, API abuse, payment fraud, and suspicious activity with one trust intelligence platform." />
 
   <script type="application/ld+json">
     {
@@ -30,7 +30,7 @@
           "name": "SherGuard",
           "legalName": "SHER MALIK LLC",
           "url": "https://sherguard.com/",
-          "description": "SherGuard is a cybersecurity and trust intelligence platform for fraud prevention, bot detection, API abuse protection, risky device analysis, and payment fraud intelligence."
+          "description": "SherGuard is a cybersecurity and trust intelligence platform for fraud prevention, bot detection, API abuse protection, device risk analysis, and payment fraud intelligence."
         },
         {
           "@type": "WebSite",
@@ -48,7 +48,7 @@
           "applicationCategory": "SecurityApplication",
           "operatingSystem": "Web",
           "url": "https://sherguard.com/",
-          "description": "SherGuard is a trust intelligence platform that helps businesses detect fake signups, risky devices, bots, API abuse, payment fraud, and suspicious activity in real time.",
+          "description": "SherGuard helps businesses detect fake signups, risky devices, bots, API abuse, payment fraud, and suspicious activity in real time.",
           "offers": {
             "@type": "Offer",
             "url": "https://sherguard.com/pricing.html",
@@ -71,156 +71,389 @@
     .sg-landing-hero {
       position: relative;
       overflow: hidden;
-      min-height: 78vh;
-      padding: 92px 7% 86px;
-      text-align: center;
+      padding: 92px 7% 78px;
       background:
-        radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.16), transparent 32%),
-        radial-gradient(circle at 82% 16%, rgba(14, 165, 233, 0.16), transparent 30%),
+        radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.18), transparent 32%),
+        radial-gradient(circle at 84% 12%, rgba(14, 165, 233, 0.18), transparent 30%),
         linear-gradient(180deg, #f8fbff 0%, #edf5ff 100%);
     }
 
     .sg-landing-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
-  background-size: 56px 56px;
-  opacity: 0.45;
-  pointer-events: none;
-}
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: 0.45;
+      pointer-events: none;
+    }
 
-.sg-landing-hero::after {
-  content: "";
-  position: absolute;
-  width: 360px;
-  height: 360px;
-  left: 50%;
-  top: 18%;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.14), transparent 70%);
-  pointer-events: none;
-}
-
-    .sg-hero-copy {
+    .sg-hero-layout {
       position: relative;
       z-index: 2;
-      max-width: 1260px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 42px;
+      align-items: center;
+      max-width: 1320px;
       margin: 0 auto;
     }
 
-    .sg-landing-hero h1 {
-      max-width: 1120px;
-      margin: 0 auto;
+    .sg-hero-copy {
+      text-align: left;
+    }
+
+    .sg-hero-copy h1 {
+      max-width: 760px;
+      margin: 0;
       color: #07111f;
-      font-size: clamp(34px, 4.2vw, 64px);
-      line-height: 1.08;
-      letter-spacing: -0.045em;
-      font-weight: 780;
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+      font-weight: 900;
     }
 
     .sg-hero-subtitle {
-      max-width: 850px;
-      margin: 22px auto 0;
+      max-width: 760px;
+      margin: 22px 0 0;
       color: #475569;
       font-size: 19px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
-    .sg-demo-live-stats {
-      margin-top: 36px;
-    }
-
-    .sg-business-strip {
+    .sg-trust-line {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 10px;
-      max-width: 1060px;
-      margin: 34px auto 0;
+      margin-top: 26px;
     }
 
-    .sg-business-strip span {
-      padding: 10px 14px;
+    .sg-trust-line span {
+      padding: 10px 13px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.88);
       border: 1px solid #dbeafe;
       color: #1e40af;
       font-size: 13px;
       font-weight: 800;
-      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.07);
     }
 
-    .public-section-heading h2 {
-      font-weight: 760;
-      letter-spacing: -0.035em;
-      font-size: clamp(30px, 3.6vw, 50px);
+    .sg-hero-card {
+      border-radius: 32px;
+      padding: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.28), transparent 36%),
+        linear-gradient(180deg, #06111f 0%, #0f172a 100%);
+      color: #ffffff;
+      box-shadow: 0 34px 90px rgba(15, 23, 42, 0.28);
+      border: 1px solid rgba(148, 163, 184, 0.22);
     }
 
-    .sg-platform-grid article,
-    .sg-workflow-grid article,
-    .public-feature-grid article,
-    .public-proof-grid article {
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    .sg-hero-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #93c5fd;
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .sg-platform-grid article:hover,
-    .sg-workflow-grid article:hover,
-    .public-feature-grid article:hover,
-    .public-proof-grid article:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 24px 58px rgba(15, 23, 42, 0.1);
+    .sg-live-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .sg-trust-note {
-      max-width: 980px;
+    .sg-live-dot::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.14);
+    }
+
+    .sg-risk-panel {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .sg-risk-panel span {
+      display: block;
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sg-risk-panel strong {
+      display: block;
+      margin-top: 8px;
+      color: #86efac;
+      font-size: 44px;
+      letter-spacing: -0.04em;
+    }
+
+    .sg-risk-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .sg-risk-grid div {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.76);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .sg-risk-grid span {
+      display: block;
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .sg-risk-grid strong {
+      display: block;
+      margin-top: 8px;
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    .sg-demo-live-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .sg-demo-stat-card {
+      padding: 20px;
+      border-radius: 22px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 16px 42px rgba(15, 23, 42, 0.07);
+    }
+
+    .sg-demo-stat-label {
+      display: block;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sg-demo-stat-card strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 36px;
+      color: #0f172a;
+      letter-spacing: -0.05em;
+    }
+
+    .sg-demo-stat-card small {
+      display: block;
+      margin-top: 8px;
+      color: #64748b;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .sg-proof-note {
+      max-width: 1120px;
       margin: 28px auto 0;
       padding: 18px 22px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.74);
+      background: #ffffff;
       border: 1px solid #dbeafe;
       color: #334155;
       font-size: 15px;
       line-height: 1.65;
+      text-align: center;
     }
 
-    @keyframes sgGridMove {
-      from {
-        background-position: 0 0, 0 0;
-      }
-
-      to {
-        background-position: 92px 92px, 92px 92px;
-      }
+    .sg-screenshot-card {
+      border-radius: 28px;
+      padding: 18px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
     }
 
-    @keyframes sgSecurityPulse {
-      0%, 100% {
-        opacity: 0.42;
-        transform: translateX(-50%) scale(0.96);
-      }
-
-      50% {
-        opacity: 0.72;
-        transform: translateX(-50%) scale(1.08);
-      }
+    .sg-screenshot-card img {
+      display: block;
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
     }
 
-    @media (max-width: 900px) {
-      .sg-landing-hero {
-        min-height: auto;
-        padding: 64px 6% 58px;
+    .sg-screenshot-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 340px;
+      border-radius: 20px;
+      border: 1px dashed #93c5fd;
+      background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+      color: #1d4ed8;
+      text-align: center;
+      padding: 28px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .sg-platform-grid,
+    .sg-workflow-grid,
+    .sg-trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .sg-platform-grid article,
+    .sg-workflow-grid article,
+    .sg-trust-grid article {
+      padding: 26px;
+      border-radius: 24px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.06);
+    }
+
+    .sg-platform-grid span,
+    .sg-workflow-grid span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .sg-platform-grid h3,
+    .sg-workflow-grid h3,
+    .sg-trust-grid h3 {
+      margin: 0;
+      color: #0f172a;
+      font-size: 20px;
+    }
+
+    .sg-platform-grid p,
+    .sg-workflow-grid p,
+    .sg-trust-grid p {
+      margin: 12px 0 0;
+      color: #64748b;
+      line-height: 1.65;
+    }
+
+    .sg-dark-section {
+      background: linear-gradient(180deg, #06111f 0%, #0f172a 100%) !important;
+      color: #ffffff !important;
+    }
+
+    .sg-dark-section .public-section-heading h2 {
+      color: #ffffff;
+    }
+
+    .sg-dark-section .public-section-heading p {
+      color: #cbd5e1;
+    }
+
+    .sg-dark-section .public-feature-grid article {
+      background: rgba(255, 255, 255, 0.07) !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
+      box-shadow: none;
+    }
+
+    .sg-dark-section .public-feature-grid h3 {
+      color: #ffffff;
+    }
+
+    .sg-dark-section .public-feature-grid p {
+      color: #cbd5e1;
+    }
+
+    .sg-module-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .sg-security-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .sg-security-bar article {
+      padding: 22px;
+      border-radius: 22px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 16px 44px rgba(15, 23, 42, 0.06);
+    }
+
+    .sg-security-bar strong {
+      display: block;
+      color: #0f172a;
+      font-size: 18px;
+    }
+
+    .sg-security-bar span {
+      display: block;
+      margin-top: 8px;
+      color: #64748b;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .sg-hero-layout,
+      .sg-platform-grid,
+      .sg-workflow-grid,
+      .sg-trust-grid,
+      .sg-security-bar {
+        grid-template-columns: 1fr;
       }
 
-      .sg-landing-hero h1 {
-        font-size: 38px;
+      .sg-hero-copy {
+        text-align: center;
       }
 
+      .sg-hero-copy h1,
       .sg-hero-subtitle {
-        font-size: 17px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .sg-trust-line,
+      .public-hero-actions,
+      .sg-module-cta {
+        justify-content: center;
+      }
+
+      .sg-demo-live-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .sg-landing-hero {
+        padding: 64px 6% 58px;
       }
     }
   </style>
@@ -271,62 +504,95 @@
 
   <main>
     <section class="sg-landing-hero">
-      <div class="sg-hero-copy">
-        <span class="public-eyebrow">Real-Time Trust Intelligence</span>
+      <div class="sg-hero-layout">
+        <div class="sg-hero-copy">
+          <span class="public-eyebrow">Fraud Prevention • Bot Detection • API Security</span>
 
-        <h1>
-          Protect signups, devices, bots, APIs, payments, and online activity with one trust intelligence platform.
-        </h1>
+          <h1>
+            Stop fake signups, risky devices, bots, API abuse, and payment fraud before they reach your business.
+          </h1>
 
-        <p class="sg-hero-subtitle">
-          SherGuard helps small businesses, growing startups, SaaS platforms, marketplaces, mobile apps,
-          API products, and enterprise teams detect risky behavior before it becomes fraud, abuse, or payment loss.
-        </p>
+          <p class="sg-hero-subtitle">
+            SherGuard gives SaaS companies, marketplaces, fintech teams, e-commerce businesses, AI platforms,
+            and developers real-time trust intelligence across email, device, bot, API, and payment risk.
+          </p>
 
-        <div class="sg-demo-live-stats">
-          <div class="sg-demo-stat-card sg-demo-stat-blue">
-            <span class="sg-demo-stat-label">Traffic Analyzed</span>
-            <strong id="sgPublicTotal">0</strong>
-            <small>Total security checks monitored</small>
+          <div class="public-hero-actions">
+            <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
+            <a href="pricing.html" class="public-btn public-btn-secondary">View Pricing</a>
+            <a href="developers.html" class="public-btn public-btn-secondary">Developer Docs</a>
           </div>
 
-          <div class="sg-demo-stat-card sg-demo-stat-green">
-            <span class="sg-demo-stat-label">Trusted Activity</span>
-            <strong id="sgPublicAllowed">0</strong>
-            <small>Legitimate activity allowed</small>
-          </div>
-
-          <div class="sg-demo-stat-card sg-demo-stat-red">
-            <span class="sg-demo-stat-label">Threats Blocked</span>
-            <strong id="sgPublicBlocked">0</strong>
-            <small>High-risk attempts stopped</small>
+          <div class="sg-trust-line">
+            <span>No credit card required</span>
+            <span>Secure checkout by Paddle</span>
+            <span>API-first</span>
+            <span>Usage limits visible</span>
+            <span>Cancel anytime</span>
           </div>
         </div>
 
-        <div class="public-hero-actions">
-          <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
-          <a href="pricing.html" class="public-btn public-btn-secondary">View Pricing</a>
-          <a href="developers.html" class="public-btn public-btn-secondary">Developer Docs</a>
+        <div class="sg-hero-card">
+          <div class="sg-hero-card-top">
+            <span>SherGuard Risk Engine</span>
+            <span class="sg-live-dot">Live monitoring</span>
+          </div>
+
+          <div class="sg-risk-panel">
+            <span>Global AI Risk Level</span>
+            <strong>Moderate</strong>
+            <p>
+              Five connected intelligence modules review signup, device, bot, API, and payment behavior.
+            </p>
+          </div>
+
+          <div class="sg-risk-grid">
+            <div>
+              <span>Email Risk</span>
+              <strong>Monitor suspicious signups</strong>
+            </div>
+
+            <div>
+              <span>Device Risk</span>
+              <strong>Detect risky environments</strong>
+            </div>
+
+            <div>
+              <span>API Abuse</span>
+              <strong>Rate-limit abuse patterns</strong>
+            </div>
+
+            <div>
+              <span>Payment Fraud</span>
+              <strong>Review risky checkout attempts</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-demo-live-stats">
+        <div class="sg-demo-stat-card">
+          <span class="sg-demo-stat-label">Traffic Analyzed</span>
+          <strong id="sgPublicTotal">0</strong>
+          <small>Example security checks monitored by SherGuard.</small>
         </div>
 
-        <div class="sg-business-strip">
-          <span>SaaS Platforms</span>
-          <span>Marketplaces</span>
-          <span>E-commerce</span>
-          <span>Mobile Apps</span>
-          <span>APIs</span>
-          <span>AI Platforms</span>
-          <span>Fintech</span>
-          <span>Subscription Businesses</span>
-          <span>Online Services</span>
-          <span>SMBs</span>
-          <span>Enterprise Teams</span>
+        <div class="sg-demo-stat-card">
+          <span class="sg-demo-stat-label">Trusted Activity</span>
+          <strong id="sgPublicAllowed">0</strong>
+          <small>Legitimate activity allowed or monitored.</small>
         </div>
 
-        <div class="sg-trust-note">
-          Built for real business protection: SherGuard analyzes trust signals across accounts,
-          sessions, devices, API requests, checkout behavior, team activity, and automation controls.
+        <div class="sg-demo-stat-card">
+          <span class="sg-demo-stat-label">Threats Blocked</span>
+          <strong id="sgPublicBlocked">0</strong>
+          <small>High-risk attempts detected in demo mode.</small>
         </div>
+      </div>
+
+      <div class="sg-proof-note">
+        SherGuard is built by SHER MALIK LLC for modern online businesses that need practical fraud prevention,
+        abuse detection, API protection, payment risk intelligence, and safer AI-controlled operations.
       </div>
     </section>
 
@@ -348,8 +614,8 @@
         </article>
 
         <article>
-          <strong>All business sizes</strong>
-          <span>From small online stores to enterprise platforms</span>
+          <strong>Paddle</strong>
+          <span>Secure subscription checkout and billing</span>
         </article>
       </div>
     </section>
@@ -357,10 +623,10 @@
     <section id="platform" class="public-section">
       <div class="public-section-heading">
         <span>One Platform</span>
-        <h2>Connect fraud, abuse, identity, device, API, and payment risk in one security layer.</h2>
+        <h2>One trust layer for signup fraud, device risk, bots, API abuse, and payment fraud.</h2>
         <p>
-          SherGuard gives businesses a practical way to monitor trust signals across the customer journey:
-          account creation, login sessions, device activity, API requests, checkout behavior, and team operations.
+          Most businesses use separate tools for email checks, device risk, bot detection, API protection,
+          and payment fraud. SherGuard connects these risk signals into one dashboard, one API, and one decision layer.
         </p>
       </div>
 
@@ -368,62 +634,90 @@
         <article>
           <span>01</span>
           <h3>Detect suspicious activity</h3>
-          <p>Analyze email, device, bot, API, and payment signals before risky users damage your platform or customer trust.</p>
+          <p>Analyze risky emails, devices, bots, API requests, and payment behavior before abuse becomes expensive.</p>
         </article>
 
         <article>
           <span>02</span>
-          <h3>Understand the risk</h3>
-          <p>See risk level, score, confidence, reasons, signals, and recommended action in a format teams can understand.</p>
+          <h3>Understand the decision</h3>
+          <p>See risk level, score, confidence, reasons, trust signals, and recommended action for every event.</p>
         </article>
 
         <article>
           <span>03</span>
-          <h3>Take safer action</h3>
-          <p>Allow trusted users, monitor suspicious activity, review risky behavior, rate-limit abuse, or block high-risk attempts.</p>
+          <h3>Act with confidence</h3>
+          <p>Allow trusted users, monitor suspicious activity, challenge risky behavior, rate-limit abuse, or block high-risk attempts.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Product Proof</span>
+        <h2>Show customers a real dashboard, real modules, and real API output.</h2>
+        <p>
+          Add your SherGuard dashboard screenshots here after final QA. This section is designed to build trust
+          before a visitor clicks Start Free or Pricing.
+        </p>
+      </div>
+
+      <div class="sg-screenshot-card">
+        <!--
+          Screenshot instruction:
+          1. Login to SherGuard dashboard.
+          2. Open dashboard.html after running all 5 modules.
+          3. Press Windows + Shift + S.
+          4. Save screenshot as: dashboard-preview.png
+          5. Put it in your public site folder: images/dashboard-preview.png
+          6. Then replace the placeholder below with:
+             <img src="images/dashboard-preview.png" alt="SherGuard dashboard showing trust intelligence risk events">
+        -->
+        <div class="sg-screenshot-placeholder">
+          Dashboard screenshot placeholder<br />
+          Save your real image as images/dashboard-preview.png
+        </div>
       </div>
     </section>
 
     <section id="modules" class="public-section public-dark-section sg-dark-section">
       <div class="public-section-heading">
         <span>Security Modules</span>
-        <h2>Use the full platform or protect only the area your business needs first.</h2>
+        <h2>Five connected modules for the most common online abuse problems.</h2>
         <p>
-          SherGuard can protect your full online business or a single risk area. Start with signup fraud,
-          device risk, bot activity, API abuse, payment fraud, or combine all modules for wider protection.
+          SherGuard helps businesses protect their full customer journey: signup, login, session,
+          API, checkout, and team-level activity.
         </p>
       </div>
 
       <div class="public-feature-grid public-dark-feature-grid">
         <article>
           <h3>Email Risk Intelligence</h3>
-          <p>Detect disposable emails, suspicious custom domains, random-looking identities, and risky signup patterns.</p>
+          <p>Detect disposable emails, suspicious domains, random usernames, fake signup patterns, and weak identity signals.</p>
         </article>
 
         <article>
           <h3>Device Risk Intelligence</h3>
-          <p>Identify risky browsers, suspicious user agents, unknown environments, automation signals, and repeated device abuse.</p>
+          <p>Review browser, operating system, screen, timezone, automation signals, risky environments, and device reputation.</p>
         </article>
 
         <article>
           <h3>Bot Detection Intelligence</h3>
-          <p>Analyze clicks, session timing, missing human behavior, scraper patterns, scripted signups, and automation abuse.</p>
+          <p>Identify scripted behavior, missing human signals, scraper patterns, abnormal timing, and automated sessions.</p>
         </article>
 
         <article>
           <h3>API Abuse Intelligence</h3>
-          <p>Monitor burst traffic, repeated requests, missing headers, suspicious endpoints, credential abuse, and scraping attempts.</p>
+          <p>Detect burst traffic, repeated requests, suspicious endpoints, missing headers, credential attacks, and scraping behavior.</p>
         </article>
 
         <article>
           <h3>Payment Fraud Intelligence</h3>
-          <p>Review high-value payments, billing mismatches, failed attempts, VPN or proxy usage, and checkout fraud patterns.</p>
+          <p>Analyze checkout risk, failed attempts, billing mismatch, VPN/proxy indicators, high-value payments, and card testing signals.</p>
         </article>
 
         <article>
-          <h3>AI Policy Controls</h3>
-          <p>Control automated actions, approvals, enforcement rules, and organization-level AI permissions for safer operations.</p>
+          <h3>AI Agent Permissions</h3>
+          <p>Control auto actions, strict mode, approvals, module permissions, and safer AI-powered enforcement across the platform.</p>
         </article>
       </div>
 
@@ -436,26 +730,26 @@
     <section class="public-section">
       <div class="public-section-heading">
         <span>How It Works</span>
-        <h2>Simple integration for real-time fraud and abuse decisions.</h2>
+        <h2>Send activity. Receive risk intelligence. Act before abuse spreads.</h2>
       </div>
 
       <div class="sg-workflow-grid">
         <article>
           <span>1</span>
-          <h3>Send activity to SherGuard</h3>
-          <p>Your website, mobile app, backend, or dashboard sends signup, device, bot, API, or payment activity.</p>
+          <h3>Send trust signals</h3>
+          <p>Your website, app, backend, or internal dashboard sends signup, device, bot, API, or payment activity.</p>
         </article>
 
         <article>
           <span>2</span>
-          <h3>Analyze trust signals</h3>
-          <p>SherGuard checks risk patterns, reputation memory, behavior signals, request details, and fraud indicators.</p>
+          <h3>SherGuard analyzes risk</h3>
+          <p>The engine checks risk patterns, behavior signals, reputation memory, request details, and fraud indicators.</p>
         </article>
 
         <article>
           <span>3</span>
-          <h3>Return a decision</h3>
-          <p>Your business receives a risk score, risk level, confidence, reasons, and recommended action.</p>
+          <h3>You receive a decision</h3>
+          <p>Get a risk score, risk level, confidence, reasons, and recommended action for operational review or automation.</p>
         </article>
       </div>
     </section>
@@ -463,7 +757,7 @@
     <section class="public-section sg-developer-section">
       <div class="public-section-heading">
         <span>Developer Ready</span>
-        <h2>Connect SherGuard to your signup, login, checkout, API, and account flows.</h2>
+        <h2>Integrate SherGuard into signup, login, checkout, API, and account flows.</h2>
         <p>
           Create scoped API keys, choose enabled modules, monitor usage, and add trust intelligence directly into your backend.
         </p>
@@ -476,7 +770,90 @@ Content-Type: application/json
 
 {
   "email": "bot123@temp-mail.org"
+}
+
+Response:
+{
+  "risk_level": "High Risk",
+  "score": 88,
+  "decision": "Block",
+  "reasons": [
+    "Disposable email domain detected",
+    "Suspicious signup pattern found"
+  ]
 }</code></pre>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Use Cases</span>
+        <h2>Built for real fraud and abuse problems across online businesses.</h2>
+      </div>
+
+      <div class="public-feature-grid">
+        <article>
+          <h3>Fake Signup Prevention</h3>
+          <p>Reduce disposable email abuse, fake identities, spam accounts, and automated registration attempts.</p>
+        </article>
+
+        <article>
+          <h3>Account Takeover Risk</h3>
+          <p>Monitor risky devices, abnormal sessions, automation indicators, and suspicious login behavior.</p>
+        </article>
+
+        <article>
+          <h3>Bot & Scraper Protection</h3>
+          <p>Detect scripted sessions, scraping behavior, abnormal API usage, and automation patterns.</p>
+        </article>
+
+        <article>
+          <h3>API Abuse Detection</h3>
+          <p>Protect endpoints from burst traffic, credential stuffing, token abuse, scraping, and suspicious clients.</p>
+        </article>
+
+        <article>
+          <h3>Payment Fraud Review</h3>
+          <p>Review risky checkouts, card testing, VPN/proxy behavior, failed attempts, and billing mismatch signals.</p>
+        </article>
+
+        <article>
+          <h3>Trust & Safety Operations</h3>
+          <p>Give fraud, security, support, and operations teams one place to review risk activity and user trust signals.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="public-section">
+      <div class="public-section-heading">
+        <span>Trust & Billing</span>
+        <h2>Transparent plans, secure checkout, visible usage, and customer-controlled subscriptions.</h2>
+        <p>
+          SherGuard is designed so customers can sign up, verify email, test the dashboard, upgrade,
+          manage subscription access, and review usage without manual owner intervention.
+        </p>
+      </div>
+
+      <div class="sg-security-bar">
+        <article>
+          <strong>Free plan available</strong>
+          <span>Customers can test SherGuard before upgrading.</span>
+        </article>
+
+        <article>
+          <strong>Secure Paddle billing</strong>
+          <span>Subscription checkout and billing are handled through Paddle.</span>
+        </article>
+
+        <article>
+          <strong>Usage shown clearly</strong>
+          <span>Daily checks, API keys, and plan limits appear inside the dashboard.</span>
+        </article>
+
+        <article>
+          <strong>Cancel anytime</strong>
+          <span>Customers can manage billing and subscription status from their account.</span>
+        </article>
       </div>
     </section>
 
@@ -488,13 +865,8 @@ Content-Type: application/json
 
       <div class="public-feature-grid">
         <article>
-          <h3>Small Online Businesses</h3>
-          <p>Protect signups, customer accounts, checkout pages, and contact forms without needing a large security team.</p>
-        </article>
-
-        <article>
           <h3>SaaS Platforms</h3>
-          <p>Protect users, workspaces, API keys, sessions, billing activity, and team operations with centralized trust intelligence.</p>
+          <p>Protect workspaces, users, API keys, sessions, billing activity, and team operations.</p>
         </article>
 
         <article>
@@ -504,7 +876,7 @@ Content-Type: application/json
 
         <article>
           <h3>E-commerce Stores</h3>
-          <p>Reduce checkout fraud, fake orders, payment abuse, bot traffic, risky devices, and suspicious transaction behavior.</p>
+          <p>Reduce checkout fraud, fake orders, payment abuse, risky devices, and suspicious transaction behavior.</p>
         </article>
 
         <article>
@@ -514,22 +886,12 @@ Content-Type: application/json
 
         <article>
           <h3>API Businesses</h3>
-          <p>Protect endpoints from scraping, credential abuse, burst traffic, suspicious clients, token abuse, and misuse.</p>
-        </article>
-
-        <article>
-          <h3>AI Platforms</h3>
-          <p>Control AI-agent actions, automated workflows, approvals, permissions, and enforcement behavior.</p>
+          <p>Protect endpoints from scraping, credential abuse, burst traffic, suspicious clients, and misuse.</p>
         </article>
 
         <article>
           <h3>Fintech & Subscriptions</h3>
           <p>Monitor payment attempts, identity risk, repeat abuse, account takeover signals, and high-risk checkout patterns.</p>
-        </article>
-
-        <article>
-          <h3>Security & Fraud Teams</h3>
-          <p>Give teams visibility across fraud events, sessions, devices, APIs, payments, and organization activity.</p>
         </article>
       </div>
     </section>
@@ -538,7 +900,7 @@ Content-Type: application/json
       <h2>Start monitoring trust risk before abuse reaches your business.</h2>
       <p>
         Create your SherGuard organization, explore the dashboard, generate API keys,
-        and begin protecting your platform from fraud, bots, API abuse, risky devices,
+        and begin protecting your platform from fake signups, bots, API abuse, risky devices,
         and payment fraud.
       </p>
       <a href="register.html" class="public-btn public-btn-primary">Start Free</a>
@@ -604,8 +966,8 @@ Content-Type: application/json
         return;
       }
 
-      var blocked = Math.floor(Math.random() * 55) + 11;
-      var allowed = Math.floor(Math.random() * 2800) + 3400;
+      var blocked = 42;
+      var allowed = 4180;
 
       function renderStats() {
         allowedEl.textContent = allowed.toLocaleString();
@@ -614,17 +976,17 @@ Content-Type: application/json
       }
 
       function updatePublicStats() {
-        allowed += Math.floor(Math.random() * 9) + 2;
+        allowed += Math.floor(Math.random() * 7) + 2;
 
-        if (Math.random() > 0.55) {
-          blocked += Math.floor(Math.random() * 3) + 1;
+        if (Math.random() > 0.6) {
+          blocked += Math.floor(Math.random() * 2) + 1;
         }
 
         renderStats();
       }
 
       renderStats();
-      setInterval(updatePublicStats, 2000);
+      setInterval(updatePublicStats, 2400);
     })();
   </script>
 </body>
