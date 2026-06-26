@@ -168,9 +168,21 @@
 
         const result = await response.json();
 
-        if (!response.ok || !result.success) {
-          throw new Error(result.detail || result.message || 'Affiliate registration failed.');
-        }
+  if (!response.ok || !result.success) {
+  let errorMessage = result.message || 'Affiliate registration failed.';
+
+  if (Array.isArray(result.detail) && result.detail.length > 0) {
+    errorMessage = result.detail
+      .map(function(item) {
+        return item.msg || 'Invalid input.';
+      })
+      .join(' ');
+  } else if (typeof result.detail === 'string') {
+    errorMessage = result.detail;
+  }
+
+  throw new Error(errorMessage);
+}
 
         localStorage.setItem('sherguard_affiliate_token', result.access_token);
         localStorage.setItem('sherguard_affiliate', JSON.stringify(result.affiliate));
