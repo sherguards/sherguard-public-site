@@ -312,11 +312,14 @@
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              organization_name: organizationName,
-              full_name: fullName,
-              email: email,
-              password: password
-            })
+  organization_name: organizationName,
+  full_name: fullName,
+  email: email,
+  password: password,
+  affiliate_ref: window.sherguardAffiliateTracking
+    ? window.sherguardAffiliateTracking.getReferralCode()
+    : ''
+})
           }
         );
 
