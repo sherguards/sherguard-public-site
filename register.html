@@ -83,6 +83,16 @@
         </div>
 
         <div class="auth-form-group">
+          <label for="affiliateRef">Referral Code Optional</label>
+          <input
+            type="text"
+            id="affiliateRef"
+            placeholder="Example: SHER-429B5B"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="auth-form-group">
           <label for="fullName">Full Name</label>
           <input
             type="text"
@@ -284,6 +294,19 @@
         document.getElementById('password')
         .value;
 
+        const manualAffiliateRef =
+  document.getElementById('affiliateRef')
+  .value
+  .trim();
+
+const savedAffiliateRef =
+  window.sherguardAffiliateTracking
+    ? window.sherguardAffiliateTracking.getReferralCode()
+    : '';
+
+const finalAffiliateRef =
+  savedAffiliateRef || manualAffiliateRef;
+
       if (!organizationName) {
         showStatus('Please enter your organization name.', 'error');
         return;
@@ -316,9 +339,7 @@
   full_name: fullName,
   email: email,
   password: password,
-  affiliate_ref: window.sherguardAffiliateTracking
-    ? window.sherguardAffiliateTracking.getReferralCode()
-    : ''
+  affiliate_ref: finalAffiliateRef
 })
           }
         );
