@@ -64,10 +64,6 @@
           <input type="email" id="email" placeholder="you@example.com" required />
         </div>
 
-        <div class="auth-form-group">
-          <label for="payoutEmail">Payout Email</label>
-          <input type="email" id="payoutEmail" placeholder="PayPal or payout email" />
-        </div>
 
         <div class="auth-form-group">
           <label for="websiteUrl">Website / Social Profile</label>
@@ -133,7 +129,6 @@
 
       const fullName = document.getElementById('fullName').value.trim();
       const email = document.getElementById('email').value.trim();
-      const payoutEmail = document.getElementById('payoutEmail').value.trim();
       const websiteUrl = document.getElementById('websiteUrl').value.trim();
       const promotionMethod = document.getElementById('promotionMethod').value.trim();
       const password = document.getElementById('password').value;
@@ -160,7 +155,6 @@
             full_name: fullName,
             email: email,
             password: password,
-            payout_email: payoutEmail || null,
             website_url: websiteUrl || null,
             promotion_method: promotionMethod || null
           })
