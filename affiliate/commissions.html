@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Partner Commissions</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/partner.css" />
+</head>
+
+<body>
+  <div class="partner-layout">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <h2>SherGuard</h2>
+            <span>Partner Portal</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="referrals.html">Referrals</a>
+          <a class="active" href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a href="marketing.html">Marketing Center</a>
+          <a href="tools.html">Referral Tools</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="profile.html">Profile</a>
+          <a href="settings.html">Settings</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="logoutButton">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>Commissions</h1>
+          <p>Review revenue, commission status, and earnings from referred customers.</p>
+        </div>
+
+        <div class="topbar-actions">
+          <button id="exportCommissionsButton">Export CSV</button>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span>MRR Generated</span>
+          <h2 id="mrrGenerated">$0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Pending Commission</span>
+          <h2 id="pendingCommission">$0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Paid Commission</span>
+          <h2 id="paidCommission">$0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Active Subscriptions</span>
+          <h2 id="activeSubscriptions">0</h2>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Commission Records</h2>
+            <span>All commission events created from verified paid subscriptions.</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <input
+            id="commissionSearch"
+            type="text"
+            placeholder="Search by plan, status, revenue, commission..."
+          />
+        </div>
+
+        <div id="commissionsTableWrap" class="table-wrap">
+          <div class="empty-state">Loading commissions...</div>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Commission Policy</h2>
+            <span>Current SherGuard affiliate commission terms.</span>
+          </div>
+        </div>
+
+        <div class="notification-list">
+          <div>
+            <strong>20% recurring commission.</strong>
+            <span>Commission is created when a referred customer becomes a paid subscriber.</span>
+          </div>
+
+          <div>
+            <strong>Commission status starts as pending.</strong>
+            <span>Pending commissions are reviewed before payout to protect against refunds, abuse, and payment disputes.</span>
+          </div>
+
+          <div>
+            <strong>Paid commission appears after payout approval.</strong>
+            <span>Once SherGuard marks a payout as paid, it appears in paid commission and payout history.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="partner-footer">
+        <span>© 2026 SherGuard Partner Portal.</span>
+        <span>Commission rate: 20% recurring.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/partner-api.js"></script>
+  <script src="js/partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      let commissionsCache = [];
+
+      function money(value) {
+        return '$' + Number(value || 0).toFixed(2);
+      }
+
+      function formatDate(value) {
+        if (!value) {
+          return '—';
+        }
+
+        try {
+          return new Date(value).toLocaleDateString();
+        } catch {
+          return '—';
+        }
+      }
+
+      function renderCommissions(commissions) {
+        const wrap = document.getElementById('commissionsTableWrap');
+
+        if (!wrap) {
+          return;
+        }
+
+        if (!commissions || commissions.length === 0) {
+          wrap.innerHTML = '<div class="empty-state">No commissions found.</div>';
+          return;
+        }
+
+        wrap.innerHTML =
+          '<table>' +
+          '<thead>' +
+          '<tr>' +
+          '<th>Plan</th>' +
+          '<th>Revenue</th>' +
+          '<th>Rate</th>' +
+          '<th>Commission</th>' +
+          '<th>Status</th>' +
+          '<th>Created</th>' +
+          '<th>Paid</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+          commissions.map(function (item) {
+            return (
+              '<tr>' +
+              '<td>' + (item.plan || '—') + '</td>' +
+              '<td>' + money(item.amount) + '</td>' +
+              '<td>' + Number(item.commission_percent || 20).toFixed(0) + '%</td>' +
+              '<td>' + money(item.commission_amount) + '</td>' +
+              '<td>' + (item.status || '—') + '</td>' +
+              '<td>' + formatDate(item.created_at) + '</td>' +
+              '<td>' + formatDate(item.paid_at) + '</td>' +
+              '</tr>'
+            );
+          }).join('') +
+          '</tbody>' +
+          '</table>';
+      }
+
+      function exportCSV() {
+        if (!commissionsCache || commissionsCache.length === 0) {
+          alert('No commissions to export.');
+          return;
+        }
+
+        const rows = [
+          ['Plan', 'Revenue', 'Rate', 'Commission', 'Status', 'Created', 'Paid']
+        ];
+
+        commissionsCache.forEach(function (item) {
+          rows.push([
+            item.plan || '',
+            item.amount || '',
+            item.commission_percent || '',
+            item.commission_amount || '',
+            item.status || '',
+            item.created_at || '',
+            item.paid_at || ''
+          ]);
+        });
+
+        const csv = rows
+          .map(function (row) {
+            return row
+              .map(function (cell) {
+                return '"' + String(cell).replace(/"/g, '""') + '"';
+              })
+              .join(',');
+          })
+          .join('\n');
+
+        const blob = new Blob([csv], {
+          type: 'text/csv;charset=utf-8;'
+        });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+
+        link.href = url;
+        link.download = 'sherguard-commissions.csv';
+        link.click();
+
+        URL.revokeObjectURL(url);
+      }
+
+      async function loadCommissionsPage() {
+        if (!window.PartnerAPI.getToken()) {
+          window.location.href = '../affiliate-login.html';
+          return;
+        }
+
+        try {
+          const result = await window.PartnerAPI.getDashboard();
+          const metrics = result.metrics || {};
+
+          commissionsCache = result.commissions || [];
+
+          document.getElementById('mrrGenerated').textContent =
+            money(metrics.mrr_generated);
+
+          document.getElementById('pendingCommission').textContent =
+            money(metrics.pending_commission);
+
+          document.getElementById('paidCommission').textContent =
+            money(metrics.paid_commission);
+
+          document.getElementById('activeSubscriptions').textContent =
+            metrics.active_subscriptions || 0;
+
+          renderCommissions(commissionsCache);
+
+        } catch (error) {
+          alert(error.message || 'Could not load commissions.');
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', function () {
+        loadCommissionsPage();
+
+        const search = document.getElementById('commissionSearch');
+
+        if (search) {
+          search.addEventListener('input', function () {
+            const term = search.value.toLowerCase();
+
+            const filtered = commissionsCache.filter(function (item) {
+              return (
+                String(item.plan || '').toLowerCase().includes(term) ||
+                String(item.status || '').toLowerCase().includes(term) ||
+                String(item.amount || '').toLowerCase().includes(term) ||
+                String(item.commission_amount || '').toLowerCase().includes(term)
+              );
+            });
+
+            renderCommissions(filtered);
+          });
+        }
+
+        const exportButton = document.getElementById('exportCommissionsButton');
+
+        if (exportButton) {
+          exportButton.addEventListener('click', exportCSV);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

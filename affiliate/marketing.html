@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Partner Marketing Center</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/partner.css" />
+</head>
+
+<body>
+  <div class="partner-layout">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <h2>SherGuard</h2>
+            <span>Partner Portal</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="referrals.html">Referrals</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a class="active" href="marketing.html">Marketing Center</a>
+          <a href="tools.html">Referral Tools</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="profile.html">Profile</a>
+          <a href="settings.html">Settings</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="logoutButton">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>Marketing Center</h1>
+          <p>Use approved SherGuard positioning, content angles, and campaign copy to promote professionally.</p>
+        </div>
+      </header>
+
+      <section class="dashboard-row">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Core Positioning</h2>
+          </div>
+
+          <div class="marketing-shortcuts">
+            <div>
+              <strong>Main message</strong>
+              <p>SherGuard helps online businesses stop fake signups, risky devices, bots, API abuse, and payment fraud with one trust intelligence platform.</p>
+            </div>
+
+            <div>
+              <strong>Best audience</strong>
+              <p>SaaS, fintech, marketplaces, e-commerce, AI platforms, developers, and Trust & Safety teams.</p>
+            </div>
+
+            <div>
+              <strong>Best angle</strong>
+              <p>Show the business cost of fraud first, then introduce SherGuard as the API-first protection layer.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Approved Claims</h2>
+          </div>
+
+          <div class="notification-list">
+            <div>
+              <strong>Use this:</strong>
+              <span>Detect fake signups, risky devices, bots, API abuse, and payment fraud.</span>
+            </div>
+
+            <div>
+              <strong>Use this:</strong>
+              <span>API-first trust intelligence for modern online businesses.</span>
+            </div>
+
+            <div>
+              <strong>Avoid this:</strong>
+              <span>Do not promise 100% fraud prevention or guaranteed revenue results.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Copy Library</h2>
+            <span>Copy and adapt these messages for LinkedIn, X, newsletters, and outreach.</span>
+          </div>
+        </div>
+
+        <div class="marketing-shortcuts">
+          <div>
+            <strong>LinkedIn Post</strong>
+            <p id="linkedinCopy">Fake signups, bots, API abuse, and payment fraud are no longer separate problems. SherGuard gives SaaS, fintech, marketplace, e-commerce, and AI teams one trust intelligence layer to detect risk before abuse spreads.</p>
+            <button onclick="copyText('linkedinCopy')">Copy LinkedIn Copy</button>
+          </div>
+
+          <div>
+            <strong>X / Twitter Post</strong>
+            <p id="twitterCopy">Stop fake signups, risky devices, bots, API abuse, and payment fraud with SherGuard — an API-first trust intelligence platform for modern online businesses.</p>
+            <button onclick="copyText('twitterCopy')">Copy X Copy</button>
+          </div>
+
+          <div>
+            <strong>Cold Email Intro</strong>
+            <p id="emailCopy">Hi, I wanted to share SherGuard because it helps online businesses detect fake signups, risky devices, bots, API abuse, and payment fraud from one API-first trust intelligence platform.</p>
+            <button onclick="copyText('emailCopy')">Copy Email Copy</button>
+          </div>
+
+          <div>
+            <strong>Blog CTA</strong>
+            <p id="blogCopy">If your business deals with fake accounts, bots, API abuse, or payment fraud, SherGuard helps you detect trust risk in real time across signup, device, bot, API, and payment activity.</p>
+            <button onclick="copyText('blogCopy')">Copy Blog CTA</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Recommended Campaign Topics</h2>
+            <span>Use these topics for videos, blog posts, threads, newsletters, and founder outreach.</span>
+          </div>
+        </div>
+
+        <div class="marketing-shortcuts">
+          <div>
+            <strong>Fake signup prevention</strong>
+            <p>Explain disposable emails, bot-created accounts, and fake user abuse.</p>
+          </div>
+
+          <div>
+            <strong>API abuse protection</strong>
+            <p>Show scraping, repeated requests, missing headers, burst traffic, and endpoint abuse.</p>
+          </div>
+
+          <div>
+            <strong>Payment fraud review</strong>
+            <p>Explain failed attempts, card testing, risky checkout behavior, and suspicious orders.</p>
+          </div>
+
+          <div>
+            <strong>Device risk intelligence</strong>
+            <p>Explain risky browsers, automation signals, proxy/VPN behavior, and abnormal environments.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="partner-footer">
+        <span>© 2026 SherGuard Partner Portal.</span>
+        <span>Use approved messaging when promoting SherGuard.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/partner-api.js"></script>
+  <script src="js/partner.js"></script>
+
+  <script>
+    function copyText(id) {
+      const element = document.getElementById(id);
+
+      if (!element) {
+        return;
+      }
+
+      navigator.clipboard.writeText(element.textContent).then(function () {
+        alert('Copied.');
+      });
+    }
+  </script>
+</body>
+</html>

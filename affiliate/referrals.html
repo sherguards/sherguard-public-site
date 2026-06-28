@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Partner Referrals</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/partner.css" />
+</head>
+
+<body>
+  <div class="partner-layout">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <h2>SherGuard</h2>
+            <span>Partner Portal</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a class="active" href="referrals.html">Referrals</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a href="marketing.html">Marketing Center</a>
+          <a href="tools.html">Referral Tools</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="profile.html">Profile</a>
+          <a href="settings.html">Settings</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="logoutButton">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>Referrals</h1>
+          <p>Track every signup, customer, and conversion connected to your affiliate code.</p>
+        </div>
+
+        <div class="topbar-actions">
+          <button id="exportReferralsButton">Export CSV</button>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span>Total Signups</span>
+          <h2 id="signups">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Customers</span>
+          <h2 id="customers">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Active Subscriptions</span>
+          <h2 id="activeSubscriptions">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Referral Code</span>
+          <h2 id="referralCode">--</h2>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Referral Link</h2>
+            <span>Share this link with prospects. They can browse first and sign up later.</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <input id="referralLink" type="text" readonly />
+          <button id="copyLinkButton">Copy Referral Link</button>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Referral Pipeline</h2>
+            <span>Search, review, and export referred users.</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <input
+            id="referralSearch"
+            type="text"
+            placeholder="Search by customer email or status..."
+          />
+        </div>
+
+        <div id="referralsTableWrap" class="table-wrap">
+          <div class="empty-state">Loading referrals...</div>
+        </div>
+      </section>
+
+      <footer class="partner-footer">
+        <span>© 2026 SherGuard Partner Portal.</span>
+        <span>Referrals are attributed by link and referral code.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/partner-api.js"></script>
+  <script src="js/partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      let referralsCache = [];
+
+      function money(value) {
+        return '$' + Number(value || 0).toFixed(2);
+      }
+
+      function formatDate(value) {
+        if (!value) {
+          return '—';
+        }
+
+        try {
+          return new Date(value).toLocaleDateString();
+        } catch {
+          return '—';
+        }
+      }
+
+      function renderReferrals(referrals) {
+        const wrap = document.getElementById('referralsTableWrap');
+
+        if (!wrap) {
+          return;
+        }
+
+        if (!referrals || referrals.length === 0) {
+          wrap.innerHTML = '<div class="empty-state">No referrals found.</div>';
+          return;
+        }
+
+        wrap.innerHTML =
+          '<table>' +
+          '<thead>' +
+          '<tr>' +
+          '<th>Customer Email</th>' +
+          '<th>Status</th>' +
+          '<th>Organization ID</th>' +
+          '<th>Signup Date</th>' +
+          '<th>Converted Date</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+          referrals.map(function (item) {
+            return (
+              '<tr>' +
+              '<td>' + (item.customer_email || '—') + '</td>' +
+              '<td>' + (item.status || '—') + '</td>' +
+              '<td>' + (item.organization_id || '—') + '</td>' +
+              '<td>' + formatDate(item.created_at) + '</td>' +
+              '<td>' + formatDate(item.converted_at) + '</td>' +
+              '</tr>'
+            );
+          }).join('') +
+          '</tbody>' +
+          '</table>';
+      }
+
+      function exportCSV() {
+        if (!referralsCache || referralsCache.length === 0) {
+          alert('No referrals to export.');
+          return;
+        }
+
+        const rows = [
+          ['Customer Email', 'Status', 'Organization ID', 'Signup Date', 'Converted Date']
+        ];
+
+        referralsCache.forEach(function (item) {
+          rows.push([
+            item.customer_email || '',
+            item.status || '',
+            item.organization_id || '',
+            item.created_at || '',
+            item.converted_at || ''
+          ]);
+        });
+
+        const csv = rows
+          .map(function (row) {
+            return row
+              .map(function (cell) {
+                return '"' + String(cell).replace(/"/g, '""') + '"';
+              })
+              .join(',');
+          })
+          .join('\n');
+
+        const blob = new Blob([csv], {
+          type: 'text/csv;charset=utf-8;'
+        });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+
+        link.href = url;
+        link.download = 'sherguard-referrals.csv';
+        link.click();
+
+        URL.revokeObjectURL(url);
+      }
+
+      async function loadReferralsPage() {
+        if (!window.PartnerAPI.getToken()) {
+          window.location.href = '../affiliate-login.html';
+          return;
+        }
+
+        try {
+          const result = await window.PartnerAPI.getDashboard();
+          const metrics = result.metrics || {};
+
+          referralsCache = result.referrals || [];
+
+          if (document.getElementById('signups')) {
+            document.getElementById('signups').textContent =
+              metrics.signups || 0;
+          }
+
+          if (document.getElementById('customers')) {
+            document.getElementById('customers').textContent =
+              metrics.customers || 0;
+          }
+
+          if (document.getElementById('activeSubscriptions')) {
+            document.getElementById('activeSubscriptions').textContent =
+              metrics.active_subscriptions || 0;
+          }
+
+          if (document.getElementById('referralCode')) {
+            document.getElementById('referralCode').textContent =
+              metrics.referral_code || '--';
+          }
+
+          if (document.getElementById('referralLink')) {
+            document.getElementById('referralLink').value =
+              metrics.referral_link || '';
+          }
+
+          renderReferrals(referralsCache);
+
+        } catch (error) {
+          alert(error.message || 'Could not load referrals.');
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', function () {
+        loadReferralsPage();
+
+        const search = document.getElementById('referralSearch');
+
+        if (search) {
+          search.addEventListener('input', function () {
+            const term = search.value.toLowerCase();
+
+            const filtered = referralsCache.filter(function (item) {
+              return (
+                String(item.customer_email || '').toLowerCase().includes(term) ||
+                String(item.status || '').toLowerCase().includes(term)
+              );
+            });
+
+            renderReferrals(filtered);
+          });
+        }
+
+        const exportButton = document.getElementById('exportReferralsButton');
+
+        if (exportButton) {
+          exportButton.addEventListener('click', exportCSV);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
