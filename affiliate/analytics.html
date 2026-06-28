@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Partner Analytics</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/partner.css" />
+</head>
+
+<body>
+  <div class="partner-layout">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <h2>SherGuard</h2>
+            <span>Partner Portal</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="referrals.html">Referrals</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a href="marketing.html">Marketing Center</a>
+          <a href="tools.html">Referral Tools</a>
+          <a class="active" href="analytics.html">Analytics</a>
+          <a href="profile.html">Profile</a>
+          <a href="settings.html">Settings</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="logoutButton">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>Analytics</h1>
+          <p>Review partner traffic, conversion, revenue, and campaign performance.</p>
+        </div>
+
+        <div class="topbar-actions">
+          <button id="exportAnalyticsButton">Export Report</button>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span>Clicks</span>
+          <h2 id="clicks">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Signups</span>
+          <h2 id="signups">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>Customers</span>
+          <h2 id="customers">0</h2>
+        </div>
+
+        <div class="stat-card">
+          <span>MRR Generated</span>
+          <h2 id="mrrGenerated">$0</h2>
+        </div>
+      </section>
+
+      <section class="dashboard-row">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Conversion Funnel</h2>
+            <span>Click → Signup → Customer</span>
+          </div>
+
+          <div class="notification-list">
+            <div>
+              <strong>Click to signup rate</strong>
+              <span id="signupConversion">0%</span>
+            </div>
+
+            <div>
+              <strong>Signup to customer rate</strong>
+              <span id="customerConversion">0%</span>
+            </div>
+
+            <div>
+              <strong>Customer value tracked</strong>
+              <span id="customerValue">$0.00 MRR</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Campaign Insights</h2>
+            <span>Use campaign links for better reporting.</span>
+          </div>
+
+          <div class="marketing-shortcuts">
+            <div>
+              <strong>YouTube</strong>
+              <p>Use <code>utm_campaign=youtube</code> for video traffic.</p>
+            </div>
+
+            <div>
+              <strong>LinkedIn</strong>
+              <p>Use <code>utm_campaign=linkedin</code> for founder outreach.</p>
+            </div>
+
+            <div>
+              <strong>Newsletter</strong>
+              <p>Use <code>utm_campaign=newsletter</code> for email campaigns.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Performance Summary</h2>
+            <span>Current affiliate performance based on live SherGuard data.</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Total Clicks</td>
+                <td id="summaryClicks">0</td>
+                <td>Visitors sent to SherGuard by your referral link.</td>
+              </tr>
+
+              <tr>
+                <td>Total Signups</td>
+                <td id="summarySignups">0</td>
+                <td>Accounts created from your link or referral code.</td>
+              </tr>
+
+              <tr>
+                <td>Paid Customers</td>
+                <td id="summaryCustomers">0</td>
+                <td>Referred users who became paying SherGuard customers.</td>
+              </tr>
+
+              <tr>
+                <td>MRR Generated</td>
+                <td id="summaryMrr">$0</td>
+                <td>Monthly recurring revenue generated by your referrals.</td>
+              </tr>
+
+              <tr>
+                <td>Pending Commission</td>
+                <td id="summaryPending">$0</td>
+                <td>Commission waiting for review and payout approval.</td>
+              </tr>
+
+              <tr>
+                <td>Paid Commission</td>
+                <td id="summaryPaid">$0</td>
+                <td>Commission already paid by SherGuard.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Optimization Recommendations</h2>
+            <span>Improve affiliate conversion using these actions.</span>
+          </div>
+        </div>
+
+        <div class="notification-list">
+          <div>
+            <strong>Create threat-based content.</strong>
+            <span>Show fake signup, bot, API abuse, and payment fraud examples before introducing SherGuard.</span>
+          </div>
+
+          <div>
+            <strong>Send traffic to the landing page.</strong>
+            <span>Your referral link opens the homepage so users can read the product before signing up.</span>
+          </div>
+
+          <div>
+            <strong>Use referral code backup.</strong>
+            <span>Tell prospects to enter your code if they sign up later from another browser or device.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="partner-footer">
+        <span>© 2026 SherGuard Partner Portal.</span>
+        <span>Analytics improve as referral traffic grows.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/partner-api.js"></script>
+  <script src="js/partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      function money(value) {
+        return '$' + Number(value || 0).toFixed(2);
+      }
+
+      function percent(part, total) {
+        if (!total || total <= 0) {
+          return '0%';
+        }
+
+        return ((Number(part || 0) / Number(total || 0)) * 100).toFixed(1) + '%';
+      }
+
+      async function loadAnalytics() {
+        if (!window.PartnerAPI.getToken()) {
+          window.location.href = '../affiliate-login.html';
+          return;
+        }
+
+        try {
+          const result = await window.PartnerAPI.getDashboard();
+          const metrics = result.metrics || {};
+
+          const clicks = Number(metrics.clicks || 0);
+          const signups = Number(metrics.signups || 0);
+          const customers = Number(metrics.customers || 0);
+          const mrr = Number(metrics.mrr_generated || 0);
+          const pending = Number(metrics.pending_commission || 0);
+          const paid = Number(metrics.paid_commission || 0);
+
+          document.getElementById('clicks').textContent = clicks;
+          document.getElementById('signups').textContent = signups;
+          document.getElementById('customers').textContent = customers;
+          document.getElementById('mrrGenerated').textContent = money(mrr);
+
+          document.getElementById('signupConversion').textContent =
+            percent(signups, clicks);
+
+          document.getElementById('customerConversion').textContent =
+            percent(customers, signups);
+
+          document.getElementById('customerValue').textContent =
+            money(mrr) + ' MRR';
+
+          document.getElementById('summaryClicks').textContent = clicks;
+          document.getElementById('summarySignups').textContent = signups;
+          document.getElementById('summaryCustomers').textContent = customers;
+          document.getElementById('summaryMrr').textContent = money(mrr);
+          document.getElementById('summaryPending').textContent = money(pending);
+          document.getElementById('summaryPaid').textContent = money(paid);
+
+        } catch (error) {
+          alert(error.message || 'Could not load analytics.');
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', function () {
+        loadAnalytics();
+
+        const exportButton = document.getElementById('exportAnalyticsButton');
+
+        if (exportButton) {
+          exportButton.addEventListener('click', function () {
+            window.print();
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
