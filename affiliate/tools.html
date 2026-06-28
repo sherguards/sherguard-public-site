@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>SherGuard Referral Tools</title>
+
+<link rel="icon" href="../favicon.ico">
+
+<link rel="stylesheet" href="css/partner.css">
+
+</head>
+
+<body>
+
+<div class="partner-layout">
+
+<aside class="sidebar">
+
+<div>
+
+<div class="sidebar-logo">
+
+<img src="../logo-symbol.png">
+
+<div>
+
+<h2>SherGuard</h2>
+
+<span>Partner Portal</span>
+
+</div>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="referrals.html">Referrals</a>
+
+<a href="commissions.html">Commissions</a>
+
+<a href="payouts.html">Payouts</a>
+
+<a href="marketing.html">Marketing Center</a>
+
+<a class="active" href="tools.html">
+
+Referral Tools
+
+</a>
+
+<a href="analytics.html">Analytics</a>
+
+<a href="profile.html">Profile</a>
+
+<a href="settings.html">Settings</a>
+
+<a href="support.html">Support</a>
+
+</nav>
+
+</div>
+
+<div class="sidebar-footer">
+
+<button id="logoutButton">
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+Referral Tools
+
+</h1>
+
+<p>
+
+Everything you need to promote SherGuard professionally.
+
+</p>
+
+</div>
+
+</header>
+
+<section class="stats-grid">
+
+<div class="stat-card">
+
+<span>
+
+Referral Code
+
+</span>
+
+<h2 id="referralCode">
+
+--
+
+</h2>
+
+</div>
+
+<div class="stat-card">
+
+<span>
+
+Clicks
+
+</span>
+
+<h2 id="clicks">
+
+0
+
+</h2>
+
+</div>
+
+<div class="stat-card">
+
+<span>
+
+Signups
+
+</span>
+
+<h2 id="signups">
+
+0
+
+</h2>
+
+</div>
+
+<div class="stat-card">
+
+<span>
+
+Customers
+
+</span>
+
+<h2 id="customers">
+
+0
+
+</h2>
+
+</div>
+
+</section>
+
+<section class="dashboard-card full-width">
+
+<div class="card-header">
+
+<h2>
+
+Referral Link Builder
+
+</h2>
+
+</div>
+
+<div class="card-body">
+
+<label>
+
+Referral Link
+
+</label>
+
+<input
+id="referralLink"
+readonly>
+
+<button
+id="copyReferral">
+
+Copy Referral Link
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-row">
+
+<div class="dashboard-card">
+
+<div class="card-header">
+
+<h2>
+
+Campaign Builder
+
+</h2>
+
+</div>
+
+<div class="card-body">
+
+<label>
+
+Campaign Name
+
+</label>
+
+<input
+id="campaignName"
+placeholder="youtube">
+
+<button
+id="generateCampaign">
+
+Generate Campaign Link
+
+</button>
+
+<label>
+
+Generated URL
+
+</label>
+
+<input
+id="campaignUrl"
+readonly>
+
+<button
+id="copyCampaign">
+
+Copy Campaign URL
+
+</button>
+
+</div>
+
+</div>
+
+<div class="dashboard-card">
+
+<div class="card-header">
+
+<h2>
+
+QR Code
+
+</h2>
+
+</div>
+
+<div class="card-body">
+
+<div
+id="qrPlaceholder">
+
+QR Code
+
+</div>
+
+<button
+id="downloadQR">
+
+Download QR
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="dashboard-card full-width">
+
+<div class="card-header">
+
+<h2>
+
+Sharing Shortcuts
+
+</h2>
+
+</div>
+
+<div class="marketing-shortcuts">
+
+<div>
+
+<strong>
+
+LinkedIn
+
+</strong>
+
+<button
+id="shareLinkedIn">
+
+Open LinkedIn
+
+</button>
+
+</div>
+
+<div>
+
+<strong>
+
+X (Twitter)
+
+</strong>
+
+<button
+id="shareTwitter">
+
+Open X
+
+</button>
+
+</div>
+
+<div>
+
+<strong>
+
+Facebook
+
+</strong>
+
+<button
+id="shareFacebook">
+
+Open Facebook
+
+</button>
+
+</div>
+
+<div>
+
+<strong>
+
+WhatsApp
+
+</strong>
+
+<button
+id="shareWhatsapp">
+
+Open WhatsApp
+
+</button>
+
+</div>
+
+<div>
+
+<strong>
+
+Email
+
+</strong>
+
+<button
+id="shareEmail">
+
+Email Referral
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="dashboard-card full-width">
+
+<div class="card-header">
+
+<h2>
+
+Promotion Checklist
+
+</h2>
+
+</div>
+
+<div class="notification-list">
+
+<div>
+
+<strong>
+
+Share articles.
+
+</strong>
+
+<span>
+
+Write useful cybersecurity content.
+
+</span>
+
+</div>
+
+<div>
+
+<strong>
+
+Share videos.
+
+</strong>
+
+<span>
+
+Show SherGuard solving real fraud problems.
+
+</span>
+
+</div>
+
+<div>
+
+<strong>
+
+Target founders.
+
+</strong>
+
+<span>
+
+Reach SaaS, AI, fintech, marketplace and ecommerce founders.
+
+</span>
+
+</div>
+
+<div>
+
+<strong>
+
+Use campaign links.
+
+</strong>
+
+<span>
+
+Track YouTube, LinkedIn, Reddit and newsletter traffic separately.
+
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="partner-footer">
+
+<span>
+
+© 2026 SherGuard
+
+</span>
+
+<span>
+
+Professional Partner Tools
+
+</span>
+
+</footer>
+
+</main>
+
+</div>
+
+<script src="js/partner-api.js"></script>
+
+<script src="js/partner.js"></script>
+
+<script>
+
+(function(){
+
+'use strict';
+
+function $(id){
+
+return document.getElementById(id);
+
+}
+
+PartnerAPI.getDashboard()
+
+.then(function(data){
+
+const m=data.metrics||{};
+
+$('referralCode').textContent=m.referral_code||'--';
+
+$('clicks').textContent=m.clicks||0;
+
+$('signups').textContent=m.signups||0;
+
+$('customers').textContent=m.customers||0;
+
+$('referralLink').value=m.referral_link||'';
+
+});
+
+$('copyReferral').onclick=function(){
+
+navigator.clipboard.writeText(
+
+$('referralLink').value
+
+);
+
+alert('Copied');
+
+};
+
+$('generateCampaign').onclick=function(){
+
+const campaign=
+
+$('campaignName').value.trim();
+
+$('campaignUrl').value=
+
+$('referralLink').value+
+
+'&utm_campaign='+
+
+encodeURIComponent(campaign);
+
+};
+
+$('copyCampaign').onclick=function(){
+
+navigator.clipboard.writeText(
+
+$('campaignUrl').value
+
+);
+
+alert('Copied');
+
+};
+
+})();
+
+</script>
+
+</body>
+
+</html>
