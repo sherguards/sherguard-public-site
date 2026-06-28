@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Partner Login</title>
+
+  <meta
+    name="description"
+    content="Login to the SherGuard Partner Portal to track referrals, commissions, payouts, analytics, and marketing assets."
+  />
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/partner.css" />
+
+  <style>
+    .partner-auth-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+      padding: 42px 7%;
+    }
+
+    .partner-auth-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 42px;
+    }
+
+    .partner-auth-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #0f172a;
+    }
+
+    .partner-auth-logo img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .partner-auth-logo strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .partner-auth-logo span {
+      display: block;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .partner-auth-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .partner-auth-links a {
+      text-decoration: none;
+      font-weight: 800;
+      color: #0f172a;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+
+    .partner-login-shell {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 30px;
+      padding: 34px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1);
+    }
+
+    .partner-login-shell h1 {
+      margin: 0;
+      color: #0f172a;
+      font-size: 34px;
+      letter-spacing: -0.04em;
+    }
+
+    .partner-login-shell p {
+      margin: 12px 0 24px;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    .partner-eyebrow {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .partner-form-group {
+      margin-bottom: 16px;
+    }
+
+    .partner-form-group label {
+      display: block;
+      color: #334155;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .partner-form-group input {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 14px;
+      border: 1px solid #dbe3ef;
+      font-size: 15px;
+      outline: none;
+      background: #ffffff;
+    }
+
+    .partner-submit {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 15px;
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 900;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 6px;
+    }
+
+    .partner-status {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .partner-status.error {
+      display: block;
+      color: #991b1b;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+    }
+
+    .partner-auth-switch {
+      margin-top: 20px;
+      text-align: center;
+      color: #64748b;
+      font-weight: 700;
+    }
+
+    .partner-auth-switch a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 900;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="partner-auth-page">
+    <header class="partner-auth-header">
+      <a href="../index.html" class="partner-auth-logo">
+        <img src="../logo-symbol.png" alt="SherGuard" />
+        <div>
+          <strong>SherGuard</strong>
+          <span>Partner Portal</span>
+        </div>
+      </a>
+
+      <div class="partner-auth-links">
+        <a href="../index.html">SherGuard Home</a>
+        <a href="register.html">Apply Now</a>
+      </div>
+    </header>
+
+    <section class="partner-login-shell">
+      <span class="partner-eyebrow">Partner Login</span>
+
+      <h1>Access your partner dashboard.</h1>
+
+      <p>
+        Track referral links, signups, customers, commissions, payout history,
+        marketing assets, analytics, and payout settings from one professional portal.
+      </p>
+
+      <form id="affiliateLoginForm">
+        <div class="partner-form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="partner-form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Your password" required />
+        </div>
+
+        <button type="submit" class="partner-submit" id="affiliateLoginButton">
+          Login
+        </button>
+      </form>
+
+      <div id="statusBox" class="partner-status"></div>
+
+      <div class="partner-auth-switch">
+        New partner?
+        <a href="register.html">Apply now</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE_URL = 'https://sherguard-api.onrender.com';
+
+    const form = document.getElementById('affiliateLoginForm');
+    const statusBox = document.getElementById('statusBox');
+    const button = document.getElementById('affiliateLoginButton');
+
+    function showStatus(message) {
+      statusBox.className = 'partner-status error';
+      statusBox.textContent = message;
+    }
+
+    function setLoading(isLoading) {
+      button.disabled = isLoading;
+      button.textContent = isLoading ? 'Signing In...' : 'Login';
+    }
+
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      statusBox.className = 'partner-status';
+      statusBox.textContent = '';
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      setLoading(true);
+
+      try {
+        const response = await fetch(API_BASE_URL + '/affiliate/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.detail || result.message || 'Partner login failed.');
+        }
+
+        localStorage.setItem('sherguard_affiliate_token', result.access_token);
+        localStorage.setItem('sherguard_affiliate', JSON.stringify(result.affiliate));
+
+        window.location.href = 'dashboard.html';
+
+      } catch (error) {
+        showStatus(
+          error && error.message ? error.message : 'Partner login failed.'
+        );
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>
