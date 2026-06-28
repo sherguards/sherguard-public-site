@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Partner Settings</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/partner.css" />
+</head>
+
+<body>
+  <div class="partner-layout">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <h2>SherGuard</h2>
+            <span>Partner Portal</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="referrals.html">Referrals</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a href="marketing.html">Marketing Center</a>
+          <a href="tools.html">Referral Tools</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="profile.html">Profile</a>
+          <a class="active" href="settings.html">Settings</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="logoutButton">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>Settings</h1>
+          <p>Manage partner preferences, notifications, security, and payout behavior.</p>
+        </div>
+      </header>
+
+      <section class="dashboard-row">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Notification Settings</h2>
+          </div>
+
+          <div class="notification-list">
+            <div>
+              <strong>Email me when I receive a new referral.</strong>
+              <span>Status: planned</span>
+            </div>
+
+            <div>
+              <strong>Email me when a referral becomes a paid customer.</strong>
+              <span>Status: planned</span>
+            </div>
+
+            <div>
+              <strong>Email me when commission is approved or paid.</strong>
+              <span>Status: planned</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Security Settings</h2>
+          </div>
+
+          <div class="notification-list">
+            <div>
+              <strong>Password management</strong>
+              <span>Password update endpoint can be added after core portal pages are complete.</span>
+            </div>
+
+            <div>
+              <strong>Two-factor authentication</strong>
+              <span>Recommended for future partner portal security.</span>
+            </div>
+
+            <div>
+              <strong>Session protection</strong>
+              <span>Affiliate token is stored locally and required for dashboard API access.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Payout Preferences</h2>
+            <span>Primary payout method is managed from the Payout Center.</span>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <a href="payouts.html">Manage PayPal, Payoneer, or Bank Transfer</a>
+          <a href="commissions.html">View Commission History</a>
+          <a href="support.html">Contact Partner Support</a>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Program Preferences</h2>
+            <span>These options can be expanded later as the partner program grows.</span>
+          </div>
+        </div>
+
+        <div class="notification-list">
+          <div>
+            <strong>Commission rate</strong>
+            <span>Current rate: 20% recurring commission.</span>
+          </div>
+
+          <div>
+            <strong>Attribution</strong>
+            <span>Referral links store the code in the visitor browser. Manual referral code entry is also supported during signup.</span>
+          </div>
+
+          <div>
+            <strong>Payout review</strong>
+            <span>All payouts require SherGuard owner approval before release.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="partner-footer">
+        <span>© 2026 SherGuard Partner Portal.</span>
+        <span>Settings will expand as the partner platform grows.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/partner-api.js"></script>
+  <script src="js/partner.js"></script>
+</body>
+</html>
