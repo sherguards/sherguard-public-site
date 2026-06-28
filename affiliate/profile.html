@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Partner Profile</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/partner.css" />
+</head>
+
+<body>
+  <div class="partner-layout">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <h2>SherGuard</h2>
+            <span>Partner Portal</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="referrals.html">Referrals</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a href="marketing.html">Marketing Center</a>
+          <a href="tools.html">Referral Tools</a>
+          <a href="analytics.html">Analytics</a>
+          <a class="active" href="profile.html">Profile</a>
+          <a href="settings.html">Settings</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="logoutButton">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>Partner Profile</h1>
+          <p>Review your affiliate identity, referral code, website, and promotion information.</p>
+        </div>
+      </header>
+
+      <section class="dashboard-row">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Account Details</h2>
+          </div>
+
+          <div class="marketing-shortcuts">
+            <div>
+              <strong>Full Name</strong>
+              <p id="profileName">Loading...</p>
+            </div>
+
+            <div>
+              <strong>Email</strong>
+              <p id="profileEmail">Loading...</p>
+            </div>
+
+            <div>
+              <strong>Affiliate Code</strong>
+              <p id="profileCode">Loading...</p>
+            </div>
+
+            <div>
+              <strong>Status</strong>
+              <p id="profileStatus">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h2>Promotion Profile</h2>
+          </div>
+
+          <div class="marketing-shortcuts">
+            <div>
+              <strong>Website / Social Profile</strong>
+              <p id="profileWebsite">Not provided</p>
+            </div>
+
+            <div>
+              <strong>Promotion Method</strong>
+              <p id="profilePromotion">Not provided</p>
+            </div>
+
+            <div>
+              <strong>Referral Link</strong>
+              <input id="referralLink" readonly />
+              <button id="copyLinkButton">Copy Referral Link</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-card full-width">
+        <div class="card-header">
+          <div>
+            <h2>Profile Notes</h2>
+            <span>Keep your public promotion information clear and professional.</span>
+          </div>
+        </div>
+
+        <div class="notification-list">
+          <div>
+            <strong>Use a business or creator email.</strong>
+            <span>This helps SherGuard identify and support serious affiliates.</span>
+          </div>
+
+          <div>
+            <strong>Add a website or social profile during registration.</strong>
+            <span>This helps review your promotion channel and partner quality.</span>
+          </div>
+
+          <div>
+            <strong>Use approved positioning.</strong>
+            <span>Promote SherGuard as a fraud prevention, bot detection, API abuse, and payment risk intelligence platform.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="partner-footer">
+        <span>© 2026 SherGuard Partner Portal.</span>
+        <span>Profile updates endpoint can be added next.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/partner-api.js"></script>
+  <script src="js/partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      async function loadProfile() {
+        if (!window.PartnerAPI.getToken()) {
+          window.location.href = '../affiliate-login.html';
+          return;
+        }
+
+        try {
+          const result = await window.PartnerAPI.getDashboard();
+          const affiliate = result.affiliate || {};
+          const metrics = result.metrics || {};
+
+          document.getElementById('profileName').textContent =
+            affiliate.full_name || '—';
+
+          document.getElementById('profileEmail').textContent =
+            affiliate.email || '—';
+
+          document.getElementById('profileCode').textContent =
+            affiliate.affiliate_code || '—';
+
+          document.getElementById('profileStatus').textContent =
+            affiliate.status || '—';
+
+          document.getElementById('profileWebsite').textContent =
+            affiliate.website_url || 'Not provided';
+
+          document.getElementById('profilePromotion').textContent =
+            affiliate.promotion_method || 'Not provided';
+
+          document.getElementById('referralLink').value =
+            metrics.referral_link || '';
+
+        } catch (error) {
+          alert(error.message || 'Could not load profile.');
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', loadProfile);
+    })();
+  </script>
+</body>
+</html>
