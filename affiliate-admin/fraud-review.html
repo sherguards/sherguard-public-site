@@ -38,84 +38,29 @@
         <div>
           <span class="admin-eyebrow">Risk Control</span>
           <h1>Affiliate Fraud Review</h1>
-          <p>Review suspicious affiliate activity before approving commissions or payouts.</p>
+          <p>Review suspicious affiliate referrals before approving commission or payout.</p>
         </div>
       </header>
 
       <section class="admin-stats-grid">
         <article>
+          <span>Total Items</span>
+          <strong id="totalItems">0</strong>
+        </article>
+
+        <article>
           <span>High Risk</span>
-          <strong>0</strong>
+          <strong id="highRiskItems">0</strong>
         </article>
 
         <article>
           <span>Medium Risk</span>
-          <strong>0</strong>
+          <strong id="mediumRiskItems">0</strong>
         </article>
 
         <article>
-          <span>Self-Referral Flags</span>
-          <strong>0</strong>
-        </article>
-
-        <article>
-          <span>Blocked Payouts</span>
-          <strong>0</strong>
-        </article>
-      </section>
-
-      <section class="admin-grid">
-        <article class="admin-card">
-          <div class="admin-card-header">
-            <h2>Risk Signals</h2>
-            <span>What SherGuard should review</span>
-          </div>
-
-          <div class="admin-list">
-            <div>
-              <strong>Self-referrals</strong>
-              <span>Affiliate and customer share email, device, payment method, IP pattern, or organization identity.</span>
-            </div>
-
-            <div>
-              <strong>Fake traffic</strong>
-              <span>Unusual click spikes, low-quality traffic, bot-like browsing, or repeated visitor patterns.</span>
-            </div>
-
-            <div>
-              <strong>Subscription abuse</strong>
-              <span>Quick cancellations, failed payments, refunds, chargebacks, or repeated free-trial abuse.</span>
-            </div>
-
-            <div>
-              <strong>Duplicate accounts</strong>
-              <span>Multiple organizations created from the same user, browser, IP, or payout identity.</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="admin-card">
-          <div class="admin-card-header">
-            <h2>Review Outcome</h2>
-            <span>Recommended action model</span>
-          </div>
-
-          <div class="admin-list">
-            <div>
-              <strong>Approve</strong>
-              <span>Legitimate referral, active paid customer, no suspicious fraud signals.</span>
-            </div>
-
-            <div>
-              <strong>Hold</strong>
-              <span>Needs more time because payment, refund, or identity risk is unclear.</span>
-            </div>
-
-            <div>
-              <strong>Reject</strong>
-              <span>Fraud, self-referral, fake subscription, spam, or policy violation detected.</span>
-            </div>
-          </div>
+          <span>Low Risk</span>
+          <strong id="lowRiskItems">0</strong>
         </article>
       </section>
 
@@ -123,31 +68,68 @@
         <div class="admin-card-header">
           <div>
             <h2>Fraud Review Queue</h2>
-            <span>Suspicious referrals, commissions, and payouts requiring owner review.</span>
+            <span>Live backend fraud review data.</span>
           </div>
         </div>
 
-        <div class="admin-table-wrap">
+        <div style="margin-bottom:20px;">
+          <input
+            id="fraudSearch"
+            placeholder="Search affiliate, customer, risk level, signal..."
+            style="width:100%;padding:15px;border:1px solid #dbe2ec;border-radius:14px;font-size:15px;"
+          />
+        </div>
+
+        <div id="fraudTable" class="admin-table-wrap">
           <table>
             <thead>
               <tr>
+                <th>Referral</th>
                 <th>Affiliate</th>
                 <th>Customer</th>
-                <th>Risk Signal</th>
-                <th>Risk Level</th>
-                <th>Amount</th>
+                <th>Organization</th>
                 <th>Status</th>
-                <th>Detected</th>
-                <th>Actions</th>
+                <th>Risk</th>
+                <th>Signals</th>
+                <th>Created</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
-                <td colspan="8">Backend fraud review API not connected yet.</td>
+                <td colspan="8">Loading fraud review...</td>
               </tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section class="admin-card full-width">
+        <div class="admin-card-header">
+          <h2>Fraud Review Rules</h2>
+          <span>Use this before approving commission or payout.</span>
+        </div>
+
+        <div class="admin-list">
+          <div>
+            <strong>Self-referral check</strong>
+            <span>Do not approve commission if the affiliate and customer are the same person or same email.</span>
+          </div>
+
+          <div>
+            <strong>Refund and chargeback check</strong>
+            <span>Hold or reject commission if the payment was refunded, disputed, or cancelled quickly.</span>
+          </div>
+
+          <div>
+            <strong>Duplicate account check</strong>
+            <span>Review repeated organizations, repeated emails, same payout identity, or suspicious repeated signups.</span>
+          </div>
+
+          <div>
+            <strong>Traffic quality check</strong>
+            <span>Reject partners using spam, fake traffic, misleading claims, bot clicks, or cookie-stuffing behavior.</span>
+          </div>
         </div>
       </section>
 
@@ -159,5 +141,126 @@
   </div>
 
   <script src="js/admin-partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var fraudCache = [];
+
+      function renderFraud(items) {
+        var table = document.getElementById('fraudTable');
+        var admin = window.SherGuardAffiliateAdmin;
+
+        if (!table) {
+          return;
+        }
+
+        if (!items || items.length === 0) {
+          table.innerHTML = '<div style="padding:20px;">No fraud review items found.</div>';
+          return;
+        }
+
+        table.innerHTML =
+          '<table>' +
+          '<thead>' +
+          '<tr>' +
+          '<th>Referral</th>' +
+          '<th>Affiliate</th>' +
+          '<th>Customer</th>' +
+          '<th>Organization</th>' +
+          '<th>Status</th>' +
+          '<th>Risk</th>' +
+          '<th>Signals</th>' +
+          '<th>Created</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+          items.map(function (item) {
+            return (
+              '<tr>' +
+              '<td>' + admin.escapeHtml(item.referral_id || '—') + '</td>' +
+              '<td>' + admin.escapeHtml(item.affiliate_id || '—') + '</td>' +
+              '<td>' + admin.escapeHtml(item.customer_email || '—') + '</td>' +
+              '<td>' + admin.escapeHtml(item.organization_id || '—') + '</td>' +
+              '<td>' + admin.statusBadge(item.status || 'unknown') + '</td>' +
+              '<td>' + admin.statusBadge(item.risk_level || 'Low') + '</td>' +
+              '<td>' + admin.escapeHtml((item.signals || []).join(', ') || 'No signals') + '</td>' +
+              '<td>' + admin.formatDate(item.created_at) + '</td>' +
+              '</tr>'
+            );
+          }).join('') +
+          '</tbody>' +
+          '</table>';
+      }
+
+      function updateStats(items) {
+        document.getElementById('totalItems').textContent = items.length;
+
+        document.getElementById('highRiskItems').textContent =
+          items.filter(function (item) {
+            return item.risk_level === 'High';
+          }).length;
+
+        document.getElementById('mediumRiskItems').textContent =
+          items.filter(function (item) {
+            return item.risk_level === 'Medium';
+          }).length;
+
+        document.getElementById('lowRiskItems').textContent =
+          items.filter(function (item) {
+            return item.risk_level === 'Low';
+          }).length;
+      }
+
+      async function loadFraudReview() {
+        if (!window.SherGuardAffiliateAdmin.requireOwnerSession()) {
+          return;
+        }
+
+        try {
+          var result = await window.SherGuardAffiliateAdmin.getFraudReview();
+
+          fraudCache = result.items || [];
+
+          updateStats(fraudCache);
+          renderFraud(fraudCache);
+
+        } catch (error) {
+          window.SherGuardAffiliateAdmin.showError(
+            error && error.message
+              ? error.message
+              : 'Could not load fraud review.'
+          );
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', function () {
+        loadFraudReview();
+
+        var search = document.getElementById('fraudSearch');
+
+        if (search) {
+          search.addEventListener('input', function () {
+            var term = search.value.toLowerCase();
+
+            var filtered = fraudCache.filter(function (item) {
+              return (
+                String(item.referral_id || '').includes(term) ||
+                String(item.affiliate_id || '').includes(term) ||
+                String(item.customer_email || '').toLowerCase().includes(term) ||
+                String(item.organization_id || '').includes(term) ||
+                String(item.status || '').toLowerCase().includes(term) ||
+                String(item.risk_level || '').toLowerCase().includes(term) ||
+                String((item.signals || []).join(' ')).toLowerCase().includes(term)
+              );
+            });
+
+            renderFraud(filtered);
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
