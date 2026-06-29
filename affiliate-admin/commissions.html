@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<title>SherGuard Commission Management</title>
 
-<title>
-
-SherGuard Affiliate Commission Management
-
-</title>
-
-<link rel="icon"
-href="../favicon.ico">
-
-<link rel="stylesheet"
-href="css/admin-partner.css">
-
+<link rel="icon" href="../favicon.ico">
+<link rel="stylesheet" href="css/admin-partner.css">
 </head>
 
 <body>
@@ -31,23 +20,13 @@ href="css/admin-partner.css">
 
 <div class="admin-logo">
 
-<img
-src="../logo-symbol.png"
-alt="SherGuard">
+<img src="../logo-symbol.png" alt="SherGuard">
 
 <div>
 
-<strong>
+<strong>SherGuard</strong>
 
-SherGuard
-
-</strong>
-
-<span>
-
-Affiliate Admin
-
-</span>
+<span>Affiliate Admin</span>
 
 </div>
 
@@ -55,43 +34,17 @@ Affiliate Admin
 
 <nav>
 
-<a href="dashboard.html">
+<a href="dashboard.html">Dashboard</a>
 
-Dashboard
+<a href="affiliates.html">Affiliates</a>
 
-</a>
+<a class="active" href="commissions.html">Commissions</a>
 
-<a href="affiliates.html">
+<a href="payouts.html">Payouts</a>
 
-Affiliates
+<a href="fraud-review.html">Fraud Review</a>
 
-</a>
-
-<a
-class="active"
-href="commissions.html">
-
-Commissions
-
-</a>
-
-<a href="payouts.html">
-
-Payouts
-
-</a>
-
-<a href="fraud-review.html">
-
-Fraud Review
-
-</a>
-
-<a href="settings.html">
-
-Settings
-
-</a>
+<a href="settings.html">Settings</a>
 
 </nav>
 
@@ -107,7 +60,7 @@ Settings
 
 <span class="admin-eyebrow">
 
-Commission Review
+Commission Management
 
 </span>
 
@@ -119,7 +72,7 @@ Affiliate Commissions
 
 <p>
 
-Review every commission before payout. Detect suspicious activity, verify paid subscriptions, approve legitimate commissions, and reject fraudulent ones.
+Approve commissions only after verifying active subscriptions, payment success, refund status, chargeback history and fraud signals.
 
 </p>
 
@@ -131,15 +84,11 @@ Review every commission before payout. Detect suspicious activity, verify paid s
 
 <article>
 
-<span>
+<span>Pending</span>
 
-Pending
+<strong id="pendingCount">
 
-</span>
-
-<strong id="pendingCommission">
-
-$0
+0
 
 </strong>
 
@@ -147,15 +96,11 @@ $0
 
 <article>
 
-<span>
+<span>Approved</span>
 
-Approved
+<strong id="approvedCount">
 
-</span>
-
-<strong id="approvedCommission">
-
-$0
+0
 
 </strong>
 
@@ -163,15 +108,11 @@ $0
 
 <article>
 
-<span>
+<span>Paid</span>
 
-Paid
+<strong id="paidCount">
 
-</span>
-
-<strong id="paidCommission">
-
-$0
+0
 
 </strong>
 
@@ -179,15 +120,11 @@ $0
 
 <article>
 
-<span>
+<span>Total Commission</span>
 
-Rejected
+<strong id="totalCommission">
 
-</span>
-
-<strong id="rejectedCommission">
-
-$0
+$0.00
 
 </strong>
 
@@ -209,7 +146,7 @@ Commission Queue
 
 <span>
 
-Every paid customer generates a review record.
+Live backend data
 
 </span>
 
@@ -217,20 +154,23 @@ Every paid customer generates a review record.
 
 </div>
 
-<div
-style="margin-bottom:20px;">
+<div style="margin-bottom:20px;">
 
 <input
 
 id="commissionSearch"
 
-placeholder="Search affiliate, customer, subscription..."
+placeholder="Search affiliate, subscription, plan..."
 
-style="width:100%;padding:15px;border:1px solid #dbe2ec;border-radius:14px;font-size:15px;">
+style="width:100%;padding:15px;border-radius:14px;border:1px solid #dbe2ec;">
 
 </div>
 
-<div class="admin-table-wrap">
+<div
+
+id="commissionTable"
+
+class="admin-table-wrap">
 
 <table>
 
@@ -240,13 +180,13 @@ style="width:100%;padding:15px;border:1px solid #dbe2ec;border-radius:14px;font-
 
 <th>
 
-Affiliate
+ID
 
 </th>
 
 <th>
 
-Customer
+Affiliate
 
 </th>
 
@@ -296,7 +236,7 @@ Actions
 
 <td colspan="8">
 
-Backend commission API not connected yet.
+Loading...
 
 </td>
 
@@ -305,104 +245,6 @@ Backend commission API not connected yet.
 </tbody>
 
 </table>
-
-</div>
-
-</section>
-
-<section class="admin-card full-width">
-
-<div class="admin-card-header">
-
-<h2>
-
-Review Checklist
-
-</h2>
-
-</div>
-
-<div class="admin-list">
-
-<div>
-
-<strong>
-
-Subscription verified
-
-</strong>
-
-<span>
-
-Confirm payment completed successfully.
-
-</span>
-
-</div>
-
-<div>
-
-<strong>
-
-Refund check
-
-</strong>
-
-<span>
-
-Reject commissions from refunded subscriptions.
-
-</span>
-
-</div>
-
-<div>
-
-<strong>
-
-Chargeback review
-
-</strong>
-
-<span>
-
-Block commissions connected to payment disputes.
-
-</span>
-
-</div>
-
-<div>
-
-<strong>
-
-Self-referral detection
-
-</strong>
-
-<span>
-
-Prevent affiliates earning commission on their own subscriptions.
-
-</span>
-
-</div>
-
-<div>
-
-<strong>
-
-Duplicate commission detection
-
-</strong>
-
-<span>
-
-Ensure one subscription creates only one commission.
-
-</span>
-
-</div>
 
 </div>
 
@@ -418,7 +260,7 @@ Ensure one subscription creates only one commission.
 
 <span>
 
-Affiliate Commission Management
+Commission Review Center
 
 </span>
 
@@ -430,6 +272,201 @@ Affiliate Commission Management
 
 <script src="js/admin-partner.js"></script>
 
-</body>
+<script>
 
+(function(){
+
+"use strict";
+
+let commissionCache=[];
+
+function render(commissions){
+
+const table=document.getElementById("commissionTable");
+
+const admin=window.SherGuardAffiliateAdmin;
+
+if(!commissions.length){
+
+table.innerHTML="<div style='padding:20px;'>No commissions found.</div>";
+
+return;
+
+}
+
+table.innerHTML=`
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Affiliate</th>
+
+<th>Plan</th>
+
+<th>Revenue</th>
+
+<th>Commission</th>
+
+<th>Status</th>
+
+<th>Created</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${commissions.map(c=>`
+
+<tr>
+
+<td>${c.id}</td>
+
+<td>${c.affiliate_id}</td>
+
+<td>${admin.escapeHtml(c.plan||"-")}</td>
+
+<td>${admin.money(c.amount)}</td>
+
+<td>${admin.money(c.commission_amount)}</td>
+
+<td>${admin.statusBadge(c.status)}</td>
+
+<td>${admin.formatDate(c.created_at)}</td>
+
+<td>
+
+<button onclick="updateCommission(${c.id},'approved')">
+
+Approve
+
+</button>
+
+<button onclick="updateCommission(${c.id},'rejected')">
+
+Reject
+
+</button>
+
+<button onclick="updateCommission(${c.id},'paid')">
+
+Paid
+
+</button>
+
+</td>
+
+</tr>
+
+`).join("")}
+
+</tbody>
+
+</table>
+
+`;
+
+}
+
+function updateStats(commissions){
+
+document.getElementById("pendingCount").textContent=
+
+commissions.filter(x=>x.status==="pending").length;
+
+document.getElementById("approvedCount").textContent=
+
+commissions.filter(x=>x.status==="approved").length;
+
+document.getElementById("paidCount").textContent=
+
+commissions.filter(x=>x.status==="paid").length;
+
+const total=commissions.reduce((a,b)=>a+(b.commission_amount||0),0);
+
+document.getElementById("totalCommission").textContent=
+
+window.SherGuardAffiliateAdmin.money(total);
+
+}
+
+async function load(){
+
+try{
+
+const result=
+
+await window.SherGuardAffiliateAdmin.getCommissions();
+
+commissionCache=result.commissions||[];
+
+updateStats(commissionCache);
+
+render(commissionCache);
+
+}catch(e){
+
+window.SherGuardAffiliateAdmin.showError(e.message);
+
+}
+
+}
+
+window.updateCommission=async function(id,status){
+
+try{
+
+await window.SherGuardAffiliateAdmin.updateCommissionStatus(id,status);
+
+load();
+
+}catch(e){
+
+window.SherGuardAffiliateAdmin.showError(e.message);
+
+}
+
+};
+
+document.addEventListener("DOMContentLoaded",function(){
+
+load();
+
+document.getElementById("commissionSearch")
+
+.addEventListener("input",function(){
+
+const term=this.value.toLowerCase();
+
+render(
+
+commissionCache.filter(c=>
+
+String(c.plan).toLowerCase().includes(term)||
+
+String(c.affiliate_id).includes(term)||
+
+String(c.status).toLowerCase().includes(term)
+
+)
+
+);
+
+});
+
+});
+
+})();
+
+</script>
+
+</body>
 </html>
