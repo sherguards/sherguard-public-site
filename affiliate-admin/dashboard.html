@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Affiliate Admin</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/admin-partner.css" />
+</head>
+
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div>
+        <div class="admin-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <strong>SherGuard</strong>
+            <span>Affiliate Admin</span>
+          </div>
+        </div>
+
+        <nav>
+          <a class="active" href="dashboard.html">Dashboard</a>
+          <a href="affiliates.html">Affiliates</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a href="fraud-review.html">Fraud Review</a>
+          <a href="settings.html">Settings</a>
+          <a href="../dashboard.html">Main Dashboard</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <span class="admin-eyebrow">Owner Control Center</span>
+          <h1>Affiliate Program Dashboard</h1>
+          <p>Manage partner growth, commissions, payouts, fraud review, and affiliate performance.</p>
+        </div>
+      </header>
+
+      <section class="admin-stats-grid">
+        <article>
+          <span>Total Affiliates</span>
+          <strong id="totalAffiliates">0</strong>
+        </article>
+
+        <article>
+          <span>Pending Review</span>
+          <strong id="pendingAffiliates">0</strong>
+        </article>
+
+        <article>
+          <span>MRR Generated</span>
+          <strong id="mrrGenerated">$0</strong>
+        </article>
+
+        <article>
+          <span>Commission Owed</span>
+          <strong id="commissionOwed">$0</strong>
+        </article>
+      </section>
+
+      <section class="admin-grid">
+        <article class="admin-card">
+          <div class="admin-card-header">
+            <h2>Program Health</h2>
+            <span>Affiliate performance overview</span>
+          </div>
+
+          <div class="admin-list">
+            <div>
+              <strong>Active referral tracking</strong>
+              <span>Referral links and manual codes are enabled.</span>
+            </div>
+
+            <div>
+              <strong>Commission rate</strong>
+              <span>20% recurring commission.</span>
+            </div>
+
+            <div>
+              <strong>Payout review</strong>
+              <span>Manual owner approval before payout.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="admin-card">
+          <div class="admin-card-header">
+            <h2>Admin Actions</h2>
+            <span>Next work queue</span>
+          </div>
+
+          <div class="admin-actions">
+            <a href="affiliates.html">Review Affiliates</a>
+            <a href="commissions.html">Review Commissions</a>
+            <a href="payouts.html">Approve Payouts</a>
+            <a href="fraud-review.html">Open Fraud Review</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="admin-card full-width">
+        <div class="admin-card-header">
+          <h2>Owner Checklist</h2>
+          <span>What this admin portal will control</span>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Status</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Affiliate applications</td>
+                <td>Build next</td>
+                <td>Approve, reject, or suspend affiliates.</td>
+              </tr>
+
+              <tr>
+                <td>Commission review</td>
+                <td>Build next</td>
+                <td>Approve commission after subscription and fraud checks.</td>
+              </tr>
+
+              <tr>
+                <td>Payout approval</td>
+                <td>Build next</td>
+                <td>Approve PayPal, Payoneer, or bank transfer payouts.</td>
+              </tr>
+
+              <tr>
+                <td>Fraud review</td>
+                <td>Build next</td>
+                <td>Detect self-referrals, fake traffic, and suspicious conversions.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="admin-footer">
+        <span>© 2026 SherGuard Affiliate Admin.</span>
+        <span>Owner-only partner management.</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
