@@ -55,6 +55,16 @@
         </article>
 
         <article>
+          <span>Active Affiliates</span>
+          <strong id="activeAffiliates">0</strong>
+        </article>
+
+        <article>
+          <span>Suspended</span>
+          <strong id="suspendedAffiliates">0</strong>
+        </article>
+
+        <article>
           <span>MRR Generated</span>
           <strong id="mrrGenerated">$0</strong>
         </article>
@@ -63,29 +73,39 @@
           <span>Commission Owed</span>
           <strong id="commissionOwed">$0</strong>
         </article>
+
+        <article>
+          <span>Commission Paid</span>
+          <strong id="commissionPaid">$0</strong>
+        </article>
+
+        <article>
+          <span>Security</span>
+          <strong>Owner Only</strong>
+        </article>
       </section>
 
       <section class="admin-grid">
         <article class="admin-card">
           <div class="admin-card-header">
             <h2>Program Health</h2>
-            <span>Affiliate performance overview</span>
+            <span>Live backend connected</span>
           </div>
 
           <div class="admin-list">
             <div>
-              <strong>Active referral tracking</strong>
-              <span>Referral links and manual codes are enabled.</span>
+              <strong>Owner-only admin access</strong>
+              <span>Admin APIs require the main SherGuard owner account.</span>
             </div>
 
             <div>
-              <strong>Commission rate</strong>
-              <span>20% recurring commission.</span>
+              <strong>Affiliate approval workflow</strong>
+              <span>New affiliates stay pending until owner approval.</span>
             </div>
 
             <div>
-              <strong>Payout review</strong>
-              <span>Manual owner approval before payout.</span>
+              <strong>Commission review</strong>
+              <span>Commissions can be reviewed before payout.</span>
             </div>
           </div>
         </article>
@@ -93,7 +113,7 @@
         <article class="admin-card">
           <div class="admin-card-header">
             <h2>Admin Actions</h2>
-            <span>Next work queue</span>
+            <span>Owner work queue</span>
           </div>
 
           <div class="admin-actions">
@@ -107,8 +127,8 @@
 
       <section class="admin-card full-width">
         <div class="admin-card-header">
-          <h2>Owner Checklist</h2>
-          <span>What this admin portal will control</span>
+          <h2>Security Checklist</h2>
+          <span>Before public affiliate launch</span>
         </div>
 
         <div class="admin-table-wrap">
@@ -123,27 +143,27 @@
 
             <tbody>
               <tr>
-                <td>Affiliate applications</td>
-                <td>Build next</td>
-                <td>Approve, reject, or suspend affiliates.</td>
+                <td>Owner-only access</td>
+                <td>Active</td>
+                <td>Only SherGuard owner can access affiliate admin APIs.</td>
               </tr>
 
               <tr>
-                <td>Commission review</td>
-                <td>Build next</td>
-                <td>Approve commission after subscription and fraud checks.</td>
+                <td>Affiliate approval</td>
+                <td>Active</td>
+                <td>New affiliates must be approved before they can log in.</td>
               </tr>
 
               <tr>
                 <td>Payout approval</td>
-                <td>Build next</td>
-                <td>Approve PayPal, Payoneer, or bank transfer payouts.</td>
+                <td>Manual review</td>
+                <td>Owner reviews payout details before payment.</td>
               </tr>
 
               <tr>
                 <td>Fraud review</td>
-                <td>Build next</td>
-                <td>Detect self-referrals, fake traffic, and suspicious conversions.</td>
+                <td>Basic version</td>
+                <td>Flags basic self-referral email matches.</td>
               </tr>
             </tbody>
           </table>
@@ -156,5 +176,49 @@
       </footer>
     </main>
   </div>
+
+  <script src="js/admin-partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      function setText(id, value) {
+        var element = document.getElementById(id);
+
+        if (element) {
+          element.textContent = value;
+        }
+      }
+
+      async function loadDashboard() {
+        if (!window.SherGuardAffiliateAdmin.requireOwnerSession()) {
+          return;
+        }
+
+        try {
+          var result = await window.SherGuardAffiliateAdmin.getDashboard();
+          var metrics = result.metrics || {};
+
+          setText('totalAffiliates', metrics.total_affiliates || 0);
+          setText('pendingAffiliates', metrics.pending_affiliates || 0);
+          setText('activeAffiliates', metrics.active_affiliates || 0);
+          setText('suspendedAffiliates', metrics.suspended_affiliates || 0);
+          setText('mrrGenerated', window.SherGuardAffiliateAdmin.money(metrics.mrr_generated));
+          setText('commissionOwed', window.SherGuardAffiliateAdmin.money(metrics.commission_owed));
+          setText('commissionPaid', window.SherGuardAffiliateAdmin.money(metrics.commission_paid));
+
+        } catch (error) {
+          window.SherGuardAffiliateAdmin.showError(
+            error && error.message
+              ? error.message
+              : 'Could not load affiliate admin dashboard.'
+          );
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', loadDashboard);
+    })();
+  </script>
 </body>
 </html>
