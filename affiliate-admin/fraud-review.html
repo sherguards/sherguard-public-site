@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Affiliate Fraud Review</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/admin-partner.css" />
+</head>
+
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div>
+        <div class="admin-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <strong>SherGuard</strong>
+            <span>Affiliate Admin</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="affiliates.html">Affiliates</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a class="active" href="fraud-review.html">Fraud Review</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <span class="admin-eyebrow">Risk Control</span>
+          <h1>Affiliate Fraud Review</h1>
+          <p>Review suspicious affiliate activity before approving commissions or payouts.</p>
+        </div>
+      </header>
+
+      <section class="admin-stats-grid">
+        <article>
+          <span>High Risk</span>
+          <strong>0</strong>
+        </article>
+
+        <article>
+          <span>Medium Risk</span>
+          <strong>0</strong>
+        </article>
+
+        <article>
+          <span>Self-Referral Flags</span>
+          <strong>0</strong>
+        </article>
+
+        <article>
+          <span>Blocked Payouts</span>
+          <strong>0</strong>
+        </article>
+      </section>
+
+      <section class="admin-grid">
+        <article class="admin-card">
+          <div class="admin-card-header">
+            <h2>Risk Signals</h2>
+            <span>What SherGuard should review</span>
+          </div>
+
+          <div class="admin-list">
+            <div>
+              <strong>Self-referrals</strong>
+              <span>Affiliate and customer share email, device, payment method, IP pattern, or organization identity.</span>
+            </div>
+
+            <div>
+              <strong>Fake traffic</strong>
+              <span>Unusual click spikes, low-quality traffic, bot-like browsing, or repeated visitor patterns.</span>
+            </div>
+
+            <div>
+              <strong>Subscription abuse</strong>
+              <span>Quick cancellations, failed payments, refunds, chargebacks, or repeated free-trial abuse.</span>
+            </div>
+
+            <div>
+              <strong>Duplicate accounts</strong>
+              <span>Multiple organizations created from the same user, browser, IP, or payout identity.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="admin-card">
+          <div class="admin-card-header">
+            <h2>Review Outcome</h2>
+            <span>Recommended action model</span>
+          </div>
+
+          <div class="admin-list">
+            <div>
+              <strong>Approve</strong>
+              <span>Legitimate referral, active paid customer, no suspicious fraud signals.</span>
+            </div>
+
+            <div>
+              <strong>Hold</strong>
+              <span>Needs more time because payment, refund, or identity risk is unclear.</span>
+            </div>
+
+            <div>
+              <strong>Reject</strong>
+              <span>Fraud, self-referral, fake subscription, spam, or policy violation detected.</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="admin-card full-width">
+        <div class="admin-card-header">
+          <div>
+            <h2>Fraud Review Queue</h2>
+            <span>Suspicious referrals, commissions, and payouts requiring owner review.</span>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Affiliate</th>
+                <th>Customer</th>
+                <th>Risk Signal</th>
+                <th>Risk Level</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Detected</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td colspan="8">Backend fraud review API not connected yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="admin-footer">
+        <span>© 2026 SherGuard Affiliate Admin.</span>
+        <span>Fraud review before payout approval.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/admin-partner.js"></script>
+</body>
+</html>
