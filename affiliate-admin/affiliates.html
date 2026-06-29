@@ -39,7 +39,7 @@
         <div>
           <span class="admin-eyebrow">Affiliate Management</span>
           <h1>Affiliates</h1>
-          <p>Review partner applications, approve trusted promoters, suspend risky accounts, and monitor affiliate quality.</p>
+          <p>Review applications, approve trusted promoters, reject low-quality applications, and suspend risky affiliates.</p>
         </div>
       </header>
 
@@ -69,7 +69,7 @@
         <div class="admin-card-header">
           <div>
             <h2>Affiliate Directory</h2>
-            <span>Search and review all SherGuard partners.</span>
+            <span>Live backend connected.</span>
           </div>
         </div>
 
@@ -99,7 +99,7 @@
 
             <tbody>
               <tr>
-                <td colspan="8">Backend admin affiliate API not connected yet.</td>
+                <td colspan="8">Loading affiliates...</td>
               </tr>
             </tbody>
           </table>
@@ -138,5 +138,157 @@
   </div>
 
   <script src="js/admin-partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var affiliatesCache = [];
+
+      function setText(id, value) {
+        var element = document.getElementById(id);
+
+        if (element) {
+          element.textContent = value;
+        }
+      }
+
+      function renderAffiliates(affiliates) {
+        var wrap = document.getElementById('affiliatesTableWrap');
+        var admin = window.SherGuardAffiliateAdmin;
+
+        if (!wrap) {
+          return;
+        }
+
+        if (!affiliates || affiliates.length === 0) {
+          wrap.innerHTML =
+            '<div style="padding:20px;">No affiliates found.</div>';
+          return;
+        }
+
+        wrap.innerHTML =
+          '<table>' +
+          '<thead>' +
+          '<tr>' +
+          '<th>Affiliate</th>' +
+          '<th>Email</th>' +
+          '<th>Code</th>' +
+          '<th>Status</th>' +
+          '<th>Website</th>' +
+          '<th>Promotion</th>' +
+          '<th>Joined</th>' +
+          '<th>Actions</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+          affiliates.map(function (affiliate) {
+            var id = affiliate.id;
+            var status = affiliate.status || 'pending';
+
+            return (
+              '<tr>' +
+              '<td>' + admin.escapeHtml(affiliate.full_name || '—') + '</td>' +
+              '<td>' + admin.escapeHtml(affiliate.email || '—') + '</td>' +
+              '<td>' + admin.escapeHtml(affiliate.affiliate_code || '—') + '</td>' +
+              '<td>' + admin.statusBadge(status) + '</td>' +
+              '<td>' + admin.escapeHtml(affiliate.website_url || '—') + '</td>' +
+              '<td>' + admin.escapeHtml(affiliate.promotion_method || '—') + '</td>' +
+              '<td>' + admin.formatDate(affiliate.created_at) + '</td>' +
+              '<td>' +
+                '<button onclick="updateAffiliate(' + id + ', \'active\')">Approve</button> ' +
+                '<button onclick="updateAffiliate(' + id + ', \'rejected\')">Reject</button> ' +
+                '<button onclick="updateAffiliate(' + id + ', \'suspended\')">Suspend</button>' +
+              '</td>' +
+              '</tr>'
+            );
+          }).join('') +
+          '</tbody>' +
+          '</table>';
+      }
+
+      function updateStats(affiliates) {
+        var total = affiliates.length;
+        var active = affiliates.filter(function (item) {
+          return item.status === 'active';
+        }).length;
+        var pending = affiliates.filter(function (item) {
+          return item.status === 'pending';
+        }).length;
+        var suspended = affiliates.filter(function (item) {
+          return item.status === 'suspended';
+        }).length;
+
+        setText('totalAffiliates', total);
+        setText('activeAffiliates', active);
+        setText('pendingAffiliates', pending);
+        setText('suspendedAffiliates', suspended);
+      }
+
+      async function loadAffiliates() {
+        if (!window.SherGuardAffiliateAdmin.requireOwnerSession()) {
+          return;
+        }
+
+        try {
+          var result = await window.SherGuardAffiliateAdmin.getAffiliates();
+
+          affiliatesCache = result.affiliates || [];
+
+          updateStats(affiliatesCache);
+          renderAffiliates(affiliatesCache);
+
+        } catch (error) {
+          window.SherGuardAffiliateAdmin.showError(
+            error && error.message
+              ? error.message
+              : 'Could not load affiliates.'
+          );
+        }
+      }
+
+      window.updateAffiliate = async function (affiliateId, status) {
+        try {
+          await window.SherGuardAffiliateAdmin.updateAffiliateStatus(
+            affiliateId,
+            status
+          );
+
+          await loadAffiliates();
+
+        } catch (error) {
+          window.SherGuardAffiliateAdmin.showError(
+            error && error.message
+              ? error.message
+              : 'Could not update affiliate.'
+          );
+        }
+      };
+
+      window.addEventListener('DOMContentLoaded', function () {
+        loadAffiliates();
+
+        var search = document.getElementById('affiliateSearch');
+
+        if (search) {
+          search.addEventListener('input', function () {
+            var term = search.value.toLowerCase();
+
+            var filtered = affiliatesCache.filter(function (item) {
+              return (
+                String(item.full_name || '').toLowerCase().includes(term) ||
+                String(item.email || '').toLowerCase().includes(term) ||
+                String(item.affiliate_code || '').toLowerCase().includes(term) ||
+                String(item.status || '').toLowerCase().includes(term) ||
+                String(item.website_url || '').toLowerCase().includes(term)
+              );
+            });
+
+            renderAffiliates(filtered);
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
