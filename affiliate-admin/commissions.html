@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+SherGuard Affiliate Commission Management
+
+</title>
+
+<link rel="icon"
+href="../favicon.ico">
+
+<link rel="stylesheet"
+href="css/admin-partner.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<aside class="admin-sidebar">
+
+<div>
+
+<div class="admin-logo">
+
+<img
+src="../logo-symbol.png"
+alt="SherGuard">
+
+<div>
+
+<strong>
+
+SherGuard
+
+</strong>
+
+<span>
+
+Affiliate Admin
+
+</span>
+
+</div>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">
+
+Dashboard
+
+</a>
+
+<a href="affiliates.html">
+
+Affiliates
+
+</a>
+
+<a
+class="active"
+href="commissions.html">
+
+Commissions
+
+</a>
+
+<a href="payouts.html">
+
+Payouts
+
+</a>
+
+<a href="fraud-review.html">
+
+Fraud Review
+
+</a>
+
+<a href="settings.html">
+
+Settings
+
+</a>
+
+</nav>
+
+</div>
+
+</aside>
+
+<main class="admin-main">
+
+<header class="admin-topbar">
+
+<div>
+
+<span class="admin-eyebrow">
+
+Commission Review
+
+</span>
+
+<h1>
+
+Affiliate Commissions
+
+</h1>
+
+<p>
+
+Review every commission before payout. Detect suspicious activity, verify paid subscriptions, approve legitimate commissions, and reject fraudulent ones.
+
+</p>
+
+</div>
+
+</header>
+
+<section class="admin-stats-grid">
+
+<article>
+
+<span>
+
+Pending
+
+</span>
+
+<strong id="pendingCommission">
+
+$0
+
+</strong>
+
+</article>
+
+<article>
+
+<span>
+
+Approved
+
+</span>
+
+<strong id="approvedCommission">
+
+$0
+
+</strong>
+
+</article>
+
+<article>
+
+<span>
+
+Paid
+
+</span>
+
+<strong id="paidCommission">
+
+$0
+
+</strong>
+
+</article>
+
+<article>
+
+<span>
+
+Rejected
+
+</span>
+
+<strong id="rejectedCommission">
+
+$0
+
+</strong>
+
+</article>
+
+</section>
+
+<section class="admin-card full-width">
+
+<div class="admin-card-header">
+
+<div>
+
+<h2>
+
+Commission Queue
+
+</h2>
+
+<span>
+
+Every paid customer generates a review record.
+
+</span>
+
+</div>
+
+</div>
+
+<div
+style="margin-bottom:20px;">
+
+<input
+
+id="commissionSearch"
+
+placeholder="Search affiliate, customer, subscription..."
+
+style="width:100%;padding:15px;border:1px solid #dbe2ec;border-radius:14px;font-size:15px;">
+
+</div>
+
+<div class="admin-table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Affiliate
+
+</th>
+
+<th>
+
+Customer
+
+</th>
+
+<th>
+
+Plan
+
+</th>
+
+<th>
+
+Revenue
+
+</th>
+
+<th>
+
+Commission
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Created
+
+</th>
+
+<th>
+
+Actions
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td colspan="8">
+
+Backend commission API not connected yet.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<section class="admin-card full-width">
+
+<div class="admin-card-header">
+
+<h2>
+
+Review Checklist
+
+</h2>
+
+</div>
+
+<div class="admin-list">
+
+<div>
+
+<strong>
+
+Subscription verified
+
+</strong>
+
+<span>
+
+Confirm payment completed successfully.
+
+</span>
+
+</div>
+
+<div>
+
+<strong>
+
+Refund check
+
+</strong>
+
+<span>
+
+Reject commissions from refunded subscriptions.
+
+</span>
+
+</div>
+
+<div>
+
+<strong>
+
+Chargeback review
+
+</strong>
+
+<span>
+
+Block commissions connected to payment disputes.
+
+</span>
+
+</div>
+
+<div>
+
+<strong>
+
+Self-referral detection
+
+</strong>
+
+<span>
+
+Prevent affiliates earning commission on their own subscriptions.
+
+</span>
+
+</div>
+
+<div>
+
+<strong>
+
+Duplicate commission detection
+
+</strong>
+
+<span>
+
+Ensure one subscription creates only one commission.
+
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="admin-footer">
+
+<span>
+
+© 2026 SherGuard
+
+</span>
+
+<span>
+
+Affiliate Commission Management
+
+</span>
+
+</footer>
+
+</main>
+
+</div>
+
+<script src="js/admin-partner.js"></script>
+
+</body>
+
+</html>
