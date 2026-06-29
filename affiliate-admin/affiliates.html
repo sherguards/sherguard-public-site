@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Affiliate Management</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/admin-partner.css" />
+</head>
+
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div>
+        <div class="admin-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <strong>SherGuard</strong>
+            <span>Affiliate Admin</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a class="active" href="affiliates.html">Affiliates</a>
+          <a href="commissions.html">Commissions</a>
+          <a href="payouts.html">Payouts</a>
+          <a href="fraud-review.html">Fraud Review</a>
+          <a href="settings.html">Settings</a>
+          <a href="../dashboard.html">Main Dashboard</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <span class="admin-eyebrow">Affiliate Management</span>
+          <h1>Affiliates</h1>
+          <p>Review partner applications, approve trusted promoters, suspend risky accounts, and monitor affiliate quality.</p>
+        </div>
+      </header>
+
+      <section class="admin-stats-grid">
+        <article>
+          <span>Total Affiliates</span>
+          <strong id="totalAffiliates">0</strong>
+        </article>
+
+        <article>
+          <span>Active</span>
+          <strong id="activeAffiliates">0</strong>
+        </article>
+
+        <article>
+          <span>Pending</span>
+          <strong id="pendingAffiliates">0</strong>
+        </article>
+
+        <article>
+          <span>Suspended</span>
+          <strong id="suspendedAffiliates">0</strong>
+        </article>
+      </section>
+
+      <section class="admin-card full-width">
+        <div class="admin-card-header">
+          <div>
+            <h2>Affiliate Directory</h2>
+            <span>Search and review all SherGuard partners.</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:18px;">
+          <input
+            id="affiliateSearch"
+            type="text"
+            placeholder="Search by name, email, code, status, website..."
+            style="width:100%;padding:15px;border-radius:14px;border:1px solid #e5e7eb;font-size:15px;"
+          />
+        </div>
+
+        <div id="affiliatesTableWrap" class="admin-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Affiliate</th>
+                <th>Email</th>
+                <th>Code</th>
+                <th>Status</th>
+                <th>Website</th>
+                <th>Promotion</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td colspan="8">Backend admin affiliate API not connected yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-card full-width">
+        <div class="admin-card-header">
+          <h2>Affiliate Review Rules</h2>
+          <span>Use these standards before approving partners.</span>
+        </div>
+
+        <div class="admin-list">
+          <div>
+            <strong>Approve high-quality partners.</strong>
+            <span>Good fit: cybersecurity creators, SaaS consultants, fintech advisors, developer educators, agencies, startup newsletters.</span>
+          </div>
+
+          <div>
+            <strong>Reject misleading promotion.</strong>
+            <span>Do not approve partners who promise guaranteed fraud prevention, spam users, or use fake claims.</span>
+          </div>
+
+          <div>
+            <strong>Suspend suspicious affiliates.</strong>
+            <span>Review affiliates with fake traffic, self-referrals, repeated failed subscriptions, or suspicious signup patterns.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="admin-footer">
+        <span>© 2026 SherGuard Affiliate Admin.</span>
+        <span>Affiliate approval workflow.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/admin-partner.js"></script>
+</body>
+</html>
