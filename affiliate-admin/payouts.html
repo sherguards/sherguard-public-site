@@ -38,13 +38,13 @@
         <div>
           <span class="admin-eyebrow">Payout Approval</span>
           <h1>Affiliate Payouts</h1>
-          <p>Review pending commissions, approve payouts, reject suspicious payouts, and manage PayPal, Payoneer, and bank transfer queues.</p>
+          <p>Review, approve, reject, and mark affiliate payouts as paid.</p>
         </div>
       </header>
 
       <section class="admin-stats-grid">
         <article>
-          <span>Pending Payouts</span>
+          <span>Pending</span>
           <strong id="pendingPayouts">$0</strong>
         </article>
 
@@ -54,8 +54,8 @@
         </article>
 
         <article>
-          <span>Paid This Month</span>
-          <strong id="paidThisMonth">$0</strong>
+          <span>Paid</span>
+          <strong id="paidPayouts">$0</strong>
         </article>
 
         <article>
@@ -64,82 +64,33 @@
         </article>
       </section>
 
-      <section class="admin-grid">
-        <article class="admin-card">
-          <div class="admin-card-header">
-            <h2>Payment Methods</h2>
-            <span>Supported payout options</span>
-          </div>
-
-          <div class="admin-list">
-            <div>
-              <strong>PayPal</strong>
-              <span>Best for fast international affiliate payouts after PayPal Payouts API approval.</span>
-            </div>
-
-            <div>
-              <strong>Payoneer</strong>
-              <span>Useful for global creators, agencies, and international partners.</span>
-            </div>
-
-            <div>
-              <strong>Bank Transfer</strong>
-              <span>Manual owner-reviewed payouts for larger partners and enterprise affiliates.</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="admin-card">
-          <div class="admin-card-header">
-            <h2>Approval Workflow</h2>
-            <span>Recommended payout process</span>
-          </div>
-
-          <div class="admin-list">
-            <div>
-              <strong>1. Review commission</strong>
-              <span>Confirm the referred customer is paid, active, and not refunded.</span>
-            </div>
-
-            <div>
-              <strong>2. Review fraud signals</strong>
-              <span>Check self-referrals, duplicate accounts, fake traffic, or suspicious conversion patterns.</span>
-            </div>
-
-            <div>
-              <strong>3. Approve and pay</strong>
-              <span>Approve payout, send payment manually or by payout API later, then mark as paid.</span>
-            </div>
-          </div>
-        </article>
-      </section>
-
       <section class="admin-card full-width">
         <div class="admin-card-header">
           <div>
             <h2>Payout Queue</h2>
-            <span>Approve, reject, or mark affiliate payouts as paid.</span>
+            <span>Live backend data</span>
           </div>
         </div>
 
         <div style="margin-bottom:20px;">
           <input
             id="payoutSearch"
-            placeholder="Search affiliate, payout method, status, reference..."
+            placeholder="Search affiliate, method, reference, status..."
             style="width:100%;padding:15px;border:1px solid #dbe2ec;border-radius:14px;font-size:15px;"
           />
         </div>
 
-        <div class="admin-table-wrap">
+        <div id="payoutTable" class="admin-table-wrap">
           <table>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Affiliate</th>
                 <th>Method</th>
                 <th>Reference</th>
                 <th>Amount</th>
                 <th>Status</th>
-                <th>Requested</th>
+                <th>Created</th>
                 <th>Paid</th>
                 <th>Actions</th>
               </tr>
@@ -147,7 +98,7 @@
 
             <tbody>
               <tr>
-                <td colspan="8">Backend payout approval API not connected yet.</td>
+                <td colspan="9">Loading payouts...</td>
               </tr>
             </tbody>
           </table>
@@ -156,40 +107,189 @@
 
       <section class="admin-card full-width">
         <div class="admin-card-header">
-          <h2>Payout Audit Rules</h2>
-          <span>Use this before approving partner payouts.</span>
+          <h2>Payout Security Rules</h2>
+          <span>Use this before marking any payout as paid.</span>
         </div>
 
         <div class="admin-list">
           <div>
-            <strong>Minimum payout threshold</strong>
-            <span>Recommended minimum payout: $50 to reduce transaction fees and prevent low-quality payout abuse.</span>
+            <strong>Verify payout details.</strong>
+            <span>Confirm PayPal, Payoneer, or bank details before sending money.</span>
           </div>
 
           <div>
-            <strong>Refund and chargeback window</strong>
-            <span>Delay final payout approval until refund and chargeback risk is reasonably reviewed.</span>
+            <strong>Check commission status.</strong>
+            <span>Only approved, legitimate commissions should be included in payouts.</span>
           </div>
 
           <div>
-            <strong>Identity and payout details</strong>
-            <span>For larger payouts, verify partner identity, payout email, bank details, and country before sending funds.</span>
+            <strong>Review fraud signals.</strong>
+            <span>Check self-referral, duplicate account, refund, chargeback, and fake traffic risk.</span>
           </div>
 
           <div>
-            <strong>Fraud protection</strong>
-            <span>Reject payouts linked to self-referrals, duplicate organizations, fake subscriptions, or suspicious payment behavior.</span>
+            <strong>Mark paid only after payment is sent.</strong>
+            <span>Do not mark payout as paid until PayPal, Payoneer, or bank transfer is completed.</span>
           </div>
         </div>
       </section>
 
       <footer class="admin-footer">
         <span>© 2026 SherGuard Affiliate Admin.</span>
-        <span>Payout approval and audit workflow.</span>
+        <span>Payout approval center.</span>
       </footer>
     </main>
   </div>
 
   <script src="js/admin-partner.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var payoutCache = [];
+
+      function renderPayouts(payouts) {
+        var table = document.getElementById('payoutTable');
+        var admin = window.SherGuardAffiliateAdmin;
+
+        if (!table) {
+          return;
+        }
+
+        if (!payouts || payouts.length === 0) {
+          table.innerHTML = '<div style="padding:20px;">No payouts found.</div>';
+          return;
+        }
+
+        table.innerHTML =
+          '<table>' +
+          '<thead>' +
+          '<tr>' +
+          '<th>ID</th>' +
+          '<th>Affiliate</th>' +
+          '<th>Method</th>' +
+          '<th>Reference</th>' +
+          '<th>Amount</th>' +
+          '<th>Status</th>' +
+          '<th>Created</th>' +
+          '<th>Paid</th>' +
+          '<th>Actions</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+          payouts.map(function (payout) {
+            return (
+              '<tr>' +
+              '<td>' + payout.id + '</td>' +
+              '<td>' + payout.affiliate_id + '</td>' +
+              '<td>' + admin.escapeHtml(payout.payout_method || '—') + '</td>' +
+              '<td>' + admin.escapeHtml(payout.payout_reference || '—') + '</td>' +
+              '<td>' + admin.money(payout.amount) + '</td>' +
+              '<td>' + admin.statusBadge(payout.status) + '</td>' +
+              '<td>' + admin.formatDate(payout.created_at) + '</td>' +
+              '<td>' + admin.formatDate(payout.paid_at) + '</td>' +
+              '<td>' +
+                '<button onclick="updatePayout(' + payout.id + ', \'approved\')">Approve</button> ' +
+                '<button onclick="updatePayout(' + payout.id + ', \'rejected\')">Reject</button> ' +
+                '<button onclick="updatePayout(' + payout.id + ', \'paid\')">Paid</button>' +
+              '</td>' +
+              '</tr>'
+            );
+          }).join('') +
+          '</tbody>' +
+          '</table>';
+      }
+
+      function updateStats(payouts) {
+        var admin = window.SherGuardAffiliateAdmin;
+
+        function totalByStatus(status) {
+          return payouts
+            .filter(function (item) {
+              return item.status === status;
+            })
+            .reduce(function (sum, item) {
+              return sum + Number(item.amount || 0);
+            }, 0);
+        }
+
+        document.getElementById('pendingPayouts').textContent =
+          admin.money(totalByStatus('pending'));
+
+        document.getElementById('approvedPayouts').textContent =
+          admin.money(totalByStatus('approved'));
+
+        document.getElementById('paidPayouts').textContent =
+          admin.money(totalByStatus('paid'));
+
+        document.getElementById('rejectedPayouts').textContent =
+          admin.money(totalByStatus('rejected'));
+      }
+
+      async function loadPayouts() {
+        if (!window.SherGuardAffiliateAdmin.requireOwnerSession()) {
+          return;
+        }
+
+        try {
+          var result = await window.SherGuardAffiliateAdmin.getPayouts();
+
+          payoutCache = result.payouts || [];
+
+          updateStats(payoutCache);
+          renderPayouts(payoutCache);
+
+        } catch (error) {
+          window.SherGuardAffiliateAdmin.showError(
+            error && error.message
+              ? error.message
+              : 'Could not load payouts.'
+          );
+        }
+      }
+
+      window.updatePayout = async function (payoutId, status) {
+        try {
+          await window.SherGuardAffiliateAdmin.updatePayoutStatus(
+            payoutId,
+            status
+          );
+
+          await loadPayouts();
+
+        } catch (error) {
+          window.SherGuardAffiliateAdmin.showError(
+            error && error.message
+              ? error.message
+              : 'Could not update payout.'
+          );
+        }
+      };
+
+      window.addEventListener('DOMContentLoaded', function () {
+        loadPayouts();
+
+        var search = document.getElementById('payoutSearch');
+
+        if (search) {
+          search.addEventListener('input', function () {
+            var term = search.value.toLowerCase();
+
+            var filtered = payoutCache.filter(function (item) {
+              return (
+                String(item.affiliate_id || '').includes(term) ||
+                String(item.payout_method || '').toLowerCase().includes(term) ||
+                String(item.payout_reference || '').toLowerCase().includes(term) ||
+                String(item.status || '').toLowerCase().includes(term)
+              );
+            });
+
+            renderPayouts(filtered);
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
