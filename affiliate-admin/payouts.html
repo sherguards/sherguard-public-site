@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SherGuard Affiliate Payout Management</title>
+
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="css/admin-partner.css" />
+</head>
+
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div>
+        <div class="admin-logo">
+          <img src="../logo-symbol.png" alt="SherGuard" />
+          <div>
+            <strong>SherGuard</strong>
+            <span>Affiliate Admin</span>
+          </div>
+        </div>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="affiliates.html">Affiliates</a>
+          <a href="commissions.html">Commissions</a>
+          <a class="active" href="payouts.html">Payouts</a>
+          <a href="fraud-review.html">Fraud Review</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <span class="admin-eyebrow">Payout Approval</span>
+          <h1>Affiliate Payouts</h1>
+          <p>Review pending commissions, approve payouts, reject suspicious payouts, and manage PayPal, Payoneer, and bank transfer queues.</p>
+        </div>
+      </header>
+
+      <section class="admin-stats-grid">
+        <article>
+          <span>Pending Payouts</span>
+          <strong id="pendingPayouts">$0</strong>
+        </article>
+
+        <article>
+          <span>Approved</span>
+          <strong id="approvedPayouts">$0</strong>
+        </article>
+
+        <article>
+          <span>Paid This Month</span>
+          <strong id="paidThisMonth">$0</strong>
+        </article>
+
+        <article>
+          <span>Rejected</span>
+          <strong id="rejectedPayouts">$0</strong>
+        </article>
+      </section>
+
+      <section class="admin-grid">
+        <article class="admin-card">
+          <div class="admin-card-header">
+            <h2>Payment Methods</h2>
+            <span>Supported payout options</span>
+          </div>
+
+          <div class="admin-list">
+            <div>
+              <strong>PayPal</strong>
+              <span>Best for fast international affiliate payouts after PayPal Payouts API approval.</span>
+            </div>
+
+            <div>
+              <strong>Payoneer</strong>
+              <span>Useful for global creators, agencies, and international partners.</span>
+            </div>
+
+            <div>
+              <strong>Bank Transfer</strong>
+              <span>Manual owner-reviewed payouts for larger partners and enterprise affiliates.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="admin-card">
+          <div class="admin-card-header">
+            <h2>Approval Workflow</h2>
+            <span>Recommended payout process</span>
+          </div>
+
+          <div class="admin-list">
+            <div>
+              <strong>1. Review commission</strong>
+              <span>Confirm the referred customer is paid, active, and not refunded.</span>
+            </div>
+
+            <div>
+              <strong>2. Review fraud signals</strong>
+              <span>Check self-referrals, duplicate accounts, fake traffic, or suspicious conversion patterns.</span>
+            </div>
+
+            <div>
+              <strong>3. Approve and pay</strong>
+              <span>Approve payout, send payment manually or by payout API later, then mark as paid.</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="admin-card full-width">
+        <div class="admin-card-header">
+          <div>
+            <h2>Payout Queue</h2>
+            <span>Approve, reject, or mark affiliate payouts as paid.</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <input
+            id="payoutSearch"
+            placeholder="Search affiliate, payout method, status, reference..."
+            style="width:100%;padding:15px;border:1px solid #dbe2ec;border-radius:14px;font-size:15px;"
+          />
+        </div>
+
+        <div class="admin-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Affiliate</th>
+                <th>Method</th>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Requested</th>
+                <th>Paid</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td colspan="8">Backend payout approval API not connected yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-card full-width">
+        <div class="admin-card-header">
+          <h2>Payout Audit Rules</h2>
+          <span>Use this before approving partner payouts.</span>
+        </div>
+
+        <div class="admin-list">
+          <div>
+            <strong>Minimum payout threshold</strong>
+            <span>Recommended minimum payout: $50 to reduce transaction fees and prevent low-quality payout abuse.</span>
+          </div>
+
+          <div>
+            <strong>Refund and chargeback window</strong>
+            <span>Delay final payout approval until refund and chargeback risk is reasonably reviewed.</span>
+          </div>
+
+          <div>
+            <strong>Identity and payout details</strong>
+            <span>For larger payouts, verify partner identity, payout email, bank details, and country before sending funds.</span>
+          </div>
+
+          <div>
+            <strong>Fraud protection</strong>
+            <span>Reject payouts linked to self-referrals, duplicate organizations, fake subscriptions, or suspicious payment behavior.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="admin-footer">
+        <span>© 2026 SherGuard Affiliate Admin.</span>
+        <span>Payout approval and audit workflow.</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/admin-partner.js"></script>
+</body>
+</html>
