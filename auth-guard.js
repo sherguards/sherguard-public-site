@@ -103,6 +103,7 @@ localStorage.setItem(
 );
 
 applyModuleVisibility(user);
+applyOwnerVisibility(user);
 
     } catch (error) {
       clearAuthAndRedirect(
@@ -161,6 +162,31 @@ applyModuleVisibility(user);
         }
       }
     });
+  }
+
+  function applyOwnerVisibility(user) {
+    const affiliateAdminNavItem =
+      document.getElementById('affiliateAdminNavItem');
+  
+    if (!affiliateAdminNavItem) {
+      return;
+    }
+  
+    const isOwner =
+      user &&
+      (
+        user.is_owner === true ||
+        user.role === 'owner'
+      );
+  
+    if (isOwner) {
+      affiliateAdminNavItem.classList.remove('hidden');
+      affiliateAdminNavItem.style.display = 'flex';
+      return;
+    }
+  
+    affiliateAdminNavItem.classList.add('hidden');
+    affiliateAdminNavItem.style.display = 'none';
   }
 
   window.addEventListener('pageshow', function () {
