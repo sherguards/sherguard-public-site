@@ -173,11 +173,12 @@ applyOwnerVisibility(user);
     }
   
     const isOwner =
-      user &&
-      (
-        user.is_owner === true ||
-        user.role === 'owner'
-      );
+  user &&
+  (
+    user.is_owner === true ||
+    user.role === 'owner' ||
+    user.organization_plan === 'owner'
+  );
   
     if (isOwner) {
       affiliateAdminNavItem.classList.remove('hidden');
