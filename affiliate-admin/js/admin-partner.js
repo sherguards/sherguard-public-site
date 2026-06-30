@@ -4,12 +4,13 @@
     const API_BASE_URL = 'https://sherguard-api.onrender.com';
   
     function getToken() {
-      return (
-        localStorage.getItem('sherguard_token') ||
-        localStorage.getItem('authToken') ||
-        localStorage.getItem('token') ||
-        ''
-      );
+        return (
+            localStorage.getItem('aiTrustToken') ||
+            localStorage.getItem('sherguard_token') ||
+            localStorage.getItem('authToken') ||
+            localStorage.getItem('token') ||
+            ''
+          );
     }
   
     function requireOwnerSession() {
