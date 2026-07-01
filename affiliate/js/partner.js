@@ -174,37 +174,41 @@
         }
   
         var fields = {
-  
+
           referralCode:
-            metrics.referral_code,
-  
-          referralLink:
-            metrics.referral_link,
-  
+              metrics.referral_code,
+      
           clicks:
-            metrics.clicks,
-  
+              metrics.clicks,
+      
           signups:
-            metrics.signups,
-  
+              metrics.signups,
+      
           customers:
-            metrics.customers,
-  
+              metrics.customers,
+      
           activeSubscriptions:
-            metrics.active_subscriptions
-  
-        };
-  
-        Object.keys(fields).forEach(function (key) {
-  
+              metrics.active_subscriptions
+      
+      };
+      
+      Object.keys(fields).forEach(function (key) {
+      
           if ($(key)) {
-  
-            $(key).textContent =
-              fields[key] || 0;
-  
+      
+              $(key).textContent =
+                  fields[key] || 0;
+      
           }
-  
-        });
+      
+      });
+      
+      if ($('referralLink')) {
+      
+          $('referralLink').value =
+              metrics.referral_link || '';
+      
+      }
   
         if ($('mrrGenerated'))
           $('mrrGenerated').textContent =
