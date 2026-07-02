@@ -181,7 +181,8 @@
 
     .partner-form-group input {
   width: 100%;
-  padding: 14px 50px 14px 15px;
+  box-sizing: border-box;
+  padding: 14px 55px 14px 15px;
   border-radius: 14px;
   border: 1px solid #dbe3ef;
   font-size: 15px;
@@ -191,17 +192,22 @@
 
 .password-wrapper{
   position:relative;
+  width:100%;
 }
 
 .password-toggle{
   position:absolute;
-  right:16px;
+  right:18px;
   top:50%;
   transform:translateY(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
   cursor:pointer;
-  user-select:none;
-  font-size:18px;
   color:#64748b;
+  z-index:100;
 }
 
     .partner-form-group textarea {
