@@ -152,11 +152,43 @@
     }
 
     .partner-status.error {
-      display: block;
-      color: #991b1b;
-      background: #fee2e2;
-      border: 1px solid #fecaca;
-    }
+  display: block;
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+}
+
+.partner-status.pending {
+  display: block;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e3a8a;
+  padding: 20px;
+  border-radius: 16px;
+  line-height: 1.7;
+}
+
+.partner-status.pending strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #1d4ed8;
+}
+
+.partner-status.pending ul {
+  margin: 14px 0;
+  padding-left: 20px;
+}
+
+.partner-status.pending li {
+  margin-bottom: 8px;
+}
+
+.partner-status.pending a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
 
     .partner-auth-switch {
       margin-top: 20px;
@@ -232,10 +264,45 @@
     const statusBox = document.getElementById('statusBox');
     const button = document.getElementById('affiliateLoginButton');
 
-    function showStatus(message) {
-      statusBox.className = 'partner-status error';
-      statusBox.textContent = message;
-    }
+    function showStatus(message, status) {
+
+if (status === 'pending_review') {
+
+  statusBox.className = 'partner-status pending';
+
+  statusBox.innerHTML = `
+    <strong>⏳ Your application is under review</strong>
+
+    <p>
+      Thank you for applying to the
+      <strong>SherGuard Partner Program.</strong>
+    </p>
+
+    <p>
+      Your application has been received successfully and is currently
+      being reviewed by our Partnership Team.
+    </p>
+
+    <ul>
+      <li>Application received successfully.</li>
+      <li>Review usually takes <strong>1–2 business days.</strong></li>
+      <li>You'll receive an approval email once your application is approved.</li>
+    </ul>
+
+    <p>
+      Need help?
+      <a href="mailto:support@sherguard.com">
+        support@sherguard.com
+      </a>
+    </p>
+  `;
+
+  return;
+}
+
+statusBox.className = 'partner-status error';
+statusBox.textContent = message;
+}
 
     function setLoading(isLoading) {
       button.disabled = isLoading;
@@ -277,9 +344,22 @@
         window.location.href = 'dashboard.html';
 
       } catch (error) {
-        showStatus(
-          error && error.message ? error.message : 'Partner login failed.'
-        );
+        const message =
+  error && error.message
+    ? error.message
+    : 'Partner login failed.';
+
+if (message.includes('pending_review') ||
+    message.includes('currently under review') ||
+    message.includes('1–2 business days')) {
+
+  showStatus(message, 'pending_review');
+
+} else {
+
+  showStatus(message);
+
+}
       } finally {
         setLoading(false);
       }
