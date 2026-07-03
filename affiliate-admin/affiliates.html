@@ -192,8 +192,35 @@
               '<td>' + admin.escapeHtml(affiliate.email || '—') + '</td>' +
               '<td>' + admin.escapeHtml(affiliate.affiliate_code || '—') + '</td>' +
               '<td>' + admin.statusBadge(status) + '</td>' +
-              '<td>' + admin.escapeHtml(affiliate.website_url || '—') + '</td>' +
-              '<td>' + admin.escapeHtml(affiliate.promotion_method || '—') + '</td>' +
+              '<td>' +
+
+(admin.escapeHtml(affiliate.website_url || '—')) +
+
+'<br><br>' +
+
+'<strong>Channel:</strong> ' +
+
+admin.escapeHtml(affiliate.promotion_channel || '—') +
+
+'<br>' +
+
+'<strong>Audience:</strong> ' +
+
+admin.escapeHtml(affiliate.audience_size || '—') +
+
+'</td>' +
+
+'<td>' +
+
+admin.escapeHtml(affiliate.promotion_method || '—') +
+
+'<br><br>' +
+
+'<strong>Experience:</strong><br>' +
+
+admin.escapeHtml(affiliate.experience || 'None provided') +
+
+'</td>' +
               '<td>' + admin.formatDate(affiliate.created_at) + '</td>' +
               '<td>' +
                 '<button onclick="updateAffiliate(' + id + ', \'active\')">Approve</button> ' +
