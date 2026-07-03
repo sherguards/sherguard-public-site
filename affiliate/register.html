@@ -215,6 +215,24 @@
       resize: vertical;
     }
 
+    .partner-form-group select{
+
+width:100%;
+
+padding:14px 15px;
+
+border-radius:14px;
+
+border:1px solid #dbe3ef;
+
+background:white;
+
+font-size:15px;
+
+outline:none;
+
+}
+
     .partner-submit {
       width: 100%;
       border: none;
@@ -352,16 +370,99 @@
 
           <div class="partner-form-group">
             <label for="websiteUrl">Website / Social Profile</label>
-            <input type="url" id="websiteUrl" placeholder="https://yourwebsite.com" />
+            <input
+    type="url"
+    id="websiteUrl"
+    placeholder="https://yourwebsite.com or https://linkedin.com/in/yourname"
+    required
+/>
+          </div>
+
+          <div class="partner-form-group">
+
+            <label for="promotionChannel">
+        
+                Primary Promotion Channel
+        
+            </label>
+        
+            <select id="promotionChannel" required>
+        
+                <option value="">Select one</option>
+        
+                <option>YouTube</option>
+        
+                <option>LinkedIn</option>
+        
+                <option>X (Twitter)</option>
+        
+                <option>Blog</option>
+        
+                <option>Newsletter</option>
+        
+                <option>Agency</option>
+        
+                <option>Facebook</option>
+        
+                <option>Instagram</option>
+        
+                <option>Developer Community</option>
+        
+                <option>Other</option>
+        
+            </select>
+        
+        </div>
+
+        <div class="partner-form-group">
+
+          <label for="audienceSize">
+          
+          Audience Size
+          
+          </label>
+          
+          <select id="audienceSize" required>
+          
+          <option value="">Select audience size</option>
+          
+          <option>0–1,000</option>
+          
+          <option>1,000–10,000</option>
+          
+          <option>10,000–50,000</option>
+          
+          <option>50,000–100,000</option>
+          
+          <option>100,000+</option>
+          
+          </select>
+          
           </div>
 
           <div class="partner-form-group">
             <label for="promotionMethod">How will you promote SherGuard?</label>
             <textarea
-              id="promotionMethod"
-              placeholder="Blog, YouTube, LinkedIn, newsletter, agency clients, founder outreach..."
-            ></textarea>
+id="promotionMethod"
+placeholder="Describe how you plan to promote SherGuard..."
+required
+></textarea>
           </div>
+
+          <div class="partner-form-group">
+
+            <label for="experience">
+            
+            Previous SaaS / Cybersecurity Promotion Experience (Optional)
+            
+            </label>
+            
+            <textarea
+            id="experience"
+            placeholder="Tell us about any SaaS, cybersecurity, developer tools, or affiliate programs you have promoted."
+            ></textarea>
+            
+            </div>
 
           <div class="partner-form-group">
             <label for="password">Password</label>
