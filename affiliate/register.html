@@ -547,9 +547,23 @@ passwordToggle.textContent='👁';
 
       const fullName = document.getElementById('fullName').value.trim();
       const email = document.getElementById('email').value.trim();
-      const websiteUrl = document.getElementById('websiteUrl').value.trim();
-      const promotionMethod = document.getElementById('promotionMethod').value.trim();
-      const password = document.getElementById('password').value;
+      const websiteUrl =
+document.getElementById('websiteUrl').value.trim();
+
+const promotionChannel =
+document.getElementById('promotionChannel').value;
+
+const audienceSize =
+document.getElementById('audienceSize').value;
+
+const promotionMethod =
+document.getElementById('promotionMethod').value.trim();
+
+const experience =
+document.getElementById('experience').value.trim();
+
+const password =
+document.getElementById('password').value;
 
       if (!fullName || fullName.length < 2) {
         showStatus('Please enter your full name.', 'error');
@@ -570,13 +584,26 @@ passwordToggle.textContent='👁';
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            full_name: fullName,
-            email: email,
-            password: password,
-            payout_email: null,
-            website_url: websiteUrl || null,
-            promotion_method: promotionMethod || null
-          })
+
+full_name: fullName,
+
+email: email,
+
+password: password,
+
+payout_email: null,
+
+website_url: websiteUrl,
+
+promotion_channel: promotionChannel,
+
+audience_size: audienceSize,
+
+promotion_method: promotionMethod,
+
+experience: experience || null
+
+})
         });
 
         const result = await response.json();
