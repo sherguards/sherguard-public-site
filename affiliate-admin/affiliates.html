@@ -194,25 +194,39 @@
               '<td>' + admin.statusBadge(status) + '</td>' +
               '<td>' +
 
-(admin.escapeHtml(affiliate.website_url || '—')) +
+                (
+affiliate.website_url
+?
+
+'<a class="website-link" href="' +
+
+admin.escapeHtml(affiliate.website_url) +
+
+'" target="_blank" rel="noopener">🌐 Visit Website</a>'
+
+:
+
+'<span class="not-provided">Not provided</span>'
+
+) +
 
 '<br><br>' +
 
 '<strong>Channel:</strong> ' +
 
-admin.escapeHtml(affiliate.promotion_channel || '—') +
+admin.escapeHtml(affiliate.promotion_channel || 'Not provided') +
 
 '<br>' +
 
 '<strong>Audience:</strong> ' +
 
-admin.escapeHtml(affiliate.audience_size || '—') +
+admin.escapeHtml(affiliate.audience_size || 'Not provided') +
 
 '</td>' +
 
 '<td>' +
 
-admin.escapeHtml(affiliate.promotion_method || '—') +
+admin.escapeHtml(affiliate.promotion_method || 'Not provided') +
 
 '<br><br>' +
 
@@ -223,9 +237,15 @@ admin.escapeHtml(affiliate.experience || 'None provided') +
 '</td>' +
               '<td>' + admin.formatDate(affiliate.created_at) + '</td>' +
               '<td>' +
-                '<button onclick="updateAffiliate(' + id + ', \'active\')">Approve</button> ' +
-                '<button onclick="updateAffiliate(' + id + ', \'rejected\')">Reject</button> ' +
-                '<button onclick="updateAffiliate(' + id + ', \'suspended\')">Suspend</button>' +
+                '<div class="affiliate-actions">' +
+
+              '<button class="btn-approve" onclick="updateAffiliate(' + id + ', \'active\')">Approve</button>' +
+
+              '<button class="btn-reject" onclick="updateAffiliate(' + id + ', \'rejected\')">Reject</button>' +
+
+              '<button class="btn-suspend" onclick="updateAffiliate(' + id + ', \'suspended\')">Suspend</button>' +
+
+            '</div>' +
               '</td>' +
               '</tr>'
             );
