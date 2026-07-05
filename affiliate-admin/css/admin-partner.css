@@ -584,3 +584,123 @@
     }
     
     }
+
+    /* ==========================================================
+AFFILIATE DIRECTORY IMPROVEMENTS
+========================================================== */
+
+.website-link{
+
+   display:inline-flex;
+   
+   align-items:center;
+   
+   gap:6px;
+   
+   color:#2563eb;
+   
+   font-weight:700;
+   
+   text-decoration:none;
+   
+   margin-bottom:12px;
+   
+   }
+   
+   .website-link:hover{
+   
+   text-decoration:underline;
+   
+   }
+   
+   .not-provided{
+   
+   color:#94a3b8;
+   
+   font-style:italic;
+   
+   }
+   
+   .affiliate-actions{
+   
+   display:flex;
+   
+   flex-direction:column;
+   
+   gap:10px;
+   
+   }
+   
+   .affiliate-actions button{
+   
+   border:none;
+   
+   border-radius:12px;
+   
+   padding:11px 16px;
+   
+   font-weight:700;
+   
+   cursor:pointer;
+   
+   color:white;
+   
+   transition:.2s;
+   
+   min-width:120px;
+   
+   }
+   
+   .btn-approve{
+   
+   background:#16a34a;
+   
+   }
+   
+   .btn-approve:hover{
+   
+   background:#15803d;
+   
+   }
+   
+   .btn-reject{
+   
+   background:#dc2626;
+   
+   }
+   
+   .btn-reject:hover{
+   
+   background:#b91c1c;
+   
+   }
+   
+   .btn-suspend{
+   
+   background:#d97706;
+   
+   }
+   
+   .btn-suspend:hover{
+   
+   background:#b45309;
+   
+   }
+   
+   .admin-table-wrap td{
+   
+   vertical-align:top;
+   
+   line-height:1.7;
+   
+   }
+   
+   .admin-table-wrap td strong{
+   
+   display:inline-block;
+   
+   color:#0f172a;
+   
+   margin-top:6px;
+   
+   }
