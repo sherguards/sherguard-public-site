@@ -211,9 +211,37 @@
 }
 
     .partner-form-group textarea {
-      min-height: 96px;
-      resize: vertical;
-    }
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border-radius: 14px;
+    border: 1px solid #dbe3ef;
+    background: #ffffff;
+    color: #0f172a;
+    font-size: 15px;
+    font-family: inherit;
+    line-height: 1.6;
+    outline: none;
+    resize: vertical;
+    transition: all .2s ease;
+}
+
+#promotionMethod {
+    min-height: 150px;
+}
+
+#experience {
+    min-height: 115px;
+}
+
+.partner-form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.partner-form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+}
 
     .partner-form-group select{
 
