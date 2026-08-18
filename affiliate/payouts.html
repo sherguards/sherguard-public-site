@@ -1,169 +1,1440 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>SherGuard Partner Payouts</title>
 
-  <link rel="icon" href="../favicon.ico" />
-  <link rel="stylesheet" href="css/partner.css" />
+  <link rel="icon" href="../favicon.ico">
+
+  <link rel="stylesheet" href="css/partner.css">
+
 </head>
 
 <body>
+
   <div class="partner-layout">
+
     <aside class="sidebar">
+
       <div>
+
         <div class="sidebar-logo">
-          <img src="../logo-symbol.png" alt="SherGuard" />
+
+          <img src="../logo-symbol.png" alt="SherGuard">
+
           <div>
+
             <h2>SherGuard</h2>
+
             <span>Partner Portal</span>
+
           </div>
+
         </div>
 
         <nav>
-          <a href="dashboard.html">Dashboard</a>
-          <a href="referrals.html">Referrals</a>
-          <a href="commissions.html">Commissions</a>
-          <a class="active" href="payouts.html">Payouts</a>
-          <a href="marketing.html">Marketing Center</a>
-          <a href="tools.html">Referral Tools</a>
-          <a href="analytics.html">Analytics</a>
-          <a href="profile.html">Profile</a>
-          <a href="settings.html">Settings</a>
-          <a href="support.html">Support</a>
+
+          <a href="dashboard.html">
+            Dashboard
+          </a>
+
+          <a href="referrals.html">
+            Referrals
+          </a>
+
+          <a href="commissions.html">
+            Commissions
+          </a>
+
+          <a class="active" href="payouts.html">
+            Payouts
+          </a>
+
+          <a href="marketing.html">
+            Marketing Center
+          </a>
+
+          <a href="tools.html">
+            Referral Tools
+          </a>
+
+          <a href="analytics.html">
+            Analytics
+          </a>
+
+          <a href="profile.html">
+            Profile
+          </a>
+
+          <a href="settings.html">
+            Settings
+          </a>
+
+          <a href="support.html">
+            Support
+          </a>
+
         </nav>
+
       </div>
 
       <div class="sidebar-footer">
-        <button id="logoutButton">Logout</button>
+
+        <button id="logoutButton">
+          Logout
+        </button>
+
       </div>
+
     </aside>
 
+
     <main class="main-content">
+
       <header class="topbar">
+
         <div>
+
           <h1>Payout Center</h1>
-          <p>Manage your payout method and review affiliate payout history.</p>
+
+          <p>
+            Manage your payout method, request commissions,
+            and review payout history.
+          </p>
+
         </div>
+
       </header>
 
+
+      <!-- PAYOUT SUMMARY -->
+
       <section class="stats-grid">
+
         <div class="stat-card">
+
           <span>Pending Commission</span>
-          <h2 id="pendingCommission">$0</h2>
+
+          <h2 id="pendingCommission">
+            $0.00
+          </h2>
+
         </div>
 
+
         <div class="stat-card">
+
+          <span>Approved Commission</span>
+
+          <h2 id="approvedCommission">
+            $0.00
+          </h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>Available for Payout</span>
+
+          <h2 id="availableForPayout">
+            $0.00
+          </h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
           <span>Paid Commission</span>
-          <h2 id="paidCommission">$0</h2>
+
+          <h2 id="paidCommission">
+            $0.00
+          </h2>
+
         </div>
 
-        <div class="stat-card">
-          <span>Minimum Payout</span>
-          <h2>$50</h2>
-        </div>
-
-        <div class="stat-card">
-          <span>Payout Status</span>
-          <h2>Manual</h2>
-        </div>
       </section>
 
+
+      <!-- PAYOUT METHOD -->
+
       <section class="dashboard-card full-width">
+
         <div class="card-header">
+
           <div>
-            <h2>Payout Method</h2>
-            <span>Select how you want to receive affiliate commissions.</span>
+
+            <h2>
+              Payout Method
+            </h2>
+
+            <span>
+              Choose where SherGuard should send your commission.
+            </span>
+
           </div>
-          <span class="badge pending">Owner approval required</span>
+
+          <span class="badge pending">
+            Manual approval required
+          </span>
+
         </div>
 
-        <div class="card-body payout-grid">
-          <label class="payout-option">
-            <input type="radio" name="payoutMethod" value="paypal" checked />
+
+        <div class="payout-method-grid">
+
+          <label class="payout-method-card">
+
+            <input type="radio" name="payoutMethod" value="paypal">
+
             <div>
+
               <strong>PayPal</strong>
-              <span>Use your PayPal payout email.</span>
+
+              <span>
+                Receive your payout using your PayPal email address.
+              </span>
+
             </div>
+
           </label>
 
-          <label class="payout-option">
-            <input type="radio" name="payoutMethod" value="payoneer" />
+
+          <label class="payout-method-card">
+
+            <input type="radio" name="payoutMethod" value="payoneer">
+
             <div>
+
               <strong>Payoneer</strong>
-              <span>Use your Payoneer email or account ID.</span>
+
+              <span>
+                Receive your payout using your Payoneer email
+                or account ID.
+              </span>
+
             </div>
+
           </label>
 
-          <label class="payout-option">
-            <input type="radio" name="payoutMethod" value="bank_transfer" />
+
+          <label class="payout-method-card">
+
+            <input type="radio" name="payoutMethod" value="bank_transfer">
+
             <div>
+
               <strong>Bank Transfer</strong>
-              <span>Store bank details for manual payout processing.</span>
+
+              <span>
+                Receive a manual bank transfer using your bank details.
+              </span>
+
             </div>
+
           </label>
 
-          <div class="payout-form">
-            <label for="payoutReference">Payout Details</label>
-            <textarea
-              id="payoutReference"
-              placeholder="PayPal/Payoneer: enter payout email. Bank Transfer: enter account holder, bank name, IBAN/account number, SWIFT/BIC, and country."
-            ></textarea>
-
-            <button id="savePayoutButton">Save Payout Method</button>
-          </div>
         </div>
+
+
+        <div id="payoutMethodDescription" class="payout-method-description">
+          Use the PayPal email address that should receive your
+          SherGuard commission.
+        </div>
+
+
+        <!-- PAYPAL -->
+
+        <div id="paypalDetails" class="payout-detail-panel">
+
+          <div class="payout-field-grid">
+
+            <div class="payout-field">
+
+              <label for="paypalEmail">
+                PayPal Email
+              </label>
+
+              <input id="paypalEmail" type="email" placeholder="you@example.com" autocomplete="email">
+
+              <span>
+                This is the email address connected to your PayPal account.
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- PAYONEER -->
+
+        <div id="payoneerDetails" class="payout-detail-panel">
+
+          <div class="payout-field-grid">
+
+            <div class="payout-field">
+
+              <label for="payoneerEmail">
+                Payoneer Email
+              </label>
+
+              <input id="payoneerEmail" type="email" placeholder="you@example.com" autocomplete="email">
+
+              <span>
+                Enter the email associated with your Payoneer account.
+              </span>
+
+            </div>
+
+
+            <div class="payout-field">
+
+              <label for="payoneerAccountId">
+                Payoneer Account ID
+              </label>
+
+              <input id="payoneerAccountId" type="text" placeholder="Optional if email is provided">
+
+              <span>
+                You may provide your Payoneer account ID instead of,
+                or in addition to, the email.
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- BANK TRANSFER -->
+
+        <div id="bank_transferDetails" class="payout-detail-panel">
+
+          <div class="payout-field-grid">
+
+            <div class="payout-field">
+
+              <label for="bankAccountHolder">
+                Account Holder Name
+              </label>
+
+              <input id="bankAccountHolder" type="text" placeholder="Full legal account holder name"
+                autocomplete="name">
+
+            </div>
+
+
+            <div class="payout-field">
+
+              <label for="bankName">
+                Bank Name
+              </label>
+
+              <input id="bankName" type="text" placeholder="Your bank name">
+
+            </div>
+
+
+            <div class="payout-field">
+
+              <label for="bankCountry">
+                Country
+              </label>
+
+              <input id="bankCountry" type="text" placeholder="Country" autocomplete="country-name">
+
+            </div>
+
+
+            <div class="payout-field">
+
+              <label for="bankIban">
+                IBAN
+              </label>
+
+              <input id="bankIban" type="text" placeholder="IBAN if applicable" autocomplete="off">
+
+            </div>
+
+
+            <div class="payout-field">
+
+              <label for="bankAccountNumber">
+                Account Number
+              </label>
+
+              <input id="bankAccountNumber" type="text" placeholder="Bank account number" autocomplete="off">
+
+            </div>
+
+
+            <div class="payout-field">
+
+              <label for="bankSwift">
+                SWIFT / BIC
+              </label>
+
+              <input id="bankSwift" type="text" placeholder="SWIFT / BIC" autocomplete="off">
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div id="payoutSaveStatus" class="payout-alert"></div>
+
+
+        <div class="payout-actions">
+
+          <button id="savePayoutButton" class="payout-primary-button" type="button">
+            Save Payout Method
+          </button>
+
+        </div>
+
       </section>
 
+
+      <!-- REQUEST PAYOUT -->
+
       <section class="dashboard-card full-width">
+
         <div class="card-header">
+
           <div>
-            <h2>Payout History</h2>
-            <span>Completed and pending payouts from SherGuard.</span>
+
+            <h2>
+              Request Payout
+            </h2>
+
+            <span>
+              Request your approved commission when you reach the minimum threshold.
+            </span>
+
           </div>
+
+          <span class="payout-minimum-badge">
+            Minimum $<span id="minimumPayout">50.00</span>
+          </span>
+
         </div>
 
-        <div id="payoutsTableWrap" class="table-wrap">
-          <div class="empty-state">Loading payouts...</div>
+
+        <div class="payout-request-panel">
+
+          <div>
+
+            <span class="payout-request-label">
+              Available for payout
+            </span>
+
+            <strong id="requestPayoutAmount">
+              $0.00
+            </strong>
+
+          </div>
+
+
+          <div id="payoutEligibility" class="payout-alert warning">
+            Save a payout method before requesting payment.
+          </div>
+
+
+          <button id="requestPayoutButton" class="payout-request-button" type="button" disabled>
+            Request Payout
+          </button>
+
         </div>
+
       </section>
 
+
+      <!-- PAYOUT HISTORY -->
+
       <section class="dashboard-card full-width">
+
         <div class="card-header">
+
           <div>
-            <h2>Payout Rules</h2>
-            <span>How SherGuard processes affiliate payouts.</span>
+
+            <h2>
+              Payout History
+            </h2>
+
+            <span>
+              Review your payout requests and payment status.
+            </span>
+
           </div>
+
         </div>
+
+
+        <div id="payoutRequestsTableWrap" class="table-wrap">
+
+          <div class="empty-state">
+            Loading payout history...
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROCESS -->
+
+      <section class="dashboard-card full-width">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              How Payouts Work
+            </h2>
+
+            <span>
+              SherGuard uses a manual review process.
+            </span>
+
+          </div>
+
+        </div>
+
 
         <div class="notification-list">
-          <div>
-            <strong>Minimum payout threshold is $50.</strong>
-            <span>Payouts are reviewed manually before release.</span>
-          </div>
 
           <div>
-            <strong>Supported methods: PayPal, Payoneer, and bank transfer.</strong>
-            <span>Automatic API payouts can be connected later after payment provider approval.</span>
+
+            <strong>
+              1. Earn commission
+            </strong>
+
+            <span>
+              Your referred customer becomes a paid SherGuard subscriber
+              and commission is created.
+            </span>
+
           </div>
 
+
           <div>
-            <strong>Pending commissions are reviewed before payout.</strong>
-            <span>This protects SherGuard from refunds, chargebacks, fake referrals, and abuse.</span>
+
+            <strong>
+              2. Commission is reviewed
+            </strong>
+
+            <span>
+              SherGuard reviews refunds, chargebacks, fraud signals,
+              and referral quality before approving commission.
+            </span>
+
           </div>
+
+
+          <div>
+
+            <strong>
+              3. Reach $50 approved commission
+            </strong>
+
+            <span>
+              Once your approved available balance reaches $50,
+              the Request Payout button becomes available.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              4. Request your payout
+            </strong>
+
+            <span>
+              SherGuard receives your payout request in the
+              Affiliate Admin payout queue.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              5. SherGuard reviews and pays
+            </strong>
+
+            <span>
+              The owner verifies the payout details, approves the request,
+              sends the payment manually, and records the payment.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              6. Payout becomes Paid
+            </strong>
+
+            <span>
+              After payment is actually sent, SherGuard marks the request
+              as paid and the payout appears in your history.
+            </span>
+
+          </div>
+
         </div>
+
       </section>
 
+
       <footer class="partner-footer">
-        <span>© 2026 SherGuard Partner Portal.</span>
-        <span>Payouts are processed after review.</span>
+
+        <span>
+          © 2026 SherGuard Partner Portal.
+        </span>
+
+        <span>
+          Payouts are reviewed before payment.
+        </span>
+
       </footer>
+
     </main>
+
   </div>
 
+
   <script src="js/partner-api.js"></script>
+
   <script src="js/partner.js"></script>
+
+
+  <script>
+
+    (function () {
+
+      'use strict';
+
+
+      function $(
+        id
+      ) {
+
+        return document.getElementById(id);
+
+      }
+
+
+      function money(
+        value
+      ) {
+
+        return '$' +
+          Number(value || 0)
+            .toFixed(2);
+
+      }
+
+
+      function formatDate(
+        value
+      ) {
+
+        if (!value) {
+
+          return '—';
+
+        }
+
+        try {
+
+          return new Date(
+            value
+          ).toLocaleDateString();
+
+        } catch (error) {
+
+          return '—';
+
+        }
+
+      }
+
+
+      function methodLabel(
+        method
+      ) {
+
+        if (method === 'paypal') {
+
+          return 'PayPal';
+
+        }
+
+        if (method === 'payoneer') {
+
+          return 'Payoneer';
+
+        }
+
+        if (method === 'bank_transfer') {
+
+          return 'Bank Transfer';
+
+        }
+
+        return '—';
+
+      }
+
+
+      function showMessage(
+        message,
+        type
+      ) {
+
+        var box =
+          $('payoutSaveStatus');
+
+        if (!box) {
+
+          return;
+
+        }
+
+        box.textContent =
+          message || '';
+
+        box.className =
+          'payout-alert ' +
+          (type || 'success');
+
+      }
+
+
+      function updateMethodPanels() {
+
+        var selected =
+          document.querySelector(
+            'input[name="payoutMethod"]:checked'
+          );
+
+        var method =
+          selected
+            ? selected.value
+            : 'paypal';
+
+
+        document.querySelectorAll(
+          '.payout-detail-panel'
+        ).forEach(function (panel) {
+
+          panel.classList.remove(
+            'active'
+          );
+
+        });
+
+
+        var panel =
+          $(method + 'Details');
+
+        if (panel) {
+
+          panel.classList.add(
+            'active'
+          );
+
+        }
+
+
+        var description =
+          $('payoutMethodDescription');
+
+
+        if (!description) {
+
+          return;
+
+        }
+
+
+        if (method === 'paypal') {
+
+          description.textContent =
+            'Use the PayPal email address that should receive your SherGuard commission.';
+
+        } else if (method === 'payoneer') {
+
+          description.textContent =
+            'Provide your Payoneer email or account ID.';
+
+        } else {
+
+          description.textContent =
+            'Provide the bank details SherGuard needs for a manual bank transfer.';
+
+        }
+
+      }
+
+
+      function loadSavedSettings(
+        settings
+      ) {
+
+        if (!settings) {
+
+          var paypal =
+            document.querySelector(
+              'input[name="payoutMethod"][value="paypal"]'
+            );
+
+          if (paypal) {
+
+            paypal.checked = true;
+
+          }
+
+          updateMethodPanels();
+
+          return;
+
+        }
+
+
+        var method =
+          settings.method;
+
+
+        var radio =
+          document.querySelector(
+            'input[name="payoutMethod"][value="' +
+            method +
+            '"]'
+          );
+
+
+        if (radio) {
+
+          radio.checked = true;
+
+        }
+
+
+        updateMethodPanels();
+
+
+        var details =
+          settings.details || {};
+
+
+        if (method === 'paypal') {
+
+          $('paypalEmail').value =
+            details.email || '';
+
+        }
+
+
+        if (method === 'payoneer') {
+
+          $('payoneerEmail').value =
+            details.email || '';
+
+          $('payoneerAccountId').value =
+            details.account_id || '';
+
+        }
+
+
+        if (method === 'bank_transfer') {
+
+          $('bankAccountHolder').value =
+            details.account_holder || '';
+
+          $('bankName').value =
+            details.bank_name || '';
+
+          $('bankCountry').value =
+            details.country || '';
+
+          $('bankIban').value =
+            details.iban || '';
+
+          $('bankAccountNumber').value =
+            details.account_number || '';
+
+          $('bankSwift').value =
+            details.swift_bic || '';
+
+        }
+
+
+        showMessage(
+          'Saved payout method: ' +
+          methodLabel(method),
+          'success'
+        );
+
+      }
+
+
+      function getPayoutDetails() {
+
+        var selected =
+          document.querySelector(
+            'input[name="payoutMethod"]:checked'
+          );
+
+
+        if (!selected) {
+
+          throw new Error(
+            'Select a payout method.'
+          );
+
+        }
+
+
+        if (
+          selected.value === 'paypal'
+        ) {
+
+          return {
+
+            method: 'paypal',
+
+            details: {
+
+              email:
+                $('paypalEmail')
+                  .value
+                  .trim()
+
+            }
+
+          };
+
+        }
+
+
+        if (
+          selected.value === 'payoneer'
+        ) {
+
+          return {
+
+            method: 'payoneer',
+
+            details: {
+
+              email:
+                $('payoneerEmail')
+                  .value
+                  .trim(),
+
+              account_id:
+                $('payoneerAccountId')
+                  .value
+                  .trim()
+
+            }
+
+          };
+
+        }
+
+
+        return {
+
+          method:
+            'bank_transfer',
+
+          details: {
+
+            account_holder:
+              $('bankAccountHolder')
+                .value
+                .trim(),
+
+            bank_name:
+              $('bankName')
+                .value
+                .trim(),
+
+            country:
+              $('bankCountry')
+                .value
+                .trim(),
+
+            iban:
+              $('bankIban')
+                .value
+                .trim(),
+
+            account_number:
+              $('bankAccountNumber')
+                .value
+                .trim(),
+
+            swift_bic:
+              $('bankSwift')
+                .value
+                .trim()
+
+          }
+
+        };
+
+      }
+
+
+      async function loadPage() {
+
+        if (
+          !window.PartnerAPI.getToken()
+        ) {
+
+          window.location.href =
+            '../affiliate-login.html';
+
+          return;
+
+        }
+
+
+        try {
+
+          var settingsResult =
+            await window.PartnerAPI
+              .getPayoutSettings();
+
+
+          var summary =
+            await window.PartnerAPI
+              .getPayoutSummary();
+
+
+          loadSavedSettings(
+            settingsResult.payout_settings
+          );
+
+
+          $('pendingCommission')
+            .textContent =
+            money(
+              summary.pending_commission
+            );
+
+
+          $('approvedCommission')
+            .textContent =
+            money(
+              summary.approved_commission
+            );
+
+
+          $('availableForPayout')
+            .textContent =
+            money(
+              summary.available_for_payout
+            );
+
+
+          $('paidCommission')
+            .textContent =
+            money(
+              summary.paid_commission
+            );
+
+
+          $('minimumPayout')
+            .textContent =
+            Number(
+              summary.minimum_payout || 50
+            ).toFixed(2);
+
+
+          $('requestPayoutAmount')
+            .textContent =
+            money(
+              summary.available_for_payout
+            );
+
+
+          updateEligibility(
+            summary,
+            settingsResult.payout_settings
+          );
+
+
+          renderHistory(
+            summary.payout_requests || []
+          );
+
+        } catch (error) {
+
+          alert(
+            error.message ||
+            'Could not load payout information.'
+          );
+
+        }
+
+      }
+
+
+      function updateEligibility(
+        summary,
+        settings
+      ) {
+
+        var button =
+          $('requestPayoutButton');
+
+        var box =
+          $('payoutEligibility');
+
+        var available =
+          Number(
+            summary.available_for_payout || 0
+          );
+
+        var minimum =
+          Number(
+            summary.minimum_payout || 50
+          );
+
+
+        if (!settings) {
+
+          button.disabled = true;
+
+          box.textContent =
+            'Save a payout method before requesting payment.';
+
+          box.className =
+            'payout-alert warning';
+
+          return;
+
+        }
+
+
+        var existingRequest =
+          (summary.payout_requests || [])
+            .some(function (item) {
+
+              return (
+                item.status === 'pending'
+                || item.status === 'approved'
+              );
+
+            });
+
+
+        if (existingRequest) {
+
+          button.disabled = true;
+
+          box.textContent =
+            'You already have a payout request under review.';
+
+          box.className =
+            'payout-alert info';
+
+          return;
+
+        }
+
+
+        if (available < minimum) {
+
+          button.disabled = true;
+
+          box.textContent =
+            'You need at least ' +
+            money(minimum) +
+            ' in approved commission before requesting a payout.';
+
+          box.className =
+            'payout-alert warning';
+
+          return;
+
+        }
+
+
+        button.disabled = false;
+
+        box.textContent =
+          'You are eligible to request ' +
+          money(available) +
+          '.';
+
+        box.className =
+          'payout-alert success';
+
+      }
+
+
+      async function saveSettings() {
+
+        try {
+
+          var payout =
+            getPayoutDetails();
+
+
+          var result =
+            await window.PartnerAPI
+              .savePayoutSettings(
+                payout.method,
+                payout.details
+              );
+
+
+          showMessage(
+            result.message ||
+            'Payout settings saved successfully.',
+            'success'
+          );
+
+
+          await loadPage();
+
+        } catch (error) {
+
+          showMessage(
+            error.message ||
+            'Unable to save payout settings.',
+            'error'
+          );
+
+        }
+
+      }
+
+
+      async function requestPayout() {
+
+        var summary =
+          await window.PartnerAPI
+            .getPayoutSummary();
+
+
+        var available =
+          Number(
+            summary.available_for_payout || 0
+          );
+
+
+        var minimum =
+          Number(
+            summary.minimum_payout || 50
+          );
+
+
+        if (available < minimum) {
+
+          alert(
+            'You are not yet eligible for a payout.'
+          );
+
+          return;
+
+        }
+
+
+        var confirmed =
+          window.confirm(
+            'Request your full available payout of ' +
+            money(available) +
+            '?\n\n' +
+            'SherGuard will review the request before payment.'
+          );
+
+
+        if (!confirmed) {
+
+          return;
+
+        }
+
+
+        try {
+
+          var result =
+            await window.PartnerAPI
+              .requestPayout();
+
+
+          alert(
+            result.message ||
+            'Payout request submitted successfully.'
+          );
+
+
+          await loadPage();
+
+        } catch (error) {
+
+          alert(
+            error.message ||
+            'Unable to request payout.'
+          );
+
+        }
+
+      }
+
+
+      function renderHistory(
+        requests
+      ) {
+
+        var wrap =
+          $('payoutRequestsTableWrap');
+
+
+        if (!requests.length) {
+
+          wrap.innerHTML =
+            '<div class="empty-state">' +
+            'No payout requests yet.' +
+            '</div>';
+
+          return;
+
+        }
+
+
+        wrap.innerHTML =
+          '<table>' +
+          '<thead>' +
+          '<tr>' +
+          '<th>Amount</th>' +
+          '<th>Method</th>' +
+          '<th>Status</th>' +
+          '<th>Requested</th>' +
+          '<th>Paid</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+
+          requests.map(
+            function (item) {
+
+              return (
+                '<tr>' +
+
+                '<td>' +
+                money(item.amount) +
+                '</td>' +
+
+                '<td>' +
+                methodLabel(
+                  item.payout_method
+                ) +
+                '</td>' +
+
+                '<td>' +
+                (item.status || '—') +
+                '</td>' +
+
+                '<td>' +
+                formatDate(
+                  item.created_at
+                ) +
+                '</td>' +
+
+                '<td>' +
+                formatDate(
+                  item.paid_at
+                ) +
+                '</td>' +
+
+                '</tr>'
+              );
+
+            }
+          ).join('') +
+
+          '</tbody>' +
+          '</table>';
+
+      }
+
+
+      document.addEventListener(
+        'DOMContentLoaded',
+        function () {
+
+          document.querySelectorAll(
+            'input[name="payoutMethod"]'
+          ).forEach(
+            function (input) {
+
+              input.addEventListener(
+                'change',
+                updateMethodPanels
+              );
+
+            }
+          );
+
+
+          $('savePayoutButton')
+            .addEventListener(
+              'click',
+              saveSettings
+            );
+
+
+          $('requestPayoutButton')
+            .addEventListener(
+              'click',
+              requestPayout
+            );
+
+
+          $('logoutButton')
+            .addEventListener(
+              'click',
+              function () {
+
+                window.PartnerAPI.logout();
+
+              }
+            );
+
+
+          loadPage();
+
+        }
+      );
+
+    })();
+
+  </script>
+
 </body>
+
 </html>
