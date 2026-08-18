@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,654 +14,625 @@
 
 <body>
 
-<div class="partner-layout">
+    <div class="partner-layout">
 
-    <!-- Sidebar -->
+        <!-- Sidebar -->
 
-    <aside class="sidebar">
+        <aside class="sidebar">
 
-        <div class="sidebar-logo">
+            <div class="sidebar-logo">
 
-            <img src="../logo-symbol.png" alt="SherGuard">
+                <img src="../logo-symbol.png" alt="SherGuard">
 
-            <div>
+                <div>
 
-                <h2>SherGuard</h2>
+                    <h2>SherGuard</h2>
 
-                <span>Partner Portal</span>
+                    <span>Partner Portal</span>
+
+                </div>
 
             </div>
 
-        </div>
+            <nav>
 
-        <nav>
+                <a class="active" href="dashboard.html">
 
-            <a class="active" href="dashboard.html">
+                    <i class="icon-dashboard"></i>
 
-                <i class="icon-dashboard"></i>
+                    Dashboard
 
-                Dashboard
+                </a>
 
-            </a>
+                <a href="referrals.html">
 
-            <a href="referrals.html">
+                    <i class="icon-users"></i>
 
-                <i class="icon-users"></i>
+                    Referrals
 
-                Referrals
+                </a>
 
-            </a>
+                <a href="commissions.html">
 
-            <a href="commissions.html">
+                    <i class="icon-dollar"></i>
 
-                <i class="icon-dollar"></i>
+                    Commissions
 
-                Commissions
+                </a>
 
-            </a>
+                <a href="payouts.html">
 
-            <a href="payouts.html">
+                    <i class="icon-wallet"></i>
 
-                <i class="icon-wallet"></i>
+                    Payouts
 
-                Payouts
+                </a>
 
-            </a>
+                <a href="marketing.html">
 
-            <a href="marketing.html">
+                    <i class="icon-megaphone"></i>
 
-                <i class="icon-megaphone"></i>
+                    Marketing Center
 
-                Marketing Center
+                </a>
 
-            </a>
+                <a href="tools.html">
 
-            <a href="tools.html">
+                    <i class="icon-link"></i>
 
-                <i class="icon-link"></i>
-            
-                Referral Tools
-            
-            </a>
-            
-            <a
-            href="../review.html"
-            target="_blank"
-            rel="noopener">
-            
-                <i class="icon-star"></i>
-            
-                Reviews
-            
-            </a>
-            
-            <a href="analytics.html">
+                    Referral Tools
 
-                <i class="icon-chart"></i>
+                </a>
 
-                Analytics
+                <a href="../review.html" target="_blank" rel="noopener">
 
-            </a>
+                    <i class="icon-star"></i>
 
-            <a href="profile.html">
+                    Reviews
 
-                <i class="icon-user"></i>
+                </a>
 
-                Profile
+                <a href="analytics.html">
 
-            </a>
+                    <i class="icon-chart"></i>
 
-            <a href="settings.html">
+                    Analytics
 
-                <i class="icon-settings"></i>
+                </a>
 
-                Settings
+                <a href="profile.html">
 
-            </a>
+                    <i class="icon-user"></i>
 
-            <a href="support.html">
+                    Profile
 
-                <i class="icon-help"></i>
+                </a>
 
-                Support
+                <a href="settings.html">
 
-            </a>
+                    <i class="icon-settings"></i>
 
-        </nav>
+                    Settings
 
-        <div class="sidebar-footer">
+                </a>
 
-            <button id="logoutButton">
+                <a href="support.html">
 
-                Logout
+                    <i class="icon-help"></i>
 
-            </button>
+                    Support
 
-        </div>
+                </a>
 
-    </aside>
+            </nav>
 
-    <!-- Main -->
+            <div class="sidebar-footer">
 
-    <main class="main-content">
+                <button id="logoutButton">
 
-        <!-- Header -->
-
-        <header class="topbar">
-
-            <div>
-
-                <h1 id="welcomeTitle">
-
-                    Welcome
-
-                </h1>
-
-                <p>
-
-                    Monitor your affiliate business in real time.
-
-                </p>
-
-            </div>
-
-            <div class="topbar-actions">
-
-                <button id="copyReferralButton">
-
-                    Copy Referral Link
+                    Logout
 
                 </button>
 
             </div>
 
-        </header>
+        </aside>
 
-        <!-- KPI -->
+        <!-- Main -->
 
-        <section class="stats-grid">
+        <main class="main-content">
 
-            <div class="stat-card">
+            <!-- Header -->
 
-                <span>Total Clicks</span>
+            <header class="topbar">
 
-                <h2 id="clicks">0</h2>
+                <div>
 
-            </div>
+                    <h1 id="welcomeTitle">
 
-            <div class="stat-card">
+                        Welcome
 
-                <span>Signups</span>
+                    </h1>
 
-                <h2 id="signups">0</h2>
+                    <p>
 
-            </div>
+                        Monitor your affiliate business in real time.
 
-            <div class="stat-card">
-
-                <span>Customers</span>
-
-                <h2 id="customers">0</h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <span>Active Subscriptions</span>
-
-                <h2 id="activeSubscriptions">0</h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <span>Monthly Recurring Revenue</span>
-
-                <h2 id="mrrGenerated">$0</h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <span>Pending Commission</span>
-
-                <h2 id="pendingCommission">$0</h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <span>Paid Commission</span>
-
-                <h2 id="paidCommission">$0</h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <span>Referral Code</span>
-
-                <h2 id="referralCode">--</h2>
-
-            </div>
-
-        </section>
-
-        <!-- Referral -->
-
-        <section class="dashboard-row">
-
-            <div class="dashboard-card large">
-
-                <div class="card-header">
-
-                    <h2>Your Referral Link</h2>
+                    </p>
 
                 </div>
 
-                <div class="card-body">
+                <div class="topbar-actions">
 
-                    <input
+                    <button id="copyReferralButton">
 
-                        id="referralLink"
-
-                        readonly
-
-                        type="text"
-
-                    >
-
-                    <button id="copyLinkButton">
-
-                        Copy
+                        Copy Referral Link
 
                     </button>
 
                 </div>
 
-            </div>
+            </header>
 
-            <div class="dashboard-card">
+            <!-- KPI -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>Total Clicks</span>
+
+                    <h2 id="clicks">0</h2>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Signups</span>
+
+                    <h2 id="signups">0</h2>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Customers</span>
+
+                    <h2 id="customers">0</h2>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Active Subscriptions</span>
+
+                    <h2 id="activeSubscriptions">0</h2>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Monthly Recurring Revenue</span>
+
+                    <h2 id="mrrGenerated">$0</h2>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Pending Commission</span>
+
+                    <h2 id="pendingCommission">$0</h2>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Paid Commission</span>
+
+                    <h2 id="paidCommission">$0</h2>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Referral Code</span>
+
+                    <h2 id="referralCode">--</h2>
+
+                </div>
+
+            </section>
+
+            <!-- Referral -->
+
+            <section class="dashboard-row">
+
+                <div class="dashboard-card large">
+
+                    <div class="card-header">
+
+                        <h2>Your Referral Link</h2>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <input id="referralLink" readonly type="text">
+
+                        <button id="copyLinkButton">
+
+                            Copy
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h2>Conversion</h2>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="conversion-item">
+
+                            Click → Signup
+
+                            <strong id="signupConversion">
+
+                                0%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="conversion-item">
+
+                            Signup → Customer
+
+                            <strong id="customerConversion">
+
+                                0%
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Revenue Overview -->
+
+            <section class="dashboard-row">
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h2>Revenue Overview</h2>
+
+                        <span>Affiliate performance</span>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="revenue-list">
+
+                            <div>
+
+                                <span>MRR Generated</span>
+
+                                <strong id="revenueMrr">$0</strong>
+
+                            </div>
+
+                            <div>
+
+                                <span>Pending Commission</span>
+
+                                <strong id="revenuePending">$0</strong>
+
+                            </div>
+
+                            <div>
+
+                                <span>Paid Commission</span>
+
+                                <strong id="revenuePaid">$0</strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h2>Quick Actions</h2>
+
+                        <span>Promote faster</span>
+
+                    </div>
+
+                    <div class="card-body quick-actions">
+
+                        <a href="tools.html">Build Campaign Link</a>
+
+                        <a href="marketing.html">
+
+                            Get Marketing Assets
+
+                        </a>
+
+                        <a href="../review.html" target="_blank" rel="noopener">
+
+                            Leave a Review
+
+                        </a>
+
+                        <a href="payouts.html">Manage Payout Method</a>
+
+                        <a href="support.html">Contact Partner Support</a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Payout Center -->
+
+            <section class="dashboard-card full-width">
 
                 <div class="card-header">
 
-                    <h2>Conversion</h2>
+                    <div>
+
+                        <h2>Payout Center</h2>
+
+                        <span>
+                            Manage your payout method and request your commission.
+                        </span>
+
+                    </div>
+
+                    <span class="badge pending">
+                        Manual approval required
+                    </span>
 
                 </div>
 
                 <div class="card-body">
 
-                    <div class="conversion-item">
+                    <div class="payout-dashboard-summary">
 
-                        Click → Signup
+                        <div>
 
-                        <strong id="signupConversion">
+                            <span>Minimum Payout</span>
 
-                            0%
+                            <strong>$50.00</strong>
 
-                        </strong>
+                        </div>
+
+                        <div>
+
+                            <span>Supported Methods</span>
+
+                            <strong>
+                                PayPal · Payoneer · Bank
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Payout Processing</span>
+
+                            <strong>Manual Review</strong>
+
+                        </div>
 
                     </div>
 
-                    <div class="conversion-item">
+                    <a href="payouts.html" class="payout-dashboard-button">
+                        Open Payout Center
+                    </a>
 
-                        Signup → Customer
+                </div>
 
-                        <strong id="customerConversion">
+            </section>
 
-                            0%
+            <!-- Main Tables -->
 
-                        </strong>
+            <section class="dashboard-row">
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h2>Recent Referrals</h2>
+
+                        <a href="referrals.html">View all</a>
+
+                    </div>
+
+                    <div id="referralsTableWrap" class="table-wrap">
+
+                        <div class="empty-state">
+
+                            Loading referrals...
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <div class="dashboard-card">
 
-        </section>
-
-                <!-- Revenue Overview -->
-
-                <section class="dashboard-row">
-
-                    <div class="dashboard-card">
-        
-                        <div class="card-header">
-        
-                            <h2>Revenue Overview</h2>
-        
-                            <span>Affiliate performance</span>
-        
-                        </div>
-        
-                        <div class="card-body">
-        
-                            <div class="revenue-list">
-        
-                                <div>
-        
-                                    <span>MRR Generated</span>
-        
-                                    <strong id="revenueMrr">$0</strong>
-        
-                                </div>
-        
-                                <div>
-        
-                                    <span>Pending Commission</span>
-        
-                                    <strong id="revenuePending">$0</strong>
-        
-                                </div>
-        
-                                <div>
-        
-                                    <span>Paid Commission</span>
-        
-                                    <strong id="revenuePaid">$0</strong>
-        
-                                </div>
-        
-                            </div>
-        
-                        </div>
-        
-                    </div>
-        
-                    <div class="dashboard-card">
-        
-                        <div class="card-header">
-        
-                            <h2>Quick Actions</h2>
-        
-                            <span>Promote faster</span>
-        
-                        </div>
-        
-                        <div class="card-body quick-actions">
-        
-                            <a href="tools.html">Build Campaign Link</a>
-        
-                            <a href="marketing.html">
-
-                                Get Marketing Assets
-                                
-                                </a>
-                                
-                                <a
-                                href="../review.html"
-                                target="_blank"
-                                rel="noopener">
-                                
-                                Leave a Review
-                                
-                                </a>
-                                
-                                <a href="payouts.html">Manage Payout Method</a>
-        
-                            <a href="support.html">Contact Partner Support</a>
-        
-                        </div>
-        
-                    </div>
-        
-                </section>
-        
-                <!-- Payout Center -->
-        
-                <section class="dashboard-card full-width">
-        
                     <div class="card-header">
-        
-                        <div>
-        
-                            <h2>Payout Center</h2>
-        
-                            <span>Choose how you want to receive commissions.</span>
-        
-                        </div>
-        
-                        <span class="badge pending">Manual approval required</span>
-        
+
+                        <h2>Commission History</h2>
+
+                        <a href="commissions.html">View all</a>
+
                     </div>
-        
-                    <div class="card-body payout-grid">
-        
-                        <label class="payout-option">
-        
-                            <input type="radio" name="payoutMethod" value="paypal" checked>
-        
-                            <div>
-        
-                                <strong>PayPal</strong>
-        
-                                <span>Receive payouts to your PayPal email.</span>
-        
-                            </div>
-        
-                        </label>
-        
-                        <label class="payout-option">
-        
-                            <input type="radio" name="payoutMethod" value="payoneer">
-        
-                            <div>
-        
-                                <strong>Payoneer</strong>
-        
-                                <span>Receive payouts using your Payoneer email or account ID.</span>
-        
-                            </div>
-        
-                        </label>
-        
-                        <label class="payout-option">
-        
-                            <input type="radio" name="payoutMethod" value="bank_transfer">
-        
-                            <div>
-        
-                                <strong>Bank Transfer</strong>
-        
-                                <span>Store bank details for manual payout processing.</span>
-        
-                            </div>
-        
-                        </label>
-        
-                        <div class="payout-form">
-        
-                            <label for="payoutReference">Payout Details</label>
-        
-                            <textarea
-                                id="payoutReference"
-                                placeholder="For PayPal/Payoneer: enter payout email. For bank transfer: enter account holder, bank name, IBAN/account number, SWIFT/BIC, and country."
-                            ></textarea>
-        
-                            <button id="savePayoutButton">
-        
-                                Save Payout Method
-        
-                            </button>
-        
+
+                    <div id="commissionsTableWrap" class="table-wrap">
+
+                        <div class="empty-state">
+
+                            Loading commissions...
+
                         </div>
-        
+
                     </div>
-        
-                </section>
-        
-                <!-- Main Tables -->
-        
-                <section class="dashboard-row">
-        
-                    <div class="dashboard-card">
-        
-                        <div class="card-header">
-        
-                            <h2>Recent Referrals</h2>
-        
-                            <a href="referrals.html">View all</a>
-        
-                        </div>
-        
-                        <div id="referralsTableWrap" class="table-wrap">
-        
-                            <div class="empty-state">
-        
-                                Loading referrals...
-        
-                            </div>
-        
-                        </div>
-        
-                    </div>
-        
-                    <div class="dashboard-card">
-        
-                        <div class="card-header">
-        
-                            <h2>Commission History</h2>
-        
-                            <a href="commissions.html">View all</a>
-        
-                        </div>
-        
-                        <div id="commissionsTableWrap" class="table-wrap">
-        
-                            <div class="empty-state">
-        
-                                Loading commissions...
-        
-                            </div>
-        
-                        </div>
-        
-                    </div>
-        
-                </section>
-        
-                <section class="dashboard-row">
-        
-                    <div class="dashboard-card">
-        
-                        <div class="card-header">
-        
-                            <h2>Payout History</h2>
-        
-                            <a href="payouts.html">View all</a>
-        
-                        </div>
-        
-                        <div id="payoutsTableWrap" class="table-wrap">
-        
-                            <div class="empty-state">
-        
-                                Loading payouts...
-        
-                            </div>
-        
-                        </div>
-        
-                    </div>
-        
-                    <div class="dashboard-card">
-        
-                        <div class="card-header">
-        
-                            <h2>Marketing Center</h2>
-        
-                            <a href="marketing.html">Open</a>
-        
-                        </div>
-        
-                        <div class="marketing-shortcuts">
-        
-                            <div>
-        
-                                <strong>Positioning</strong>
-        
-                                <p>SherGuard helps online businesses stop fake signups, risky devices, bots, API abuse, and payment fraud.</p>
-        
-                            </div>
-        
-                            <div>
-        
-                                <strong>Best audiences</strong>
-        
-                                <p>SaaS, fintech, marketplaces, e-commerce, AI tools, developers, and Trust & Safety teams.</p>
-        
-                            </div>
-        
-                            <div>
-        
-                                <strong>Best content angle</strong>
-        
-                                <p>Show real abuse problems first, then present SherGuard as the trust intelligence layer.</p>
-        
-                            </div>
-        
-                        </div>
-        
-                    </div>
-        
-                </section>
-        
-                <!-- Notifications -->
-        
-                <section class="dashboard-card full-width">
-        
+
+                </div>
+
+            </section>
+
+            <section class="dashboard-row">
+
+                <div class="dashboard-card">
+
                     <div class="card-header">
-        
-                        <h2>Partner Notifications</h2>
-        
-                        <span>Latest program updates</span>
-        
+
+                        <h2>Payout History</h2>
+
+                        <a href="payouts.html">View all</a>
+
                     </div>
-        
-                    <div class="notification-list">
-        
-                        <div>
-        
-                            <strong>20% recurring commission is active.</strong>
-        
-                            <span>You earn commission when a referred customer becomes a paid subscriber.</span>
-        
+
+                    <div id="payoutsTableWrap" class="table-wrap">
+
+                        <div class="empty-state">
+
+                            Loading payouts...
+
                         </div>
-        
-                        <div>
-        
-                            <strong>Referral links now open the landing page.</strong>
-        
-                            <span>Visitors can read SherGuard first and still be attributed when they sign up later from the same browser.</span>
-        
-                        </div>
-        
-                        <div>
-        
-                            <strong>Manual referral code backup is supported.</strong>
-        
-                            <span>Customers can enter your referral code during signup if they return later from another browser.</span>
-        
-                        </div>
-        
+
                     </div>
-        
-                </section>
-        
-                <footer class="partner-footer">
-        
-                    <span>© 2026 SherGuard Partner Portal.</span>
-        
-                    <span>Built for professional affiliate growth.</span>
-        
-                </footer>
-        
-            </main>
-        
-        </div>
-        
-        <script src="js/partner-api.js"></script>
-        <script src="js/partner.js"></script>
-        </body>
-        </html>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <h2>Marketing Center</h2>
+
+                        <a href="marketing.html">Open</a>
+
+                    </div>
+
+                    <div class="marketing-shortcuts">
+
+                        <div>
+
+                            <strong>Positioning</strong>
+
+                            <p>SherGuard helps online businesses stop fake signups, risky devices, bots, API abuse, and
+                                payment fraud.</p>
+
+                        </div>
+
+                        <div>
+
+                            <strong>Best audiences</strong>
+
+                            <p>SaaS, fintech, marketplaces, e-commerce, AI tools, developers, and Trust & Safety teams.
+                            </p>
+
+                        </div>
+
+                        <div>
+
+                            <strong>Best content angle</strong>
+
+                            <p>Show real abuse problems first, then present SherGuard as the trust intelligence layer.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Notifications -->
+
+            <section class="dashboard-card full-width">
+
+                <div class="card-header">
+
+                    <h2>Partner Notifications</h2>
+
+                    <span>Latest program updates</span>
+
+                </div>
+
+                <div class="notification-list">
+
+                    <div>
+
+                        <strong>20% recurring commission is active.</strong>
+
+                        <span>You earn commission when a referred customer becomes a paid subscriber.</span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Referral links now open the landing page.</strong>
+
+                        <span>Visitors can read SherGuard first and still be attributed when they sign up later from the
+                            same browser.</span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Manual referral code backup is supported.</strong>
+
+                        <span>Customers can enter your referral code during signup if they return later from another
+                            browser.</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <footer class="partner-footer">
+
+                <span>© 2026 SherGuard Partner Portal.</span>
+
+                <span>Built for professional affiliate growth.</span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="js/partner-api.js"></script>
+    <script src="js/partner.js"></script>
+</body>
+
+</html>
