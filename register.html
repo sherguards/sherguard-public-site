@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-    <title>Create Your SherGuard Account - Start Free</title>
-  
-    <meta
-      name="description"
-      content="Create your SherGuard account and start protecting your business from fake signups, risky devices, bots, API abuse, and payment fraud with real-time trust intelligence."
-    />
-  
-    <link rel="canonical" href="https://sherguard.com/register.html" />
-  
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  
-    <meta property="og:url" content="https://sherguard.com/register.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Create Your SherGuard Account" />
-    <meta property="og:description" content="Start free with SherGuard and access fraud prevention, bot detection, API security, payment fraud protection, and trust intelligence tools." />
-  
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/auth.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Create Your SherGuard Account - Start Free</title>
+
+  <meta name="description"
+    content="Create your SherGuard account and start protecting your business from fake signups, risky devices, bots, API abuse, and payment fraud with real-time trust intelligence." />
+
+  <link rel="canonical" href="https://sherguard.com/register.html" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <meta property="og:url" content="https://sherguard.com/register.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Create Your SherGuard Account" />
+  <meta property="og:description"
+    content="Start free with SherGuard and access fraud prevention, bot detection, API security, payment fraud protection, and trust intelligence tools." />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
 
 <body class="auth-page">
   <main class="auth-shell">
 
     <section class="auth-brand-panel">
       <a href="index.html" class="auth-logo">
-        <img
-          src="logo-symbol.png"
-          alt="SherGuard Logo"
-          style="
+        <img src="logo-symbol.png" alt="SherGuard Logo" style="
             width:36px;
             height:36px;
             object-fit:contain;
             margin-right:10px;
-          "
-        />
+          " />
         <strong>SherGuard</strong>
       </a>
 
@@ -73,72 +69,39 @@
 
         <div class="auth-form-group">
           <label for="organizationName">Organization Name</label>
-          <input
-            type="text"
-            id="organizationName"
-            placeholder="Your company name"
-            autocomplete="organization"
-            required
-          />
+          <input type="text" id="organizationName" placeholder="Your company name" autocomplete="organization"
+            required />
         </div>
 
         <div class="auth-form-group">
           <label for="affiliateRef">Referral Code Optional</label>
-          <input
-            type="text"
-            id="affiliateRef"
-            placeholder="Example: SHER-429B5B"
-            autocomplete="off"
-          />
+          <input type="text" id="affiliateRef" placeholder="Example: SHER-429B5B" autocomplete="off" />
         </div>
 
         <div class="auth-form-group">
           <label for="fullName">Full Name</label>
-          <input
-            type="text"
-            id="fullName"
-            placeholder="Your full name"
-            autocomplete="name"
-            required
-          />
+          <input type="text" id="fullName" placeholder="Your full name" autocomplete="name" required />
         </div>
 
         <div class="auth-form-group">
           <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="you@company.com"
-            autocomplete="email"
-            required
-          />
+          <input type="email" id="email" placeholder="you@company.com" autocomplete="email" required />
         </div>
 
         <div class="auth-form-group">
           <label for="password">Password</label>
 
           <div class="auth-password-wrapper">
-            <input
-              type="password"
-              id="password"
-              placeholder="Minimum 8 characters"
-              autocomplete="new-password"
-              required
-            />
+            <input type="password" id="password" placeholder="Minimum 8 characters" autocomplete="new-password"
+              required />
 
-            <button
-              type="button"
-              class="auth-password-toggle"
-              id="togglePassword"
-            >
+            <button type="button" class="auth-password-toggle" id="togglePassword">
               Show
             </button>
           </div>
         </div>
 
-        <div
-          id="sherguardVerifyBox"
-          style="
+        <div id="sherguardVerifyBox" style="
             display:none;
             align-items:center;
             gap:12px;
@@ -147,58 +110,41 @@
             border-radius:14px;
             margin-bottom:18px;
             background:#ffffff;
-          "
-        >
-          <img
-            src="logo-symbol.png"
-            alt="SherGuard"
-            style="
+          ">
+          <img src="logo-symbol.png" alt="SherGuard" style="
               width:28px;
               height:28px;
               object-fit:contain;
-            "
-          />
+            " />
 
           <div style="flex:1;">
-            <div
-              style="
+            <div style="
                 font-size:14px;
                 font-weight:600;
                 color:#0f172a;
-              "
-            >
+              ">
               SherGuard Verification
             </div>
 
-            <div
-              id="verifyMessage"
-              style="
+            <div id="verifyMessage" style="
                 font-size:13px;
                 color:#64748b;
-              "
-            >
+              ">
               Verifying trust...
             </div>
           </div>
 
-          <div
-            id="verifySpinner"
-            style="
+          <div id="verifySpinner" style="
               width:18px;
               height:18px;
               border:2px solid #dbeafe;
               border-top:2px solid #2563eb;
               border-radius:50%;
               animation:spin 1s linear infinite;
-            "
-          ></div>
+            "></div>
         </div>
 
-        <button
-          type="submit"
-          class="auth-btn"
-          id="registerButton"
-        >
+        <button type="submit" class="auth-btn" id="registerButton">
           Create Account
         </button>
 
@@ -245,14 +191,14 @@
       spinner.style.display = 'block';
       message.textContent = 'Verifying trust...';
 
-      await new Promise(function(resolve) {
+      await new Promise(function (resolve) {
         setTimeout(resolve, 1200);
       });
 
       message.textContent = 'Trust verified';
       spinner.style.display = 'none';
 
-      await new Promise(function(resolve) {
+      await new Promise(function (resolve) {
         setTimeout(resolve, 700);
       });
     }
@@ -270,42 +216,42 @@
         : 'Create Account';
     }
 
-    registerForm.addEventListener('submit', async function(event) {
+    registerForm.addEventListener('submit', async function (event) {
       event.preventDefault();
 
       statusBox.style.display = 'none';
 
       const organizationName =
         document.getElementById('organizationName')
-        .value
-        .trim();
+          .value
+          .trim();
 
       const fullName =
         document.getElementById('fullName')
-        .value
-        .trim();
+          .value
+          .trim();
 
       const email =
         document.getElementById('email')
-        .value
-        .trim();
+          .value
+          .trim();
 
       const password =
         document.getElementById('password')
-        .value;
+          .value;
 
-        const manualAffiliateRef =
-  document.getElementById('affiliateRef')
-  .value
-  .trim();
+      const manualAffiliateRef =
+        document.getElementById('affiliateRef')
+          .value
+          .trim();
 
-const savedAffiliateRef =
-  window.sherguardAffiliateTracking
-    ? window.sherguardAffiliateTracking.getReferralCode()
-    : '';
+      const savedAffiliateRef =
+        window.sherguardAffiliateTracking
+          ? window.sherguardAffiliateTracking.getReferralCode()
+          : '';
 
-const finalAffiliateRef =
-  savedAffiliateRef || manualAffiliateRef;
+      const finalAffiliateRef =
+        savedAffiliateRef || manualAffiliateRef;
 
       if (!organizationName) {
         showStatus('Please enter your organization name.', 'error');
@@ -335,12 +281,12 @@ const finalAffiliateRef =
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-  organization_name: organizationName,
-  full_name: fullName,
-  email: email,
-  password: password,
-  affiliate_ref: finalAffiliateRef
-})
+              organization_name: organizationName,
+              full_name: fullName,
+              email: email,
+              password: password,
+              affiliate_ref: finalAffiliateRef
+            })
           }
         );
 
@@ -366,6 +312,11 @@ const finalAffiliateRef =
           'Account created. Please check your email to verify your account before logging in.',
           'success'
         );
+
+        // Reditus referral conversion tracking
+        if (typeof gr === 'function') {
+          gr('track', 'conversion', { email: email });
+        }
 
         registerForm.reset();
 
@@ -396,4 +347,5 @@ const finalAffiliateRef =
   <script src="js/affiliate-tracking.js"></script>
 
 </body>
+
 </html>
