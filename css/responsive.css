@@ -150,3 +150,19 @@
     padding: 14px 22px;
   }
 }
+
+/* ===== Blog Comparison Table Mobile Support ===== */
+
+@media (max-width: 768px) {
+  .blog-comparison-table-wrapper {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+  }
+
+  .blog-comparison-table {
+      min-width: 680px;
+      width: 100%;
+  }
+}
