@@ -1589,3 +1589,63 @@
     line-height: 1.7;
   }
 }
+
+
+/* ===== SherGuard Blog Article Content Styling ===== */
+
+/* Article card headings */
+.public-feature-grid h4 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+/* Lists inside article cards */
+.public-feature-grid ul {
+  margin: 14px 0 18px;
+  padding-left: 22px;
+  color: #475569;
+  line-height: 1.8;
+}
+
+.public-feature-grid li {
+  margin-bottom: 8px;
+}
+
+/* Article comparison table */
+.public-doc-card table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.public-doc-card table th,
+.public-doc-card table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+.public-doc-card table th {
+  background: #eff6ff;
+  color: #1e40af;
+  font-weight: 800;
+}
+
+.public-doc-card table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Article CTA button group */
+.public-btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
