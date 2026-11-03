@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How to Reduce False Positives in Fraud Detection Without Increasing Fraud Risk | SherGuard</title>
+
+    <meta name="description" content="Learn how to reduce false positives in fraud detection, prevent unnecessary customer declines, improve risk decisions, and balance fraud prevention with customer experience.">
+
+    <meta name="keywords" content="how to reduce false positives in fraud detection, fraud detection false positives, reduce false declines, fraud prevention customer experience, risk-based fraud detection, fraud detection accuracy, fraud alert optimization">
+
+    <link rel="canonical" href="https://sherguard.com/blog/blog-reduce-false-positives-fraud-detection.html">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/public-pages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body class="public-page">
+
+    <header class="public-header">
+
+        <a href="../index.html" class="public-logo">
+            <span class="public-logo-icon">▣</span>
+            <span>
+                <strong>SherGuard</strong>
+                <small>Trust Intelligence Platform</small>
+            </span>
+        </a>
+
+        <nav class="public-nav">
+            <a href="../index.html">Home</a>
+            <a href="../features.html">Features</a>
+            <a href="../developers.html">Developers</a>
+            <a href="../docs.html">Docs</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../register.html" class="public-nav-cta">Start Free</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="public-pricing-hero">
+
+            <span class="public-eyebrow">Fraud Detection and Risk Management</span>
+
+            <h1>How to Reduce False Positives in Fraud Detection Without Increasing Fraud Risk</h1>
+
+            <p>
+                Fraud detection systems must identify suspicious activity without unnecessarily
+                blocking legitimate customers. Learn why false positives happen, how they affect
+                businesses, and how to improve fraud decisions through better data, risk-based
+                controls, monitoring, and continuous calibration.
+            </p>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Introduction</span>
+
+                <h2>Fraud prevention must protect legitimate customers too</h2>
+
+                <p>
+                    Modern online businesses face a difficult security challenge. They must
+                    identify fraudulent activity quickly while allowing genuine customers to
+                    register, access accounts, use applications, and complete payments without
+                    unnecessary interruptions.
+                </p>
+
+                <p>
+                    Fraud detection systems are designed to identify unusual activity and
+                    potential threats. However, suspicious-looking activity is not always
+                    fraudulent. A legitimate customer might travel, replace a device, change
+                    payment methods, make an unusually large purchase, or access an account
+                    from a new location.
+                </p>
+
+                <p>
+                    If a fraud detection system interprets every unusual event as proof of
+                    fraud, legitimate users may be blocked or subjected to unnecessary
+                    verification.
+                </p>
+
+                <p>
+                    This is known as a false positive. In payment environments, a false
+                    positive may result in a legitimate transaction being declined because
+                    the system incorrectly identifies it as suspicious.
+                </p>
+
+                <p>
+                    False positives can create lost revenue, abandoned purchases, customer
+                    complaints, additional support work, and damage to customer trust.
+                    They can also increase the workload of fraud investigation teams.
+                </p>
+
+                <p>
+                    The objective should not be to eliminate every security challenge or
+                    approve every transaction. Businesses need a balanced approach that
+                    distinguishes between genuine customers, suspicious activity, and
+                    confirmed fraud.
+                </p>
+
+                <p>
+                    This guide explains how organizations can reduce false positives without
+                    weakening their fraud controls.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Understanding the Problem</span>
+
+                <h2>What are false positives in fraud detection?</h2>
+
+                <p>
+                    A false positive occurs when a detection system incorrectly identifies
+                    legitimate activity as suspicious or fraudulent.
+                </p>
+
+                <p>
+                    For example, an online store might receive an order from an established
+                    customer who is travelling internationally. The customer uses a new
+                    device and makes a purchase that is larger than their usual order.
+                </p>
+
+                <p>
+                    A fraud system may interpret the unfamiliar device, location, and
+                    transaction amount as multiple warning signs. However, the customer
+                    may be acting legitimately.
+                </p>
+
+                <p>
+                    If the system automatically declines the payment without considering
+                    additional context, the business has generated a false positive.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Legitimate Payment Declined</h3>
+                    <p>
+                        A genuine customer attempts to complete a purchase, but the payment
+                        is declined because a risk rule incorrectly identifies the transaction
+                        as fraudulent.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Valid Account Restricted</h3>
+                    <p>
+                        A customer signs in from a new device or location and is incorrectly
+                        treated as an account security threat.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Genuine Signup Flagged</h3>
+                    <p>
+                        A legitimate user creates an account using an email provider,
+                        network, or device characteristic that triggers a suspicious
+                        registration rule.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Normal API Activity Flagged</h3>
+                    <p>
+                        A legitimate application generates a temporary increase in API
+                        requests that resembles automated abuse or unusual traffic.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>False Positives vs False Negatives</span>
+
+                <h2>Why reducing false positives must not increase fraud losses</h2>
+
+                <p>
+                    Fraud detection systems must consider two different types of mistakes.
+                    Understanding the distinction is essential when evaluating detection
+                    performance.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>False Positive</h3>
+                    <p>
+                        Legitimate activity is incorrectly identified as suspicious or
+                        fraudulent.
+                    </p>
+                    <p>
+                        The business may reject a genuine payment, restrict a valid account,
+                        or request unnecessary verification.
+                    </p>
+                    <p>
+                        The result can be customer friction, lost revenue, and additional
+                        operational costs.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>False Negative</h3>
+                    <p>
+                        Fraudulent activity is incorrectly classified as legitimate.
+                    </p>
+                    <p>
+                        A suspicious payment, fake account, abusive API request, or automated
+                        attack may pass through the detection process.
+                    </p>
+                    <p>
+                        The result can be financial losses, account abuse, chargebacks,
+                        operational disruption, or other security problems.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="public-doc-card">
+
+                <h3>The four possible detection outcomes</h3>
+
+                <p>
+                    A useful way to evaluate a fraud detection system is to compare its
+                    decisions against the actual outcomes.
+                </p>
+
+                <ul>
+                    <li>
+                        True positive: Fraudulent activity is correctly identified.
+                    </li>
+                    <li>
+                        True negative: Legitimate activity is correctly identified as
+                        legitimate.
+                    </li>
+                    <li>
+                        False positive: Legitimate activity is incorrectly flagged.
+                    </li>
+                    <li>
+                        False negative: Fraudulent activity is incorrectly allowed through.
+                    </li>
+                </ul>
+
+                <p>
+                    A system that blocks almost everything may appear strict, but it is
+                    not necessarily effective. A system that approves almost everything
+                    may provide a smooth customer experience while exposing the business
+                    to unacceptable fraud risk.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="public-section public-dark-section sg-dark-section">
+
+            <div class="public-section-heading">
+
+                <span>Business Impact</span>
+
+                <h2>How false positives affect revenue and customer experience</h2>
+
+                <p>
+                    False positives are not simply technical classification errors.
+                    They can affect the financial performance and reputation of an
+                    organization.
+                </p>
+
+                <p>
+                    Their impact may extend beyond the original transaction because
+                    customers who experience repeated security problems may decide to
+                    use another service.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Lost Revenue</h3>
+                    <p>
+                        Legitimate purchases may be declined, preventing businesses
+                        from completing transactions that would otherwise have
+                        generated revenue.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Customer Abandonment</h3>
+                    <p>
+                        Customers who encounter repeated payment failures or
+                        unnecessary verification may abandon checkout or stop
+                        using the service.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Higher Support Costs</h3>
+                    <p>
+                        Support teams may need to investigate declined payments,
+                        restricted accounts, registration problems, and customer
+                        complaints.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Investigation Workload</h3>
+                    <p>
+                        Fraud teams may spend significant time reviewing alerts
+                        that do not represent actual fraud, reducing the time
+                        available for genuine threats.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Reduced Customer Trust</h3>
+                    <p>
+                        Legitimate users may lose confidence in a business when
+                        ordinary account activity or purchases repeatedly trigger
+                        security restrictions.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Operational Inefficiency</h3>
+                    <p>
+                        Poorly calibrated rules can create unnecessary manual
+                        reviews, inconsistent decisions, and additional pressure
+                        on operational teams.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Common Causes</span>
+
+                <h2>Why do fraud detection systems generate false positives?</h2>
+
+                <p>
+                    False positives can originate from data problems, overly broad
+                    rules, incomplete customer context, outdated assumptions, or
+                    detection models that are not properly calibrated.
+                </p>
+
+                <p>
+                    Businesses should investigate the reason behind incorrect
+                    decisions instead of simply reducing every risk threshold.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>1. Overly Aggressive Rules</h3>
+                    <p>
+                        A business may create a rule that blocks every transaction
+                        above a particular amount or every login from an unfamiliar
+                        location.
+                    </p>
+                    <p>
+                        Such rules may catch some suspicious activity, but they can
+                        also affect legitimate customers whose behavior is unusual
+                        for understandable reasons.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>2. Incomplete Customer Information</h3>
+                    <p>
+                        A system may evaluate a transaction without sufficient
+                        information about the customer's previous activity,
+                        account history, or normal purchasing behavior.
+                    </p>
+                    <p>
+                        Missing context can make an ordinary event appear more
+                        suspicious than it actually is.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>3. Unreliable or Outdated Data</h3>
+                    <p>
+                        Incorrect device information, stale reputation data,
+                        incomplete records, or inconsistent transaction fields
+                        can influence risk decisions.
+                    </p>
+                    <p>
+                        Data quality should be reviewed as part of fraud detection
+                        operations.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>4. Treating One Signal as Proof</h3>
+                    <p>
+                        A new device, unusual IP address, disposable-looking email
+                        pattern, or high transaction amount does not automatically
+                        prove fraud.
+                    </p>
+                    <p>
+                        Individual indicators should be evaluated in the context
+                        of the activity being investigated.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>5. Changing Customer Behavior</h3>
+                    <p>
+                        Customers may travel, replace devices, change internet
+                        providers, update payment methods, or make purchases that
+                        differ from their previous behavior.
+                    </p>
+                    <p>
+                        Rules that assume customer behavior never changes can
+                        produce unnecessary alerts.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>6. Poorly Maintained Detection Models</h3>
+                    <p>
+                        Fraud patterns and legitimate customer behavior evolve.
+                        A detection model that is not periodically evaluated
+                        may become less appropriate for current activity.
+                    </p>
+                    <p>
+                        Continuous testing and calibration are important parts
+                        of maintaining detection quality.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Strategy 1</span>
+
+                <h2>Use risk-based decisions instead of treating every alert equally</h2>
+
+                <p>
+                    One of the most important ways to reduce false positives is to
+                    avoid treating every suspicious indicator as a reason for
+                    immediate rejection.
+                </p>
+
+                <p>
+                    A risk-based approach evaluates the seriousness of the activity
+                    and determines an appropriate response. Different levels of
+                    risk can justify different actions.
+                </p>
+
+                <p>
+                    For example, an unfamiliar device may justify additional
+                    verification, while a confirmed malicious pattern may justify
+                    blocking the activity.
+                </p>
+
+            </div>
+
+            <div class="public-doc-card">
+
+                <h3>Example of a risk-based decision process</h3>
+
+                <pre><code>Incoming Activity
+       |
+       v
+Collect Relevant Signals
+       |
+       v
+Evaluate Risk and Context
+       |
+       v
+Determine Risk Level
+       |
+       +-------------------------+
+       |            |            |
+       v            v            v
+     Low          Medium        High
+       |            |            |
+       v            v            v
+   Allow or      Additional    Block or
+   Monitor       Verification  Escalate
+       |            |            |
+       +------------+------------+
+                    |
+                    v
+              Record Outcome
+                    |
+                    v
+             Review Performance</code></pre>
+
+                <p>
+                    This is a conceptual decision framework. The actual actions
+                    should be defined according to the organization's business
+                    requirements, available evidence, and risk tolerance.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Strategy 2</span>
+
+                <h2>Evaluate multiple signals instead of relying on one indicator</h2>
+
+                <p>
+                    A single signal rarely provides enough information to make
+                    every fraud decision confidently.
+                </p>
+
+                <p>
+                    Consider a customer who logs in from a new device. That event
+                    may be unusual, but it is not necessarily malicious. The
+                    business should consider additional context before deciding
+                    whether to allow, challenge, monitor, or restrict the activity.
+                </p>
+
+                <p>
+                    Depending on the workflow, useful information may include
+                    account history, device characteristics, email risk, request
+                    behavior, transaction details, and previous activity.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Email and Signup Signals</h3>
+                    <p>
+                        Examine registration patterns, suspicious email
+                        characteristics, repeated account creation, and
+                        other indicators associated with signup abuse.
+                    </p>
+                    <p>
+                        An unfamiliar email address should not automatically
+                        be treated as proof that a real person is fraudulent.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Device Risk Signals</h3>
+                    <p>
+                        Evaluate device and browser characteristics alongside
+                        other available information.
+                    </p>
+                    <p>
+                        Device changes and unusual environments can occur
+                        during legitimate customer activity.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Behavior and Bot Signals</h3>
+                    <p>
+                        Review repeated actions, unusual request timing,
+                        automated interaction patterns, and excessive
+                        activity.
+                    </p>
+                    <p>
+                        High activity alone does not always mean that a
+                        legitimate application or user is malicious.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>API Usage Signals</h3>
+                    <p>
+                        Evaluate request frequency, endpoint usage,
+                        repeated calls, and suspicious access patterns.
+                    </p>
+                    <p>
+                        Expected traffic from a legitimate integration
+                        should be distinguished from abusive automation.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Payment Risk Signals</h3>
+                    <p>
+                        Consider transaction amount, payment history,
+                        repeated attempts, billing information, and
+                        other available risk indicators.
+                    </p>
+                    <p>
+                        A larger-than-usual purchase may require context,
+                        not an automatic decline.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Historical Activity</h3>
+                    <p>
+                        Where available and appropriate, consider
+                        previous successful activity, account age,
+                        transaction history, and known behavior.
+                    </p>
+                    <p>
+                        Historical information can provide useful
+                        context, although it should not override
+                        evidence of current fraud.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Strategy 3</span>
+
+                <h2>Build a proper risk scoring and threshold strategy</h2>
+
+                <p>
+                    Fraud scoring can help organizations evaluate activity
+                    consistently. Rather than making every decision through
+                    a separate isolated rule, a risk score can represent the
+                    combined assessment of relevant indicators.
+                </p>
+
+                <p>
+                    However, a score is only useful when the business understands
+                    what it represents, how it was produced, and how its thresholds
+                    affect actual outcomes.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Define the Risk Categories</h3>
+                    <p>
+                        Establish clear categories such as low, medium, and high
+                        risk. Define what each category means for the specific
+                        workflow being protected.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Choose Appropriate Actions</h3>
+                    <p>
+                        Decide whether each category should result in allowing,
+                        monitoring, verification, manual review, or blocking.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Test the Thresholds</h3>
+                    <p>
+                        Evaluate how different thresholds affect legitimate
+                        activity and confirmed fraud using representative
+                        historical or controlled test data.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Review Business Impact</h3>
+                    <p>
+                        Measure the effect of threshold changes on customer
+                        experience, fraud losses, manual reviews, and
+                        operational costs.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="public-doc-card">
+
+                <h3>Illustrative risk decision table</h3>
+
+                <p>
+                    The following example shows how different risk categories
+                    might be handled. These are conceptual categories, not
+                    SherGuard's published scoring thresholds or recommended
+                    production settings.
+                </p>
+
+                <ul>
+                    <li>
+                        Low risk: Allow the activity and retain appropriate
+                        monitoring.
+                    </li>
+                    <li>
+                        Medium risk: Request additional verification or
+                        send the activity for review.
+                    </li>
+                    <li>
+                        High risk: Apply stronger controls, escalate, or
+                        block when supported by sufficient evidence.
+                    </li>
+                </ul>
+
+                <p>
+                    Thresholds should be established using actual business
+                    data and regularly reviewed. A threshold that works for
+                    one company may not be suitable for another.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Strategy 4</span>
+
+                <h2>Use additional verification when the evidence is uncertain</h2>
+
+                <p>
+                    Blocking is not the only possible response to suspicious
+                    activity.
+                </p>
+
+                <p>
+                    When the available evidence is incomplete, additional
+                    verification can help a business distinguish legitimate
+                    users from potential attackers.
+                </p>
+
+                <p>
+                    The verification method should be proportionate to the
+                    risk and should avoid introducing unnecessary friction
+                    for ordinary customer activity.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Step-Up Authentication</h3>
+                    <p>
+                        Request additional authentication when a login or
+                        account action presents meaningful risk indicators.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Payment Verification</h3>
+                    <p>
+                        Use appropriate payment authentication or verification
+                        processes when a transaction requires additional
+                        confidence.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Manual Review</h3>
+                    <p>
+                        Send selected uncertain cases to trained reviewers
+                        rather than automatically rejecting every unusual
+                        event.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Temporary Monitoring</h3>
+                    <p>
+                        Monitor selected activity more closely when the
+                        available information does not justify an immediate
+                        block.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section public-dark-section sg-dark-section">
+
+            <div class="public-section-heading">
+
+                <span>Strategy 5</span>
+
+                <h2>Measure false positives with the right performance metrics</h2>
+
+                <p>
+                    Organizations cannot reliably improve fraud detection
+                    quality if they only measure the number of blocked
+                    transactions or detected alerts.
+                </p>
+
+                <p>
+                    A useful measurement framework should evaluate both
+                    security effectiveness and the impact on legitimate
+                    activity.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>False Positive Rate</h3>
+                    <p>
+                        Measures how often legitimate activity is incorrectly
+                        classified as positive or suspicious within the
+                        defined evaluation population.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Precision</h3>
+                    <p>
+                        Measures the proportion of flagged positive cases
+                        that are actually positive according to the
+                        available ground truth.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Recall</h3>
+                    <p>
+                        Measures the proportion of actual positive cases
+                        that the system successfully identifies.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>False Negative Rate</h3>
+                    <p>
+                        Measures how often actual fraud or other target
+                        events are incorrectly classified as negative.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>False Decline Rate</h3>
+                    <p>
+                        Tracks legitimate payment attempts incorrectly
+                        declined by the relevant decision process.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Manual Review Rate</h3>
+                    <p>
+                        Measures how much activity is escalated for human
+                        investigation and how that workload changes
+                        over time.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="public-doc-card">
+
+                <h3>Understand precision and recall</h3>
+
+                <p>
+                    Precision and recall help explain the trade-offs in
+                    fraud detection.
+                </p>
+
+                <p>
+                    <strong>Precision:</strong> Of the cases identified as
+                    positive by the system, how many were actually positive?
+                </p>
+
+                <p>
+                    <strong>Recall:</strong> Of all the actual positive cases,
+                    how many did the system successfully identify?
+                </p>
+
+                <p>
+                    A business should evaluate these metrics together.
+                    Improving one measure without examining the other can
+                    create unintended consequences.
+                </p>
+
+                <p>
+                    The definition of a positive case must also be clear.
+                    For example, a suspicious event, a confirmed fraudulent
+                    payment, and a customer dispute are not necessarily
+                    interchangeable labels.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Strategy 6</span>
+
+                <h2>Create a feedback loop for incorrect fraud decisions</h2>
+
+                <p>
+                    Fraud detection systems should not be treated as
+                    permanent configurations that never require review.
+                </p>
+
+                <p>
+                    Businesses need a process for examining incorrect
+                    decisions, understanding why they occurred, and
+                    deciding whether the underlying rules, data, or
+                    models need adjustment.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Collect Review Outcomes</h3>
+                    <p>
+                        Record whether investigated alerts were confirmed
+                        fraud, legitimate activity, or unresolved cases.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Identify Repeated Patterns</h3>
+                    <p>
+                        Look for recurring false positives associated
+                        with particular rules, devices, transaction
+                        types, or customer workflows.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Investigate Root Causes</h3>
+                    <p>
+                        Determine whether the issue originates from
+                        inaccurate data, an overly broad rule,
+                        missing context, or an unsuitable threshold.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Test Proposed Changes</h3>
+                    <p>
+                        Evaluate changes against representative
+                        historical data or controlled scenarios
+                        before applying them broadly.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Document Decisions</h3>
+                    <p>
+                        Maintain records of configuration changes,
+                        the reason for each change, and the
+                        expected impact.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Review Performance Again</h3>
+                    <p>
+                        Monitor subsequent outcomes to determine
+                        whether the adjustment improved detection
+                        quality without increasing fraud exposure.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Strategy 7</span>
+
+                <h2>Improve data quality before changing detection rules</h2>
+
+                <p>
+                    Poor data quality can cause a fraud detection system
+                    to make incorrect decisions even when its rules
+                    appear reasonable.
+                </p>
+
+                <p>
+                    Before changing risk thresholds, organizations
+                    should examine the information supplied to the
+                    detection process.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Data Completeness</h3>
+                    <p>
+                        Identify missing fields and incomplete records
+                        that may affect risk evaluation.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Data Accuracy</h3>
+                    <p>
+                        Check whether device, account, transaction,
+                        and other relevant information is accurate.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Data Timeliness</h3>
+                    <p>
+                        Ensure that important information is available
+                        at the appropriate time for the decision
+                        being made.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Consistent Data Mapping</h3>
+                    <p>
+                        Make sure different systems interpret and
+                        transmit important fields consistently.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Duplicate and Conflicting Records</h3>
+                    <p>
+                        Review duplicate records and conflicting
+                        information that may distort the evaluation.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Integration Testing</h3>
+                    <p>
+                        Test data flows and integrations after
+                        application or configuration changes.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Practical Examples</span>
+
+                <h2>How businesses can reduce false positives in real situations</h2>
+
+                <p>
+                    The best response depends on the business workflow.
+                    The following examples illustrate how organizations
+                    can avoid unnecessary restrictions while maintaining
+                    appropriate security controls.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Example 1: E-Commerce Payment</h3>
+                    <p>
+                        A returning customer makes a purchase from a
+                        new device while travelling.
+                    </p>
+                    <p>
+                        A basic rule might decline the payment because
+                        the location and device are unfamiliar.
+                    </p>
+                    <p>
+                        A more contextual process could consider
+                        transaction history, payment information,
+                        device indicators, and appropriate
+                        authentication before deciding whether
+                        to approve or escalate the transaction.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Example 2: SaaS Registration</h3>
+                    <p>
+                        A legitimate business user registers using
+                        an email domain that has not previously
+                        appeared in the platform.
+                    </p>
+                    <p>
+                        An overly restrictive rule may classify
+                        the registration as suspicious.
+                    </p>
+                    <p>
+                        The business can evaluate email risk,
+                        registration behavior, device context,
+                        and other available signals before
+                        restricting the account.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Example 3: Mobile Application</h3>
+                    <p>
+                        A customer upgrades their phone and
+                        signs into an existing account.
+                    </p>
+                    <p>
+                        A device-based rule may treat the
+                        unfamiliar environment as suspicious.
+                    </p>
+                    <p>
+                        The application can use suitable
+                        authentication and additional context
+                        instead of assuming that every new
+                        device represents an attacker.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Example 4: API Integration</h3>
+                    <p>
+                        A legitimate partner application
+                        temporarily increases its API request
+                        volume during a scheduled operation.
+                    </p>
+                    <p>
+                        A broad request-volume rule may
+                        identify the activity as abusive.
+                    </p>
+                    <p>
+                        The business should compare the
+                        requests against expected integration
+                        behavior, endpoint usage, and
+                        other available indicators.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Example 5: Payment Verification</h3>
+                    <p>
+                        A customer attempts a transaction
+                        that triggers an unusual activity
+                        rule.
+                    </p>
+                    <p>
+                        Instead of automatically declining
+                        every uncertain case, the business
+                        may apply an appropriate additional
+                        verification step.
+                    </p>
+                    <p>
+                        The final decision should consider
+                        the result of that verification
+                        and the wider risk context.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Example 6: Promotional Activity</h3>
+                    <p>
+                        A business runs a campaign that
+                        generates a large number of
+                        legitimate registrations in a
+                        short period.
+                    </p>
+                    <p>
+                        A registration velocity rule
+                        may incorrectly flag genuine
+                        campaign traffic.
+                    </p>
+                    <p>
+                        The business should evaluate
+                        campaign context, account
+                        characteristics, and suspicious
+                        behavior rather than relying
+                        on volume alone.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Testing and Calibration</span>
+
+                <h2>Test fraud detection changes before deploying them</h2>
+
+                <p>
+                    Reducing false positives should be an evidence-based
+                    process. A change that appears beneficial in one
+                    situation may weaken protection in another.
+                </p>
+
+                <p>
+                    Organizations should evaluate proposed changes
+                    using representative data and realistic business
+                    scenarios.
+                </p>
+
+            </div>
+
+            <div class="public-doc-card">
+
+                <h3>A practical testing process</h3>
+
+                <ol>
+                    <li>
+                        Define the problem. Identify the rule, model,
+                        or workflow responsible for the incorrect
+                        decisions.
+                    </li>
+                    <li>
+                        Establish a baseline. Record existing false
+                        positive outcomes, fraud outcomes, review
+                        volume, and relevant customer impact.
+                    </li>
+                    <li>
+                        Prepare representative test data. Include
+                        legitimate activity, known fraud examples,
+                        and uncertain cases where possible.
+                    </li>
+                    <li>
+                        Test the proposed adjustment. Compare
+                        the new decision logic with the existing
+                        configuration.
+                    </li>
+                    <li>
+                        Examine trade-offs. Check whether fewer
+                        false positives are accompanied by
+                        increased false negatives.
+                    </li>
+                    <li>
+                        Deploy carefully. Use an appropriate
+                        rollout and monitoring process.
+                    </li>
+                    <li>
+                        Review actual results. Confirm whether
+                        the change produces the intended
+                        improvement under real operating
+                        conditions.
+                    </li>
+                </ol>
+
+                <p>
+                    Organizations should also retain records of
+                    rule changes, test results, approvals, and
+                    the reasons behind important configuration
+                    decisions.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Regulatory and Industry Guidance</span>
+
+                <h2>Why ongoing calibration and feedback matter</h2>
+
+                <p>
+                    Fraud detection optimization is also reflected
+                    in financial-sector guidance.
+                </p>
+
+                <p>
+                    The Saudi Central Bank's Fraud Control Framework
+                    includes requirements and guidance concerning
+                    fraud detection systems, data quality, testing,
+                    calibration, and performance monitoring for
+                    organizations within its applicable scope.
+                </p>
+
+                <p>
+                    Its fraud detection systems guidance specifically
+                    addresses testing detection scenarios, reviewing
+                    precision and recall, examining false positives
+                    and false negatives, and periodically reviewing
+                    rules and parameters.
+                </p>
+
+                <p>
+                    This supports an important operational principle:
+                    fraud detection should be monitored and improved
+                    continuously rather than treated as a one-time
+                    configuration exercise.
+                </p>
+
+                <p>
+                    Visa's published fraud prevention resources
+                    also discuss the importance of identifying
+                    genuine customers, reducing false declines,
+                    and balancing fraud controls with payment
+                    acceptance and customer experience.
+                </p>
+
+                <p>
+                    These resources provide useful industry
+                    context. Organizations should always
+                    determine which regulatory requirements
+                    apply to their own jurisdiction, business
+                    model, and activities.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Saudi Central Bank — Fraud Detection Systems</h3>
+                    <p>
+                        Guidance covering detection systems,
+                        data sources, calibration, testing,
+                        feedback loops, and performance
+                        monitoring.
+                    </p>
+                    <a href="https://rulebook.sama.gov.sa/en/52-fraud-detection-systems"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Read the SAMA guidance
+                    </a>
+                </article>
+
+                <article>
+                    <h3>Visa — Payment Fraud and False Declines</h3>
+                    <p>
+                        Industry information about payment
+                        fraud detection, transaction monitoring,
+                        authentication, and reducing unnecessary
+                        declines.
+                    </p>
+                    <a href="https://corporate.visa.com/en/solutions/visa-protect/insights/payment-fraud.html"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Read Visa's payment fraud guide
+                    </a>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>How SherGuard Fits</span>
+
+                <h2>Evaluate fraud risk across multiple business activity areas</h2>
+
+                <p>
+                    False positives can occur at different stages
+                    of the digital customer journey. A registration
+                    may be incorrectly flagged, a device may appear
+                    unfamiliar, normal application behavior may
+                    resemble automation, or a legitimate payment
+                    may trigger a risk rule.
+                </p>
+
+                <p>
+                    SherGuard is a Trust Intelligence Platform
+                    designed to help businesses evaluate suspicious
+                    activity across five core areas:
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Email Risk Intelligence</h3>
+                    <p>
+                        Evaluates email-related risk indicators
+                        that can help businesses assess suspicious
+                        registrations and account creation.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Device Risk Intelligence</h3>
+                    <p>
+                        Evaluates device and environment-related
+                        information that can contribute to
+                        understanding suspicious activity.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Bot Detection Intelligence</h3>
+                    <p>
+                        Analyzes activity patterns that may
+                        indicate automated or suspicious
+                        behavior.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>API Abuse Intelligence</h3>
+                    <p>
+                        Helps identify suspicious API usage
+                        patterns and activity that may indicate
+                        abusive access.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Payment Fraud Intelligence</h3>
+                    <p>
+                        Provides payment-related risk analysis
+                        to help businesses evaluate suspicious
+                        transaction activity.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>One Trust Intelligence Platform</h3>
+                    <p>
+                        Brings these five risk analysis areas
+                        together so businesses can consider
+                        different types of suspicious activity
+                        within a broader trust strategy.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="public-section-heading">
+
+                <h2>Use risk information as part of a wider decision process</h2>
+
+                <p>
+                    Risk indicators should support business decisions,
+                    not automatically replace them. Organizations
+                    should define how their applications use
+                    detection results, when additional verification
+                    is required, and which activities should be
+                    escalated or restricted.
+                </p>
+
+                <p>
+                    SherGuard's detection modules are intended
+                    to provide relevant risk intelligence.
+                    Businesses remain responsible for defining
+                    appropriate application controls, verification
+                    processes, and final business decisions.
+                </p>
+
+                <p>
+                    SherGuard should be evaluated alongside
+                    the organization's existing authentication,
+                    payment processing, application security,
+                    monitoring, and fraud management controls.
+                </p>
+
+            </div>
+
+            <div class="public-btn-group">
+
+                <a href="../features.html" class="public-btn public-btn-secondary">
+                    Explore SherGuard Features
+                </a>
+
+                <a href="../developers.html" class="public-btn public-btn-secondary">
+                    Explore Developer Resources
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Evaluation Checklist</span>
+
+                <h2>How to evaluate whether your fraud detection system is producing too many false positives</h2>
+
+                <p>
+                    Businesses can use the following questions
+                    to review the quality of their current
+                    fraud detection processes.
+                </p>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>Detection Quality</h3>
+                    <ul>
+                        <li>Are false positives measured regularly?</li>
+                        <li>Are false negatives also monitored?</li>
+                        <li>Are precision and recall evaluated?</li>
+                        <li>Are detection outcomes supported by reliable labels?</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Data and Context</h3>
+                    <ul>
+                        <li>Are important data fields complete and accurate?</li>
+                        <li>Is customer history considered where appropriate?</li>
+                        <li>Are multiple signals evaluated together?</li>
+                        <li>Are data sources updated appropriately?</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Rules and Decisions</h3>
+                    <ul>
+                        <li>Are thresholds tested before deployment?</li>
+                        <li>Are different risk levels handled differently?</li>
+                        <li>Can uncertain activity receive additional verification?</li>
+                        <li>Are important rule changes documented?</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Business Impact</h3>
+                    <ul>
+                        <li>Are legitimate payment declines monitored?</li>
+                        <li>Is customer friction measured?</li>
+                        <li>Are manual review workloads understood?</li>
+                        <li>Are fraud losses evaluated alongside acceptance?</li>
+                    </ul>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Frequently Asked Questions</span>
+
+                <h2>False positives in fraud detection: common questions</h2>
+
+            </div>
+
+            <div class="public-feature-grid">
+
+                <article>
+                    <h3>What is a false positive in fraud detection?</h3>
+                    <p>
+                        A false positive occurs when legitimate activity
+                        is incorrectly identified as suspicious or
+                        fraudulent. For example, a genuine payment
+                        may be declined because a system incorrectly
+                        interprets the transaction as risky.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Why do fraud detection systems produce false positives?</h3>
+                    <p>
+                        Common causes include overly aggressive
+                        rules, incomplete data, changing customer
+                        behavior, insufficient context, unreliable
+                        signals, and detection models that have
+                        not been properly calibrated.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>How can businesses reduce false positives?</h3>
+                    <p>
+                        Businesses can improve data quality,
+                        evaluate multiple signals, use risk-based
+                        decisions, test thresholds, introduce
+                        appropriate verification, and review
+                        incorrect detection outcomes.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Does reducing false positives increase fraud risk?</h3>
+                    <p>
+                        It can if controls are weakened without
+                        evaluating false negatives and fraud
+                        losses. Changes should be tested against
+                        both legitimate activity and confirmed
+                        fraud scenarios.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>What is the difference between precision and recall?</h3>
+                    <p>
+                        Precision measures how many flagged
+                        positive cases are actually positive.
+                        Recall measures how many actual positive
+                        cases the system successfully identifies.
+                        Both help evaluate detection performance.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Should every suspicious transaction be declined?</h3>
+                    <p>
+                        Not necessarily. Depending on the
+                        evidence and risk level, a business
+                        may allow, monitor, request additional
+                        verification, escalate for review,
+                        or decline the activity.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>How often should fraud detection rules be reviewed?</h3>
+                    <p>
+                        Rules should be reviewed periodically
+                        and when meaningful changes occur in
+                        threats, customer behavior, business
+                        operations, or data quality. Review
+                        frequency should reflect the organization's
+                        risk and operational requirements.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Can device information cause false positives?</h3>
+                    <p>
+                        Yes. Customers can change devices,
+                        browsers, networks, or locations
+                        for legitimate reasons. Device
+                        information should be interpreted
+                        alongside other relevant signals.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>What should businesses measure besides fraud losses?</h3>
+                    <p>
+                        Useful measures include false positive
+                        rates, false decline rates, precision,
+                        recall, manual review rates, customer
+                        friction, and operational costs.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Can AI eliminate false positives?</h3>
+                    <p>
+                        No detection approach should be assumed
+                        to eliminate all false positives.
+                        AI-based systems can help evaluate
+                        complex patterns, but their performance
+                        depends on data quality, validation,
+                        monitoring, and appropriate decision
+                        policies.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="public-section">
+
+            <div class="public-section-heading">
+
+                <span>Conclusion</span>
+
+                <h2>Better fraud detection means protecting customers and the business</h2>
+
+                <p>
+                    False positives are an important challenge
+                    for organizations that depend on digital
+                    accounts, online payments, APIs, and
+                    automated customer workflows.
+                </p>
+
+                <p>
+                    Blocking suspicious activity is necessary,
+                    but incorrectly blocking legitimate users
+                    can create lost revenue, unnecessary
+                    operational work, and damage to customer
+                    relationships.
+                </p>
+
+                <p>
+                    The most effective approach is not simply
+                    to make fraud rules more restrictive or
+                    more permissive. Businesses should improve
+                    data quality, evaluate multiple signals,
+                    use risk-based responses, measure detection
+                    performance, and continuously review
+                    incorrect decisions.
+                </p>
+
+                <p>
+                    Precision, recall, false positive rates,
+                    false negative rates, customer experience,
+                    and fraud losses should be considered
+                    together.
+                </p>
+
+                <p>
+                    Fraud detection is an ongoing process.
+                    Regular testing, calibration, feedback,
+                    and monitoring help organizations maintain
+                    a better balance between security and
+                    legitimate customer activity.
+                </p>
+
+                <p>
+                    A strong fraud strategy should protect
+                    the business without treating every
+                    unusual customer action as proof of
+                    wrongdoing.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="public-cta-section">
+
+            <div class="public-section-heading">
+
+                <span>Build a Stronger Trust Strategy</span>
+
+                <h2>Evaluate suspicious activity with SherGuard</h2>
+
+                <p>
+                    SherGuard is a Trust Intelligence Platform
+                    designed to help businesses assess email
+                    risk, device risk, bot activity, API abuse,
+                    and payment fraud through five core
+                    intelligence modules.
+                </p>
+
+                <p>
+                    Explore how SherGuard can fit into your
+                    business's wider approach to trust,
+                    fraud risk, and application security.
+                </p>
+
+            </div>
+
+            <div class="public-btn-group">
+
+                <a href="../register.html" class="public-btn public-btn-primary">
+                    Get Started
+                </a>
+
+                <a href="../features.html" class="public-btn public-btn-secondary">
+                    Explore Features
+                </a>
+
+                <a href="../developers.html" class="public-btn public-btn-secondary">
+                    Explore Developer Resources
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="public-footer">
+
+        <div class="public-container">
+
+            <div class="public-footer-content">
+
+                <div>
+                    <a href="../index.html" class="public-logo">SherGuard</a>
+                    <p>Trust Intelligence Platform.</p>
+                </div>
+
+                <div class="public-footer-links">
+                    <a href="../pricing.html">Pricing</a>
+                    <a href="../developers.html">Developers</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy.html">Privacy</a>
+                    <a href="../terms.html">Terms</a>
+                    <a href="../refund-policy.html">Refund Policy</a>
+                </div>
+
+            </div>
+
+            <div class="public-footer-bottom">
+                <p>&copy; 2026 SherGuard. All rights reserved.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
